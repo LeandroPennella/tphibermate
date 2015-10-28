@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-	<context:component-scan base-package="ar.edu.uces.progweb2.springmvc.controller.persistence" />
+	<context:component-scan base-package="ar.edu.uces.progweb2.springmvc.controllers" />
 	<context:component-scan base-package="ar.edu.uces.progweb2.springmvc.dao" />
 
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -27,19 +27,16 @@
 		<property name="dataSource" ref="myDataSource" />
 		<property name="mappingResources">
 			<list>
-				<value>/ar/edu/uces/progweb2/springmvc/model/Something.hbm.xml</value>
-				<value>/ar/edu/uces/progweb2/springmvc/model/Avatar.hbm.xml</value>
-				<value>/ar/edu/uces/progweb2/springmvc/model/Pedido.hbm.xml</value>
-				<value>/ar/edu/uces/progweb2/springmvc/model/Cliente.hbm.xml</value>
-				<value>/ar/edu/uces/progweb2/springmvc/model/Item.hbm.xml</value>
+				<value>/ar/edu/uces/progweb2/springmvc/model/Usuario.hbm.xml</value>
+				<value>/ar/edu/uces/progweb2/springmvc/model/Evento.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-				<prop key="hibernate.show_sql">true</prop><!-- muestra las querys en consola -->
-				<prop key="hbm2ddl.auto">validate</prop><!--  valida el mapeo -->
-				<prop key="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</prop><!-- no hace cache de 2do nivel -->
+				<prop key="hibernate.show_sql">true</prop>												<!-- muestra las querys en consola -->
+				<prop key="hbm2ddl.auto">validate</prop>												<!--  valida el mapeo -->
+				<prop key="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</prop>	<!-- no hace cache de 2do nivel -->
 			</props>
 		</property>
 	</bean>
