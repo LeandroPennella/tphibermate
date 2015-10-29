@@ -41,19 +41,65 @@ public class UsuarioController {
 		*/
 		//todo: separar lengua_pais
 	//	localeResolver.setLocale(request, response, new Locale(idioma) );
-		
-		asentar(usuarioForm);
+		boolean recordarme =true; //TODO: extraer del form
+		asentar(usuarioForm,request,response,recordarme);
 		return new ModelAndView("index.jsp");//lo manda al inicio para que lo capture el interceptor
 	}
 	
 	
-	public void asentar(UsuarioForm usuarioForm)
+	public void asentar(UsuarioForm usuarioForm, HttpServletRequest request, HttpServletResponse response, boolean recordarme)
 	{
+		
 		//lo guarda en sesion
 		Usuario usuario=new Usuario();
 		//si esta marcado recordar, guarda una cookie
-		//Cookie cookie ;
+		if(recordarme)
+		{
+			boolean encontrado=false;
+			Cookie cookie ;
+			//buscar cookie
+			cookie = obtenerCookie(request, usuario.getNombre());
 
+			if (cookie!=null)
+			{
+				//si  existe la cookie 
+				encontrado=true;
+				//actualizar fecha de ultima
+/*
+        			cookie.setValue(Integer.toString(scoreActual));
+        			cookie.setMaxAge(60*60*24*365);
+        			cookie.setPath("/");
+        			response.addCookie(cookie);
+        		*/
+	        } 
+			//si no  existe
+			if (!encontrado)
+			{
+				//crearla
+				/*
+				cookie=new Cookie(partida.getJugador().getNombre(),Integer.toString(partida.getIntentos().size()));
+				cookie.setMaxAge(60*60*24*365);
+				cookie.setPath("/");
+				response.addCookie(cookie);
+				*/
+			}
+		}
+		else
+		{
+			//buscar si esta la cookie
+			//si esta sacarla 
+		}
 	}
+	
+    public Cookie obtenerCookie(HttpServletRequest request, String name) {
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                if (cookie.getName().equals(name)) {
+                    return cookie;
+                }
+            }
+        }
+        return null;
+    }
 	
 }
