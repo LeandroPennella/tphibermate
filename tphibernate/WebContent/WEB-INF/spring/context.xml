@@ -20,30 +20,24 @@
 	<!--  -->
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
 
-	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.controllers" />
+	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.controladores" />
 
 	<mvc:annotation-driven />
 	
-	<!-- message resources -->
+	<!--
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**"/>																	<!-- declaro la url que va a interceptar // este toma todo // ** toma recursivamente -->
-			<bean class="ar.edu.uces.progweb2.springmvc.controller.interceptor.miInterceptor"></bean>	<!-- la clase que implementa el interceptor -->
+			<mvc:mapping path="/**"/>																
+			<bean class="ar.edu.uces.progweb2.springmvc.interceptores.intercaptorLogin"></bean>		
 		</mvc:interceptor>
 	</mvc:interceptors>
-	
+	-->
 	<!-- message resources -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="resources/messages/mensajes" />
 	</bean>
-
-	<!-- for file upload -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="250000000000" />
-	</bean>
-
 	
-	<import resource="/hibernate-context.xml" />
-	<!--<import resource="/json-mapper-context.xml" />-->
+	<!--<import resource="/hibernate-context.xml" />-->
+
 
 </beans>
