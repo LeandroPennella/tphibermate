@@ -101,6 +101,11 @@ ALTER TABLE ReunionesInvitados ADD FOREIGN KEY (invitado_id) REFERENCES Usuarios
 
 ALTER TABLE Contrasenias ADD FOREIGN KEY (usuario_id) REFERENCES Usuarios(idUsuario);
 
+-- Populate Tables ----------------------------------------------------------------------------------------------
+
+INSERT INTO Usuarios (nombre,apellido,usuario,idioma) VALUES ('pepe','argento','pepea','es_AR'),('uncle','tom','uncletom','en_US') ;
+INSERT INTO Contrasenias (usuario_id ,contraseña) VALUES ('1','elpepe'),('2','ilovewar');
+
 -- Grant privileges ----------------------------------------------------------------------------------------------
 
 GRANT ALL PRIVILEGES ON `agenda`.* TO 'noroot'@'localhost'  IDENTIFIED BY PASSWORD '*B04E11FAAAE9A5A019BAF695B40F3BF1997EB194';
