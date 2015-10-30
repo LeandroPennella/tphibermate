@@ -34,7 +34,7 @@
 	-->
 	<!-- message resources -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="resources/messages/mensajes" />
+		<property name="basename" value="recursos/messages/mensajes" />
 	</bean>
 	
 	<!--<import resource="/hibernate-context.xml" />-->
