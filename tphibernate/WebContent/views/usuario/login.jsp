@@ -31,6 +31,7 @@
   <body>
 
     <div class="container">
+
 		<c:url value="/autenticacion/validar.do" var="x"></c:url>
 		<form:form method="POST" commandName="usuarioForm" action="${x}" cssClass="form-signin">	
 			<div class="panel panel-default">
@@ -47,6 +48,7 @@
 					<!-- contrasenia -->
 					<fmt:message key='login.label.contrasenia' var="contrasenia" />
 					<form:password path="contrasenia" cssClass="form-control"  placeholder="${contrasenia}"   />
+
 					<form:errors path="contrasenia" cssStyle="color: red" />
 
 					<!-- recordarme -->

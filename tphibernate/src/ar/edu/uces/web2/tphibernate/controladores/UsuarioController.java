@@ -1,4 +1,5 @@
 package ar.edu.uces.web2.tphibernate.controladores;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,7 +44,7 @@ public class UsuarioController {
 	//	localeResolver.setLocale(request, response, new Locale(idioma) );
 		boolean recordarme =true; //TODO: extraer del form
 		asentar(usuarioForm,request,response,recordarme);
-		return new ModelAndView("index.jsp");//lo manda al inicio para que lo capture el interceptor
+		return new ModelAndView("/index.jsp");//lo manda al inicio para que lo capture el interceptor
 	}
 	
 	
@@ -102,4 +103,5 @@ public class UsuarioController {
         return null;
     }
 	
+
 }
