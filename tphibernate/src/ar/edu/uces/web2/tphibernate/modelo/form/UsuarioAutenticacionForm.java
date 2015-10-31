@@ -1,12 +1,15 @@
 package ar.edu.uces.web2.tphibernate.modelo.form;
 
-public class UsuarioForm {
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class UsuarioAutenticacionForm {
 	
 	private String nombreUsuario;
 	private String contrasenia;
 	private Boolean recordarme;
 
-	public UsuarioForm(){}
+	public UsuarioAutenticacionForm(){}
 	
 	public String getNombreUsuario() {
 		return nombreUsuario;
@@ -27,4 +30,5 @@ public class UsuarioForm {
 		this.recordarme = recordarme;
 	}
 	
+
 }

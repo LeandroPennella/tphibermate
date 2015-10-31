@@ -4,6 +4,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 /*
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,39 +17,43 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
-import ar.edu.uces.web2.tphibernate.modelo.form.UsuarioForm;
+import ar.edu.uces.web2.tphibernate.modelo.form.UsuarioAutenticacionForm;
+import ar.edu.uces.web2.tphibernate.modelo.validadores.UsuarioAutenticacionFormValidator;
 
 
 @SessionAttributes("usuario")
 @Controller
 public class UsuarioController {
 
+	@Autowired
+	private UsuarioAutenticacionFormValidator usuarioAutenticacionFormValidator;
 
-
-	
 	@RequestMapping(value = "/autenticacion/login")
 	public ModelAndView identificar(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("/views/usuario/login.jsp","usuarioForm",new UsuarioForm());
+		return new ModelAndView("/views/usuario/login.jsp","usuarioAutenticacionForm",new UsuarioAutenticacionForm());
 	}
 	
 	@RequestMapping(value = "/autenticacion/validar")
-	public ModelAndView validar(  @ModelAttribute("usuarioForm") UsuarioForm usuarioForm, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
-	/*
-		//todo:no sabe si jugador viene de sesion o de get?
-		this.jugadorValidador.validate(jugador, result);	
+	public ModelAndView validar(  @ModelAttribute("usuarioAutenticacionForm") UsuarioAutenticacionForm usuarioAutenticacionForm, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
+	
+		//TODO:no sabe si jugador viene de sesion o de get?
+		
+		this.usuarioAutenticacionFormValidator.validate(usuarioAutenticacionForm, result);	
 		if (result.hasErrors()) {
-			return new ModelAndView("/views/identificarJugador.jsp","idiomas", listarIdiomas());
+			return new ModelAndView("/views/login.jsp");
 		}
-		*/
+		
+		
+		//autenticar
+		
 		//todo: separar lengua_pais
 	//	localeResolver.setLocale(request, response, new Locale(idioma) );
-		boolean recordarme =true; //TODO: extraer del form
-		asentar(usuarioForm,request,response,recordarme);
+		boolean recordarme =usuarioAutenticacionForm.getRecordarme(); //TODO: extraer del form
+		asentar(usuarioAutenticacionForm,request,response,recordarme);
 		return new ModelAndView("/index.jsp");//lo manda al inicio para que lo capture el interceptor
 	}
 	
-	
-	public void asentar(UsuarioForm usuarioForm, HttpServletRequest request, HttpServletResponse response, boolean recordarme)
+	public void asentar(UsuarioAutenticacionForm usuarioAutenticacionForm, HttpServletRequest request, HttpServletResponse response, boolean recordarme)
 	{
 		
 		//lo guarda en sesion
@@ -94,6 +99,9 @@ public class UsuarioController {
 		}
 	}
 	
+	public void logout()
+	{}
+	
     public Cookie obtenerCookie(HttpServletRequest request, String name) {
         if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
@@ -105,5 +113,6 @@ public class UsuarioController {
         return null;
     }
 	
+
 
 }
