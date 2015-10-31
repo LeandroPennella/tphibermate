@@ -59,7 +59,7 @@ public class UsuarioController {
 			boolean encontrado=false;
 			Cookie cookie ;
 			//buscar cookie
-			cookie = obtenerCookie(request, usuario.getNombre());
+			cookie = obtenerCookie(request, "nombre");
 
 			if (cookie!=null)
 			{
@@ -77,12 +77,14 @@ public class UsuarioController {
 			if (!encontrado)
 			{
 				//crearla
-				/*
-				cookie=new Cookie(partida.getJugador().getNombre(),Integer.toString(partida.getIntentos().size()));
+				cookie=new Cookie("nombre",usuario.getNombre());
 				cookie.setMaxAge(60*60*24*365);
 				cookie.setPath("/");
 				response.addCookie(cookie);
-				*/
+				cookie=new Cookie("contrasenia",usuario.getContrasenia());
+				cookie.setMaxAge(60*60*24*365);
+				cookie.setPath("/");
+				response.addCookie(cookie);
 			}
 		}
 		else
