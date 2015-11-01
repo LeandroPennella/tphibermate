@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 
 
-@Transactional(readOnly = true)
+//@Transactional(readOnly = true)
 @Component
-public class UsarioDAO {
+public class UsuarioDAO {
 	private SessionFactory sessionFactory;
 
 	@Autowired
@@ -26,7 +26,7 @@ public class UsarioDAO {
 		return (Usuario) session.get(Usuario.class, id);// no tira excepcion si no lo encuentra	
 		}
 	
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	//@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void save(Usuario usuario) {
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -35,8 +35,8 @@ public class UsarioDAO {
 		
 	}
 	
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public Usuario auteniticar(String nombreUsuario, String contrasenia) {
+	//@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public Usuario autenticar(String nombreUsuario, String contrasenia) {
 		Session session = sessionFactory.getCurrentSession();
 		Usuario usuario= (Usuario)session.createQuery("from " +Usuario.class.getName()+" as u where u.nombreUsuario = '?' and u.contrasenia='?'")
 				.setString(0,nombreUsuario)

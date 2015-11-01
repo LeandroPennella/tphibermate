@@ -12,8 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class interceptorLogin implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
-/*
+
 		HttpSession session= request.getSession();
+		/*
 		//si existen cookies con usuario y contraseña coincidente
 		//y se autentican contra la bd
 		if(existeCookie("usuario")){
@@ -21,18 +22,25 @@ public class interceptorLogin implements HandlerInterceptor {
 		}
 		//si no existe en cookies
 		else
-		{	//si existe el usuario en sesion
+		{	
+		
+		*/
+		//si existe el usuario en sesion
 			if ((session.getAttribute("usuario")==null))
 			{
-				//
-				
-				//RequestDispatcher rd= request.getRequestDispatcher("/login.do");
-				//rd.forward(request, response);
-				//return false;		//no pasa por postHandle ni afterCompletion
-				//
+				RequestDispatcher rd= request.getRequestDispatcher("/login.do");
+				rd.forward(request, response);
+				return false;		//no pasa por postHandle ni afterCompletion
 			}
-		}	*/
-		return true; //sigue o no sigue // al controlador o al siguiente interceptor
+			else
+			{
+				RequestDispatcher rd= request.getRequestDispatcher("/agenda/mostrarCalendario.do");
+				rd.forward(request, response);
+				return false;		//no pasa por postHandle ni afterCompletion
+			}
+			
+		//}	
+		//return true; //sigue o no sigue // al controlador o al siguiente interceptor
 	}
 
 	@Override

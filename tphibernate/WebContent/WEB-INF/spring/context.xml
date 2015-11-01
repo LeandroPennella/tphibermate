@@ -21,14 +21,14 @@
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
 
 	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.controladores" />
-
+	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.interceptores" />
 	<mvc:annotation-driven />
 	
 	<!--
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>																
-			<bean class="ar.edu.uces.progweb2.springmvc.interceptores.intercaptorLogin"></bean>		
+			<bean class="ar.edu.uces.web2.tphibernate.interceptores.intercaptorLogin"></bean>		
 		</mvc:interceptor>
 	</mvc:interceptors>
 	-->
@@ -38,7 +38,7 @@
 		<property name="basename" value="recursos/messages/mensajes" />
 	</bean>
 	
-	<!--<import resource="/hibernate-context.xml" />-->
+	<import resource="/hibernate-context.xml" />
 
 
 </beans>
