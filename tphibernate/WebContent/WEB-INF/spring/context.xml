@@ -38,7 +38,7 @@
 		<property name="basename" value="recursos/messages/mensajes" />
 	</bean>
 	
-	<!--<import resource="/hibernate-context.xml" />-->
+	<import resource="/hibernate-context.xml" />
 
 
 </beans>

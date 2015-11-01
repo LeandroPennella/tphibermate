@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
+import ar.edu.uces.web2.tphibernate.modelo.dao.UsuarioDAO;
 import ar.edu.uces.web2.tphibernate.modelo.form.UsuarioAutenticacionForm;
 import ar.edu.uces.web2.tphibernate.modelo.validadores.UsuarioAutenticacionFormValidator;
 
@@ -28,9 +29,16 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioAutenticacionFormValidator usuarioAutenticacionFormValidator;
 
+
+	private UsuarioDAO usuarioDAO;
+	@Autowired
+	public void setPedidoDao(UsuarioDAO usuarioDAO) {
+		this.usuarioDAO = usuarioDAO;
+	}
+	
 	@RequestMapping(value = "/autenticacion/login")
 	public ModelAndView identificar(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("/views/usuario/login.jsp","usuarioAutenticacionForm",new UsuarioAutenticacionForm());
+		return new ModelAndView("/views/autenticacion/login.jsp","usuarioAutenticacionForm",new UsuarioAutenticacionForm());
 	}
 	
 	@RequestMapping(value = "/autenticacion/validar")
@@ -38,19 +46,27 @@ public class UsuarioController {
 	
 		//TODO:no sabe si jugador viene de sesion o de get?
 		
-		this.usuarioAutenticacionFormValidator.validate(usuarioAutenticacionForm, result);	
+		//this.usuarioAutenticacionFormValidator.validate(usuarioAutenticacionForm, result);	
 		if (result.hasErrors()) {
-			return new ModelAndView("/views/login.jsp");
+			return new ModelAndView("/views/autenticacion/login.jsp");
 		}
 		
 		
 		//autenticar
-		
-		//todo: separar lengua_pais
-	//	localeResolver.setLocale(request, response, new Locale(idioma) );
-		boolean recordarme =usuarioAutenticacionForm.getRecordarme(); //TODO: extraer del form
-		asentar(usuarioAutenticacionForm,request,response,recordarme);
-		return new ModelAndView("/index.jsp");//lo manda al inicio para que lo capture el interceptor
+		Usuario usuario=usuarioDAO.autenticar(usuarioAutenticacionForm.getNombreUsuario(), usuarioAutenticacionForm.getContrasenia());
+		if (usuario!=null)
+		{
+			asentar(usuarioAutenticacionForm,request,response,usuarioAutenticacionForm.getRecordarme());
+			//todo: separar lengua_pais
+			//	localeResolver.setLocale(request, response, new Locale(idioma) );
+			return new ModelAndView("/views/index.jsp");//usurio y contraseña no coinciden	
+
+		}
+		else
+		{
+			return new ModelAndView("/views/autenticacion/login.jsp");//usurio y contraseña no coinciden	
+		}
+
 	}
 	
 	public void asentar(UsuarioAutenticacionForm usuarioAutenticacionForm, HttpServletRequest request, HttpServletResponse response, boolean recordarme)
