@@ -38,7 +38,7 @@
 				<div class="panel-body">
 
 					
-					<h2 class="form-signin-heading"><fmt:message key="login.label.identifiquese" /></h2>
+					<h4 class="form-signin-heading"><fmt:message key="login.label.identifiquese" /></h4>
 
 					<!-- nombreUsuario -->
 					<fmt:message key='login.label.usuario' var="usuario" />
