@@ -20,18 +20,18 @@
 	<!--  -->
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
 
-	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.controladores" />
-	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.interceptores" />
+	<context:component-scan base-package="ar.edu.uces.web2.tphibernate" />
+
 	<mvc:annotation-driven />
 	
-	<!--
+
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>																
-			<bean class="ar.edu.uces.web2.tphibernate.interceptores.intercaptorLogin"></bean>		
+			<bean class="ar.edu.uces.web2.tphibernate.interceptores.interceptorLogin"></bean>		
 		</mvc:interceptor>
 	</mvc:interceptors>
-	-->
+
 	
 	<!-- message resources -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">

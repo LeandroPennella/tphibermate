@@ -5,10 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-/*
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-*/
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,21 +26,25 @@ import ar.edu.uces.web2.tphibernate.modelo.validadores.UsuarioAutenticacionFormV
 @Controller
 public class UsuarioController {
 
+	/*
+	private UsuarioDAO usuarioDAO;
+	
 	@Autowired
 	private UsuarioAutenticacionFormValidator usuarioAutenticacionFormValidator;
+*/
 
-
-	private UsuarioDAO usuarioDAO;
+/*
 	@Autowired
 	public void setPedidoDao(UsuarioDAO usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
 	}
-	
+	*/
 	@RequestMapping(value = "/autenticacion/login")
 	public ModelAndView identificar(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("/views/autenticacion/login.jsp","usuarioAutenticacionForm",new UsuarioAutenticacionForm());
 	}
 	
+	/*
 	@RequestMapping(value = "/autenticacion/validar")
 	public ModelAndView validar(  @ModelAttribute("usuarioAutenticacionForm") UsuarioAutenticacionForm usuarioAutenticacionForm, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
 	
@@ -87,12 +91,12 @@ public class UsuarioController {
 				//si  existe la cookie 
 				encontrado=true;
 				//actualizar fecha de ultima
-/*
-        			cookie.setValue(Integer.toString(scoreActual));
-        			cookie.setMaxAge(60*60*24*365);
-        			cookie.setPath("/");
-        			response.addCookie(cookie);
-        		*/
+
+        			//cookie.setValue(Integer.toString(scoreActual));
+        			//cookie.setMaxAge(60*60*24*365);
+        			//cookie.setPath("/");
+        			//response.addCookie(cookie);
+        		
 	        } 
 			//si no  existe
 			if (!encontrado)
@@ -128,7 +132,6 @@ public class UsuarioController {
         }
         return null;
     }
-	
-
+	*/
 
 }
