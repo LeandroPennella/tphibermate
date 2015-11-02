@@ -39,7 +39,7 @@
 		<property name="basename" value="recursos/messages/mensajes" />
 	</bean>
 	
-	<import resource="/json-mapper-context.xml" />
+	<import resource="/json-mapper-context.xml" /> 
 	<import resource="/hibernate-context.xml" />
 
 
