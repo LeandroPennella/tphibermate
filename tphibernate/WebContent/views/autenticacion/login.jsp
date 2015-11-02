@@ -33,7 +33,7 @@
     <div class="container">
 
 		<c:url value="/autenticacion/validar.do" var="x"></c:url>
-		<form:form method="POST" commandName="usuarioForm" action="${x}" cssClass="form-signin">	
+		<form:form method="POST" commandName="usuarioAutenticacionForm" action="${x}" cssClass="form-signin">	
 			<div class="panel panel-default">
 				<div class="panel-body">
 

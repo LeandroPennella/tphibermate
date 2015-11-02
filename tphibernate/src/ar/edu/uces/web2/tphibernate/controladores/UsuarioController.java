@@ -26,35 +26,37 @@ import ar.edu.uces.web2.tphibernate.modelo.validadores.UsuarioAutenticacionFormV
 @Controller
 public class UsuarioController {
 
-	/*
+
 	private UsuarioDAO usuarioDAO;
-	
+
 	@Autowired
 	private UsuarioAutenticacionFormValidator usuarioAutenticacionFormValidator;
-*/
 
-/*
+
+
 	@Autowired
 	public void setPedidoDao(UsuarioDAO usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
 	}
-	*/
+
 	@RequestMapping(value = "/autenticacion/login")
 	public ModelAndView identificar(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("/views/autenticacion/login.jsp","usuarioAutenticacionForm",new UsuarioAutenticacionForm());
 	}
 	
-	/*
+	
 	@RequestMapping(value = "/autenticacion/validar")
 	public ModelAndView validar(  @ModelAttribute("usuarioAutenticacionForm") UsuarioAutenticacionForm usuarioAutenticacionForm, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
 	
+		
+		
+		
 		//TODO:no sabe si jugador viene de sesion o de get?
 		
-		//this.usuarioAutenticacionFormValidator.validate(usuarioAutenticacionForm, result);	
+		this.usuarioAutenticacionFormValidator.validate(usuarioAutenticacionForm, result);	
 		if (result.hasErrors()) {
 			return new ModelAndView("/views/autenticacion/login.jsp");
 		}
-		
 		
 		//autenticar
 		Usuario usuario=usuarioDAO.autenticar(usuarioAutenticacionForm.getNombreUsuario(), usuarioAutenticacionForm.getContrasenia());
@@ -70,6 +72,7 @@ public class UsuarioController {
 		{
 			return new ModelAndView("/views/autenticacion/login.jsp");//usurio y contraseña no coinciden	
 		}
+		
 
 	}
 	
@@ -132,6 +135,6 @@ public class UsuarioController {
         }
         return null;
     }
-	*/
+	
 
 }

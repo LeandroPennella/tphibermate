@@ -3,7 +3,7 @@
 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="ar.edu.uces.web2.tphibernate.model.base.Usuario" table="usuarios">
+	<class name="ar.edu.uces.web2.tphibernate.modelo.base.Usuario" table="usuarios">
 		<id column="idUsuario" name="id">
 			<generator class="native" />
 		</id>
