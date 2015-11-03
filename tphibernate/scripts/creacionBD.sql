@@ -20,7 +20,7 @@ CREATE TABLE Usuarios
 	,PRIMARY KEY (idUsuario)
 	,`nombre` VARCHAR(50) NOT NULL 
 	,`apellido` VARCHAR(50) NOT NULL 
-	,`usuario` VARCHAR(50) NOT NULL 
+	,`nombreUsuario` VARCHAR(50) NOT NULL 
 	,`idioma` VARCHAR(7) NOT NULL 
 )
 ENGINE=INNODB;

@@ -109,7 +109,7 @@ public class UsuarioController {
 				cookie.setMaxAge(60*60*24*365);
 				cookie.setPath("/");
 				response.addCookie(cookie);
-				cookie=new Cookie("contrasenia",usuario.getContrasenia());
+				cookie=new Cookie("contrasenia",usuario.getContrasenia().toString());
 				cookie.setMaxAge(60*60*24*365);
 				cookie.setPath("/");
 				response.addCookie(cookie);

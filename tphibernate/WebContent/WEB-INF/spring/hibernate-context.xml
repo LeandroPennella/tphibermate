@@ -11,7 +11,6 @@
 	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.controladores" />
 	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.modelo.dao" />
 
-
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="${database.jdbcUrl}" />
@@ -29,7 +28,6 @@
 		<property name="mappingResources">
 			<list>
 				<value>/ar/edu/uces/web2/tphibernate/modelo/hbm/Usuario.hbm.xml</value>
-
 			</list>
 		</property>
 		<property name="hibernateProperties">
