@@ -25,7 +25,7 @@ public class interceptorLogin implements HandlerInterceptor {
 		{	
 		
 		*/
-		//si existe el usuario en sesion
+		//si no existe el usuario en sesion
 			if ((session.getAttribute("usuario")==null))
 			{
 				RequestDispatcher rd= request.getRequestDispatcher("/login.do");
