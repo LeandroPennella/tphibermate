@@ -4,7 +4,20 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="ar.edu.uces.web2.tphibernate.modelo.base.Contrasenia" table="contrasenias">
+<<<<<<< HEAD
 		<id column="usuario_id" name="id"/>
 		<property name="contrasenia" column="contrasenia"/>
+=======
+		<id column="usuario_id" name="id">
+
+
+			<generator class="foreign">
+				<param name="property">usuarios</param>
+			</generator>
+		</id>
+		<property name="contrasenia" column="contrasenia"/>
+		<one-to-one name="usuario" class="ar.edu.uces.web2.tphibernate.modelo.base.Usuario"  constrained="true"></one-to-one>
+		
+>>>>>>> refs/remotes/origin/master
 	</class>
 </hibernate-mapping>
