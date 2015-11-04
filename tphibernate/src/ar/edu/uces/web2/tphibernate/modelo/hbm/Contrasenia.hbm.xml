@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="ar.edu.uces.web2.tphibernate.modelo.base.Contrasenia" table="contrasenias">
+		<id column="usuario_id" name="id"/>
+		<property name="contrasenia" column="contrasenia"/>
+	</class>
+</hibernate-mapping>

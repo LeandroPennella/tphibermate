@@ -35,7 +35,7 @@ public class UsuarioController {
 
 
 	@Autowired
-	public void setPedidoDao(UsuarioDAO usuarioDAO) {
+	public void seUsuarioDao(UsuarioDAO usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
 	}
 
