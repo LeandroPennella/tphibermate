@@ -11,7 +11,7 @@
 		<property column="nombre" name="nombre" />
 		<property column="apellido" name="apellido" />
 		<property column="nombreUsuario" name="nombreUsuario" />
-		<property column="lenguaje" name="lenguaje" />					
+		<property column="idioma" name="idioma" />					
 
 				
 		<one-to-one name="contrasenia" class="ar.edu.uces.web2.tphibernate.modelo.base.Contrasenia"

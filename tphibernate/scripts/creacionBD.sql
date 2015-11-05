@@ -49,7 +49,7 @@ ENGINE=INNODB;
 CREATE TABLE Contrasenias
 (
 	`usuario_id` INT NOT NULL 
-	,`contraseña` VARCHAR(250) NOT NULL 
+	,`valor` VARCHAR(250) NOT NULL 
 )
 ENGINE=INNODB;
 
@@ -103,8 +103,8 @@ ALTER TABLE Contrasenias ADD FOREIGN KEY (usuario_id) REFERENCES Usuarios(idUsua
 
 -- Populate Tables ----------------------------------------------------------------------------------------------
 
-INSERT INTO Usuarios (nombre,apellido,usuario,idioma) VALUES ('pepe','argento','pepea','es_AR'),('uncle','tom','uncletom','en_US') ;
-INSERT INTO Contrasenias (usuario_id ,contraseña) VALUES ('1','elpepe'),('2','ilovewar');
+INSERT INTO Usuarios (nombre,apellido,nombreUsuario,idioma) VALUES ('pepe','argento','pepea','es_AR'),('uncle','tom','uncletom','en_US') ;
+INSERT INTO Contrasenias (usuario_id ,valor) VALUES ('1','elpepe'),('2','ilovewar');
 
 -- Grant privileges ----------------------------------------------------------------------------------------------
 

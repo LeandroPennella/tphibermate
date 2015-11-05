@@ -2,11 +2,24 @@ package ar.edu.uces.web2.tphibernate.modelo.base;
 
 public class Contrasenia {
 
-	private String texto;
+	private int id;
+	private String valor;
 	
-	@Override
-	public String toString()
-	{
-		return texto;
+	public Contrasenia(){}
+	
+	public int getId() {
+		return id;
 	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getValor() {
+		return valor;
+	}
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+	
+	
+
 }

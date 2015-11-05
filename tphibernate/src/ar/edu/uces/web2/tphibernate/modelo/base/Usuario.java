@@ -7,7 +7,7 @@ public class Usuario {
 	private String nombre;
 	private String apellido;
 	private Contrasenia contrasenia;
-	private String lenguaje;
+	private String idioma;
 	
 	public Usuario(){}
 	
@@ -42,11 +42,11 @@ public class Usuario {
 	public void setContrasenia(Contrasenia contrasenia) {
 		this.contrasenia = contrasenia;
 	}
-	public String getLenguaje() {
-		return lenguaje;
+	public String getIdioma() {
+		return idioma;
 	}
-	public void setLenguaje(String lenguaje) {
-		this.lenguaje = lenguaje;
+	public void setIdioma(String idioma) {
+		this.idioma = idioma;
 	}
 	
 

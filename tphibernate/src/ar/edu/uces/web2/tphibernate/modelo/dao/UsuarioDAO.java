@@ -4,6 +4,7 @@ package ar.edu.uces.web2.tphibernate.modelo.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +43,15 @@ public class UsuarioDAO {
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public Usuario autenticar(String nombreUsuario, String contrasenia) {
 		Session session = sessionFactory.getCurrentSession();
-
-		Usuario usuario= (Usuario)session.createQuery("from ar.edu.uces.web2.tphibernate.modelo.base.Usuario as u where u.nombreUsuario = ':pNombreUsuario' and c.contrasenia=':pContrasenia'")
-				.setParameter("pNombreUsuario",nombreUsuario)
-				.setParameter("pContrasenia",contrasenia)
-				.uniqueResult();
+		Usuario usuario=null;
+		String hql="from " +Usuario.class.getName()+"  as u where u.nombreUsuario = '"+nombreUsuario+"' and u.contrasenia.valor='"+contrasenia+"'";
+				
+				Query q=session.createQuery(hql);
+				//.setString("pU", nombreUsuario)
+				//.setString("pC", contrasenia);
+				
+				usuario= (Usuario)q.uniqueResult();
+	
 
 		return usuario;
 		

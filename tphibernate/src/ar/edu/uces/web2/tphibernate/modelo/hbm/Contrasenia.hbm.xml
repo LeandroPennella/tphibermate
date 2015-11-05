@@ -5,6 +5,6 @@
 <hibernate-mapping>
 	<class name="ar.edu.uces.web2.tphibernate.modelo.base.Contrasenia" table="contrasenias">
 		<id column="usuario_id" name="id"/>
-		<property name="contrasenia" column="contrasenia"/>
+		<property name="valor" column="valor"/>
 	</class>
 </hibernate-mapping>
