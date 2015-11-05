@@ -46,11 +46,11 @@ public class UsuarioDAO {
 		Usuario usuario=null;
 		String hql="from " +Usuario.class.getName()+"  as u where u.nombreUsuario = '"+nombreUsuario+"' and u.contrasenia.valor='"+contrasenia+"'";
 				
-				Query q=session.createQuery(hql);
-				//.setString("pU", nombreUsuario)
-				//.setString("pC", contrasenia);
-				
-				usuario= (Usuario)q.uniqueResult();
+		Query q=session.createQuery(hql);
+		//.setString("pU", nombreUsuario)
+		//.setString("pC", contrasenia);
+		
+		usuario= (Usuario)q.uniqueResult();
 	
 
 		return usuario;

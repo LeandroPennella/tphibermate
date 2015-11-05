@@ -25,22 +25,23 @@ public class interceptorLogin implements HandlerInterceptor {
 		{	
 		
 		*/
-		//si no existe el usuario en sesion
-			if ((session.getAttribute("usuario")==null))
-			{
-				RequestDispatcher rd= request.getRequestDispatcher("/login.do");
-				rd.forward(request, response);
-				return false;		//no pasa por postHandle ni afterCompletion
-			}
-			else
-			{
-				RequestDispatcher rd= request.getRequestDispatcher("/agenda/mostrarCalendario.do");
-				rd.forward(request, response);
-				return false;		//no pasa por postHandle ni afterCompletion
-			}
+		//si existe el usuario en sesion
+		if ((session.getAttribute("usuario")!=null))
+/*		{
+			RequestDispatcher rd= request.getRequestDispatcher("/login.do");
+			rd.forward(request, response);
+			return false;		//no pasa por postHandle ni afterCompletion
+		}
+		else*/
+		{
+			// no pasar por el login
+			RequestDispatcher rd= request.getRequestDispatcher("/agenda/mostrarCalendario.do");
+			rd.forward(request, response);
+			return false;		//no pasa por postHandle ni afterCompletion
+		}
 			
 		//}	
-		//return true; //sigue o no sigue // al controlador o al siguiente interceptor
+		return true; //sigue o no sigue // al controlador o al siguiente interceptor
 	}
 
 	@Override

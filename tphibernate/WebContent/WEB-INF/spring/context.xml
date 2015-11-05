@@ -25,14 +25,14 @@
 
 	<mvc:annotation-driven />
 	
-<!--
+
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>																
 			<bean class="ar.edu.uces.web2.tphibernate.interceptores.interceptorLogin"></bean>		
 		</mvc:interceptor>
 	</mvc:interceptors>
--->
+
 	
 	<!-- message resources -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">

@@ -32,8 +32,6 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioAutenticacionFormValidator usuarioAutenticacionFormValidator;
 
-
-
 	@Autowired
 	public void seUsuarioDao(UsuarioDAO usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
@@ -44,13 +42,9 @@ public class UsuarioController {
 		return new ModelAndView("/views/autenticacion/login.jsp","usuarioAutenticacionForm",new UsuarioAutenticacionForm());
 	}
 	
-	
 	@RequestMapping(value = "/autenticacion/validar")
 	public ModelAndView validar(  @ModelAttribute("usuarioAutenticacionForm") UsuarioAutenticacionForm usuarioAutenticacionForm, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
-	
-		
-		
-		
+
 		//TODO:no sabe si jugador viene de sesion o de get?
 		
 		this.usuarioAutenticacionFormValidator.validate(usuarioAutenticacionForm, result);	
@@ -60,20 +54,16 @@ public class UsuarioController {
 		
 		//autenticar
 		Usuario usuario=usuarioDAO.autenticar(usuarioAutenticacionForm.getNombreUsuario(), usuarioAutenticacionForm.getContrasenia());
-		if (usuario!=null)
-		{
+		if (usuario!=null) {
 			asentar(usuarioAutenticacionForm,request,response,usuarioAutenticacionForm.getRecordarme());
 			//todo: separar lengua_pais
 			//	localeResolver.setLocale(request, response, new Locale(idioma) );
 			return new ModelAndView("/views/index.jsp");//usurio y contraseña no coinciden	
-
+	
 		}
-		else
-		{
+		else {
 			return new ModelAndView("/views/autenticacion/login.jsp");//usurio y contraseña no coinciden	
 		}
-		
-
 	}
 	
 	public void asentar(UsuarioAutenticacionForm usuarioAutenticacionForm, HttpServletRequest request, HttpServletResponse response, boolean recordarme)
