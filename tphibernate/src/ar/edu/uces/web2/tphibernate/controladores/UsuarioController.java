@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 import ar.edu.uces.web2.tphibernate.modelo.dao.UsuarioDAO;
 import ar.edu.uces.web2.tphibernate.modelo.form.UsuarioAutenticacionForm;
@@ -33,7 +34,7 @@ public class UsuarioController {
 	private UsuarioAutenticacionFormValidator usuarioAutenticacionFormValidator;
 
 	@Autowired
-	public void seUsuarioDao(UsuarioDAO usuarioDAO) {
+	public void setUsuarioDao(UsuarioDAO usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
 	}
 
@@ -53,24 +54,26 @@ public class UsuarioController {
 		}
 		
 		//autenticar
+		//lo guarda en sesion
+
 		Usuario usuario=usuarioDAO.autenticar(usuarioAutenticacionForm.getNombreUsuario(), usuarioAutenticacionForm.getContrasenia());
+		request.getSession().setAttribute("usuario",usuario);
 		if (usuario!=null) {
-			asentar(usuarioAutenticacionForm,request,response,usuarioAutenticacionForm.getRecordarme());
+			cookiear(usuario,request,response,usuarioAutenticacionForm.getRecordarme());
 			//todo: separar lengua_pais
 			//	localeResolver.setLocale(request, response, new Locale(idioma) );
 			return new ModelAndView("/views/index.jsp");//usurio y contraseña no coinciden	
-	
 		}
 		else {
 			return new ModelAndView("/views/autenticacion/login.jsp");//usurio y contraseña no coinciden	
 		}
 	}
 	
-	public void asentar(UsuarioAutenticacionForm usuarioAutenticacionForm, HttpServletRequest request, HttpServletResponse response, boolean recordarme)
+	public void cookiear(Usuario usuario, HttpServletRequest request, HttpServletResponse response, boolean recordarme)
 	{
 		
-		//lo guarda en sesion
-		Usuario usuario=new Usuario();
+		
+
 		//si esta marcado recordar, guarda una cookie
 		if(recordarme)
 		{
