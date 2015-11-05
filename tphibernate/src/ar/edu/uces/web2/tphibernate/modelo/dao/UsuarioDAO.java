@@ -43,7 +43,7 @@ public class UsuarioDAO {
 	public Usuario autenticar(String nombreUsuario, String contrasenia) {
 		Session session = sessionFactory.getCurrentSession();
 
-		Usuario usuario= (Usuario)session.createQuery("from ar.edu.uces.web2.tphibernate.modelo.base.Usuario as u where u.nombreUsuario = ':pNombreUsuario' and u.contrasenia=':pContrasenia'")
+		Usuario usuario= (Usuario)session.createQuery("from ar.edu.uces.web2.tphibernate.modelo.base.Usuario as u where u.nombreUsuario = ':pNombreUsuario' and c.contrasenia=':pContrasenia'")
 				.setParameter("pNombreUsuario",nombreUsuario)
 				.setParameter("pContrasenia",contrasenia)
 				.uniqueResult();
