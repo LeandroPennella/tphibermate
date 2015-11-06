@@ -1,3 +1,4 @@
+
 package ar.edu.uces.web2.tphibernate.interceptores;
 //declarado en context.xml
 
@@ -9,22 +10,24 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-//intercepta la llegada a login
-public class interceptorLogin implements HandlerInterceptor {
+//intercepta la llegada al punto de inicio
+
+public class InterceptorAgenda implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
 
 		HttpSession session= request.getSession();
-		//si existe el usuario en sesion
-		if ((session.getAttribute("usuario")!=null))
+		//si no existe el usuario en sesion
+		if ((session.getAttribute("usuario")==null))
 		{
-			// no pasar por el login
-			RequestDispatcher rd= request.getRequestDispatcher("/agenda/mostrarCalendario.do");
+			// pasar por el login
+			RequestDispatcher rd= request.getRequestDispatcher("/autenticacion/login.do");
 			rd.forward(request, response);
 			return false;		
 		}
-		//si no existe pasar por login
-		return true; 
+			
+		// si existe sigue
+		return true;  
 	}
 
 	@Override

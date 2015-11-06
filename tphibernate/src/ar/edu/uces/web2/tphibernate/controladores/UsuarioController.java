@@ -62,7 +62,8 @@ public class UsuarioController {
 			cookiear(usuario,request,response,usuarioAutenticacionForm.getRecordarme());
 			//todo: separar lengua_pais
 			//	localeResolver.setLocale(request, response, new Locale(idioma) );
-			return new ModelAndView("/views/index.jsp");//usurio y contraseña no coinciden	
+			//return new ModelAndView("/views/agenda/mostrarCalendario.do");//usurio y contraseña no coinciden	
+			return new ModelAndView("/views/index.jsp");//usurio y contraseña  coinciden
 		}
 		else {
 			return new ModelAndView("/views/autenticacion/login.jsp");//usurio y contraseña no coinciden	
