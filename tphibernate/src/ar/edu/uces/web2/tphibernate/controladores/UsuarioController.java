@@ -72,52 +72,49 @@ public class UsuarioController {
 	
 	public void cookiear(Usuario usuario, HttpServletRequest request, HttpServletResponse response, boolean recordarme)
 	{
-		
-		
-
+		boolean encontrado=false;
+		Cookie cookieUsuario = obtenerCookie(request, "nombreUsuario");
+		Cookie cookieContraseña = obtenerCookie(request, "contrasenia");
+		if ((cookieUsuario!=null)&&(cookieContraseña!=null))
+			encontrado=true;
+         
 		//si esta marcado recordar, guarda una cookie
 		if(recordarme)
 		{
-			boolean encontrado=false;
-			Cookie cookie ;
-			//buscar cookie
-			cookie = obtenerCookie(request, "nombre");
-
-			if (cookie!=null)
-			{
-				//si  existe la cookie 
-				encontrado=true;
-				//actualizar fecha de ultima
-
-        			//cookie.setValue(Integer.toString(scoreActual));
-        			//cookie.setMaxAge(60*60*24*365);
-        			//cookie.setPath("/");
-        			//response.addCookie(cookie);
-        		
-	        } 
+			//TODO: Si existe, actualizar fecha 
 			//si no  existe
 			if (!encontrado)
 			{
 				//crearla
-				cookie=new Cookie("nombre",usuario.getNombre());
-				cookie.setMaxAge(60*60*24*365);
-				cookie.setPath("/");
-				response.addCookie(cookie);
-				cookie=new Cookie("contrasenia",usuario.getContrasenia().toString());
-				cookie.setMaxAge(60*60*24*365);
-				cookie.setPath("/");
-				response.addCookie(cookie);
+				cookieUsuario=new Cookie("nombreUsuario",usuario.getNombre());
+				cookieUsuario.setMaxAge(60*60*24*365);
+				cookieUsuario.setPath("/");
+				response.addCookie(cookieUsuario);
+				
+				cookieContraseña=new Cookie("contrasenia",usuario.getContrasenia().toString());
+				cookieContraseña.setMaxAge(60*60*24*365);
+				cookieContraseña.setPath("/");
+				response.addCookie(cookieContraseña);
 			}
 		}
-		else
+		else //si no hay que recordar
 		{
-			//buscar si esta la cookie
-			//si esta sacarla 
+			
+			//si esta la cookie
+			if (encontrado)
+			{
+				//TODO: sacarla
+				
+			}
+ 
 		}
 	}
 	
 	public void logout()
-	{}
+	{
+		//TODO: sacar usuario de sesion
+		//TODO: sacar usuario de cookie
+	}
 	
     public Cookie obtenerCookie(HttpServletRequest request, String name) {
         if (request.getCookies() != null) {
