@@ -1,4 +1,4 @@
-package ar.edu.uces.web2.tphibernate.modelo.dao;
+package ar.edu.uces.web2.tphibernate.dao;
 
 
 

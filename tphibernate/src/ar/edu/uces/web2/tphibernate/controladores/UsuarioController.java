@@ -18,9 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
-import ar.edu.uces.web2.tphibernate.modelo.dao.UsuarioDAO;
+import ar.edu.uces.web2.tphibernate.dao.UsuarioDAO;
 import ar.edu.uces.web2.tphibernate.modelo.form.UsuarioAutenticacionForm;
-import ar.edu.uces.web2.tphibernate.modelo.validadores.UsuarioAutenticacionFormValidator;
+import ar.edu.uces.web2.tphibernate.validadores.UsuarioAutenticacionFormValidator;
 
 
 @SessionAttributes("usuario")

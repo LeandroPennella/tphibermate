@@ -21,7 +21,8 @@
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
 
 	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.controladores" />
-	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.modelo.validadores" />
+	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.validadores" />
+	
 
 	<mvc:annotation-driven />
 	

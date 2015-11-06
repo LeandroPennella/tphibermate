@@ -13,7 +13,6 @@
 		<property column="nombreUsuario" name="nombreUsuario" />
 		<property column="idioma" name="idioma" />					
 
-				
 		<one-to-one name="contrasenia" class="ar.edu.uces.web2.tphibernate.modelo.base.Contrasenia"
 			cascade="save-update"></one-to-one>				
 	</class>

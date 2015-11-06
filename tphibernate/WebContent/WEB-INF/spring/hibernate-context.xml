@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.controladores" />
-	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.modelo.dao" />
+	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.dao" />
 
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
