@@ -57,7 +57,7 @@ public class UsuarioController {
 		//lo guarda en sesion
 
 		Usuario usuario=usuarioDAO.autenticar(usuarioAutenticacionForm.getNombreUsuario(), usuarioAutenticacionForm.getContrasenia());
-		request.getSession().setAttribute("usuario",usuario);
+		request.getSession().setAttribute("usuario",usuario);//TODO: pasarlo a asentar como parametro y como atributo de sesion
 		if (usuario!=null) {
 			cookiear(usuario,request,response,usuarioAutenticacionForm.getRecordarme());
 			//todo: separar lengua_pais
