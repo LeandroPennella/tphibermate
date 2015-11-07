@@ -111,10 +111,23 @@ public class UsuarioController {
 		}
 	}
 	
-	public void logout()
-	{
-		//TODO: sacar usuario de sesion
+	
+	@RequestMapping(value = "/logout/logout")
+	public ModelAndView logout(  HttpServletRequest request, HttpServletResponse response) {
+		//TODO: sacar usuario de sesion	
+		//request.getSession().setAttribute("usuario",null);
+		request.getSession().invalidate();
+		
 		//TODO: sacar usuario de cookie
+		Cookie cookieUsuario = obtenerCookie(request, "nombreUsuario");
+		cookieUsuario.setMaxAge(0);
+		cookieUsuario.setPath("/");
+		response.addCookie(cookieUsuario);
+		Cookie cookieContraseña = obtenerCookie(request, "contrasenia");
+		cookieContraseña.setMaxAge(0);
+		cookieContraseña.setMaxAge(0);
+		cookieContraseña.setPath("/");		
+		return new ModelAndView("/views/index.jsp");
 	}
 	
     public Cookie obtenerCookie(HttpServletRequest request, String name) {

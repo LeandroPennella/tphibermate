@@ -14,6 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class AgendaController {
 	@RequestMapping(value = "/agenda/mostrarCalendario")
 	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("/views/agenda/calendario.jsp");
+		return new ModelAndView("/views/agenda/master.jsp");
 	}
 }

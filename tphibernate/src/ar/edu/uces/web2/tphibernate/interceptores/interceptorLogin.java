@@ -40,6 +40,8 @@ public class interceptorLogin implements HandlerInterceptor {
 			Usuario usuario=usuarioDAO.autenticar(cookieUsuario.getValue(), cookieContraseña.getValue());
 			//persistir sesion
 			request.getSession().setAttribute("usuario",usuario);
+			RequestDispatcher rd= request.getRequestDispatcher("/agenda/mostrarCalendario.do");
+			rd.forward(request, response);
 			return false;
 		}
 
