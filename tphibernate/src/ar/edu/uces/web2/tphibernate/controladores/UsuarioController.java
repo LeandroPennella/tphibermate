@@ -23,7 +23,7 @@ import ar.edu.uces.web2.tphibernate.modelo.form.UsuarioAutenticacionForm;
 import ar.edu.uces.web2.tphibernate.validadores.UsuarioAutenticacionFormValidator;
 
 
-@SessionAttributes("usuario")
+//@SessionAttributes("usuario")
 @Controller
 public class UsuarioController {
 
@@ -57,8 +57,9 @@ public class UsuarioController {
 		//lo guarda en sesion
 
 		Usuario usuario=usuarioDAO.autenticar(usuarioAutenticacionForm.getNombreUsuario(), usuarioAutenticacionForm.getContrasenia());
-		request.getSession().setAttribute("usuario",usuario);//TODO: pasarlo a asentar como parametro y como atributo de sesion
+		
 		if (usuario!=null) {
+			request.getSession().setAttribute("usuario",usuario);//TODO: pasarlo a asentar como parametro y como atributo de sesion
 			cookiear(usuario,request,response,usuarioAutenticacionForm.getRecordarme());
 			//todo: separar lengua_pais
 			//	localeResolver.setLocale(request, response, new Locale(idioma) );
@@ -86,12 +87,12 @@ public class UsuarioController {
 			if (!encontrado)
 			{
 				//crearla
-				cookieUsuario=new Cookie("nombreUsuario",usuario.getNombre());
+				cookieUsuario=new Cookie("nombreUsuario",usuario.getNombreUsuario());
 				cookieUsuario.setMaxAge(60*60*24*365);
 				cookieUsuario.setPath("/");
 				response.addCookie(cookieUsuario);
 				
-				cookieContraseña=new Cookie("contrasenia",usuario.getContrasenia().toString());
+				cookieContraseña=new Cookie("contrasenia",usuario.getContrasenia().getValor());
 				cookieContraseña.setMaxAge(60*60*24*365);
 				cookieContraseña.setPath("/");
 				response.addCookie(cookieContraseña);
