@@ -20,6 +20,13 @@
 	<!--  -->
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
 
+
+	<!-- message resources -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="recursos/messages/mensajes" />
+	</bean>
+	
+	
 	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.controladores" />
 	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.validadores" />
 	
@@ -39,10 +46,7 @@
 	</mvc:interceptors>
 
 	
-	<!-- message resources -->
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="recursos/messages/mensajes" />
-	</bean>
+
 	
 	<import resource="/json-mapper-context.xml" /> 
 	<import resource="/hibernate-context.xml" />

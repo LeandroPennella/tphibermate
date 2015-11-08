@@ -1,24 +1,23 @@
 package ar.edu.uces.web2.tphibernate.controladores;
 
+import java.util.Locale;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-
-import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 import ar.edu.uces.web2.tphibernate.dao.UsuarioDAO;
+import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 import ar.edu.uces.web2.tphibernate.modelo.form.UsuarioAutenticacionForm;
 import ar.edu.uces.web2.tphibernate.validadores.UsuarioAutenticacionFormValidator;
 
@@ -27,17 +26,19 @@ import ar.edu.uces.web2.tphibernate.validadores.UsuarioAutenticacionFormValidato
 @Controller
 public class UsuarioController {
 
-
-	private UsuarioDAO usuarioDAO;
-
 	@Autowired
 	private UsuarioAutenticacionFormValidator usuarioAutenticacionFormValidator;
+
+	private UsuarioDAO usuarioDAO;
 
 	@Autowired
 	public void setUsuarioDao(UsuarioDAO usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
 	}
 
+	@Autowired
+	private SessionLocaleResolver localeResolver;
+	
 	@RequestMapping(value = "/autenticacion/login")
 	public ModelAndView identificar(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("/views/autenticacion/login.jsp","usuarioAutenticacionForm",new UsuarioAutenticacionForm());
@@ -62,7 +63,7 @@ public class UsuarioController {
 			request.getSession().setAttribute("usuario",usuario);//TODO: pasarlo a asentar como parametro y como atributo de sesion
 			cookiear(usuario,request,response,usuarioAutenticacionForm.getRecordarme());
 			//todo: separar lengua_pais
-			//	localeResolver.setLocale(request, response, new Locale(idioma) );
+			localeResolver.setLocale(request, response, new Locale(usuario.getIdioma()));
 			//return new ModelAndView("/views/agenda/mostrarCalendario.do");//usurio y contraseña no coinciden	
 			return new ModelAndView("/views/index.jsp");//usurio y contraseña  coinciden
 		}
@@ -120,13 +121,17 @@ public class UsuarioController {
 		
 		//TODO: sacar usuario de cookie
 		Cookie cookieUsuario = obtenerCookie(request, "nombreUsuario");
-		cookieUsuario.setMaxAge(0);
-		cookieUsuario.setPath("/");
-		response.addCookie(cookieUsuario);
+		if (cookieUsuario!=null) {
+			cookieUsuario.setMaxAge(0);
+			cookieUsuario.setPath("/");
+			response.addCookie(cookieUsuario);
+		}
 		Cookie cookieContraseña = obtenerCookie(request, "contrasenia");
-		cookieContraseña.setMaxAge(0);
-		cookieContraseña.setMaxAge(0);
-		cookieContraseña.setPath("/");		
+		if (cookieContraseña!=null) {
+			cookieContraseña.setMaxAge(0);
+			cookieContraseña.setPath("/");
+			response.addCookie(cookieContraseña);
+		}
 		return new ModelAndView("/views/index.jsp");
 	}
 	

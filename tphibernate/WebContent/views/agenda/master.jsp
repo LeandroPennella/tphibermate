@@ -13,10 +13,8 @@
 	<!-- https://github.com/VinceG/Bootstrap-Admin-Theme -->
 	
 	<script type="text/javascript" src='<c:url value="/views/ui/js/jquery-1.9.1.min.js" />'></script>
-
 	<script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap.min.js" />'></script>
 	<script type="text/javascript" src='<c:url value="/views/ui/js/master.js" />'></script>
-	
 	<script type="text/javascript" src='<c:url value="/views/ui/js/modernizr-2.6.2-respond-1.1.0.min.js" />'></script>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -30,13 +28,11 @@
                      <span class="icon-bar"></span>
                      <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#">Admin Panel</a>
+                    <a class="brand" href="#"><fmt:message key="titulo"></fmt:message></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Vincent Gabriel <i class="caret"></i>
-
-                                </a>
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> ${usuario.getNombreUsuario()} <i class="caret"></i></a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a tabindex="-1" href="#">Profile</a>
@@ -54,14 +50,10 @@
                                 <a href="#">Dashboard</a>
                             </li>
                             <li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>
-
-                                </a>
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b></a>
                                 <ul class="dropdown-menu" id="menu1">
                                     <li>
-                                        <a href="#">Tools <i class="icon-arrow-right"></i>
-
-                                        </a>
+                                        <a href="#">Tools <i class="icon-arrow-right"></i></a>
                                         <ul class="dropdown-menu sub-menu">
                                             <li>
                                                 <a href="#">Reports</a>

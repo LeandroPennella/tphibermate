@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link rel="icon" href="/imagenes/Roulette.gif">
+    <!--  <link rel="icon" href="<c:url value='/views/ui/imagenes/agenda.png'/>">-->
 
     <title><fmt:message key="titulo"/></title>
 
@@ -53,8 +53,10 @@
 
 					<!-- recordarme -->
 					<fmt:message key='login.label.recordarme' var="recordarme" />
-					<form:checkbox path="recordarme" cssClass="form-control"  placeholder="${recordarme}"   />
-
+					<form:label path="recordarme" class="checkbox">
+						<form:checkbox path="recordarme"  placeholder="${recordarme}"   />
+						<fmt:message key="login.label.recordarme" />
+					</form:label>
 					
 					<!-- Submit -->
 					<form:button id="btnEntrar" class="btn btn-lg btn-primary btn-block" ><fmt:message key="login.label.entrar" /></form:button>
