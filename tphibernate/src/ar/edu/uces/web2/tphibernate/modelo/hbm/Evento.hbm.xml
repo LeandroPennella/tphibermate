@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="net.viralpatel.hibernate">
+ 
+    <class name="Evento" table="eventos">
+        <id name="id" column="idEvento">
+            <generator class="native" />
+        </id>
+ 
+        <property name="titulo" column="titulo" />
+        
+ 
+        <joined-subclass name="Tarea" extends="Evento">
+                <key column="idTarea" />
+                <property name="departmentName" column="department_name" />
+                <property name="joiningDate" type="date" column="joining_date" />
+        </joined-subclass>
+        <joined-subclass name="Reunion" extends="Evento">
+                <key column="idReunion" />
+                <property name="stocks" column="stocks" />
+                <property name="partnershipStake" column="partnership_stake" />
+        </joined-subclass>
+    </class>
+</hibernate-mapping>

@@ -109,3 +109,8 @@ INSERT INTO Contrasenias (usuario_id ,valor) VALUES ('1','elpepe'),('2','ilovewa
 -- Grant privileges ----------------------------------------------------------------------------------------------
 
 GRANT ALL PRIVILEGES ON `agenda`.* TO 'noroot'@'localhost'  IDENTIFIED BY PASSWORD '*B04E11FAAAE9A5A019BAF695B40F3BF1997EB194';
+
+
+-- modificaciones 
+
+ALTER TABLE `eventos` CHANGE `nombre` `titulo` VARCHAR(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;

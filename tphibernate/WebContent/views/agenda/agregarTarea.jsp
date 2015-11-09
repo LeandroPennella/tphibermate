@@ -19,8 +19,6 @@
 		<form:form method="POST" commandName="Tarea" action="${x}" >	
 			<div >
 
-
-					
 					<h4 class="form-signin-heading"><fmt:message key="login.label.identifiquese" /></h4>
 
 					<!-- nombreUsuario -->
