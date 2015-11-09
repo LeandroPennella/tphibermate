@@ -3,25 +3,41 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
  
-<hibernate-mapping package="net.viralpatel.hibernate">
+<hibernate-mapping>
  
     <class name="Evento" table="eventos">
+    
         <id name="id" column="idEvento">
             <generator class="native" />
         </id>
  
         <property name="titulo" column="titulo" />
-        
+        <property name="fecha" column="fecha" />
+        <property name="horafin" column="horafin" />
+        <property name="horafin" column="horafin" />
+        <property name="autor" column="" />        
+
+ 		<many-to-one name="autor" column="autor_id" not-null="true" cascade="none" lazy="false"></many-to-one>
  
         <joined-subclass name="Tarea" extends="Evento">
                 <key column="idTarea" />
-                <property name="departmentName" column="department_name" />
-                <property name="joiningDate" type="date" column="joining_date" />
+				<property name="descripcion" column="descripcion" />   
+				<property name="direccion" column="direccion" />
         </joined-subclass>
+
         <joined-subclass name="Reunion" extends="Evento">
                 <key column="idReunion" />
-                <property name="stocks" column="stocks" />
-                <property name="partnershipStake" column="partnership_stake" />
+                <property name="temario" column="temario" />
+                <many-to-one name="autor" column="autor_id" not-null="true" cascade="none" lazy="false"></many-to-one>
+                
+                <!--<property name="participantes" column="participantes" />-->
+          		<set name="participantes" lazy="true" cascade="all">
+					<key column="pedido_id" not-null="true"/>
+					<one-to-many class="ar.edu.uces.progweb2.springmvc.model.Item"/>
+					
+		</set>
         </joined-subclass>
+
     </class>
+    
 </hibernate-mapping>
