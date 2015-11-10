@@ -65,9 +65,9 @@
 					<form:button id="btnEntrar" class="btn btn-lg btn-primary btn-block" ><fmt:message key="login.label.entrar" /></form:button>
 
 					<c:if test="${error!=null}">
-					<div class="error">
-					<fmt:message key="login.error.noAutenticado"></fmt:message>
-					</div>
+						<div class="error">
+							<fmt:message key="login.error.noAutenticado"></fmt:message>
+						</div>
 					</c:if>
 				</div>
 			</div>
