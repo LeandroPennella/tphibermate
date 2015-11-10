@@ -5,6 +5,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html ><head>
+<style>
+.error{color:red; font-weight: bold;}
+</style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,13 +46,13 @@
 					<!-- nombreUsuario -->
 					<fmt:message key='login.label.usuario' var="usuario" />
 					<form:input path="nombreUsuario" cssClass="form-control"  placeholder="${usuario}" autofocus="true"  />
-					<form:errors path="nombreUsuario" cssStyle="color: red" />
+					<form:errors path="nombreUsuario" cssClass="error"  />
 
 					<!-- contrasenia -->
 					<fmt:message key='login.label.contrasenia' var="contrasenia" />
 					<form:password path="contrasenia" cssClass="form-control"  placeholder="${contrasenia}"   />
 
-					<form:errors path="contrasenia" cssStyle="color: red" />
+					<form:errors path="contrasenia" cssClass="error" />
 
 					<!-- recordarme -->
 					<fmt:message key='login.label.recordarme' var="recordarme" />
@@ -61,7 +64,11 @@
 					<!-- Submit -->
 					<form:button id="btnEntrar" class="btn btn-lg btn-primary btn-block" ><fmt:message key="login.label.entrar" /></form:button>
 
-					
+					<c:if test="${error!=null}">
+					<div class="error">
+					<fmt:message key="login.error.noAutenticado"></fmt:message>
+					</div>
+					</c:if>
 				</div>
 			</div>
 		</form:form>
