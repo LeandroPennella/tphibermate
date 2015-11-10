@@ -68,6 +68,7 @@ public class UsuarioController {
 			return new ModelAndView("/views/index.jsp");//usurio y contraseña  coinciden
 		}
 		else {
+			request.setAttribute("error", "login.noAutenticado"); 		//TODO: completar
 			return new ModelAndView("/views/autenticacion/login.jsp");//usurio y contraseña no coinciden	
 		}
 	}
