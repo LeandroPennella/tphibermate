@@ -5,26 +5,29 @@
  
 <hibernate-mapping>
  
-    <class name="Evento" table="eventos">
+    <class name="ar.edu.uces.web2.tphibernate.modelo.base.Evento" table="eventos">
     
         <id name="id" column="idEvento">
             <generator class="native" />
         </id>
- 
-        <property name="titulo" column="titulo" />
+
+        <property name="titulo" column="nombre" />
         <property name="fecha" column="fecha" />
-        <property name="horafin" column="horafin" />
-        <property name="horafin" column="horafin" />
-        
+<property name="horaFin" column="horadefin" />
+       
+       
+         <property name="horaInicio" column="horadeini" />
+         
+         
  		<many-to-one name="autor" column="autor_id" not-null="true" cascade="none" lazy="false"></many-to-one>
- 
-        <joined-subclass name="Tarea" extends="Evento">
-                <key column="idEvento" />
-				<property name="descripcion" column="descripcion" />   
+
+        <joined-subclass name="ar.edu.uces.web2.tphibernate.modelo.base.Tarea" extends="ar.edu.uces.web2.tphibernate.modelo.base.Evento">
+                <key column="idEvento" />       
+				<property name="descripcion" column="descripcion" />   		
 				<property name="direccion" column="direccion" />
         </joined-subclass>
         
-		<!--
+ <!--
         <joined-subclass name="Reunion" extends="Evento">
                 <key column="idReunion" />
                 <property name="temario" column="temario" />
