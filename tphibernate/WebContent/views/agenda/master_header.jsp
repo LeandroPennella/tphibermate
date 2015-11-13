@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<link href='<c:url value="/views/ui/css/bootstrap-responsive.min.css"/>' rel="stylesheet">
+<link href='<c:url value="/views/ui/css/bootstrap.min.css"/>' rel="stylesheet">
+<link href='<c:url value="/views/ui/css/master.css"/>' rel="stylesheet">
+<!-- https://github.com/VinceG/Bootstrap-Admin-Theme -->
+
+<script type="text/javascript" src='<c:url value="/views/ui/js/jquery-1.9.1.min.js" />'></script>
+<script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap.min.js" />'></script>
+<script type="text/javascript" src='<c:url value="/views/ui/js/master.js" />'></script>
+<script type="text/javascript" src='<c:url value="/views/ui/js/modernizr-2.6.2-respond-1.1.0.min.js" />'></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<!--  <link rel="icon" href="<c:url value='/views/ui/imagenes/agenda.png'/>"> --> 

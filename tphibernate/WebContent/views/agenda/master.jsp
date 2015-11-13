@@ -56,7 +56,7 @@
                              <ul class="dropdown-menu" id="menu1">
 
                                  <li>
-                                     <a href="<c:url value="/agenda/agregarTarea.do" ></c:url>">Agregar Tarea</a>
+                                     <a href="<c:url value="/agenda/crearTarea.do" ></c:url>">Agregar Tarea</a>
                                  </li>
                                  <li>
                                      <a href="#">Other Link</a>

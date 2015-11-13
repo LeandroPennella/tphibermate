@@ -21,14 +21,19 @@ public class TareaController {
 	}
 	@Autowired
 	private TareaValidator tareaValidator; 
+	
+	@RequestMapping(value = "/agenda/crearTarea")
+	public ModelAndView crear() {
+		return new ModelAndView("/views/agenda/tarea.jsp","tarea", new Tarea());
+	}
+	
 	@RequestMapping(value = "/agenda/agregarTarea")
 	public ModelAndView save(@ModelAttribute("tarea") Tarea tarea, BindingResult result) {
 		this.tareaValidator.validate(tarea, result);
 		if (result.hasErrors()) {
-			return new ModelAndView("/views/agenda/editarTarea.jsp","tarea", tarea);
+			return new ModelAndView("/views/agenda/tarea.jsp","tarea", tarea);
 		}
 		tareaDAO.save(tarea);
 		return new ModelAndView("");
-		
 	}
 }
