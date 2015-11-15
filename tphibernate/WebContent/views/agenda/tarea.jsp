@@ -24,7 +24,7 @@
 					<!-- block -->
 					<div class="block">
 						<div class="navbar navbar-inner block-header">
-							<div class="muted pull-left">Form Example</div>
+							<div class="muted pull-left">Tareas</div>
 						</div>
 						<div class="block-content collapse in">
 							<div class="span12">
@@ -32,7 +32,7 @@
 								<form:form method="POST" commandName="tarea" action="${x}" cssClass="form-horizontal" >
 								
 									<fieldset>
-										<legend>Form Horizontal</legend>
+										<legend>Agregar Tarea</legend>
 										<div class="control-group">
 											
 											<fmt:message key='tarea.label.titulo' var="titulo" />
@@ -49,19 +49,21 @@
 										    <div class="controls form-inline">
 
 												<form:input id="fecha" path="fecha" cssClass="input-small "  placeholder="${fecha}"/>
-												<form:errors path="fecha" cssStyle="color: red" />
 												
 									            <fmt:message key='tarea.label.horaInicio' var="horaInicio" />
 												<label for="horaInicio"><fmt:message key="tarea.label.horaInicio" /></label>
 												<form:input id="horaInicio" path="horaInicio" cssClass="input-small "  placeholder="${horaInicio}"/>
-												<form:errors path="horaInicio" cssStyle="color: red" />
 												
 												<fmt:message key='tarea.label.horaFin' var="horaFin" />
 												<label for="horaFin"><fmt:message key="tarea.label.horaFin" /></label>
 												<form:input id="horaFin" path="horaFin" cssClass="input-small "  placeholder="${horaInicio}"/>
-												<form:errors path="horaFin" cssStyle="color: red" />
 												
 									    	</div>
+									  	</div>
+									  	<div >
+									  		<form:errors path="fecha" cssStyle="color: red" />
+									  		<form:errors path="horaInicio" cssStyle="color: red" />
+											<form:errors path="horaFin" cssStyle="color: red" />
 									  	</div>
 									  	
 										<div class="control-group">
@@ -82,7 +84,6 @@
 											</div>
 										</div>
 																				
-										
 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary">Save changes</button>
 											<button type="reset" class="btn">Cancel</button>

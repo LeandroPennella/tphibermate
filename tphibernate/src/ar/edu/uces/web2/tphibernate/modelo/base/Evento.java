@@ -8,8 +8,8 @@ public class Evento {
 
 	private String titulo;
 	private Date fecha;
-	private int horaInicio;
-	private int horaFin;
+	private String horaInicio;
+	private String horaFin;
 
 	private Usuario autor;
 		
@@ -34,16 +34,16 @@ public class Evento {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public int getHoraInicio() {
+	public String getHoraInicio() {
 		return horaInicio;
 	}
-	public void setHoraInicio(int horaInicio) {
+	public void setHoraInicio(String horaInicio) {
 		this.horaInicio = horaInicio;
 	}
-	public int getHoraFin() {
+	public String getHoraFin() {
 		return horaFin;
 	}
-	public void setHoraFin(int horaFin) {
+	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
 	}
 	public Usuario getAutor() {
