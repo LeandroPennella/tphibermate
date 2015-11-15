@@ -16,7 +16,7 @@
 
     <title><fmt:message key="titulo"/></title>
 
-    <link href="<c:url value='/views/ui/css/bootstrap.login.min.css'/>" rel="stylesheet">
+    <link href="<c:url value='/views/ui/css/bootstrap.3.min.css'/>" rel="stylesheet">
     <link href="<c:url value='/views/ui/css/login.css'/>" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->

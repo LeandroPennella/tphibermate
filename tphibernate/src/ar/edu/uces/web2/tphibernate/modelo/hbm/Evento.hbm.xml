@@ -11,17 +11,14 @@
             <generator class="native" />
         </id>
 
-        <property name="titulo" column="nombre" />
+        <property name="titulo" column="titulo" />
         <property name="fecha" column="fecha" />
-<property name="horaFin" column="horadefin" />
-       
-       
-         <property name="horaInicio" column="horadeini" />
-         
-         
+		<property name="horaFin" column="horadefin" />
+        <property name="horaInicio" column="horadeinicio" />
+
  		<many-to-one name="autor" column="autor_id" not-null="true" cascade="none" lazy="false"></many-to-one>
 
-        <joined-subclass name="ar.edu.uces.web2.tphibernate.modelo.base.Tarea" extends="ar.edu.uces.web2.tphibernate.modelo.base.Evento">
+        <joined-subclass name="ar.edu.uces.web2.tphibernate.modelo.base.Tarea" extends="ar.edu.uces.web2.tphibernate.modelo.base.Evento" table="EventosPrivados" >
                 <key column="idEvento" />       
 				<property name="descripcion" column="descripcion" />   		
 				<property name="direccion" column="direccion" />

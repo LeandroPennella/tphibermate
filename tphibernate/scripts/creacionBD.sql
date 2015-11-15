@@ -58,10 +58,10 @@ CREATE TABLE Eventos
 (
 	`idEvento` INT NOT NULL AUTO_INCREMENT
 	,PRIMARY KEY (idEvento)
-	,`nombre` VARCHAR(50) NOT NULL 
+	,`titulo` VARCHAR(50) NOT NULL 
 	,`fecha` DATETIME NOT NULL 
-	,`horadeinicio` INT NOT NULL 
-	,`horadefin` INT NOT NULL 
+	,`horadeinicio` varchar(5) NOT NULL
+	,`horadefin` varchar(5) NOT NULL
 	,`autor_id` INT NOT NULL 
 )
 ENGINE=INNODB;
@@ -111,6 +111,4 @@ INSERT INTO Contrasenias (usuario_id ,valor) VALUES ('1','elpepe'),('2','ilovewa
 GRANT ALL PRIVILEGES ON `agenda`.* TO 'noroot'@'localhost'  IDENTIFIED BY PASSWORD '*B04E11FAAAE9A5A019BAF695B40F3BF1997EB194';
 
 
--- modificaciones 
 
-ALTER TABLE `eventos` CHANGE `nombre` `titulo` VARCHAR(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
