@@ -9,7 +9,7 @@ public class Reunion extends Evento {
 	private List<Usuario> participantes;
 	
 	public Reunion() {
-		super();
+		
 	}
 	public String getTemario() {
 		return temario;

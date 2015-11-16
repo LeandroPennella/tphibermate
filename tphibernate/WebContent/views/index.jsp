@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="identificarJugador.do">Iniciar</a>
 <c:redirect url="/autenticacion/login.do"></c:redirect>
 </body>
 </html>

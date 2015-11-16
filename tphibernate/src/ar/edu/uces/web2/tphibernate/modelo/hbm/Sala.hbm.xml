@@ -2,8 +2,10 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!--  Agregado en hibernate-context -->
 <hibernate-mapping>
-	<class name="ar.edu.uces.web2.tphibernate.modelo.base.Contrasenia" table="contrasenias">
-		<id column="usuario_id" name="id"/>
-		<property name="valor" column="valor"/>
+	<class name="ar.edu.uces.web2.tphibernate.modelo.base.Sala" table="salas">
+		<id column="idSala" name="id">
+			<generator class="native" />
+		</id>
+		<property column="descripcion" name="descripcion" />
 	</class>
 </hibernate-mapping>

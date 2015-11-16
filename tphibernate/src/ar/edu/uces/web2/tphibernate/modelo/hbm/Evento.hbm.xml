@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--  Agregado en hibernate-context -->
  
 <hibernate-mapping>
  
@@ -24,20 +23,23 @@
 				<property name="direccion" column="direccion" />
         </joined-subclass>
         
- <!--
-        <joined-subclass name="Reunion" extends="Evento">
-                <key column="idReunion" />
+ 
+        <joined-subclass name="ar.edu.uces.web2.tphibernate.modelo.base.Reunion" extends="ar.edu.uces.web2.tphibernate.modelo.base.Evento" table="Reuniones">
+                <key column="idEvento" />
                 <property name="temario" column="temario" />
-                <many-to-one name="autor" column="autor_id" not-null="true" cascade="none" lazy="false"></many-to-one>
                 
-                <property name="participantes" column="participantes" />
-          		<set name="participantes" lazy="true" cascade="all">
-					<key column="pedido_id" not-null="true"/>
-					<one-to-many class="Usuario"/>
+        		<many-to-one name="sala" column="sala_id" not-null="true" cascade="none" lazy="false"></many-to-one>
+				
+				<!--<property name="participantes" column="participantes" />-->
+          		<set name="participantes" table="reunionesinvitados" 
+          			inverse="false" fetch="select" 
+          			lazy="true" cascade="all">
+					<key column="invitado_id"/>
+					<many-to-many class="ar.edu.uces.web2.tphibernate.modelo.base.Usuario"/>
 				</set>
+ 					
         </joined-subclass>
-        -->
-
+		
     </class>
     
 </hibernate-mapping>

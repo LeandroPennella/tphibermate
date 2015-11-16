@@ -49,12 +49,18 @@ public class UsuarioDAO {
 		Query q=session.createQuery(hql);
 		//.setString("pU", nombreUsuario)
 		//.setString("pC", contrasenia);
-		
 		usuario= (Usuario)q.uniqueResult();
-	
-
 		return usuario;
-		
-		
+	
 	}
+	
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	public List<Usuario> getAll()
+	{
+		Session session = sessionFactory.getCurrentSession();
+		Query q=session.createQuery("from " +Usuario.class.getName());
+		List<Usuario>usuarios=(List<Usuario>)q.list();
+		return (usuarios);
+	}
+	
 }

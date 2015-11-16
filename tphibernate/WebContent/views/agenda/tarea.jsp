@@ -24,7 +24,7 @@
 					<!-- block -->
 					<div class="block">
 						<div class="navbar navbar-inner block-header">
-							<div class="muted pull-left">Tareas</div>
+							<div class="muted pull-left"><fmt:message key='tarea.titulo'/></div>
 						</div>
 						<div class="block-content collapse in">
 							<div class="span12">
@@ -32,11 +32,11 @@
 								<form:form method="POST" commandName="tarea" action="${x}" cssClass="form-horizontal" >
 								
 									<fieldset>
-										<legend>Agregar Tarea</legend>
+										<legend><fmt:message key='tarea.tituloAgregar'/></legend>
 										<div class="control-group">
 											
-											<fmt:message key='tarea.label.titulo' var="titulo" />
-											<label class="control-label" for="titulo"><fmt:message key="tarea.label.titulo" /></label>
+											<fmt:message key='evento.label.titulo' var="titulo" />
+											<label class="control-label" for="titulo"><fmt:message key="evento.label.titulo" /></label>
 											<div class="controls">
 												<form:input id="titulo" path="titulo" cssClass="input-xxlarge focused"  placeholder="${titulo}" autofocus="true"  />
 												<form:errors path="titulo" cssStyle="color: red" />
@@ -44,18 +44,18 @@
 
 										</div>
 										<div class="control-group">
-											<fmt:message key='tarea.label.fecha' var="fecha" />
-										    <span class="control-label"><fmt:message key="tarea.label.fecha" /></span>
+											<fmt:message key='evento.label.fecha' var="fecha" />
+										    <span class="control-label"><fmt:message key="evento.label.fecha" /></span>
 										    <div class="controls form-inline">
 
 												<form:input id="fecha" path="fecha" cssClass="input-small "  placeholder="${fecha}"/>
 												
-									            <fmt:message key='tarea.label.horaInicio' var="horaInicio" />
-												<label for="horaInicio"><fmt:message key="tarea.label.horaInicio" /></label>
+									            <fmt:message key='evento.label.horaInicio' var="horaInicio" />
+												<label for="horaInicio"><fmt:message key="evento.label.horaInicio" /></label>
 												<form:input id="horaInicio" path="horaInicio" cssClass="input-small "  placeholder="${horaInicio}"/>
 												
-												<fmt:message key='tarea.label.horaFin' var="horaFin" />
-												<label for="horaFin"><fmt:message key="tarea.label.horaFin" /></label>
+												<fmt:message key='evento.label.horaFin' var="horaFin" />
+												<label for="horaFin"><fmt:message key="evento.label.horaFin" /></label>
 												<form:input id="horaFin" path="horaFin" cssClass="input-small "  placeholder="${horaInicio}"/>
 												
 									    	</div>

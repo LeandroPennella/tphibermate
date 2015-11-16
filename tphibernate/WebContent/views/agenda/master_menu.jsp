@@ -34,21 +34,18 @@
                              <a href="#">Dashboard</a>
                          </li>
                          <li class="dropdown">
-                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b></a>
+                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">Secciones <b class="caret"></b></a>
                              <ul class="dropdown-menu" id="menu1">
 
                                  <li>
                                      <a href="<c:url value="/agenda/crearTarea.do" ></c:url>">Agregar Tarea</a>
                                  </li>
                                  <li>
-                                     <a href="#">Other Link</a>
+                                     <a href="<c:url value="/agenda/crearReunion.do" ></c:url>">Agregar Reunion</a>
                                  </li>
                                  <li class="divider"></li>
                                  <li>
-                                     <a href="#">Other Link</a>
-                                 </li>
-                                 <li>
-                                     <a href="#">Other Link</a>
+                                     <a href="<c:url value="/agenda/mostrarCalendario.do" ></c:url>">Calendario</a>
                                  </li>
                              </ul>
                          </li>                         
