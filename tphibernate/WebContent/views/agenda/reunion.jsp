@@ -80,28 +80,30 @@
 											<label class="control-label" for="sala"><fmt:message key="reunion.label.sala" /></label>
 											<div class="controls">
 												<%-- <form:input id="sala" path="sala" cssClass="input-xxlarge "  placeholder="${sala}" />--%>
-												<form:select path="sala" items="salas"></form:select>
+												<%-- <form:select path="sala" items="salas"></form:select>--%>
+												<td><form:select path="sala.id" multiple="false" items="${salas}" itemLabel="descripcion" itemValue="id"/></td>
 												<form:errors path="sala" cssStyle="color: red" />
 											</div>
 										</div>
 										
-										
+				
 										<div class="control-group">
 											<fmt:message key='reunion.label.participantes' var="participantes" />
 											<label class="control-label" for="participantes"><fmt:message key="reunion.label.participantes" /></label>
 											<div class="controls">
-												<%--
-												<form:select multiple="true" path="participantes">
-												    <form:options items="${usuarios}" itemValue="id" itemLabel="nombre"/>
-												</form:select>
-												 --%>
-												<td><form:select path="participantes" multiple="true" items="${usuarios}" itemLabel="nombre" itemValue="id"/></td>
+<%--														
+--												<form:select multiple="true" path="participantes">
+--												    <form:options items="${usuarios}" itemValue="id" itemLabel="nombre"/>
+--												</form:select>
+--%>												
+												<td><form:select path="participantes.id" multiple="true" items="${usuarios}" itemLabel="nombre" itemValue="id"/></td>
 												
 												<td><form:errors path="participantes" /></td>
 												
 											</div>
+											
 										</div>
-
+ 
 																				
 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary">Save changes</button>

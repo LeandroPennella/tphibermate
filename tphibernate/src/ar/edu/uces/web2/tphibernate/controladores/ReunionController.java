@@ -58,6 +58,7 @@ public class ReunionController {
 		}
 		mv.addObject("posiblesParticipantes", posiblesParticipantes);
 		*/
+		mv.addObject("salas", salas);
 		mv.addObject("usuarios", usuarios);
 		return mv;
 	}
@@ -69,6 +70,7 @@ public class ReunionController {
 			return new ModelAndView("/views/agenda/reunion.jsp","reunion", reunion);
 		}*/
 		reunion.setAutor(usuario);
+		List<Usuario>participantesAgregados=reunion.getParticipantes();
 		reunionDAO.save(reunion);
 		return new ModelAndView("/views/agenda/calendario.jsp");
 	}

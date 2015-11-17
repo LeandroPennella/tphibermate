@@ -105,7 +105,8 @@ ALTER TABLE Contrasenias ADD FOREIGN KEY (usuario_id) REFERENCES Usuarios(idUsua
 
 INSERT INTO Usuarios (nombre,apellido,nombreUsuario,idioma) VALUES ('pepe','argento','pepea','es_AR'),('uncle','tom','uncletom','en_US') ;
 INSERT INTO Contrasenias (usuario_id ,valor) VALUES ('1','elpepe'),('2','ilovewar');
-
+INSERT INTO `agenda`.`salas` (`idSala`, `descripcion`) VALUES (NULL, 'sala oval');
+INSERT INTO `agenda`.`salas` (`idSala`, `descripcion`) VALUES (NULL, 'sala grande');
 -- Grant privileges ----------------------------------------------------------------------------------------------
 
 GRANT ALL PRIVILEGES ON `agenda`.* TO 'noroot'@'localhost'  IDENTIFIED BY PASSWORD '*B04E11FAAAE9A5A019BAF695B40F3BF1997EB194';

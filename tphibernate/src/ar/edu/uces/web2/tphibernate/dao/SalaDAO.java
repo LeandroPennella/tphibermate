@@ -34,6 +34,6 @@ public class SalaDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Query q=session.createQuery("from " +Sala.class.getName());
 		List<Sala>salas=(List<Sala>)q.list();
-		return (salas);
+		return salas;
 	}
 }
