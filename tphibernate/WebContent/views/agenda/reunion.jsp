@@ -29,7 +29,7 @@
 						<div class="block-content collapse in">
 							<div class="span12">
 								<c:url value="/agenda/agregarReunion.do" var="x"></c:url>
-								<form:form method="POST" commandName="reunion" action="${x}" cssClass="form-horizontal" >
+								<form:form method="POST" commandName="reunionForm" action="${x}" cssClass="form-horizontal" >
 								
 									<fieldset>
 										<legend><fmt:message key='reunion.tituloAgregar'/></legend>
@@ -81,8 +81,8 @@
 											<div class="controls">
 												<%-- <form:input id="sala" path="sala" cssClass="input-xxlarge "  placeholder="${sala}" />--%>
 												<%-- <form:select path="sala" items="salas"></form:select>--%>
-												<td><form:select path="sala.id" multiple="false" items="${salas}" itemLabel="descripcion" itemValue="id"/></td>
-												<form:errors path="sala" cssStyle="color: red" />
+												<td><form:select path="idSala" multiple="false" items="${reunionForm.salas}" itemLabel="descripcion" itemValue="id"/></td>
+												<form:errors path="idSala" cssStyle="color: red" />
 											</div>
 										</div>
 										
@@ -96,9 +96,9 @@
 --												    <form:options items="${usuarios}" itemValue="id" itemLabel="nombre"/>
 --												</form:select>
 --%>												
-												<td><form:select path="participantes.id" multiple="true" items="${usuarios}" itemLabel="nombre" itemValue="id"/></td>
+												<td><form:select path="idsParticipantes" multiple="true" items="${reunionForm.usuarios}" itemLabel="nombre" itemValue="id"/></td>
 												
-												<td><form:errors path="participantes" /></td>
+												<td><form:errors path="idsParticipantes" /></td>
 												
 											</div>
 											

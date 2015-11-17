@@ -17,6 +17,7 @@ import ar.edu.uces.web2.tphibernate.dao.UsuarioDAO;
 import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
+import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
 import ar.edu.uces.web2.tphibernate.validadores.TareaValidator;
 
 @SessionAttributes("usuario") 
@@ -48,29 +49,37 @@ public class ReunionController {
 	
 	@RequestMapping(value = "/agenda/crearReunion")
 	public ModelAndView crear() {
-		ModelAndView mv=new ModelAndView("/views/agenda/reunion.jsp","reunion", new Reunion());
-		List<Usuario>usuarios=usuarioDAO.getAll();
-		List<Sala>salas=salaDAO.getAll();
+		
+		ReunionForm reunionForm=new ReunionForm();
+		reunionForm.setUsuarios(usuarioDAO.getAll());//TODO: aca?
+		reunionForm.setSalas(salaDAO.getAll());
 		/*
 		posiblesParticipantes= new HashMap<String, Usuario>();
 		for (Usuario usuario: usuarios) {
 			posiblesParticipantes.put(Integer.toString(usuario.getId()), usuario);
 		}
 		mv.addObject("posiblesParticipantes", posiblesParticipantes);
-		*/
-		mv.addObject("salas", salas);
+				mv.addObject("salas", salas);
 		mv.addObject("usuarios", usuarios);
+
+		*/
+		ModelAndView mv=new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
 		return mv;
 	}
 	
 	@RequestMapping(value = "/agenda/agregarReunion")
-	public ModelAndView save(@ModelAttribute("reunion") Reunion reunion, BindingResult result, @ModelAttribute("usuario") Usuario usuario) {
+	public ModelAndView save(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuario") Usuario usuario) {
 		/*this.reunionValidator.validate(reunion, result);
 		if (result.hasErrors()) {
 			return new ModelAndView("/views/agenda/reunion.jsp","reunion", reunion);
 		}*/
+		
+		//List<Usuario>participantesAgregados=reunion.getParticipantes();
+		Reunion reunion=new Reunion();
+		reunion.setTitulo(reunionForm.getTitulo());
+		//reunion=reunionForm		//TODO: donde?
+		
 		reunion.setAutor(usuario);
-		List<Usuario>participantesAgregados=reunion.getParticipantes();
 		reunionDAO.save(reunion);
 		return new ModelAndView("/views/agenda/calendario.jsp");
 	}
