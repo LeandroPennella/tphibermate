@@ -57,14 +57,17 @@
 												<fmt:message key='evento.label.horaFin' var="horaFin" />
 												<label for="horaFin"><fmt:message key="evento.label.horaFin" /></label>
 												<form:input id="horaFin" path="horaFin" cssClass="input-small "  placeholder="${horaInicio}"/>
-												
+											  	<div >
+											  	<div><form:errors path="fecha" cssStyle="color: red" /></div>
+											  	<div><form:errors path="horaInicio" cssStyle="color: red" /></div>
+											  	<div><form:errors path="horaFin" cssStyle="color: red" /></div>
+											  		
+											  		
+													
+											  	</div>
 									    	</div>
 									  	</div>
-									  	<div >
-									  		<form:errors path="fecha" cssStyle="color: red" />
-									  		<form:errors path="horaInicio" cssStyle="color: red" />
-											<form:errors path="horaFin" cssStyle="color: red" />
-									  	</div>
+
 									  	
 										<div class="control-group">
 											<fmt:message key='tarea.label.descripcion' var="descripcion" />

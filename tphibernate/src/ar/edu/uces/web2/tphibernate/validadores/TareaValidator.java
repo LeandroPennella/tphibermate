@@ -23,35 +23,34 @@ public class TareaValidator implements Validator{
 	@Override
 	public void validate(Object object, Errors errors) {
 		Tarea tarea= (Tarea) object;
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "tarea.error.tituloVacio");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fecha", "tarea.error.fechaVacio");
-		/*if (!errors.hasFieldErrors("fecha")) {
-			if (!esFecha(tarea.getFecha()))
-			{
-				errors.rejectValue("nombre", "error.jugador.valor.comienzaConNumero");
-			}
-		}*/
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaInicio", "tarea.error.horaInicioVacio");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaFin", "tarea.error.horaFinVacio");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "evento.error.tituloVacio");
+		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fecha", "evento.error.fechaVacio");	//TODO: como no solaparlo con type mismatch
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaInicio", "evento.error.horaInicioVacio");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaFin", "evento.error.horaFinVacio");
 		if (!(errors.hasFieldErrors("horaInicio")&&errors.hasFieldErrors("horaFin"))) {
 			SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
 			Date desde = null;
 			Date hasta = null;
+			String sDesde=tarea.getHoraInicio();
+			String sHasta=tarea.getHoraFin();
+			boolean sonFechas=true;
 			try{
-				desde= parser.parse(tarea.getHoraInicio());
+				desde= parser.parse(sDesde);
 			} catch (java.text.ParseException e){
-				errors.rejectValue("horaFin", "tarea.error.horaInicio");
+				errors.rejectValue("horaInicio", "evento.error.horaInicio");
+				sonFechas=false;
 			}
 			try{
-				hasta = parser.parse(tarea.getHoraFin());
+				hasta = parser.parse(sHasta);
 			} catch (java.text.ParseException pe){
-				errors.rejectValue("horaFin", "tarea.error.horaFin");
+				errors.rejectValue("horaFin", "evento.error.horaFin");
+				sonFechas=false;
 			}
-			if (desde.before(hasta)){
-				errors.rejectValue("horaFin", "tarea.error.intervalo");
+			if ((sonFechas)&& (desde.after(hasta)||desde.equals(hasta))){
+					errors.rejectValue("horaFin", "evento.error.intervalo");
 			}
 			
-			
-		}
+		}	
 	}
 }

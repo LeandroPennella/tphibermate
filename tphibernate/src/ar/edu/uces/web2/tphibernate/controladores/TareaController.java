@@ -33,12 +33,12 @@ public class TareaController {
 	
 	@RequestMapping(value = "/agenda/agregarTarea")
 	public ModelAndView save(@ModelAttribute("tarea") Tarea tarea, BindingResult result, @ModelAttribute("usuario") Usuario usuario) {
-		/*
+		
 		this.tareaValidator.validate(tarea, result);
 		if (result.hasErrors()) {
 			return new ModelAndView("/views/agenda/tarea.jsp","tarea", tarea);
 		}
-		*/
+		
 		tarea.setAutor(usuario);
 		tareaDAO.save(tarea);
 		return new ModelAndView("/views/agenda/calendario.jsp");
