@@ -8,18 +8,24 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
+import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
+import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
 
 @Component
-public class EventoValidator implements Validator{
+public class ReunionFormValidator implements Validator{ //TODO: heredar de EventoFormValidator
+	
+	private Reunion reunion;
+	
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return Evento.class.isAssignableFrom(clazz);
+		return ReunionForm.class.isAssignableFrom(clazz);
 	}
+	public Reunion getReunion()
+	{return this.reunion;}
 	
 	@Override
 	public void validate(Object object, Errors errors) {
-		Evento evento= (Evento) object;
+		ReunionForm reunionForm= (ReunionForm) object;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "evento.error.tituloVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fecha", "evento.error.fechaVacio");	//TODO: como no solaparlo con type mismatch
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaInicio", "evento.error.horaInicioVacio");
@@ -28,8 +34,8 @@ public class EventoValidator implements Validator{
 			SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
 			Date desde = null;
 			Date hasta = null;
-			String sDesde=evento.getHoraInicio();
-			String sHasta=evento.getHoraFin();
+			String sDesde=reunionForm.getHoraInicio();
+			String sHasta=reunionForm.getHoraFin();
 			boolean sonFechas=true;
 			try{
 				desde= parser.parse(sDesde);
@@ -47,5 +53,14 @@ public class EventoValidator implements Validator{
 					errors.rejectValue("horaFin", "evento.error.intervalo");
 			}
 		}	
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "temario", "reunion.error.temarioVacio");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idSala", "reunion.error.salaVacio");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idsParticipantes", "reunion.error.participantesVacio");
+		if(errors==null)
+		{
+			this.reunion.setTitulo(reunionForm.getTitulo());
+			
+			
+		}
 	}
 }

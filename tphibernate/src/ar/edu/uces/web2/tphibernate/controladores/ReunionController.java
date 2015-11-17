@@ -1,6 +1,6 @@
 package ar.edu.uces.web2.tphibernate.controladores;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +15,9 @@ import ar.edu.uces.web2.tphibernate.dao.ReunionDAO;
 import ar.edu.uces.web2.tphibernate.dao.SalaDAO;
 import ar.edu.uces.web2.tphibernate.dao.UsuarioDAO;
 import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
-import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
-import ar.edu.uces.web2.tphibernate.validadores.TareaValidator;
+import ar.edu.uces.web2.tphibernate.validadores.ReunionFormValidator;
 
 @SessionAttributes("usuario") 
 
@@ -43,9 +42,10 @@ public class ReunionController {
 	public void setSalaDAO (SalaDAO salaDAO) {
 		this.salaDAO = salaDAO;
 	}
-	
+
+
 	@Autowired
-	private TareaValidator reunionValidator; 
+	private ReunionFormValidator reunionValidator; 
 	
 	@RequestMapping(value = "/agenda/crearReunion")
 	public ModelAndView crear() {
@@ -69,14 +69,16 @@ public class ReunionController {
 	
 	@RequestMapping(value = "/agenda/agregarReunion")
 	public ModelAndView save(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuario") Usuario usuario) {
-		/*this.reunionValidator.validate(reunion, result);
+		Reunion reunion=null;
+		this.reunionValidator.validate(reunionForm, result);
 		if (result.hasErrors()) {
-			return new ModelAndView("/views/agenda/reunion.jsp","reunion", reunion);
-		}*/
+			//TODO: Agregarle salas y usuarios
+			return new ModelAndView("/views/agenda/reunion.jsp","reunion", reunionForm);
+		} else
+		{reunion=this.reunionValidator.getReunion();}
 		
-		//List<Usuario>participantesAgregados=reunion.getParticipantes();
-		Reunion reunion=new Reunion();
-		reunion.setTitulo(reunionForm.getTitulo());
+
+		
 		//reunion=reunionForm		//TODO: donde?
 		
 		reunion.setAutor(usuario);

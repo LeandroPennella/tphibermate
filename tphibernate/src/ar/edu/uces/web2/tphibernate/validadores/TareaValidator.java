@@ -14,17 +14,16 @@ import ar.edu.uces.web2.tphibernate.modelo.base.Tarea;
 import ar.edu.uces.web2.tphibernate.modelo.form.UsuarioAutenticacionForm;
 
 @Component
-public class TareaValidator implements Validator{
+public class TareaValidator implements Validator{ //TODO: heredar de EventoFormValidator
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return UsuarioAutenticacionForm.class.isAssignableFrom(clazz);
+		return Tarea.class.isAssignableFrom(clazz);
 	}
 	
 	@Override
 	public void validate(Object object, Errors errors) {
 		Tarea tarea= (Tarea) object;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "evento.error.tituloVacio");
-		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fecha", "evento.error.fechaVacio");	//TODO: como no solaparlo con type mismatch
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaInicio", "evento.error.horaInicioVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaFin", "evento.error.horaFinVacio");
@@ -47,7 +46,7 @@ public class TareaValidator implements Validator{
 				errors.rejectValue("horaFin", "evento.error.horaFin");
 				sonFechas=false;
 			}
-			if ((sonFechas)&& (desde.after(hasta)||desde.equals(hasta))){
+			if (sonFechas&& !desde.before(hasta)){
 					errors.rejectValue("horaFin", "evento.error.intervalo");
 			}
 			

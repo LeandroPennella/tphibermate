@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.uces.web2.tphibernate.dao.TareaDAO;
 import ar.edu.uces.web2.tphibernate.modelo.base.Tarea;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
-import ar.edu.uces.web2.tphibernate.validadores.TareaValidator;
+import ar.edu.uces.web2.tphibernate.validadores.EventoValidator;
 
 @SessionAttributes("usuario") 
 
@@ -24,7 +24,7 @@ public class TareaController {
 		this.tareaDAO = tareaDAO;
 	}
 	@Autowired
-	private TareaValidator tareaValidator; 
+	private EventoValidator eventoValidator; 
 	
 	@RequestMapping(value = "/agenda/crearTarea")
 	public ModelAndView crear() {
@@ -34,7 +34,7 @@ public class TareaController {
 	@RequestMapping(value = "/agenda/agregarTarea")
 	public ModelAndView save(@ModelAttribute("tarea") Tarea tarea, BindingResult result, @ModelAttribute("usuario") Usuario usuario) {
 		
-		this.tareaValidator.validate(tarea, result);
+		this.eventoValidator.validate(tarea, result);
 		if (result.hasErrors()) {
 			return new ModelAndView("/views/agenda/tarea.jsp","tarea", tarea);
 		}
