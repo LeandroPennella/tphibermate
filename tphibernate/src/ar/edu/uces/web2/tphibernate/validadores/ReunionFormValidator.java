@@ -43,7 +43,7 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 			
 			 try {
 				 String sFecha=reunionForm.getFecha();
-				 DateFormat d=new DateFormat();
+				  DateFormat d = DateFormat.getDateInstance();
 				fecha=d.parse(sFecha);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
