@@ -31,10 +31,10 @@
         		<many-to-one name="sala" column="sala_id" not-null="true" cascade="none" lazy="false"></many-to-one>
 				
 				<!--<property name="participantes" column="participantes" />-->
-          		<bag name="participantes" table="reunionesinvitados" inverse="false" fetch="select"  lazy="true" cascade="all"	> 
-          			<!-- 		-->
+          		<bag name="participantes" table="reunionesinvitados" inverse="true" lazy="false" cascade="all"	> 
+          			<!-- fetch="select"  		-->
           			
-					<key column="invitado_id"/>
+					<key column="invitado_id" not-null="true"/>
 				    
 					
 					<!-- <index column="reunion_id"/> -->
