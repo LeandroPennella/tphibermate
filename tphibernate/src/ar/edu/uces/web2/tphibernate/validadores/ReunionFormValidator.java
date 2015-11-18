@@ -43,8 +43,9 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 			
 			 try {
 				 String sFecha=reunionForm.getFecha();
-				  DateFormat d = DateFormat.getDateInstance();
-				fecha=d.parse(sFecha);
+				 SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
+				  //DateFormat d = DateFormat.getDateInstance("dd/MM/yyyy");
+				 fecha=dateFormatter.parse(sFecha );	
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -78,6 +79,7 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idsParticipantes", "reunion.error.participantesVacio");
 		if(!errors.hasErrors())
 		{
+			reunion=new Reunion();
 			this.reunion.setTitulo(reunionForm.getTitulo());
 			this.reunion.setFecha(fecha);
 			this.reunion.setHoraInicio(reunionForm.getHoraInicio());

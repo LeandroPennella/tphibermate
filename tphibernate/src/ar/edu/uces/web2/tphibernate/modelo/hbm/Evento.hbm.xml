@@ -31,12 +31,15 @@
         		<many-to-one name="sala" column="sala_id" not-null="true" cascade="none" lazy="false"></many-to-one>
 				
 				<!--<property name="participantes" column="participantes" />-->
-          		<set name="participantes" table="reunionesinvitados" 
-          			inverse="false" fetch="select" 
-          			lazy="true" cascade="all">
+          		<bag name="participantes" table="reunionesinvitados" inverse="false" fetch="select"  lazy="true" cascade="all"	> 
+          			<!-- 		-->
+          			
 					<key column="invitado_id"/>
-					<many-to-many class="ar.edu.uces.web2.tphibernate.modelo.base.Usuario"/>
-				</set>
+				    
+					
+					<!-- <index column="reunion_id"/> -->
+					<many-to-many column="reunion_id" class="ar.edu.uces.web2.tphibernate.modelo.base.Usuario"/>
+				</bag>
  					
         </joined-subclass>
 		
