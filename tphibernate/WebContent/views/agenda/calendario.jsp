@@ -10,8 +10,8 @@
 <html>
 <head>
 <style >
-.tarea{background-color: blue;}
-.reunion{background-color: green;}
+.tarea{background-color: #4986E7;}
+.reunion{background-color: #16A765;}
 </style>
 <jsp:include page="master_header.jsp"></jsp:include>
 <title>Insert title here</title>
@@ -20,7 +20,7 @@
 <jsp:include page="master_menu.jsp"></jsp:include>
 <c:forEach var="evento" items="${eventos}">
 <div class="${evento.getEstado()}">
-${evento.getHoraInicio()} - ${evento.getTitulo()} 
+<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()} 
 </div>
 </c:forEach>
 </body>

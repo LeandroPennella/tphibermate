@@ -26,8 +26,8 @@ public class EventoDAO {
 	public List<Evento> getAll()
 	{
 		Session session = sessionFactory.getCurrentSession();
-		Query q=session.createQuery("from " +Evento.class.getName());
-		List<Evento>usuarios=(List<Evento>)q.list();
-		return usuarios;
+		Query q=session.createQuery("from " +Evento.class.getName() + " as e order by e.fecha");
+		List<Evento>eventos=(List<Evento>)q.list();
+		return eventos;
 	}
 }

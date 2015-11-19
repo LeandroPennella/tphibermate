@@ -20,6 +20,9 @@ public class EventoValidator implements Validator{
 	@Override
 	public void validate(Object object, Errors errors) {
 		Evento evento= (Evento) object;
+
+		//TODO: Evaluar fecha y hora con regex?
+		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "evento.error.tituloVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fecha", "evento.error.fechaVacio");	//TODO: como no solaparlo con type mismatch
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaInicio", "evento.error.horaInicioVacio");
