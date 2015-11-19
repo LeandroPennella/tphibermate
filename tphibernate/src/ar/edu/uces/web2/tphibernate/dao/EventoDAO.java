@@ -1,5 +1,9 @@
 package ar.edu.uces.web2.tphibernate.dao;
 
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -26,8 +30,26 @@ public class EventoDAO {
 	public List<Evento> getAll()
 	{
 		Session session = sessionFactory.getCurrentSession();
-		Query q=session.createQuery("from " +Evento.class.getName() + " as e order by e.fecha");
+		Query q=session.createQuery("from " +Evento.class.getName() + " as e where e.fecha=?");
+
+		SimpleDateFormat d=new SimpleDateFormat("dd-MM-yyyy");
+		Date dd=d.parse("01-10-2015", new ParsePosition(0));
+		q.setDate(0,dd );
+		
 		List<Evento>eventos=(List<Evento>)q.list();
+		eventos.sort(new EventoPorHoraComparator());
 		return eventos;
+	}
+	
+	public class EventoPorHoraComparator implements Comparator<Evento> {
+	    @Override
+	    public int compare(Evento e1, Evento e2) {
+			SimpleDateFormat horaFormat=new SimpleDateFormat("HH:mm");
+	    	Date inicio1=horaFormat.parse(e1.getHoraInicio(), new ParsePosition(0));
+	    	Date inicio2=horaFormat.parse(e2.getHoraInicio(), new ParsePosition(0));
+	        return inicio1.compareTo(inicio2);
+	    }
+
+
 	}
 }
