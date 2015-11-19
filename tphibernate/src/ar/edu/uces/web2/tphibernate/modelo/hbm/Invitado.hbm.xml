@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--  Agregado en hibernate-context -->
+<hibernate-mapping>
+	<class name="ar.edu.uces.web2.tphibernate.modelo.base.Invitado" table="invitados">
+		<id column="idInvitado" name="id">
+			<generator class="native" />
+		</id>
+		<many-to-one name="usuario" column="usuario_id" not-null="true" cascade="none" lazy="false"></many-to-one>
+		<property column="aceptado" name="aceptado" />
+	</class>
+</hibernate-mapping>

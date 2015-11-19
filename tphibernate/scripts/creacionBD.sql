@@ -77,17 +77,22 @@ ENGINE=INNODB;
 
 
 
-CREATE TABLE ReunionesInvitados
+CREATE TABLE Invitados
 (
-	`reunion_id` INT NOT NULL 
-	,`invitado_id` INT NOT NULL 
+	`idInvitado` INT NOT NULL AUTO_INCREMENT
+	,PRIMARY KEY (idInvitado)
+	,`reunion_id` INT NOT NULL 
+	,`usuario_id` INT NOT NULL 
 	,`aceptado` BIT  NULL 
 )
 ENGINE=INNODB;
 
 -- Create Foreign Keys ----------------------------------------------------------------------------------------------
 
-ALTER TABLE ReunionesInvitados ADD FOREIGN KEY (reunion_id) REFERENCES Reuniones(idEvento);
+-- ALTER TABLE Invitados ADD FOREIGN KEY (reunion_id) REFERENCES Reuniones(idEvento);
+ALTER TABLE Invitados ADD FOREIGN KEY (reunion_id) REFERENCES Reuniones(idEvento);
+
+ALTER TABLE Invitados ADD FOREIGN KEY (usuario_id) REFERENCES Usuarios(idUsuario);
 
 ALTER TABLE Reuniones ADD FOREIGN KEY (sala_id) REFERENCES Salas(idSala);
  
@@ -97,7 +102,7 @@ ALTER TABLE EventosPrivados ADD FOREIGN KEY (idEvento) REFERENCES Eventos(idEven
 
 ALTER TABLE Reuniones ADD FOREIGN KEY (idEvento) REFERENCES Eventos(idEvento);
 
-ALTER TABLE ReunionesInvitados ADD FOREIGN KEY (invitado_id) REFERENCES Usuarios(idUsuario);
+-- ALTER TABLE Invitados ADD FOREIGN KEY (invitado_id) REFERENCES Usuarios(idUsuario);
 
 ALTER TABLE Contrasenias ADD FOREIGN KEY (usuario_id) REFERENCES Usuarios(idUsuario);
 

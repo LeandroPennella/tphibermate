@@ -1,7 +1,9 @@
 package ar.edu.uces.web2.tphibernate.modelo.form;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
@@ -15,7 +17,7 @@ public class ReunionForm {
 	private String temario;
 	private Integer idSala;
 	
-	private List<Integer> idsParticipantes=new ArrayList<Integer>() ;
+	private List<Integer> idsInvitados=new ArrayList<Integer>() ;
 	private List<Usuario> usuarios=new ArrayList<Usuario>();//usuarioDAO.getAll();
 
 	private List<Sala>salas=new ArrayList<Sala>(); //salaDAO.getAll();
@@ -59,18 +61,18 @@ public class ReunionForm {
 		this.idSala = idSala;
 	}
 
-	public List<Integer> getIdsParticipantes() {
-		return idsParticipantes;
+	public List<Integer> getIdsInvitados() {
+		return idsInvitados;
 	}
 
-	public void setIdsParticipantes(List<Integer> idsParticipantes) {
-		this.idsParticipantes = idsParticipantes;
+	public void setIdsInvitados(List<Integer> idsInvitados) {
+		this.idsInvitados = idsInvitados;
 	}
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setUsuarios(List<Usuario> list) {
+		this.usuarios = list;
 	}
 	public List<Sala> getSalas() {
 		return salas;

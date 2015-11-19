@@ -3,6 +3,7 @@ package ar.edu.uces.web2.tphibernate.dao;
 
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 
@@ -60,7 +60,7 @@ public class UsuarioDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Query q=session.createQuery("from " +Usuario.class.getName());
 		List<Usuario>usuarios=(List<Usuario>)q.list();
-		return (usuarios);
+		return usuarios;
 	}
 	
 }

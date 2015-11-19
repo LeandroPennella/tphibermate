@@ -1,17 +1,17 @@
 package ar.edu.uces.web2.tphibernate.validadores;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import ar.edu.uces.web2.tphibernate.modelo.base.Invitado;
 import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
@@ -76,7 +76,7 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 		}	
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "temario", "reunion.error.temarioVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idSala", "reunion.error.salaVacio");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idsParticipantes", "reunion.error.participantesVacio");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idsInvitados", "reunion.error.participantesVacio");
 		if(!errors.hasErrors())
 		{
 			reunion=new Reunion();
@@ -88,14 +88,20 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 			Sala sala=new Sala();
 			sala.setId(reunionForm.getIdSala());
 			this.reunion.setSala(sala);
-			List<Usuario>listaParticipantes=new ArrayList<Usuario>();
-			for(Integer idPaticipante:reunionForm.getIdsParticipantes())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
+			Set<Invitado>listaInvitados=new HashSet<Invitado>();
+			
+			for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
 			{
+				Invitado invitado=new Invitado();
 				Usuario usuario=new Usuario();
-				usuario.setId(idPaticipante);
-				listaParticipantes.add(usuario);
+				usuario.setId(idInvitado);
+				
+				invitado.setUsuario(usuario);
+				invitado.setAceptado(false);
+				listaInvitados.add(invitado);
 			}
-			this.reunion.setParticipantes(listaParticipantes);
+			
+			this.reunion.setInvitados(listaInvitados);
 			
 		}
 	}

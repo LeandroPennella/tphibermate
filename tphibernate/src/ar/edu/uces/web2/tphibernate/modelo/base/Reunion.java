@@ -1,12 +1,12 @@
 package ar.edu.uces.web2.tphibernate.modelo.base;
 
-import java.util.List;
+import java.util.Set;
 
 public class Reunion extends Evento {
 
 	private String temario;
 	private Sala sala;
-	private List<Usuario> participantes;
+	private Set<Invitado> invitados;
 	
 	public Reunion() {
 		
@@ -23,10 +23,10 @@ public class Reunion extends Evento {
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
-	public List<Usuario> getParticipantes() {
-		return participantes;
+	public Set<Invitado> getInvitados() {
+		return invitados;
 	}
-	public void setParticipantes(List<Usuario> participantes) {
-		this.participantes = participantes;
+	public void setInvitados(Set<Invitado> invitados) {
+		this.invitados = invitados;
 	}
 }

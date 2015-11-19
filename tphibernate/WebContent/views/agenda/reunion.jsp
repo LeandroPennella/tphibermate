@@ -89,16 +89,16 @@
 				
 										<div class="control-group">
 											<fmt:message key='reunion.label.participantes' var="participantes" />
-											<label class="control-label" for="participantes"><fmt:message key="reunion.label.participantes" /></label>
+											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
 											<div class="controls">
 <%--														
 --												<form:select multiple="true" path="participantes">
 --												    <form:options items="${usuarios}" itemValue="id" itemLabel="nombre"/>
 --												</form:select>
 --%>												
-												<td><form:select path="idsParticipantes" multiple="true" items="${reunionForm.usuarios}" itemLabel="nombre" itemValue="id"/></td>
+												<td><form:select path="idsInvitados" multiple="true" items="${reunionForm.usuarios}" itemLabel="nombre" itemValue="id"/></td>
 												
-												<td><form:errors path="idsParticipantes" /></td>
+												<td><form:errors path="idsInvitados" /></td>
 												
 											</div>
 											
