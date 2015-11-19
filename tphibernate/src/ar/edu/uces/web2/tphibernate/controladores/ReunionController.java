@@ -59,16 +59,6 @@ public class ReunionController {
 		ReunionForm reunionForm=new ReunionForm();
 		reunionForm.setUsuarios(usuarioDAO.getAll());//TODO: aca?
 		reunionForm.setSalas(salaDAO.getAll());
-		/*
-		posiblesParticipantes= new HashMap<String, Usuario>();
-		for (Usuario usuario: usuarios) {
-			posiblesParticipantes.put(Integer.toString(usuario.getId()), usuario);
-		}
-		mv.addObject("posiblesParticipantes", posiblesParticipantes);
-				mv.addObject("salas", salas);
-		mv.addObject("usuarios", usuarios);
-
-		*/
 		ModelAndView mv=new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
 		return mv;
 	}
@@ -85,7 +75,7 @@ public class ReunionController {
 		
 
 		
-		//reunion=reunionForm		//TODO: donde?
+		//TODO: donde?
 		Reunion reunion=new Reunion();
 		reunion.setTitulo(reunionForm.getTitulo());
 		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");

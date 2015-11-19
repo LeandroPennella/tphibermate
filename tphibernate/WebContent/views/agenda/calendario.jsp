@@ -14,6 +14,8 @@
 </head>
 <body>
 <jsp:include page="master_menu.jsp"></jsp:include>
-calendario
+<c:forEach var="evento" items="${eventos}">
+${evento.getTitulo()}<br/> 
+</c:forEach>
 </body>
 </html>
