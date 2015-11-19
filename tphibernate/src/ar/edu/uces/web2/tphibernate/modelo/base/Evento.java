@@ -53,6 +53,6 @@ public class Evento {
 		this.autor = autor;
 	}
 	
-	
+	public String getEstado(){return null;}
 		
 }

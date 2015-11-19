@@ -19,5 +19,5 @@ public class Tarea extends Evento {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
+	public String getEstado(){return "tarea";}
 }

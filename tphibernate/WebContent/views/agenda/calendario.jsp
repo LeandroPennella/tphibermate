@@ -9,13 +9,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style >
+.tarea{background-color: blue;}
+.reunion{background-color: green;}
+</style>
 <jsp:include page="master_header.jsp"></jsp:include>
 <title>Insert title here</title>
 </head>
 <body>
 <jsp:include page="master_menu.jsp"></jsp:include>
 <c:forEach var="evento" items="${eventos}">
-${evento.getTitulo()}<br/> 
+<div class="${evento.getEstado()}">
+${evento.getHoraInicio()} - ${evento.getTitulo()} 
+</div>
 </c:forEach>
 </body>
 </html>

@@ -29,4 +29,6 @@ public class Reunion extends Evento {
 	public void setInvitados(Set<Invitado> invitados) {
 		this.invitados = invitados;
 	}
+	
+	public String getEstado(){return "reunion";}
 }
