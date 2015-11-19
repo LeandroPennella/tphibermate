@@ -20,14 +20,12 @@ import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
 @Component
 public class ReunionFormValidator implements Validator{ //TODO: heredar de EventoFormValidator
 	
-	private Reunion reunion;
+	
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return ReunionForm.class.isAssignableFrom(clazz);
 	}
-	public Reunion getReunion()
-	{return this.reunion;}
 	
 	@Override
 	public void validate(Object object, Errors errors) {
@@ -36,6 +34,8 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fecha", "evento.error.fechaVacio");	//TODO: como no solaparlo con type mismatch
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaInicio", "evento.error.horaInicioVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaFin", "evento.error.horaFinVacio");
+		
+		/*
 		Date fecha=null;
 		if (!errors.hasFieldErrors("fecha"))
 		{				
@@ -51,6 +51,7 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 				e.printStackTrace();
 			}
 		}
+		*/
 		if (!(errors.hasFieldErrors("horaInicio")&&errors.hasFieldErrors("horaFin"))) {
 			SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
 			Date desde = null;
@@ -79,29 +80,7 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idsInvitados", "reunion.error.participantesVacio");
 		if(!errors.hasErrors())
 		{
-			reunion=new Reunion();
-			this.reunion.setTitulo(reunionForm.getTitulo());
-			this.reunion.setFecha(fecha);
-			this.reunion.setHoraInicio(reunionForm.getHoraInicio());
-			this.reunion.setHoraFin(reunionForm.getHoraFin());
-			this.reunion.setTemario(reunionForm.getTemario());
-			Sala sala=new Sala();
-			sala.setId(reunionForm.getIdSala());
-			this.reunion.setSala(sala);
-			Set<Invitado>listaInvitados=new HashSet<Invitado>();
-			
-			for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
-			{
-				Invitado invitado=new Invitado();
-				Usuario usuario=new Usuario();
-				usuario.setId(idInvitado);
-				
-				invitado.setUsuario(usuario);
-				invitado.setAceptado(false);
-				listaInvitados.add(invitado);
-			}
-			
-			this.reunion.setInvitados(listaInvitados);
+
 			
 		}
 	}
