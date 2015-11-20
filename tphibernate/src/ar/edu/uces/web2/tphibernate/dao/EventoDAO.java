@@ -2,6 +2,7 @@ package ar.edu.uces.web2.tphibernate.dao;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
+import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 
 @Transactional(readOnly = true)
 @Component
@@ -40,8 +42,25 @@ public class EventoDAO {
 		eventos.sort(new EventoPorHoraComparator());
 		return eventos;
 	}
+
 	
-	public class EventoPorHoraComparator implements Comparator<Evento> {
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	public List<Evento> getByAutorAndDate(Usuario usuario, Date fecha )
+	{
+		Session session = sessionFactory.getCurrentSession();
+		Query q=session.createQuery("from " +Evento.class.getName() + " as e where e.fecha=?");
+
+		q.setDate(0,fecha);
+		
+		List<Evento>eventos=(List<Evento>)q.list();
+		eventos.sort(new EventoPorHoraComparator());
+		return eventos;
+	}
+	
+	
+	
+	//TODO: mover?
+	private class EventoPorHoraComparator implements Comparator<Evento> {
 	    @Override
 	    public int compare(Evento e1, Evento e2) {
 			SimpleDateFormat horaFormat=new SimpleDateFormat("HH:mm");
