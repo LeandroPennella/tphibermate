@@ -102,7 +102,7 @@ public class ReunionController {
 		reunion.setInvitados(listaInvitados);
 		reunion.setAutor(usuario);
 		reunionDAO.save(reunion);
-		return new ModelAndView("/views/agenda/calendario.jsp");
+		return new ModelAndView("/views/index.jsp");
 		}
 	}
 }

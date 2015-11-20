@@ -108,10 +108,21 @@ ALTER TABLE Contrasenias ADD FOREIGN KEY (usuario_id) REFERENCES Usuarios(idUsua
 
 -- Populate Tables ----------------------------------------------------------------------------------------------
 
-INSERT INTO Usuarios (nombre,apellido,nombreUsuario,idioma) VALUES ('pepe','argento','pepea','es_AR'),('uncle','tom','uncletom','en_US') ;
-INSERT INTO Contrasenias (usuario_id ,valor) VALUES ('1','elpepe'),('2','ilovewar');
-INSERT INTO `agenda`.`salas` (`idSala`, `descripcion`) VALUES (NULL, 'sala oval');
-INSERT INTO `agenda`.`salas` (`idSala`, `descripcion`) VALUES (NULL, 'sala grande');
+INSERT INTO Usuarios (nombre,apellido,nombreUsuario,idioma) VALUES 
+	('pepe','argento','pepea','es_AR'),
+	('uncle','tom','uncletom','en_US'),
+	('juan','alvarez','juana','en_US'),
+	('pablo','gimenez','pablog','en_US');
+	
+INSERT INTO Contrasenias (usuario_id ,valor) VALUES 
+	('1','elpepe'),
+	('2','ilovewar'),
+	('3','juanp'),
+	('4','pablop');
+
+INSERT INTO Salas ( descripcion) VALUES 
+	('sala oval'),
+	('sala grande');
 -- Grant privileges ----------------------------------------------------------------------------------------------
 
 GRANT ALL PRIVILEGES ON `agenda`.* TO 'noroot'@'localhost'  IDENTIFIED BY PASSWORD '*B04E11FAAAE9A5A019BAF695B40F3BF1997EB194';

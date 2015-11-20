@@ -1,5 +1,9 @@
 package ar.edu.uces.web2.tphibernate.controladores;
 
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -28,7 +32,10 @@ public class TareaController {
 	
 	@RequestMapping(value = "/agenda/crearTarea")
 	public ModelAndView crear() {
-		return new ModelAndView("/views/agenda/tarea.jsp","tarea", new Tarea());
+		ModelAndView mv=new ModelAndView("/views/agenda/tarea.jsp");
+		mv.addObject("tarea", new Tarea());
+		mv.addObject("sFecha", new String());
+		return mv;
 	}
 	
 	@RequestMapping(value = "/agenda/agregarTarea")
@@ -38,9 +45,12 @@ public class TareaController {
 		if (result.hasErrors()) {
 			return new ModelAndView("/views/agenda/tarea.jsp","tarea", tarea);
 		}
-		
+		//SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
+		//Date fecha=dateFormatter.parse(tarea.getFecha().toString(), new ParsePosition(0));	
+
+		//tarea.setFecha(fecha);
 		tarea.setAutor(usuario);
 		tareaDAO.save(tarea);
-		return new ModelAndView("/views/agenda/calendario.jsp");
+		return new ModelAndView("/views/index.jsp");
 	}
 }

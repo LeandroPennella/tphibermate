@@ -47,8 +47,14 @@
 											<fmt:message key='evento.label.fecha' var="fecha" />
 										    <span class="control-label"><fmt:message key="evento.label.fecha" /></span>
 										    <div class="controls form-inline">
-
-												<form:input id="fecha" path="fecha" cssClass="input-small "  placeholder="${fecha}"/>
+												
+												
+												<%--
+												<fmt:formatDate value="${tarea.fecha}" var="dateString" pattern="dd/MM/yyyy" /> 
+												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${fecha}" value="${dateString}"/>
+												--%>
+												
+												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${fecha}"/>
 												
 									            <fmt:message key='evento.label.horaInicio' var="horaInicio" />
 												<label for="horaInicio"><fmt:message key="evento.label.horaInicio" /></label>
