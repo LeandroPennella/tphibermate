@@ -8,18 +8,18 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
+import ar.edu.uces.web2.tphibernate.modelo.form.EventoForm;
 
 @Component
-public class EventoValidator implements Validator{
+public class EventoFormValidator implements Validator{
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return Evento.class.isAssignableFrom(clazz);
+		return EventoForm.class.isAssignableFrom(clazz);
 	}
 	
 	@Override
 	public void validate(Object object, Errors errors) {
-		Evento evento= (Evento) object;
+		EventoForm eventoFrom= (EventoForm) object;
 
 		//TODO: Evaluar fecha y hora con regex?
 		
@@ -31,8 +31,8 @@ public class EventoValidator implements Validator{
 			SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
 			Date desde = null;
 			Date hasta = null;
-			String sDesde=evento.getHoraInicio();
-			String sHasta=evento.getHoraFin();
+			String sDesde=eventoFrom.getHoraInicio();
+			String sHasta=eventoFrom.getHoraFin();
 			boolean sonFechas=true;
 			try{
 				desde= parser.parse(sDesde);

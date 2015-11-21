@@ -15,7 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.uces.web2.tphibernate.dao.TareaDAO;
 import ar.edu.uces.web2.tphibernate.modelo.base.Tarea;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
-import ar.edu.uces.web2.tphibernate.validadores.EventoValidator;
+import ar.edu.uces.web2.tphibernate.modelo.form.TareaForm;
+import ar.edu.uces.web2.tphibernate.validadores.EventoFormValidator;
 
 @SessionAttributes("usuario") 
 
@@ -28,28 +29,35 @@ public class TareaController {
 		this.tareaDAO = tareaDAO;
 	}
 	@Autowired
-	private EventoValidator eventoValidator; 
+	private EventoFormValidator eventoFormValidator; 
 	
 	@RequestMapping(value = "/agenda/crearTarea")
 	public ModelAndView crear() {
-		ModelAndView mv=new ModelAndView("/views/agenda/tarea.jsp");
-		mv.addObject("tarea", new Tarea());
-		mv.addObject("sFecha", new String());
-		return mv;
+
+		return new ModelAndView("/views/agenda/tarea.jsp", "tarea", new TareaForm());
 	}
 	
 	@RequestMapping(value = "/agenda/agregarTarea")
-	public ModelAndView save(@ModelAttribute("tarea") Tarea tarea, BindingResult result, @ModelAttribute("usuario") Usuario usuario) {
+	public ModelAndView save(@ModelAttribute("tarea") TareaForm tareaForm, BindingResult result, @ModelAttribute("usuario") Usuario usuario) {
 		
-		this.eventoValidator.validate(tarea, result);
+		this.eventoFormValidator.validate(tareaForm, result);
 		if (result.hasErrors()) {
-			return new ModelAndView("/views/agenda/tarea.jsp","tarea", tarea);
+			return new ModelAndView("/views/agenda/tarea.jsp","tarea", tareaForm);
 		}
-		//SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
-		//Date fecha=dateFormatter.parse(tarea.getFecha().toString(), new ParsePosition(0));	
+		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha=dateFormatter.parse(tareaForm.getFecha().toString(), new ParsePosition(0));	
 
 		//tarea.setFecha(fecha);
+		Tarea tarea=new Tarea();
+		tarea.setTitulo(tareaForm.getTitulo());
+		tarea.setFecha(fecha);
+		tarea.setHoraInicio(tareaForm.getHoraInicio());
+		tarea.setHoraFin(tareaForm.getHoraFin());
+		tarea.setDescripcion(tareaForm.getDescripcion());
+		tarea.setDireccion(tareaForm.getDireccion());
+		
 		tarea.setAutor(usuario);
+		
 		tareaDAO.save(tarea);
 		return new ModelAndView("/views/index.jsp");
 	}

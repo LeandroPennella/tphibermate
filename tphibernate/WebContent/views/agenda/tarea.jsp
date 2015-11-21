@@ -44,17 +44,18 @@
 
 										</div>
 										<div class="control-group">
-											<fmt:message key='evento.label.fecha' var="fecha" />
+											<fmt:message key='evento.label.fecha' var="lfecha" />
 										    <span class="control-label"><fmt:message key="evento.label.fecha" /></span>
 										    <div class="controls form-inline">
 												
 												
-												<%--
-												<fmt:formatDate value="${tarea.fecha}" var="dateString" pattern="dd/MM/yyyy" /> 
-												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${fecha}" value="${dateString}"/>
-												--%>
 												
-												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${fecha}"/>
+												<fmt:formatDate value="${tarea.fecha}" var="dateString" pattern="dd/MM/yyyy" /> 
+												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${lfecha}" value="${dateString}"/>
+												
+												<%--
+												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${lfecha}"/>
+												--%>
 												
 									            <fmt:message key='evento.label.horaInicio' var="horaInicio" />
 												<label for="horaInicio"><fmt:message key="evento.label.horaInicio" /></label>
