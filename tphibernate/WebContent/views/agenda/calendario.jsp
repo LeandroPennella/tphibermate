@@ -9,26 +9,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style >
-.tarea{background-color: #4986E7;}
-.reunionNoConfirmado{background-color: #16A765;}
-.reunionConfirmada{background-color: #16A765;}
-.reunionCancelada{background-color: #16A765;}
-
-</style>
-<jsp:include page="master_header.jsp"></jsp:include>
-<title>Insert title here</title>
+	<style >
+		.tarea{background-color: #4986E7;}
+		.reunionNoConfirmado{background-color: #16A765;}
+		.reunionConfirmada{background-color: #16A765;}
+		.reunionCancelada{background-color: #16A765;}
+		.dia{ border: solid 1px gray;}
+	</style>
+	<jsp:include page="master_header.jsp"></jsp:include>
+	<title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="master_menu.jsp"></jsp:include>
-<c:forEach var="evento" items="${eventos}">
-<div class="${evento.getEstado()}">
-
-<c:set var="sUrl" value="${(evento.estado=='tarea')?'Tarea':'Reunion'}"></c:set>
-<a href="<c:url value="/agenda/editar${sUrl}.do?id=${evento.id}"/>">
-<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
-</a>
-</div> 
-</c:forEach>
+	<jsp:include page="master_menu.jsp"></jsp:include>
+	<div class="span2 dia">
+		<c:forEach var="evento" items="${eventos}">
+			<div class="${evento.getEstado()}">
+			
+			<c:set var="sUrl" value="${(evento.estado=='tarea')?'Tarea':'Reunion'}"></c:set>
+			<a href="<c:url value="/agenda/editar${sUrl}.do?id=${evento.id}"/>">
+			<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
+			</a>
+			
+			</div> 
+		</c:forEach>
+	</div>
+	<div class="span2 dia"></div>
+	<div class="span2 dia"></div>
+	<div class="span2 dia"></div>
+	<div class="span2 dia"></div>
+	<div class="span2 dia"></div>
+	<div class="span2 dia"></div>
 </body>
 </html>
