@@ -11,7 +11,10 @@
 <head>
 <style >
 .tarea{background-color: #4986E7;}
-.reunion{background-color: #16A765;}
+.reunionNoConfirmado{background-color: #16A765;}
+.reunionConfirmada{background-color: #16A765;}
+.reunionCancelada{background-color: #16A765;}
+
 </style>
 <jsp:include page="master_header.jsp"></jsp:include>
 <title>Insert title here</title>

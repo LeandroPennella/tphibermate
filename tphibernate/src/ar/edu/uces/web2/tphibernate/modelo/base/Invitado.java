@@ -3,7 +3,7 @@ package ar.edu.uces.web2.tphibernate.modelo.base;
 public class Invitado {
 	private long id;
 	private Usuario usuario;
-	private boolean aceptado;
+	private int aceptado;
 	
 	public long getId() {
 		return id;
@@ -17,10 +17,10 @@ public class Invitado {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public boolean isAceptado() {
+	public int  getAceptado() {
 		return aceptado;
 	}
-	public void setAceptado(boolean aceptado) {
+	public void setAceptado(int aceptado) {
 		this.aceptado = aceptado;
 	}
 	

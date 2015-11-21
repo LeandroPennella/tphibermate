@@ -2,17 +2,17 @@ package ar.edu.uces.web2.tphibernate.modelo.form;
 
 public class EventoForm {
 	
-	private Long id;
+	private String idEvento;
 	private String titulo;
 	private String fecha;
 	private String horaInicio;
 	private String horaFin;
 
-	public Long getId() {
-		return id;
+	public String getIdEvento() {
+		return idEvento;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdEvento(String idEvento) {
+		this.idEvento = idEvento;
 	}
 	public String getTitulo() {
 		return titulo;

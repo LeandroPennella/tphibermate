@@ -49,6 +49,8 @@ public class TareaController {
 
 		//tarea.setFecha(fecha);
 		Tarea tarea=new Tarea();
+		if (!tareaForm.getIdEvento().isEmpty())
+		{tarea.setId(Long.parseLong(tareaForm.getIdEvento()));}
 		tarea.setTitulo(tareaForm.getTitulo());
 		tarea.setFecha(fecha);
 		tarea.setHoraInicio(tareaForm.getHoraInicio());
@@ -66,6 +68,17 @@ public class TareaController {
 	@RequestMapping(value = "/agenda/editarTarea")
 	public ModelAndView editar(@RequestParam("id")Long idTarea) {
 		Tarea tarea=tareaDAO.get(idTarea);
-		return new ModelAndView("/views/agenda/tarea.jsp","tarea",tarea); 
+		TareaForm tareaForm=new TareaForm();
+		tareaForm.setIdEvento(Long.toString(tarea.getId()));
+		tareaForm.setTitulo(tarea.getTitulo());
+		
+		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
+		String sFecha=dateFormatter.format(tarea.getFecha());
+		tareaForm.setFecha(sFecha);
+		tareaForm.setHoraInicio(tarea.getHoraInicio());		
+		tareaForm.setHoraFin(tarea.getHoraFin());
+		tareaForm.setDescripcion(tarea.getDescripcion());
+		tareaForm.setDireccion(tarea.getDireccion());
+		return new ModelAndView("/views/agenda/tarea.jsp","tarea",tareaForm); 
 	}
 }

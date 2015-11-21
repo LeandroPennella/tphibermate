@@ -33,7 +33,7 @@
 								
 									<fieldset>
 										<legend><fmt:message key='tarea.tituloAgregar'/></legend>
-										<form:hidden path="id"/>										 
+										<form:hidden path="idEvento"/>										 
 										<div class="control-group">
 											
 											<fmt:message key='evento.label.titulo' var="titulo" />
@@ -50,13 +50,13 @@
 										    <div class="controls form-inline">
 												
 												
-												
+																								<%--
 												<fmt:formatDate value="${tarea.fecha}" var="dateString" pattern="dd/MM/yyyy" /> 
 												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${lfecha}" value="${dateString}"/>
-												
-												<%--
-												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${lfecha}"/>
 												--%>
+
+												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${lfecha}"/>
+												
 												
 									            <fmt:message key='evento.label.horaInicio' var="horaInicio" />
 												<label for="horaInicio"><fmt:message key="evento.label.horaInicio" /></label>

@@ -95,7 +95,7 @@ public class ReunionController {
 			Usuario usuarioInvitado=new Usuario();
 			usuarioInvitado.setId(idInvitado);
 			invitado.setUsuario(usuarioInvitado);
-			invitado.setAceptado(false);
+			invitado.setAceptado(0);
 			listaInvitados.add(invitado);
 		}
 		

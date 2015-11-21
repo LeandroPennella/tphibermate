@@ -30,5 +30,26 @@ public class Reunion extends Evento {
 		this.invitados = invitados;
 	}
 	
-	public String getEstado(){return "reunion";}
+	public String getEstado(Usuario usuario){
+		String sEstado="";
+		if (this.getAutor()==usuario)
+			sEstado="reunionAutor";
+		else  {
+			for(Invitado invitado: this.getInvitados())
+			{
+				if (invitado.getUsuario()==usuario)
+				{
+					switch(invitado.getAceptado()){
+						case 0:
+							sEstado="reunionNoConfirmado";
+						case 1:
+							sEstado="reunionConfirmada";
+						default :
+							sEstado="reunionCancelada";
+					}		
+				}
+			}
+		}
+		return sEstado;
+	}
 }
