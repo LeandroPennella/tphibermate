@@ -2,15 +2,15 @@ package ar.edu.uces.web2.tphibernate.modelo.base;
 
 public class Contrasenia {
 
-	private int id;
+	private long id;
 	private String valor;
 	
 	public Contrasenia(){}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getValor() {

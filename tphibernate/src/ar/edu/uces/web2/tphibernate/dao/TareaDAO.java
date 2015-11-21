@@ -24,4 +24,9 @@ public class TareaDAO {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(tarea);
 	}
+	
+	public Tarea get(long id) {
+		Session session = sessionFactory.getCurrentSession();
+		return (Tarea) session.get(Tarea.class, id); 
+	}
 }

@@ -2,7 +2,7 @@ package ar.edu.uces.web2.tphibernate.modelo.form;
 
 public class TareaForm extends EventoForm{
 	
-
+	
 	private String direccion;
 	private String descripcion;
 	

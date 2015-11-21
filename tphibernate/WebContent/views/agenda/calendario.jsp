@@ -20,8 +20,12 @@
 <jsp:include page="master_menu.jsp"></jsp:include>
 <c:forEach var="evento" items="${eventos}">
 <div class="${evento.getEstado()}">
-<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()} 
-</div>
+
+
+<a href="<c:url value="/agenda/editarTarea.do?id=${evento.id}"/>">
+<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
+</a>
+</div> 
 </c:forEach>
 </body>
 </html>

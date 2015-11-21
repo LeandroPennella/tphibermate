@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +34,6 @@ public class TareaController {
 	
 	@RequestMapping(value = "/agenda/crearTarea")
 	public ModelAndView crear() {
-
 		return new ModelAndView("/views/agenda/tarea.jsp", "tarea", new TareaForm());
 	}
 	
@@ -60,5 +60,12 @@ public class TareaController {
 		
 		tareaDAO.save(tarea);
 		return new ModelAndView("/views/index.jsp");
+	}
+	
+	
+	@RequestMapping(value = "/agenda/editarTarea")
+	public ModelAndView editar(@RequestParam("id")Long idTarea) {
+		Tarea tarea=tareaDAO.get(idTarea);
+		return new ModelAndView("/views/agenda/tarea.jsp","tarea",tarea); 
 	}
 }

@@ -2,16 +2,16 @@ package ar.edu.uces.web2.tphibernate.modelo.base;
 
 public class Sala {
 
-	private int id;
+	private long id;
 	private String descripcion;
 	
 	public Sala() {
 	
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getDescripcion() {

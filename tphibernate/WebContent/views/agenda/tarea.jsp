@@ -33,6 +33,7 @@
 								
 									<fieldset>
 										<legend><fmt:message key='tarea.tituloAgregar'/></legend>
+										<form:hidden path="id"/>										 
 										<div class="control-group">
 											
 											<fmt:message key='evento.label.titulo' var="titulo" />

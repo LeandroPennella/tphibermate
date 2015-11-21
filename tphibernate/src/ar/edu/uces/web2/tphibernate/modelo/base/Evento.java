@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Evento {
 
-	private int id;
+	private long id;
 
 	private String titulo;
 	private Date fecha;
@@ -15,10 +15,10 @@ public class Evento {
 		
 	public Evento (){}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
