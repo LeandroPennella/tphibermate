@@ -24,8 +24,8 @@
 <c:forEach var="evento" items="${eventos}">
 <div class="${evento.getEstado()}">
 
-
-<a href="<c:url value="/agenda/editarTarea.do?id=${evento.id}"/>">
+<c:set var="sUrl" value="${(evento.estado=='tarea')?'Tarea':'Reunion'}"></c:set>
+<a href="<c:url value="/agenda/editar${sUrl}.do?id=${evento.id}"/>">
 <b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
 </a>
 </div> 
