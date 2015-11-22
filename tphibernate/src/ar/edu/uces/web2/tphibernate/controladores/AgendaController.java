@@ -2,10 +2,10 @@ package ar.edu.uces.web2.tphibernate.controladores;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,12 +41,16 @@ public class AgendaController {
 		calendar.get
 		SimpleDateFormat d=new SimpleDateFormat("dd-MM-yyyy");
 		Date fecha=d.parse(calendar.gdate.DAY_OF_MONTH+"-"+gcalendar.MONTH+"-"+gcalendar.YEAR, new ParsePosition(0));*/
-		
+		Map<String,List<Evento>> semana=new HashMap<String,List<Evento>>();
+		List<Evento> eventos;
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
-		String sfecha = sdf.format(new Date());
-		Date fecha=sdf.parse(sfecha, new ParsePosition(0));
-		
-		List<Evento> eventos=eventoDAO.getByAutorAndDate(usuario, fecha );
-		return new ModelAndView("/views/agenda/calendario.jsp","eventos", eventos);
+		for(int i=0;i<7;i++){
+			
+			String sfecha = sdf.format(new Date());
+			Date fecha=sdf.parse(sfecha, new ParsePosition(0));
+			eventos=eventoDAO.getByAutorAndDate(usuario, fecha );
+			semana.put("", eventos);
+		}
+		return new ModelAndView("/views/agenda/calendario.jsp","semana", semana);
 	}
 }
