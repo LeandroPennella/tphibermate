@@ -10,34 +10,49 @@
 <html>
 <head>
 	<style >
-		.tarea{background-color: #4986E7;}
-		.reunionNoConfirmado{background-color: #16A765;}
-		.reunionConfirmada{background-color: #16A765;}
-		.reunionCancelada{background-color: #16A765;}
-		.dia{ border: solid 1px gray;}
+		html,body,.container
+		{
+		    height:80%;
+		}
+		a:link{color:black;}
+		a:visited{color:black;}
+		.tarea{background-color: #4986E7; border: 1px solid darkgrey;}
+		.reunionAutor{background-color: #16A765; border: 1px solid darkgrey;}
+		.reunionNoConfirmado{background-color: yellow; border: 1px solid darkgrey;}
+		.reunionConfirmada{background-color: #16A765; border: 1px solid darkgrey;}
+		.reunionCancelada{background-color: red; border: 1px solid darkgrey;}
+		.dia{ border: solid 1px gray;height:100%; border: 1px solid darkgrey;}
 	</style>
 	<jsp:include page="master_header.jsp"></jsp:include>
 	<title>Insert title here</title>
 </head>
 <body>
 	<jsp:include page="master_menu.jsp"></jsp:include>
-	<div class="span2 dia">
-		<c:forEach var="evento" items="${eventos}">
-			<div class="${evento.getEstado()}">
-			
-			<c:set var="sUrl" value="${(evento.estado=='tarea')?'Tarea':'Reunion'}"></c:set>
-			<a href="<c:url value="/agenda/editar${sUrl}.do?id=${evento.id}"/>">
-			<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
-			</a>
-			
-			</div> 
-		</c:forEach>
-	</div>
-	<div class="span2 dia"></div>
-	<div class="span2 dia"></div>
-	<div class="span2 dia"></div>
-	<div class="span2 dia"></div>
-	<div class="span2 dia"></div>
-	<div class="span2 dia"></div>
+	
+	<c:forEach var="dia" items="${semana}">
+		<c:set var="diaFecha"  value="${dia.key}"></c:set>
+		<c:set var="eventosDia"  value="${dia.value}"></c:set>
+			<div class="span3 dia">
+			${diaFecha}
+			<c:forEach var="evento" items="${eventosDia}">
+				<c:set var="usuarioActual" value="${usuario}"/>
+				<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
+				<div class="${estadoEvento}">
+				
+				<c:set var="sUrl" value="${(estadoEvento=='tarea')?'Tarea':'Reunion'}"></c:set>
+				<a href="<c:url value="/agenda/editar${sUrl}.do?id=${evento.id}"/>">
+				<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
+				</a>
+				
+				</div>
+			 
+			</c:forEach>
+		</div>
+    
+</c:forEach>
+	
+	
+	
+	
 </body>
 </html>

@@ -15,7 +15,7 @@
 		<property name="horaFin" column="horadefin" />
         <property name="horaInicio" column="horadeinicio" />
 
- 		<many-to-one name="autor" column="autor_id" not-null="true" cascade="none" lazy="proxy"></many-to-one>
+ 		<many-to-one name="autor" column="autor_id" not-null="true" cascade="none" lazy="false"></many-to-one>
 
         <joined-subclass name="ar.edu.uces.web2.tphibernate.modelo.base.Tarea" extends="ar.edu.uces.web2.tphibernate.modelo.base.Evento" table="EventosPrivados" >
                 <key column="idEvento" />       

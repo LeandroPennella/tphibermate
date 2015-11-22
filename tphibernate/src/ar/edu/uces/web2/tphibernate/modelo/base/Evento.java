@@ -12,6 +12,14 @@ public class Evento {
 	private String horaFin;
 
 	private Usuario autor;
+	private Usuario usuarioActual;
+	
+	public Usuario getUsuarioActual() {
+		return usuarioActual;
+	}
+	public void setUsuarioActual(Usuario usuarioActual) {
+		this.usuarioActual = usuarioActual;
+	}
 		
 	public Evento (){}
 
@@ -53,6 +61,6 @@ public class Evento {
 		this.autor = autor;
 	}
 	
-	public String getEstado(){return null;}
+	public String obtenerEstado(Usuario usuario){return "evento";}
 		
 }

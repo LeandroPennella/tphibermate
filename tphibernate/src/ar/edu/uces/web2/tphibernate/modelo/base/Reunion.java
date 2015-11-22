@@ -30,9 +30,10 @@ public class Reunion extends Evento {
 		this.invitados = invitados;
 	}
 	
-	public String getEstado(Usuario usuario){
-		String sEstado="";
-		if (this.getAutor()==usuario)
+	@Override
+	public String obtenerEstado(Usuario usuario){
+		String sEstado="reunion";
+		if (this.getAutor().getId()==usuario.getId())
 			sEstado="reunionAutor";
 		else  {
 			for(Invitado invitado: this.getInvitados())
