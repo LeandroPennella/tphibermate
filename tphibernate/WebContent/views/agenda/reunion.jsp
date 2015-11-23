@@ -104,7 +104,7 @@
 											<div class="controls">
 											
 												<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
-													${invitacion.usuario.id} - ${invitacion.aceptado}<br/>
+													${invitacion.usuario.nombre} - ${invitacion.aceptado}<br/>
 												</c:forEach>
 											
 											</div>

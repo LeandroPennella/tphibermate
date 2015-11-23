@@ -6,7 +6,7 @@
 		<id column="idInvitacion" name="id">
 			<generator class="native" />
 		</id>
-		<many-to-one name="usuario" column="usuario_id"></many-to-one>
+		<many-to-one name="usuario" column="usuario_id" lazy="false"></many-to-one>
 		<many-to-one name="reunion" column="reunion_id" insert="false" update="false"></many-to-one>
 		<property column="aceptado" name="aceptado" />
 	</class>
