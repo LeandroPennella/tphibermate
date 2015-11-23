@@ -23,6 +23,7 @@ public class ReunionForm {
 	private List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();//		//todos los usuarios posibles, y seteados los agregados //TODO: listar solo los usuarios que no estar invitados 
 	private List<Sala>salas=new ArrayList<Sala>(); 											//todas las salas posibles
 	private Set<Invitado> invitados=new HashSet<Invitado>();
+	private int idEstado;
 
 
 	public ReunionForm(){}
@@ -111,4 +112,11 @@ public class ReunionForm {
 	}
 
 	
+	public int getIdEstado() {
+		return idEstado;
+	}
+	public void setIdEstado(int idEstado) {
+		this.idEstado = idEstado;
+	}
+
 }

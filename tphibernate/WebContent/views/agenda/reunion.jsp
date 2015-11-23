@@ -90,9 +90,12 @@
 										<div class="control-group">
 											<label class="control-label" >Estado</label> 
 											<div class="controls">
-											<button>Aceptar</button><button>cancelar</button>
+											<form:radiobutton path="idEstado" value="1"/>Aceptado 
+											<form:radiobutton path="idEstado" value="2"/>Cancelado
 											</div>
 										</div>
+										
+
 
 										<div class="control-group">
 											<label class="control-label" >Invitados</label> 
