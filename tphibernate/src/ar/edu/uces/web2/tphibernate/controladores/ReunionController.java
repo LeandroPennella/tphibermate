@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.uces.web2.tphibernate.dao.InvitacionDAO;
 import ar.edu.uces.web2.tphibernate.dao.ReunionDAO;
 import ar.edu.uces.web2.tphibernate.dao.SalaDAO;
 import ar.edu.uces.web2.tphibernate.dao.UsuarioDAO;
@@ -36,6 +37,8 @@ public class ReunionController {
 	private ReunionDAO reunionDAO;
 	private UsuarioDAO usuarioDAO;
 	private SalaDAO salaDAO;
+	private InvitacionDAO invitacionDAO;
+	
 	private Map<String, Usuario> posiblesParticipantes;
 	
 	@Autowired
@@ -53,6 +56,11 @@ public class ReunionController {
 		this.salaDAO = salaDAO;
 	}
 
+	@Autowired
+	public void setInvitacionDAO (InvitacionDAO invitacionDAO) {
+		this.invitacionDAO = invitacionDAO;
+	}
+	
 	@Autowired
 	private ReunionFormValidator reunionValidator; 
 	
@@ -172,6 +180,10 @@ public class ReunionController {
 			Set<Invitacion>listaInvitados=new HashSet<Invitacion>();
 			if (reunionForm.getIdEstado()!=0)
 			{
+				List<Invitacion> invitacionew=invitacionDAO.getByReunionUsuario(reunion, usuarioLogueado);
+				//invitacion.setAceptado(reunionForm.getIdEstado());
+				//invitacionDAO.save(invitacion);
+				/*
 				listaInvitados=reunion.getInvitados();
 				for(Invitacion invitadoYo:listaInvitados)
 				{
@@ -179,7 +191,7 @@ public class ReunionController {
 					{
 						//listaInvitados[invitadoYo]=
 					}
-				}
+				}*/
 			}
 			
 			
