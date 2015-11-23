@@ -24,13 +24,14 @@
         </joined-subclass>
         
  
-        <joined-subclass name="ar.edu.uces.web2.tphibernate.modelo.base.Reunion" extends="ar.edu.uces.web2.tphibernate.modelo.base.Evento" table="Reuniones">
+        <joined-subclass name="ar.edu.uces.web2.tphibernate.modelo.base.Reunion" 
+        		extends="ar.edu.uces.web2.tphibernate.modelo.base.Evento" table="Reuniones">
                 <key column="idEvento" />
                 <property name="temario" column="temario" />
                 
         		<many-to-one name="sala" column="sala_id" not-null="true" cascade="none" lazy="false"></many-to-one>
 				
-          		<set name="invitados" table="invitados" lazy="false" inverse="false"  cascade="all, delete-orphan"> 
+          		<set name="invitados" table="invitados" lazy="false" inverse="true"  cascade="all, delete-orphan"> 
           			<!-- fetch="select"   -->
 					<key column="reunion_id" not-null="true"/>
 					<one-to-many  class="ar.edu.uces.web2.tphibernate.modelo.base.Invitado" />

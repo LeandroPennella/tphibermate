@@ -130,6 +130,7 @@ public class ReunionController {
 		return  mv;
 	}
 	
+	
 	@RequestMapping(value = "/agenda/agregarReunion")
 	public ModelAndView save(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuario") Usuario usuario, @ModelAttribute("reunionAModificar") Reunion reunionAModificar) {
 
@@ -141,17 +142,12 @@ public class ReunionController {
 			//TODO: donde?
 			Reunion reunion;
 			
-			if (!reunionForm.getIdEvento().isEmpty())
-			{
+			if (!reunionForm.getIdEvento().isEmpty())  {
 				//modificar
 				reunion=reunionAModificar;
 				//reunionAModificar.
 				//reunion.setId(Long.parseLong(reunionForm.getIdEvento()));
-				
-				
-			}
-			else
-			{//crear
+			}  else  {//crear
 				reunion=new Reunion();
 				reunion.setAutor(usuario);
 			}
@@ -180,8 +176,6 @@ public class ReunionController {
 				
 				reunion.setInvitados(listaInvitados);
 				
-				
-			
 			reunionDAO.save(reunion);
 			return new ModelAndView("/views/index.jsp");
 		}
