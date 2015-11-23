@@ -83,7 +83,7 @@ CREATE TABLE Invitados
 	,PRIMARY KEY (idInvitado)
 	,`reunion_id` INT NOT NULL 
 	,`usuario_id` INT NOT NULL 
-	,`aceptado` TINYINT  NULL 
+	,`aceptado` INT NOT NULL 
 )
 ENGINE=INNODB;
 

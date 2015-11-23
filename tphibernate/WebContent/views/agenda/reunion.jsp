@@ -33,6 +33,7 @@
 								
 									<fieldset>
 										<legend><fmt:message key='reunion.tituloAgregar'/></legend>
+										<form:hidden path="idEvento"/>	
 										<div class="control-group">
 											
 											<fmt:message key='evento.label.titulo' var="titulo" />
@@ -85,27 +86,46 @@
 												<form:errors path="idSala" cssStyle="color: red" />
 											</div>
 										</div>
-										
-				
+
+										<div class="control-group">
+											<label class="control-label" >Estado</label> 
+											<div class="controls">
+											<button>Aceptar</button><button>cancelar</button>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label" >Invitados</label> 
+											<div class="controls">
+												<c:forEach var="invitado" items="${reunionForm.invitados}">
+													${invitado.usuario.nombre} - ${invitado.aceptado}<br/>
+												</c:forEach>
+											</div>
+										</div>
+														
 										<div class="control-group">
 											<fmt:message key='reunion.label.participantes' var="participantes" />
 											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
 											<div class="controls">
-<%--														
---												<form:select multiple="true" path="participantes">
---												    <form:options items="${usuarios}" itemValue="id" itemLabel="nombre"/>
---												</form:select>
---%>												
-												<td><form:select path="idsInvitados" multiple="true" items="${reunionForm.usuarios}" itemLabel="nombre" itemValue="id"/></td>
-												
+												<form:select path="idsInvitados">
+										 			<option value="0">deseleccionar</option>
+												    <c:forEach items="${reunionForm.usuariosInvitados}" var="usIn" >
+												    
+												        <c:choose>
+												        
+												            <c:when test="${usIn.agregado}">
+												                <option value="${usIn.usuario.id}"   selected="true">${usIn.usuario.nombre}</option>
+												            </c:when>
+												            <c:otherwise>
+												                <option value="${usIn.usuario.id}"  >${usIn.usuario.nombre}</option>
+												            </c:otherwise>
+												        </c:choose> 
+												    </c:forEach>
+												</form:select>
 												<td><form:errors path="idsInvitados" /></td>
-												
 											</div>
-											
 										</div>
- 
-																				
-										<div class="form-actions">
+ 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary">Save changes</button>
 											<button type="reset" class="btn">Cancel</button>
 										</div>

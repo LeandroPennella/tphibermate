@@ -38,15 +38,18 @@ public class Reunion extends Evento {
 		else  {
 			for(Invitado invitado: this.getInvitados())
 			{
-				if (invitado.getUsuario()==usuario)
+				if (invitado.getUsuario().getId()==usuario.getId())
 				{
 					switch(invitado.getAceptado()){
 						case 0:
 							sEstado="reunionNoConfirmado";
+							break;
 						case 1:
 							sEstado="reunionConfirmada";
+							break;
 						default :
 							sEstado="reunionCancelada";
+							break;
 					}		
 				}
 			}

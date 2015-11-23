@@ -37,6 +37,23 @@ public class TareaController {
 		return new ModelAndView("/views/agenda/tarea.jsp", "tarea", new TareaForm());
 	}
 	
+	@RequestMapping(value = "/agenda/editarTarea")
+	public ModelAndView editar(@RequestParam("id")Long idTarea) {
+		Tarea tarea=tareaDAO.get(idTarea);
+		TareaForm tareaForm=new TareaForm();
+		tareaForm.setIdEvento(Long.toString(tarea.getId()));
+		tareaForm.setTitulo(tarea.getTitulo());
+		
+		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
+		String sFecha=dateFormatter.format(tarea.getFecha());
+		tareaForm.setFecha(sFecha);
+		tareaForm.setHoraInicio(tarea.getHoraInicio());		
+		tareaForm.setHoraFin(tarea.getHoraFin());
+		tareaForm.setDescripcion(tarea.getDescripcion());
+		tareaForm.setDireccion(tarea.getDireccion());
+		return new ModelAndView("/views/agenda/tarea.jsp","tarea",tareaForm); 
+	}
+	
 	@RequestMapping(value = "/agenda/agregarTarea")
 	public ModelAndView save(@ModelAttribute("tarea") TareaForm tareaForm, BindingResult result, @ModelAttribute("usuario") Usuario usuario) {
 		
@@ -65,20 +82,4 @@ public class TareaController {
 	}
 	
 	
-	@RequestMapping(value = "/agenda/editarTarea")
-	public ModelAndView editar(@RequestParam("id")Long idTarea) {
-		Tarea tarea=tareaDAO.get(idTarea);
-		TareaForm tareaForm=new TareaForm();
-		tareaForm.setIdEvento(Long.toString(tarea.getId()));
-		tareaForm.setTitulo(tarea.getTitulo());
-		
-		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
-		String sFecha=dateFormatter.format(tarea.getFecha());
-		tareaForm.setFecha(sFecha);
-		tareaForm.setHoraInicio(tarea.getHoraInicio());		
-		tareaForm.setHoraFin(tarea.getHoraFin());
-		tareaForm.setDescripcion(tarea.getDescripcion());
-		tareaForm.setDireccion(tarea.getDireccion());
-		return new ModelAndView("/views/agenda/tarea.jsp","tarea",tareaForm); 
-	}
 }

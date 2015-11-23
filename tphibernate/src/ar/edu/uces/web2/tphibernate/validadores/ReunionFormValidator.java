@@ -29,6 +29,7 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 	
 	@Override
 	public void validate(Object object, Errors errors) {
+
 		ReunionForm reunionForm= (ReunionForm) object;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "evento.error.tituloVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fecha", "evento.error.fechaVacio");	//TODO: como no solaparlo con type mismatch
