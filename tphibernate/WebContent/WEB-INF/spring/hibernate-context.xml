@@ -31,7 +31,7 @@
 				<value>/ar/edu/uces/web2/tphibernate/modelo/hbm/Contrasenia.hbm.xml</value>
 				<value>/ar/edu/uces/web2/tphibernate/modelo/hbm/Evento.hbm.xml</value>
 				<value>/ar/edu/uces/web2/tphibernate/modelo/hbm/Sala.hbm.xml</value>
-				<value>/ar/edu/uces/web2/tphibernate/modelo/hbm/Invitado.hbm.xml</value>
+				<value>/ar/edu/uces/web2/tphibernate/modelo/hbm/Invitacion.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

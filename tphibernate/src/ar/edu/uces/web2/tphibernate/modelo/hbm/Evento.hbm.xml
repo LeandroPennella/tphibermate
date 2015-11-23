@@ -31,8 +31,8 @@
                 
         		<many-to-one name="sala" column="sala_id" not-null="true" cascade="none" lazy="false"></many-to-one>
 				
-          		<set name="invitados" table="invitados" lazy="false" inverse="true"  cascade="all, delete-orphan"> 
-          			<!-- fetch="select"    -->
+          		<set name="invitaciones" table="invitaciones" lazy="false"   cascade="all, delete-orphan"> 
+          			<!-- fetch="select"  inverse="false"  -->
 					<key column="reunion_id" not-null="true"/>
 					<one-to-many  class="ar.edu.uces.web2.tphibernate.modelo.base.Invitacion" />
 				</set>

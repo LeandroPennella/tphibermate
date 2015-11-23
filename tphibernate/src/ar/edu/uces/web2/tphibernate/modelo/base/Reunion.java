@@ -6,7 +6,7 @@ public class Reunion extends Evento {
 
 	private String temario;
 	private Sala sala;
-	private Set<Invitacion> invitados;
+	private Set<Invitacion> invitaciones;
 	
 	public Reunion() {
 		
@@ -23,11 +23,11 @@ public class Reunion extends Evento {
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
-	public Set<Invitacion> getInvitados() {
-		return invitados;
+	public Set<Invitacion> getInvitaciones() {
+		return invitaciones;
 	}
-	public void setInvitados(Set<Invitacion> invitados) {
-		this.invitados = invitados;
+	public void setInvitaciones(Set<Invitacion> invitacion) {
+		this.invitaciones = invitacion;
 	}
 	
 	@Override
@@ -36,11 +36,11 @@ public class Reunion extends Evento {
 		if (this.getAutor().getId()==usuario.getId())
 			sEstado="reunionAutor";
 		else  {
-			for(Invitacion invitado: this.getInvitados())
+			for(Invitacion invitacion: this.getInvitaciones())
 			{
-				if (invitado.getUsuario().getId()==usuario.getId())
+				if (invitacion.getUsuario().getId()==usuario.getId())
 				{
-					switch(invitado.getAceptado()){
+					switch(invitacion.getAceptado()){
 						case 0:
 							sEstado="reunionNoConfirmado";
 							break;

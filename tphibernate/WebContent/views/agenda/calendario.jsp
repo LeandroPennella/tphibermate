@@ -24,7 +24,7 @@
 		.dia{ border: solid 1px gray;height:100%; border: 1px solid darkgrey;}
 	</style>
 	<jsp:include page="master_header.jsp"></jsp:include>
-	<title>Insert title here</title>
+	<title><fmt:message key='calendario.titulo'/></title>
 </head>
 <body>
 	<jsp:include page="master_menu.jsp"></jsp:include>

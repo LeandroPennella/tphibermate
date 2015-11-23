@@ -50,7 +50,7 @@ public class EventoDAO {
 		//Query q=session.createQuery("from " +Evento.class.getName() + " as e where e.fecha=?");
 		String sQuery=
 		"select distinct e from " +Evento.class.getName() + " as e " +
-				"left join fetch e.invitados as i " +
+				"left join fetch e.invitaciones as i " +
 				"where (e.autor.id = :idUsuario or i.usuario.id=:idUsuario) " +
 				"and e.fecha= :fecha";
 		Query q=session.createQuery(sQuery);

@@ -114,7 +114,7 @@ public class ReunionController {
 		reunionForm.setEstado(reunion.obtenerEstado(usuarioLogueado));
 		
 		//---------------------------------------------
-		Set<Invitacion>invitados=reunion.getInvitados();
+		Set<Invitacion>invitaciones=reunion.getInvitaciones();
 		List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();
 		
 		List<Usuario> usuarios=usuarioDAO.getAll();
@@ -124,9 +124,9 @@ public class ReunionController {
 			UsuarioInvitado usuarioInvitado=new UsuarioInvitado();
 			usuarioInvitado.setUsuario(usuarioActual);
 			//usuario actual esta entre los invitados?
-			for(Invitacion invitado:invitados)
+			for(Invitacion invitacion:invitaciones)
 			{
-				if ((invitado.getUsuario().getId()==usuarioActual.getId()))
+				if ((invitacion.getUsuario().getId()==usuarioActual.getId()))
 				{estaInvitado=true;}
 			}
 
@@ -135,7 +135,7 @@ public class ReunionController {
 		}
 		reunionForm.setUsuariosInvitados(usuariosInvitados);
 		
-		reunionForm.setInvitados(invitados);
+		reunionForm.setInvitaciones(invitaciones);
 		
 		
 		
@@ -202,7 +202,7 @@ public class ReunionController {
 				}
 			}
 			
-			reunion.setInvitados(listaInvitados);
+			reunion.setInvitaciones(listaInvitados);
 				
 			reunionDAO.save(reunion);
 			return new ModelAndView("/views/index.jsp");

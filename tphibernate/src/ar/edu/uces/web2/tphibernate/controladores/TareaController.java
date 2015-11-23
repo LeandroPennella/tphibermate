@@ -38,7 +38,7 @@ public class TareaController {
 	}
 	
 	@RequestMapping(value = "/agenda/editarTarea")
-	public ModelAndView editar(@RequestParam("id")Long idTarea) {
+	public ModelAndView editar(@RequestParam("idEvento")Long idTarea) {
 		Tarea tarea=tareaDAO.get(idTarea);
 		TareaForm tareaForm=new TareaForm();
 		tareaForm.setIdEvento(Long.toString(tarea.getId()));

@@ -9,7 +9,7 @@
 <html>
 <head>
 <jsp:include page="master_header.jsp"></jsp:include>
-<title><fmt:message key="titulo.agregarReunion"/></title>
+<title><fmt:message key="reunion.tituloAgregar"/></title>
 </head>
 <body>
 	<jsp:include page="master_menu.jsp"></jsp:include>
@@ -102,14 +102,16 @@
 										<div class="control-group">
 											<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
 											<div class="controls">
-												<c:forEach var="invitado" items="${reunionForm.invitados}">
-													${invitado.usuario.nombre} - ${invitado.aceptado}<br/>
+											
+												<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
+													${invitacion.usuario.id} - ${invitacion.aceptado}<br/>
 												</c:forEach>
+											
 											</div>
 										</div>
-										
-										</c:if>
 											
+										</c:if>
+										
 										<div class="control-group">
 											<fmt:message key='reunion.label.participantes' var="participantes" />
 											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
@@ -132,6 +134,7 @@
 												<td><form:errors path="idsInvitados" /></td>
 											</div>
 										</div>
+										
  										<div class="form-actions">
 											<button type="submit" class="btn btn-primary"><fmt:message key="evento.label.guardar" /></button>
 											<button type="reset" class="btn"><fmt:message key="evento.label.cancelar" /></button>
