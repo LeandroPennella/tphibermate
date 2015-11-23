@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.uces.web2.tphibernate.dao.ReunionDAO;
 import ar.edu.uces.web2.tphibernate.dao.SalaDAO;
 import ar.edu.uces.web2.tphibernate.dao.UsuarioDAO;
-import ar.edu.uces.web2.tphibernate.modelo.base.Invitado;
+import ar.edu.uces.web2.tphibernate.modelo.base.Invitacion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
@@ -106,7 +106,7 @@ public class ReunionController {
 		reunionForm.setEstado(reunion.obtenerEstado(usuarioLogueado));
 		
 		//---------------------------------------------
-		Set<Invitado>invitados=reunion.getInvitados();
+		Set<Invitacion>invitados=reunion.getInvitados();
 		List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();
 		
 		List<Usuario> usuarios=usuarioDAO.getAll();
@@ -116,7 +116,7 @@ public class ReunionController {
 			UsuarioInvitado usuarioInvitado=new UsuarioInvitado();
 			usuarioInvitado.setUsuario(usuarioActual);
 			//usuario actual esta entre los invitados?
-			for(Invitado invitado:invitados)
+			for(Invitacion invitado:invitados)
 			{
 				if ((invitado.getUsuario().getId()==usuarioActual.getId()))
 				{estaInvitado=true;}
@@ -169,11 +169,11 @@ public class ReunionController {
 			sala.setId(reunionForm.getIdSala());
 			reunion.setSala(sala);
 			
-			Set<Invitado>listaInvitados=new HashSet<Invitado>();
+			Set<Invitacion>listaInvitados=new HashSet<Invitacion>();
 			if (reunionForm.getIdEstado()!=0)
 			{
 				listaInvitados=reunion.getInvitados();
-				for(Invitado invitadoYo:listaInvitados)
+				for(Invitacion invitadoYo:listaInvitados)
 				{
 					if (invitadoYo.getUsuario().getId()==usuarioLogueado.getId())
 					{
@@ -187,7 +187,7 @@ public class ReunionController {
 			for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
 			{
 				if (idInvitado!=0){
-				Invitado invitado=new Invitado();
+				Invitacion invitado=new Invitacion();
 				Usuario usuarioInvitado=new Usuario();
 				usuarioInvitado.setId(idInvitado);
 				invitado.setUsuario(usuarioInvitado);

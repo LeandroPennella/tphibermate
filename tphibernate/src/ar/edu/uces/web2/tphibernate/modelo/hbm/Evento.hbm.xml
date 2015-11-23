@@ -34,7 +34,7 @@
           		<set name="invitados" table="invitados" lazy="false" inverse="true"  cascade="all, delete-orphan"> 
           			<!-- fetch="select"    -->
 					<key column="reunion_id" not-null="true"/>
-					<one-to-many  class="ar.edu.uces.web2.tphibernate.modelo.base.Invitado" />
+					<one-to-many  class="ar.edu.uces.web2.tphibernate.modelo.base.Invitacion" />
 				</set>
  					
         </joined-subclass>

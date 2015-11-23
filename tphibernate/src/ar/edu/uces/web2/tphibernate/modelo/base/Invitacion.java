@@ -1,6 +1,6 @@
 package ar.edu.uces.web2.tphibernate.modelo.base;
 
-public class Invitado {
+public class Invitacion {
 	private long id;
 	private Usuario usuario;
 	private int aceptado;

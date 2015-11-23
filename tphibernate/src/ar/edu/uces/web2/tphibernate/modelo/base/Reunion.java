@@ -6,7 +6,7 @@ public class Reunion extends Evento {
 
 	private String temario;
 	private Sala sala;
-	private Set<Invitado> invitados;
+	private Set<Invitacion> invitados;
 	
 	public Reunion() {
 		
@@ -23,10 +23,10 @@ public class Reunion extends Evento {
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
-	public Set<Invitado> getInvitados() {
+	public Set<Invitacion> getInvitados() {
 		return invitados;
 	}
-	public void setInvitados(Set<Invitado> invitados) {
+	public void setInvitados(Set<Invitacion> invitados) {
 		this.invitados = invitados;
 	}
 	
@@ -36,7 +36,7 @@ public class Reunion extends Evento {
 		if (this.getAutor().getId()==usuario.getId())
 			sEstado="reunionAutor";
 		else  {
-			for(Invitado invitado: this.getInvitados())
+			for(Invitacion invitado: this.getInvitados())
 			{
 				if (invitado.getUsuario().getId()==usuario.getId())
 				{

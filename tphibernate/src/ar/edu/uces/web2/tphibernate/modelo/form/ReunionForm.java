@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import ar.edu.uces.web2.tphibernate.modelo.base.Invitado;
+import ar.edu.uces.web2.tphibernate.modelo.base.Invitacion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
 import ar.edu.uces.web2.tphibernate.modelo.base.UsuarioInvitado;
 
@@ -22,7 +22,7 @@ public class ReunionForm {
 //	private List<Usuario> usuarios=new ArrayList<Usuario>();								//los usuarios posibles//TODO: reemplazar por usuarios invitados
 	private List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();//		//todos los usuarios posibles, y seteados los agregados //TODO: listar solo los usuarios que no estar invitados 
 	private List<Sala>salas=new ArrayList<Sala>(); 											//todas las salas posibles
-	private Set<Invitado> invitados=new HashSet<Invitado>();
+	private Set<Invitacion> invitados=new HashSet<Invitacion>();
 	private int idEstado;																	//noConfirmado, aceptado o cancelado
 	private String estado;																	//reunionAutor//reunionNoConfirmado//reunionConfirmada//reunionCancelada
 
@@ -107,10 +107,10 @@ public class ReunionForm {
 	
 	
 
-	public Set<Invitado> getInvitados() {
+	public Set<Invitacion> getInvitados() {
 		return invitados;
 	}
-	public void setInvitados(Set<Invitado> invitados) {
+	public void setInvitados(Set<Invitacion> invitados) {
 		this.invitados = invitados;
 	}
 
