@@ -28,7 +28,11 @@
 </head>
 <body>
 	<jsp:include page="master_menu.jsp"></jsp:include>
-	
+	<div>
+
+	<div><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset-1}"/>'><</a></div>
+	<div><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset+1}"/>'>></a></div>
+	</div>
 	<c:forEach var="dia" items="${semana}">
 		<c:set var="diaFecha"  value="${dia.key}"></c:set>
 		<c:set var="eventosDia"  value="${dia.value}"></c:set>
@@ -40,7 +44,7 @@
 				<div class="${estadoEvento}">
 				
 				<c:set var="sUrl" value="${(estadoEvento=='tarea')?'Tarea':'Reunion'}"></c:set>
-				<a href="<c:url value="/agenda/editar${sUrl}.do?id=${evento.id}"/>">
+				<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${evento.id}"/>">
 				<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
 				</a>
 				

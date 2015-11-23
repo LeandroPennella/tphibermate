@@ -88,7 +88,7 @@
 										</div>
 										
 										<c:if test="${reunionForm.idEvento!=null}">
-										<c:if test="${reunionForm.estado=='reunionNoConfirmado'}">
+										<c:if test='${reunionForm.estado=="reunionNoConfirmado"}'>
 										<div class="control-group">
 											<label class="control-label" >Estado</label> 
 											<div class="controls">

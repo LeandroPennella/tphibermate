@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +34,7 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/agenda/mostrarCalendario")
-	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {
+	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado, @RequestParam(value="semanaOffset", required=false) Integer semanaOffset) {
 		//Date fecha = new Date();
 		
 		//http://www.forosdelweb.com/f45/como-recorrer-fechas-374533/
@@ -58,7 +59,10 @@ public class AgendaController {
 		int diaSemana= calendar.get(Calendar.DAY_OF_WEEK);
 		int diasAlDomingo=diaSemana-1;
 		calendar.roll(Calendar.DATE, -diasAlDomingo);
-		
+		if (semanaOffset!=null)
+			{calendar.roll(Calendar.WEEK_OF_YEAR, semanaOffset);}
+		else
+		{semanaOffset=0;}
 		Map<String,List<Evento>> semana=new TreeMap<String,List<Evento>>();
 		List<Evento> eventosDia;
 		
@@ -73,6 +77,8 @@ public class AgendaController {
 			semana.put(sFecha, eventosDia);
 			calendar.add(Calendar.DATE, 1);
 		}
-		return new ModelAndView("/views/agenda/calendario.jsp","semana", semana);
+		ModelAndView mv=new ModelAndView("/views/agenda/calendario.jsp","semana", semana);
+		mv.addObject("semanaOffset", semanaOffset);
+		return mv;
 	}
 }

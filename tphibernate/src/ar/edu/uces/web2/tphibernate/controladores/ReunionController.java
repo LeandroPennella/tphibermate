@@ -82,7 +82,7 @@ public class ReunionController {
 	}
 	
 	@RequestMapping(value = "/agenda/editarReunion")
-	public ModelAndView editar(@RequestParam("id")Long idReunion, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {		//viene del calendario con el id del evento a modificar
+	public ModelAndView editar(@RequestParam("idEvento")Long idReunion, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {		//viene del calendario con el id del evento a modificar
 
 		Reunion reunion=reunionDAO.get(idReunion);
 
@@ -146,10 +146,11 @@ public class ReunionController {
 		} else {
 			//TODO: donde?
 			Reunion reunion;
-			Reunion reunionAModificar=reunionDAO.get(Long.parseLong(reunionForm.getIdEvento()));
+			
 			
 			if (!reunionForm.getIdEvento().isEmpty())  { //modificar
-				reunion=reunionAModificar;
+				reunion=reunionDAO.get(Long.parseLong(reunionForm.getIdEvento()));
+				
 				//reunionAModificar.
 				//reunion.setId(Long.parseLong(reunionForm.getIdEvento()));
 			}  else  {									//crear
@@ -167,7 +168,20 @@ public class ReunionController {
 			Sala sala=new Sala();
 			sala.setId(reunionForm.getIdSala());
 			reunion.setSala(sala);
+			
 			Set<Invitado>listaInvitados=new HashSet<Invitado>();
+			if (reunionForm.getIdEstado()!=0)
+			{
+				listaInvitados=reunion.getInvitados();
+				for(Invitado invitadoYo:listaInvitados)
+				{
+					if (invitadoYo.getUsuario().getId()==usuarioLogueado.getId())
+					{
+						//listaInvitados[invitadoYo]=
+					}
+				}
+			}
+			
 			
 			//TODO: agrega nuevos, no modifica
 			for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
