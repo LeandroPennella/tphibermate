@@ -57,13 +57,13 @@ public class UsuarioController {
 		//autenticar
 		//lo guarda en sesion
 
-		Usuario usuario=usuarioDAO.autenticar(usuarioAutenticacionForm.getNombreUsuario(), usuarioAutenticacionForm.getContrasenia());
+		Usuario usuarioLogueado=usuarioDAO.autenticar(usuarioAutenticacionForm.getNombreUsuario(), usuarioAutenticacionForm.getContrasenia());
 		
-		if (usuario!=null) {
-			request.getSession().setAttribute("usuario",usuario);//TODO: pasarlo a asentar como parametro y como atributo de sesion
-			cookiear(usuario,request,response,usuarioAutenticacionForm.getRecordarme());
+		if (usuarioLogueado!=null) {
+			request.getSession().setAttribute("usuarioLogueado",usuarioLogueado);//TODO: pasarlo a asentar como parametro y como atributo de sesion
+			cookiear(usuarioLogueado,request,response,usuarioAutenticacionForm.getRecordarme());
 			//todo: separar lengua_pais
-			localeResolver.setLocale(request, response, new Locale(usuario.getIdioma()));
+			localeResolver.setLocale(request, response, new Locale(usuarioLogueado.getIdioma()));
 			//return new ModelAndView("/views/agenda/mostrarCalendario.do");//usurio y contraseña no coinciden	
 			return new ModelAndView("/views/index.jsp");//usurio y contraseña  coinciden
 		}

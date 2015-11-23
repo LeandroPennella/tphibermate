@@ -21,7 +21,7 @@ import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 
 
-@SessionAttributes("usuario")
+@SessionAttributes("usuarioLogueado")
 @Controller
 public class AgendaController {
 	
@@ -33,7 +33,7 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/agenda/mostrarCalendario")
-	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuario") Usuario usuario) {
+	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {
 		//Date fecha = new Date();
 		
 		//http://www.forosdelweb.com/f45/como-recorrer-fechas-374533/
@@ -63,10 +63,10 @@ public class AgendaController {
 		List<Evento> eventosDia;
 		
 		for(int i=0;i<7;i++){
-			eventosDia=eventoDAO.getByAutorAndDate(usuario, calendar.getTime() );
+			eventosDia=eventoDAO.getByAutorAndDate(usuarioLogueado, calendar.getTime() );
 			for(Evento evento:eventosDia)
 			{
-				evento.setUsuarioActual(usuario);
+				evento.setUsuarioActual(usuarioLogueado);
 			}
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			String sFecha = sdf.format(calendar.getTime());

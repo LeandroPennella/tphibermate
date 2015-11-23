@@ -19,7 +19,7 @@ import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 import ar.edu.uces.web2.tphibernate.modelo.form.TareaForm;
 import ar.edu.uces.web2.tphibernate.validadores.EventoFormValidator;
 
-@SessionAttributes("usuario") 
+@SessionAttributes("usuarioLogueado") 
 
 @Controller
 public class TareaController {
@@ -55,7 +55,7 @@ public class TareaController {
 	}
 	
 	@RequestMapping(value = "/agenda/agregarTarea")
-	public ModelAndView save(@ModelAttribute("tarea") TareaForm tareaForm, BindingResult result, @ModelAttribute("usuario") Usuario usuario) {
+	public ModelAndView save(@ModelAttribute("tarea") TareaForm tareaForm, BindingResult result, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {
 		
 		this.eventoFormValidator.validate(tareaForm, result);
 		if (result.hasErrors()) {
@@ -75,7 +75,7 @@ public class TareaController {
 		tarea.setDescripcion(tareaForm.getDescripcion());
 		tarea.setDireccion(tareaForm.getDireccion());
 		
-		tarea.setAutor(usuario);
+		tarea.setAutor(usuarioLogueado);
 		
 		tareaDAO.save(tarea);
 		return new ModelAndView("/views/index.jsp");

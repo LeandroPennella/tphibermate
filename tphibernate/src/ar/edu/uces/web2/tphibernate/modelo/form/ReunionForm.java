@@ -23,11 +23,14 @@ public class ReunionForm {
 	private List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();//		//todos los usuarios posibles, y seteados los agregados //TODO: listar solo los usuarios que no estar invitados 
 	private List<Sala>salas=new ArrayList<Sala>(); 											//todas las salas posibles
 	private Set<Invitado> invitados=new HashSet<Invitado>();
-	private int idEstado;
+	private int idEstado;																	//noConfirmado, aceptado o cancelado
+	private String estado;																	//reunionAutor//reunionNoConfirmado//reunionConfirmada//reunionCancelada
 
 
 	public ReunionForm(){}
 	
+
+
 	public String getIdEvento() {
 		return idEvento;
 	}
@@ -118,5 +121,12 @@ public class ReunionForm {
 	public void setIdEstado(int idEstado) {
 		this.idEstado = idEstado;
 	}
-
+	
+	
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 }

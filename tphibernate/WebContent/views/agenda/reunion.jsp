@@ -86,7 +86,9 @@
 												<form:errors path="idSala" cssStyle="color: red" />
 											</div>
 										</div>
-
+										
+										<c:if test="${reunionForm.idEvento!=null}">
+										<c:if test="${reunionForm.estado=='reunionNoConfirmado'}">
 										<div class="control-group">
 											<label class="control-label" >Estado</label> 
 											<div class="controls">
@@ -94,7 +96,7 @@
 											<form:radiobutton path="idEstado" value="2"/>Cancelado
 											</div>
 										</div>
-										
+										</c:if>
 
 
 										<div class="control-group">
@@ -105,7 +107,9 @@
 												</c:forEach>
 											</div>
 										</div>
-														
+										
+										</c:if>
+											
 										<div class="control-group">
 											<fmt:message key='reunion.label.participantes' var="participantes" />
 											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>

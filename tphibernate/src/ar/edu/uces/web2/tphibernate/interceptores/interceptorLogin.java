@@ -29,7 +29,7 @@ public class interceptorLogin implements HandlerInterceptor {
 		
 		HttpSession session= request.getSession();
 		//si existe el usuario en sesion
-		if ((session.getAttribute("usuario")!=null))
+		if ((session.getAttribute("usuarioLogueado")!=null))
 		{
 			// no pasar por el login
 			RequestDispatcher rd= request.getRequestDispatcher("/agenda/mostrarCalendario.do");
@@ -39,7 +39,7 @@ public class interceptorLogin implements HandlerInterceptor {
 			//validar usuario y contraseña de cookies y 
 			Usuario usuario=usuarioDAO.autenticar(cookieUsuario.getValue(), cookieContraseña.getValue());
 			//persistir sesion
-			request.getSession().setAttribute("usuario",usuario);
+			request.getSession().setAttribute("usuarioLogueado",usuario);
 			RequestDispatcher rd= request.getRequestDispatcher("/agenda/mostrarCalendario.do");
 			rd.forward(request, response);
 			return false;

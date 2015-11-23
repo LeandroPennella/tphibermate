@@ -18,7 +18,7 @@ public class InterceptorAgenda implements HandlerInterceptor {
 
 		HttpSession session= request.getSession();
 		//si no existe el usuario en sesion
-		if ((session.getAttribute("usuario")==null))
+		if ((session.getAttribute("usuarioLogueado")==null))
 		{
 			// pasar por el login
 			RequestDispatcher rd= request.getRequestDispatcher("/autenticacion/login.do");

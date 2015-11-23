@@ -29,7 +29,7 @@ import ar.edu.uces.web2.tphibernate.modelo.base.UsuarioInvitado;
 import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
 import ar.edu.uces.web2.tphibernate.validadores.ReunionFormValidator;
 
-@SessionAttributes({"usuario","reunionAModificar"}) 
+@SessionAttributes("usuarioLogueado") 
 
 @Controller
 public class ReunionController {
@@ -82,27 +82,31 @@ public class ReunionController {
 	}
 	
 	@RequestMapping(value = "/agenda/editarReunion")
-	public ModelAndView editar(@RequestParam("id")Long idReunion) {
-		
-		Reunion reunionAModificar=reunionDAO.get(idReunion);
+	public ModelAndView editar(@RequestParam("id")Long idReunion, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {		//viene del calendario con el id del evento a modificar
+
+		Reunion reunion=reunionDAO.get(idReunion);
+
 		
 		ReunionForm reunionForm=new ReunionForm();
-		reunionForm.setIdEvento(Long.toString(reunionAModificar.getId()));
-		reunionForm.setTitulo(reunionAModificar.getTitulo());
+		reunionForm.setIdEvento(Long.toString(reunion.getId()));
+		reunionForm.setTitulo(reunion.getTitulo());
 		
 		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
-		String sFecha=dateFormatter.format(reunionAModificar.getFecha());
+		String sFecha=dateFormatter.format(reunion.getFecha());
 		reunionForm.setFecha(sFecha);
-		reunionForm.setHoraInicio(reunionAModificar.getHoraInicio());		
-		reunionForm.setHoraFin(reunionAModificar.getHoraFin());
+		reunionForm.setHoraInicio(reunion.getHoraInicio());		
+		reunionForm.setHoraFin(reunion.getHoraFin());
 		
-		reunionForm.setTemario(reunionAModificar.getTemario());
-		reunionForm.setIdSala(reunionAModificar.getSala().getId());
+		reunionForm.setTemario(reunion.getTemario());
+		reunionForm.setIdSala(reunion.getSala().getId());
 	
 		reunionForm.setSalas(salaDAO.getAll());
 		
+		
+		reunionForm.setEstado(reunion.obtenerEstado(usuarioLogueado));
+		
 		//---------------------------------------------
-		Set<Invitado>invitados=reunionAModificar.getInvitados();
+		Set<Invitado>invitados=reunion.getInvitados();
 		List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();
 		
 		List<Usuario> usuarios=usuarioDAO.getAll();
@@ -126,59 +130,60 @@ public class ReunionController {
 		reunionForm.setInvitados(invitados);
 		
 		
-		ModelAndView mv=new ModelAndView("/views/agenda/reunion.jsp","reunionForm",reunionForm);
-		mv.addObject("reunionAModificar",reunionAModificar);
-		return  mv;
+		
+		return  new ModelAndView("/views/agenda/reunion.jsp","reunionForm",reunionForm);
 	}
 	
 	
 	@RequestMapping(value = "/agenda/agregarReunion")
-	public ModelAndView save(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuario") Usuario usuario, @ModelAttribute("reunionAModificar") Reunion reunionAModificar) {
+	public ModelAndView save(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado ) {
 
+		
 		this.reunionValidator.validate(reunionForm, result);
 		if (result.hasErrors()) {
 			//TODO: Agregarle salas y usuarios
-			return new ModelAndView("/views/agenda/reunion.jsp","reunion", reunionForm);
+			return new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
 		} else {
 			//TODO: donde?
 			Reunion reunion;
+			Reunion reunionAModificar=reunionDAO.get(Long.parseLong(reunionForm.getIdEvento()));
 			
-			if (!reunionForm.getIdEvento().isEmpty())  {
-				//modificar
+			if (!reunionForm.getIdEvento().isEmpty())  { //modificar
 				reunion=reunionAModificar;
 				//reunionAModificar.
 				//reunion.setId(Long.parseLong(reunionForm.getIdEvento()));
-			}  else  {//crear
+			}  else  {									//crear
 				reunion=new Reunion();
-				reunion.setAutor(usuario);
+				reunion.setAutor(usuarioLogueado);
 			}
-				reunion.setTitulo(reunionForm.getTitulo());
-				SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
-				Date fecha=dateFormatter.parse(reunionForm.getFecha(), new ParsePosition(0));	
-				reunion.setFecha(fecha);
-				reunion.setHoraInicio(reunionForm.getHoraInicio());
-				reunion.setHoraFin(reunionForm.getHoraFin());
-				reunion.setTemario(reunionForm.getTemario());
-				Sala sala=new Sala();
-				sala.setId(reunionForm.getIdSala());
-				reunion.setSala(sala);
-				Set<Invitado>listaInvitados=new HashSet<Invitado>();
-				
-				//TODO: agrega nuevos, no modifica
-				for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
-				{
-					if (idInvitado!=0){
-					Invitado invitado=new Invitado();
-					Usuario usuarioInvitado=new Usuario();
-					usuarioInvitado.setId(idInvitado);
-					invitado.setUsuario(usuarioInvitado);
-					invitado.setAceptado(0);
-					invitado.setReunion(reunion);	//TODO: SolucionInvitados
-					listaInvitados.add(invitado);
-					}
+			
+			reunion.setTitulo(reunionForm.getTitulo());
+			SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
+			Date fecha=dateFormatter.parse(reunionForm.getFecha(), new ParsePosition(0));	
+			reunion.setFecha(fecha);
+			reunion.setHoraInicio(reunionForm.getHoraInicio());
+			reunion.setHoraFin(reunionForm.getHoraFin());
+			reunion.setTemario(reunionForm.getTemario());
+			Sala sala=new Sala();
+			sala.setId(reunionForm.getIdSala());
+			reunion.setSala(sala);
+			Set<Invitado>listaInvitados=new HashSet<Invitado>();
+			
+			//TODO: agrega nuevos, no modifica
+			for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
+			{
+				if (idInvitado!=0){
+				Invitado invitado=new Invitado();
+				Usuario usuarioInvitado=new Usuario();
+				usuarioInvitado.setId(idInvitado);
+				invitado.setUsuario(usuarioInvitado);
+				invitado.setAceptado(0);
+				invitado.setReunion(reunion);	//TODO: SolucionInvitados
+				listaInvitados.add(invitado);
 				}
-				
-				reunion.setInvitados(listaInvitados);
+			}
+			
+			reunion.setInvitados(listaInvitados);
 				
 			reunionDAO.save(reunion);
 			return new ModelAndView("/views/index.jsp");

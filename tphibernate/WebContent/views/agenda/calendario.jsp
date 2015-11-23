@@ -35,7 +35,7 @@
 			<div class="span3 dia">
 			${diaFecha}
 			<c:forEach var="evento" items="${eventosDia}">
-				<c:set var="usuarioActual" value="${usuario}"/>
+				<c:set var="usuarioActual" value="${usuarioLogueado}"/>
 				<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
 				<div class="${estadoEvento}">
 				
