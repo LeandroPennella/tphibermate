@@ -7,6 +7,7 @@
 			<generator class="native" />
 		</id>
 		<many-to-one name="usuario" column="usuario_id" not-null="true" cascade="none" lazy="false"></many-to-one>
+	 <many-to-one name="reunion" column="reunion_id"></many-to-one><!-- //TODO: SolucionInvitados -->
 		<property column="aceptado" name="aceptado" />
 	</class>
 </hibernate-mapping>

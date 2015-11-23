@@ -57,7 +57,8 @@ public class AgendaController {
 		Calendar calendar = Calendar.getInstance();
 		int diaSemana= calendar.get(Calendar.DAY_OF_WEEK);
 		int diasAlDomingo=diaSemana-1;
-		calendar.roll(Calendar.DATE, diasAlDomingo);
+		calendar.roll(Calendar.DATE, -diasAlDomingo);
+		
 		Map<String,List<Evento>> semana=new TreeMap<String,List<Evento>>();
 		List<Evento> eventosDia;
 		

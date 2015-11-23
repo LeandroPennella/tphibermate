@@ -77,6 +77,7 @@ public class ReunionController {
 		
 		reunionForm.setSalas(salaDAO.getAll());
 		ModelAndView mv=new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
+		mv.addObject("reunionAModificar",new Reunion());
 		return mv;
 	}
 	
@@ -166,12 +167,15 @@ public class ReunionController {
 				//TODO: agrega nuevos, no modifica
 				for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
 				{
+					if (idInvitado!=0){
 					Invitado invitado=new Invitado();
 					Usuario usuarioInvitado=new Usuario();
 					usuarioInvitado.setId(idInvitado);
 					invitado.setUsuario(usuarioInvitado);
 					invitado.setAceptado(0);
+					invitado.setReunion(reunion);	//TODO: SolucionInvitados
 					listaInvitados.add(invitado);
+					}
 				}
 				
 				reunion.setInvitados(listaInvitados);

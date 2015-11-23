@@ -4,7 +4,16 @@ public class Invitado {
 	private long id;
 	private Usuario usuario;
 	private int aceptado;
+	//TODO: SolucionInvitados
+	private Reunion reunion;
 	
+	public Reunion getReunion() {
+		return reunion;
+	}
+	public void setReunion(Reunion reunion) {
+		this.reunion = reunion;
+	}
+	//TODO: SolucionInvitados
 	public long getId() {
 		return id;
 	}
