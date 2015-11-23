@@ -152,20 +152,13 @@ public class ReunionController {
 			//TODO: Agregarle salas y usuarios
 			return new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
 		} else {
-			//TODO: donde?
 			Reunion reunion;
-			
-			
 			if (!reunionForm.getIdEvento().isEmpty())  { //modificar
 				reunion=reunionDAO.get(Long.parseLong(reunionForm.getIdEvento()));
-				
-				//reunionAModificar.
-				//reunion.setId(Long.parseLong(reunionForm.getIdEvento()));
 			}  else  {									//crear
 				reunion=new Reunion();
 				reunion.setAutor(usuarioLogueado);
 			}
-			
 			reunion.setTitulo(reunionForm.getTitulo());
 			SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
 			Date fecha=dateFormatter.parse(reunionForm.getFecha(), new ParsePosition(0));	
@@ -180,9 +173,9 @@ public class ReunionController {
 			Set<Invitacion>listaInvitados=new HashSet<Invitacion>();
 			if (reunionForm.getIdEstado()!=0)
 			{
-				List<Invitacion> invitacionew=invitacionDAO.getByReunionUsuario(reunion, usuarioLogueado);
-				//invitacion.setAceptado(reunionForm.getIdEstado());
-				//invitacionDAO.save(invitacion);
+				Invitacion invitacion=invitacionDAO.getByReunionUsuario(reunion, usuarioLogueado);
+				invitacion.setAceptado(reunionForm.getIdEstado());
+				invitacionDAO.save(invitacion);
 				/*
 				listaInvitados=reunion.getInvitados();
 				for(Invitacion invitadoYo:listaInvitados)

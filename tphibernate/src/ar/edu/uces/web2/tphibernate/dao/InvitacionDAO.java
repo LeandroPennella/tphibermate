@@ -24,21 +24,21 @@ public class InvitacionDAO {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Invitacion> getByReunionUsuario(Reunion reunion, Usuario usuario) {
+	public Invitacion getByReunionUsuario(Reunion reunion, Usuario usuario) {
 		Session session = sessionFactory.getCurrentSession();
 		
 		String sQuery=
-		"select i from " +Invitacion.class.getName() + " as i ";
-				//"where i.reunion.id = :idReunion " +
-				//" and i.usuario.id= :idUsuario " ;
+		"select i from " +Invitacion.class.getName() + " as i "+
+				" where i.reunion.id = :idReunion " +
+				" and i.usuario.id= :idUsuario " ;
 				
 		Query q=session.createQuery(sQuery);
 		
-		//q.setLong("idReunion",reunion.getId());
-		//q.setLong("idUsuario", usuario.getId());
+		q.setLong("idReunion",reunion.getId());
+		q.setLong("idUsuario", usuario.getId());
 		
-		List<Invitacion> invitaciones=(List<Invitacion>)q.list();
-		return (List<Invitacion>)q;
+		Invitacion invitacion=(Invitacion)q.uniqueResult();
+		return invitacion;
 		
 	}
 	

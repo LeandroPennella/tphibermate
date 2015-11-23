@@ -90,7 +90,7 @@
 										<c:if test="${reunionForm.idEvento!=null}">
 										<c:if test='${reunionForm.estado=="reunionNoConfirmado"}'>
 										<div class="control-group">
-											<label class="control-label" >Estado</label> 
+											<label class="control-label" ><fmt:message key="reunion.label.estado" /></label> 
 											<div class="controls">
 											<form:radiobutton path="idEstado" value="1"/>Aceptado 
 											<form:radiobutton path="idEstado" value="2"/>Cancelado
@@ -100,7 +100,7 @@
 
 
 										<div class="control-group">
-											<label class="control-label" >Invitados</label> 
+											<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
 											<div class="controls">
 												<c:forEach var="invitado" items="${reunionForm.invitados}">
 													${invitado.usuario.nombre} - ${invitado.aceptado}<br/>
@@ -133,8 +133,8 @@
 											</div>
 										</div>
  										<div class="form-actions">
-											<button type="submit" class="btn btn-primary">Save changes</button>
-											<button type="reset" class="btn">Cancel</button>
+											<button type="submit" class="btn btn-primary"><fmt:message key="evento.label.guardar" /></button>
+											<button type="reset" class="btn"><fmt:message key="evento.label.cancelar" /></button>
 										</div>
 									</fieldset>
 								</form:form>
