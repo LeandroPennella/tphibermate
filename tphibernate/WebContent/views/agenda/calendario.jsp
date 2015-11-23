@@ -28,10 +28,12 @@
 </head>
 <body>
 	<jsp:include page="master_menu.jsp"></jsp:include>
-	<div>
+	<div style="  border: 1px solid #CCC;
+  background-color: #E0E0E0;
+  padding: .5em; height:20px;">
 
-	<div><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset-1}"/>'><</a></div>
-	<div><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset+1}"/>'>></a></div>
+	<div style="float: left;"><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset-1}"/>'><</a></div>
+	<div style="float: right;"><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset+1}"/>'>></a></div>
 	</div>
 	<c:forEach var="dia" items="${semana}">
 		<c:set var="diaFecha"  value="${dia.key}"></c:set>

@@ -1,6 +1,8 @@
 package ar.edu.uces.web2.tphibernate.interceptores;
 //declarado en context.xml
 
+import java.util.Locale;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import ar.edu.uces.web2.tphibernate.dao.UsuarioDAO;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
@@ -17,10 +20,16 @@ import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 //intercepta la llegada a login
 public class interceptorLogin implements HandlerInterceptor {
 	private UsuarioDAO usuarioDAO;
+	
 	@Autowired
 	public void setUsuarioDao(UsuarioDAO usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
 	}
+	
+	
+	@Autowired
+	private SessionLocaleResolver localeResolver;
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
 
@@ -40,6 +49,7 @@ public class interceptorLogin implements HandlerInterceptor {
 			Usuario usuario=usuarioDAO.autenticar(cookieUsuario.getValue(), cookieContraseña.getValue());
 			//persistir sesion
 			request.getSession().setAttribute("usuarioLogueado",usuario);
+			localeResolver.setLocale(request, response, new Locale(usuario.getIdioma()));
 			RequestDispatcher rd= request.getRequestDispatcher("/agenda/mostrarCalendario.do");
 			rd.forward(request, response);
 			return false;
