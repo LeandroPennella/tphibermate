@@ -164,6 +164,8 @@ public class ReunionController {
 		this.reunionValidator.validate(reunionForm, result);
 		if (result.hasErrors()) {
 			//TODO: Agregarle salas y usuarios
+			reunionForm.setSalas(salaDAO.getAll());
+			
 			return new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
 		} else {
 			Reunion reunion;
