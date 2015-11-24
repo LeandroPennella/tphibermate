@@ -6,7 +6,7 @@ public class Reunion extends Evento {
 
 	private String temario;
 	private Sala sala;
-	private Set<Invitacion> invitaciones;
+	private Set<Invitacion> invitaciones ;
 	
 	public Reunion() {
 		

@@ -186,8 +186,6 @@ public class ReunionController {
 			
 			Set<Invitacion>listaInvitados=new HashSet<Invitacion>();
 
-			
-			
 			//TODO: agrega nuevos, no modifica
 			for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
 			{
@@ -202,7 +200,12 @@ public class ReunionController {
 				}
 			}
 			
-			reunion.setInvitaciones(listaInvitados);
+			if (reunion.getInvitaciones()==null){
+				reunion.setInvitaciones(listaInvitados);
+			} else {
+				reunion.getInvitaciones().clear();
+				reunion.getInvitaciones().addAll(listaInvitados);
+			}
 				
 			reunionDAO.save(reunion);
 			return new ModelAndView("/views/index.jsp");
