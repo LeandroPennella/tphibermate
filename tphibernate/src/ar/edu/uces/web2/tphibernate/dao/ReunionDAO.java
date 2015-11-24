@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
-import ar.edu.uces.web2.tphibernate.modelo.base.Tarea;
 
 @Transactional
 @Component

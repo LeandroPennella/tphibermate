@@ -2,6 +2,7 @@ package ar.edu.uces.web2.tphibernate.validadores;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
@@ -20,7 +21,7 @@ public class EventoFormValidator implements Validator{
 	
 	@Override
 	public void validate(Object object, Errors errors) {
-		EventoForm eventoFrom= (EventoForm) object;
+		EventoForm eventoForm= (EventoForm) object;
 
 		//TODO: Evaluar fecha y hora con regex?
 		
@@ -28,68 +29,71 @@ public class EventoFormValidator implements Validator{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fecha", "evento.error.fechaVacio");	//TODO: como no solaparlo con type mismatch
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaInicio", "evento.error.horaInicioVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaFin", "evento.error.horaFinVacio");
-		if (!(errors.hasFieldErrors("horaInicio")&&errors.hasFieldErrors("horaFin"))) {
+		if (!(errors.hasFieldErrors("fecha"))) {
+			Date fechaValidada=fechaValida(eventoForm.getFecha());
+			if (fechaValidada==null) {
+				errors.rejectValue("fecha", "evento.error.fechaIncorrecta");
+			}			else 			{
+				//TODO: validar en referencia al año actual
+				Calendar calendar= Calendar.getInstance();
+				calendar.setTime(fechaValidada);
+				if (calendar.get(Calendar.YEAR)>2100){errors.rejectValue("fecha", "evento.error.aniomayor");}	
+				if (calendar.get(Calendar.YEAR)<2000){errors.rejectValue("fecha", "evento.error.aniomenor");}		
+			}
+		}
 
-			Date desde = null;
-			Date hasta = null;
-			boolean sonFechas=true;
-			
-			/*
- 			SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
-			try{
-				desde= parser.parse(sDesde);
-			} catch (java.text.ParseException e){
+
+		Date desde = null;
+		Date hasta = null;
+		boolean sonFechas=true;
+		
+		if (errors.hasFieldErrors("horaInicio")){
+			sonFechas=false;
+		} else {
+			desde=horaValida(eventoForm.getHoraInicio());
+			if (desde==null)
+			{
 				errors.rejectValue("horaInicio", "evento.error.horaInicio");
 				sonFechas=false;
 			}
-			try{
-				hasta = parser.parse(sHasta);
-			} catch (java.text.ParseException pe){
+		}
+		if (errors.hasFieldErrors("horaFin")) {
+			sonFechas=false;
+		} else {
+			hasta=horaValida(eventoForm.getHoraFin());
+			if (hasta==null)
+			{
 				errors.rejectValue("horaFin", "evento.error.horaFin");
 				sonFechas=false;
 			}
-*/
-			
-			if (esHoraValida(eventoFrom.getHoraInicio(),desde))
-			{
-				errors.rejectValue("horaInicio", "evento.error.horaInicio");
-				sonFechas=false;
-			}
-			
-			if (esHoraValida(eventoFrom.getHoraFin(),hasta))
-			{
-				errors.rejectValue("horaInicio", "evento.error.horaFin");
-				sonFechas=false;
-			}
-
-			
-			
-			if (sonFechas&& !desde.before(hasta)){
-					errors.rejectValue("horaFin", "evento.error.intervalo");
-			}
-		}	
-	}
+		}
+		if (sonFechas&& !desde.before(hasta)){
+				errors.rejectValue("horaFin", "evento.error.intervalo");
+		}
+	}	
 	
-	public static boolean esHoraValida(String hora,Date horaValida) {
-		
+	
+	public static Date horaValida(String hora) {
+		Date horaValida=null;
 		try{
 			SimpleDateFormat formatoHora= new SimpleDateFormat("HH:mm");
 			horaValida= formatoHora.parse(hora);
 		} catch (ParseException e){
 			
-			return false;
+			return null;
 		}
-		return true;
+		return horaValida;
 	}
 	
-	 public static boolean esFechaValida(String fecha) {
+	 public static Date fechaValida(String fecha) {
+		 Date fechaValida=null;
 	        try {
 	            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
 	            formatoFecha.setLenient(false);
-	            formatoFecha.parse(fecha);
+	            fechaValida=formatoFecha.parse(fecha);
 	        } catch (ParseException e) {
-	            return false;
+	            return null;
 	        }
-	        return true;
+	        return fechaValida;
 	    }
 }
