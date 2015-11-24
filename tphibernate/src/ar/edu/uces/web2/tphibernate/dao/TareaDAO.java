@@ -29,4 +29,9 @@ public class TareaDAO {
 		Session session = sessionFactory.getCurrentSession();
 		return (Tarea) session.get(Tarea.class, id); 
 	}
+	
+	public void delete(Tarea tarea){
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(tarea);
+	}
 }

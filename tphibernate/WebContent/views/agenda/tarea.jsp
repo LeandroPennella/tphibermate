@@ -98,6 +98,8 @@
 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary"><fmt:message key="evento.label.guardar" /></button>
 											<button type="reset" class="btn"><fmt:message key="evento.label.cancelar" /></button>
+											
+											<a href="<c:url value='/agenda/eliminarTarea.do?idEvento=${tarea.idEvento}' />">eliminar</a>
 										</div>
 									</fieldset>
 								</form:form>

@@ -19,7 +19,7 @@
 
         <joined-subclass name="ar.edu.uces.web2.tphibernate.modelo.base.Tarea" extends="ar.edu.uces.web2.tphibernate.modelo.base.Evento" table="EventosPrivados" >
                 <key column="idEvento" />       
-				<property name="descripcion" column="descripcion" />   		
+				<property name="descripcion" column="descripcion"/>   		
 				<property name="direccion" column="direccion" />
         </joined-subclass>
         

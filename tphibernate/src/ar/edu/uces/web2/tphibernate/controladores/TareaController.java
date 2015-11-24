@@ -81,5 +81,11 @@ public class TareaController {
 		return new ModelAndView("/views/index.jsp");
 	}
 	
+	@RequestMapping(value = "/agenda/eliminarTarea")
+	public ModelAndView delete(@RequestParam("idEvento")Integer idEvento){
+		Tarea tarea=tareaDAO.get(idEvento);
+		tareaDAO.delete(tarea);
+		return new ModelAndView("/views/index.jsp");
+	}
 	
 }
