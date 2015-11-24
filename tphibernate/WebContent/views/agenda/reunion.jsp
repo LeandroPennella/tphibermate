@@ -28,14 +28,7 @@
 						</div>
 						<div class="block-content collapse in">
 							<div class="span12">
-							
-							
-							
-							
-							
-							
 					        <c:choose>
-												        
 					            <c:when test='${reunionForm.estado=="reunionNoConfirmado"}'>
 									<c:url value="/agenda/modificarAsistenciaReunion.do" var="x"></c:url>
 								</c:when>
@@ -43,13 +36,7 @@
 									<c:url value="/agenda/agregarReunion.do" var="x"></c:url>
 								</c:otherwise>
 							</c:choose>
-								
-								
-								
-								
-								
-								
-								<form:form method="POST" commandName="reunionForm" action="${x}" cssClass="form-horizontal" >
+							<form:form method="POST" commandName="reunionForm" action="${x}" cssClass="form-horizontal" >
 								
 								
 								
@@ -167,6 +154,7 @@
  										<div class="form-actions">
 											<button type="submit" class="btn btn-primary"><fmt:message key="evento.label.guardar" /></button>
 											<button type="reset" class="btn"><fmt:message key="evento.label.cancelar" /></button>
+											<a href="<c:url value='/agenda/eliminarReunion.do?idEvento=${tarea.idEvento}' />">eliminar</a>
 										</div>
 									</fieldset>
 								</form:form>
