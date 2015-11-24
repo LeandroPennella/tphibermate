@@ -26,22 +26,7 @@ public class EventoDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	/*
-	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-	public List<Evento> getAll()
-	{
-		Session session = sessionFactory.getCurrentSession();
-		Query q=session.createQuery("from " +Evento.class.getName() + " as e where e.fecha=?");
 
-		SimpleDateFormat d=new SimpleDateFormat("dd-MM-yyyy");
-		Date dd=d.parse("01-10-2015", new ParsePosition(0));
-		q.setDate(0,dd );
-		
-		List<Evento>eventos=(List<Evento>)q.list();
-		eventos.sort(new EventoPorHoraComparator());
-		return eventos;
-	}
-*/
 	
 	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 	public List<Evento> getByAutorAndDate(Usuario usuario, Date fecha )

@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.uces.web2.tphibernate.modelo.base.Invitacion;
@@ -42,12 +43,13 @@ public class InvitacionDAO {
 		
 	}
 	
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void save(Invitacion invitacion ) {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(invitacion);
 	}
-	@Transactional(readOnly = true)
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void update(Invitacion invitacion ) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(invitacion);

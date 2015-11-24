@@ -25,6 +25,7 @@ public class ReunionDAO {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(reunion);
 	}
+	
 	@Transactional(readOnly = true)
 	public Reunion get(long id) {
 		Session session = sessionFactory.getCurrentSession();

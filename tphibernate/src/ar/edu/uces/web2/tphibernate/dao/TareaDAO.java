@@ -29,9 +29,30 @@ public class TareaDAO {
 		Session session = sessionFactory.getCurrentSession();
 		return (Tarea) session.get(Tarea.class, id); 
 	}
-	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void delete(Tarea tarea){
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(tarea);
 	}
+	/*
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public List<Evento> getByAutorAndDate(Usuario usuario, Date fecha )
+	{
+		Session session = sessionFactory.getCurrentSession();
+		//Query q=session.createQuery("from " +Evento.class.getName() + " as e where e.fecha=?");
+		String sQuery=
+		"select distinct e from " +Evento.class.getName() + " as e " +
+				"left join fetch e.invitaciones as i " +
+				"where (e.autor.id = :idUsuario or i.usuario.id=:idUsuario) " +
+				"and e.fecha= :fecha";
+		Query q=session.createQuery(sQuery);
+		q.setDate("fecha",fecha);
+		q.setLong("idUsuario", usuario.getId());
+		
+		List<Evento>eventos=(List<Evento>)q.list();
+		eventos.sort(new EventoPorHoraComparator());
+		return eventos;
+	}
+	*/
 }
