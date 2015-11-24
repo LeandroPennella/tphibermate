@@ -25,6 +25,7 @@ import ar.edu.uces.web2.tphibernate.dao.UsuarioDAO;
 import ar.edu.uces.web2.tphibernate.modelo.base.Invitacion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
+import ar.edu.uces.web2.tphibernate.modelo.base.Tarea;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 import ar.edu.uces.web2.tphibernate.modelo.base.UsuarioInvitado;
 import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
@@ -212,5 +213,10 @@ public class ReunionController {
 		}
 	}
 	
-	
+	@RequestMapping(value = "/agenda/eliminarReunion")
+	public ModelAndView delete(@RequestParam("idEvento")Integer idEvento){
+		Reunion reunion=reunionDAO.get(idEvento);
+		reunionDAO.delete(reunion);
+		return new ModelAndView("/views/index.jsp");
+	}
 }

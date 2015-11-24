@@ -31,4 +31,10 @@ public class ReunionDAO {
 		Session session = sessionFactory.getCurrentSession();
 		return (Reunion) session.get(Reunion.class, id); 
 	}
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public void delete(Reunion reunion){
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(reunion);
+	}
 }
