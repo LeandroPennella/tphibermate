@@ -22,6 +22,7 @@
 		.reunionConfirmada{background-color: #16A765; border: 1px solid darkgrey;}
 		.reunionCancelada{background-color: red; border: 1px solid darkgrey;}
 		.dia{ border: solid 1px gray;height:100%; border: 1px solid darkgrey;}
+		.hoy{ background-color: lightgray;}
 	</style>
 	<jsp:include page="master_header.jsp"></jsp:include>
 	<title><fmt:message key='calendario.titulo'/></title>
@@ -38,7 +39,12 @@
 	<c:forEach var="dia" items="${semana}">
 		<c:set var="diaFecha"  value="${dia.key}"></c:set>
 		<c:set var="eventosDia"  value="${dia.value}"></c:set>
-			<div class="span3 dia">
+		
+		<c:set var="claseDia" value="nada"></c:set>
+		<c:if test="${sFechaHoy==diaFecha}" >
+		<c:set var="claseDia" value="hoy"></c:set>
+		</c:if>
+			<div class="span3 dia ${claseDia}">
 			${diaFecha}
 			<c:forEach var="evento" items="${eventosDia}">
 				<c:set var="usuarioActual" value="${usuarioLogueado}"/>

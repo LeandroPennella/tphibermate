@@ -28,8 +28,37 @@
 						</div>
 						<div class="block-content collapse in">
 							<div class="span12">
-								<c:url value="/agenda/agregarReunion.do" var="x"></c:url>
+							
+							
+							
+							
+							
+							
+					        <c:choose>
+												        
+					            <c:when test='${reunionForm.estado=="reunionNoConfirmado"}'>
+									<c:url value="/agenda/modificarAsistenciaReunion.do" var="x"></c:url>
+								</c:when>
+								<c:otherwise>
+									<c:url value="/agenda/agregarReunion.do" var="x"></c:url>
+								</c:otherwise>
+							</c:choose>
+								
+								
+								
+								
+								
+								
 								<form:form method="POST" commandName="reunionForm" action="${x}" cssClass="form-horizontal" >
+								
+								
+								
+								
+								
+								
+								
+								
+								
 								
 									<fieldset>
 										<legend><fmt:message key='reunion.tituloAgregar'/></legend>

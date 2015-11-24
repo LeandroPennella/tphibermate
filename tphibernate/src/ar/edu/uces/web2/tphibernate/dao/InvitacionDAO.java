@@ -24,7 +24,7 @@ public class InvitacionDAO {
 	}
 
 	@Transactional(readOnly = true)
-	public Invitacion getByReunionUsuario(Reunion reunion, Usuario usuario) {
+	public Invitacion getByReunionUsuario(long idReunion, long idUsuario) {
 		Session session = sessionFactory.getCurrentSession();
 		
 		String sQuery=
@@ -34,8 +34,8 @@ public class InvitacionDAO {
 				
 		Query q=session.createQuery(sQuery);
 		
-		q.setLong("idReunion",reunion.getId());
-		q.setLong("idUsuario", usuario.getId());
+		q.setLong("idReunion",idReunion);
+		q.setLong("idUsuario", idUsuario);
 		
 		Invitacion invitacion=(Invitacion)q.uniqueResult();
 		return invitacion;
@@ -47,5 +47,9 @@ public class InvitacionDAO {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(invitacion);
 	}
-	
+	@Transactional(readOnly = true)
+	public void update(Invitacion invitacion ) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(invitacion);
+	}
 }

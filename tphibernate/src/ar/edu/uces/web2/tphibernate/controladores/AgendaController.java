@@ -2,6 +2,7 @@ package ar.edu.uces.web2.tphibernate.controladores;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -38,23 +39,7 @@ public class AgendaController {
 		//Date fecha = new Date();
 		
 		//http://www.forosdelweb.com/f45/como-recorrer-fechas-374533/
-		/*
-		
-		Date hoy=new Date();
-		calendar.setTime(hoy);
-
-		calendar.roll(Calendar.DAY, up);
-		Date fechaDomingo=calendar.add(hoy, diasAlDomingo);
-		calendar
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
-		String sfecha = sdf.format(hoy);
-		Date fecha=sdf.parse(sfecha, new ParsePosition(0));
-		*/
-		
-		//SimpleDateFormat d=new SimpleDateFormat("dd-MM-yyyy");
-		//Date fecha=d.parse(calendar.gdate.DAY_OF_MONTH+"-"+gcalendar.MONTH+"-"+gcalendar.YEAR, new ParsePosition(0));
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar calendar = Calendar.getInstance();
 		int diaSemana= calendar.get(Calendar.DAY_OF_WEEK);
 		int diasAlDomingo=diaSemana-1;
@@ -72,13 +57,15 @@ public class AgendaController {
 			{
 				evento.setUsuarioActual(usuarioLogueado);
 			}
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
 			String sFecha = sdf.format(calendar.getTime());
 			semana.put(sFecha, eventosDia);
 			calendar.add(Calendar.DATE, 1);
 		}
+		String sFechaHoy=sdf.format(new Date());
 		ModelAndView mv=new ModelAndView("/views/agenda/calendario.jsp","semana", semana);
 		mv.addObject("semanaOffset", semanaOffset);
+		mv.addObject("sFechaHoy",sFechaHoy);
 		return mv;
 	}
 }
