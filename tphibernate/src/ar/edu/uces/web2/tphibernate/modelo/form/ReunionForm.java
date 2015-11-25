@@ -20,6 +20,16 @@ public class ReunionForm {
 	private long idSala;																	//la sala elegida
 	private List<Integer> idsInvitados=new ArrayList<Integer>() ;							//los usuarios elegidos
 //	private List<Usuario> usuarios=new ArrayList<Usuario>();								//los usuarios posibles//TODO: reemplazar por usuarios invitados
+	private List<String> mapaInvitaciones=new ArrayList<String>();
+	public List<String> getMapaInvitaciones() {
+		return mapaInvitaciones;
+	}
+
+
+
+	public void setMapaInvitaciones(List<String> mapaInvitaciones) {
+		this.mapaInvitaciones = mapaInvitaciones;
+	}
 	private List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();//		//todos los usuarios posibles, y seteados los agregados //TODO: listar solo los usuarios que no estar invitados 
 	private List<Sala>salas=new ArrayList<Sala>(); 											//todas las salas posibles
 	private Set<Invitacion> invitaciones=new HashSet<Invitacion>();

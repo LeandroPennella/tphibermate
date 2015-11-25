@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -195,8 +196,13 @@ public class ReunionController {
 			Set<Invitacion>listaInvitados=new HashSet<Invitacion>();
 
 			//TODO: agrega nuevos, no modifica
-			for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
+			//for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
+			for(String parMapaInvitacion:reunionForm.getMapaInvitaciones())
 			{
+				StringTokenizer invitacionTokenizer=new StringTokenizer(parMapaInvitacion,"|");
+				
+				int idInvitado=Integer.parseInt(invitacionTokenizer.nextToken());
+				String estadoInvitado=invitacionTokenizer.nextToken();
 				if (idInvitado!=0){
 				Invitacion invitado=new Invitacion();
 				Usuario usuarioInvitado=new Usuario();

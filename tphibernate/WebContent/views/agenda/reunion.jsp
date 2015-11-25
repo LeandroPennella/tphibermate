@@ -141,10 +141,10 @@
 												    <c:forEach items="${reunionForm.usuariosInvitados}" var="usIn" >
 												        <c:choose>
 												            <c:when test="${usIn.agregado}">
-												                <option value="${usIn.usuario.id}"   selected="true">${usIn.usuario.nombre}</option>
+												                <option value="${usIn.usuario.id}!${usIn.estado}"   selected="true">${usIn.usuario.nombre}</option>
 												            </c:when>
 												            <c:otherwise>
-												                <option value="${usIn.usuario.id}"  >${usIn.usuario.nombre}</option>
+												                <option value="${usIn.usuario.id}|${usIn.estado"  >${usIn.usuario.nombre}</option>
 												            </c:otherwise>
 												        </c:choose> 
 												    </c:forEach>
