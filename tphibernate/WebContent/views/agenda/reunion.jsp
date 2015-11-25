@@ -37,29 +37,25 @@
 								</c:otherwise>
 							</c:choose>
 							<form:form method="POST" commandName="reunionForm" action="${x}" cssClass="form-horizontal" >
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
 									<fieldset>
 										<legend><fmt:message key='reunion.tituloAgregar'/></legend>
-										<form:hidden path="idEvento"/>	
+										
+										<!-- idEvento --------------------------------------------------------------------------------------------------->
+										<form:hidden path="idEvento"/>
+										
+										<!-- titulo ----------------------------------------------------------------------------------------------------->	
 										<div class="control-group">
-											
 											<fmt:message key='evento.label.titulo' var="titulo" />
 											<label class="control-label" for="titulo"><fmt:message key="evento.label.titulo" /></label>
 											<div class="controls">
 												<form:input id="titulo" path="titulo" cssClass="input-xxlarge focused"  placeholder="${titulo}" autofocus="true"  />
-												<form:errors path="titulo" cssStyle="color: red" />
+												<div><form:errors path="titulo" cssStyle="color: red" /></div>
 											</div>
-
+											
 										</div>
+										
+										
+										<!-- fecha y hora ------------------------------------------------------------------------------------------------>
 										<div class="control-group">
 											<fmt:message key='evento.label.fecha' var="fecha" />
 										    <span class="control-label"><fmt:message key="evento.label.fecha" /></span>
@@ -75,23 +71,25 @@
 												<label for="horaFin"><fmt:message key="evento.label.horaFin" /></label>
 												<form:input id="horaFin" path="horaFin" cssClass="input-small "  placeholder="${horaInicio}"/>
 												
+												<div><form:errors path="fecha" cssStyle="color: red" /></div>
+									  			<div><form:errors path="horaInicio" cssStyle="color: red" /></div>
+												<div><form:errors path="horaFin" cssStyle="color: red" /></div>
+												
 									    	</div>
 									  	</div>
-									  	<div >
-									  		<form:errors path="fecha" cssStyle="color: red" />
-									  		<form:errors path="horaInicio" cssStyle="color: red" />
-											<form:errors path="horaFin" cssStyle="color: red" />
-									  	</div>
+
 									  	
+									  	<!-- temario ------------------------------------------------------------------------------------------------>
 										<div class="control-group">
 											<fmt:message key='reunion.label.temario' var="temario" />
 											<label class="control-label" for="temario"><fmt:message key="reunion.label.temario" /></label>
 											<div class="controls">
 												<form:input id="temario" path="temario" cssClass="input-xxlarge "  placeholder="${temario}" />
-												<form:errors path="temario" cssStyle="color: red" />
+												<div><form:errors path="temario" cssStyle="color: red" /></div>
 											</div>
 										</div>
 										
+										<!-- sala ------------------------------------------------------------------------------------------------>
 										<div class="control-group">
 											<fmt:message key='reunion.label.sala' var="sala" />
 											<label class="control-label" for="sala"><fmt:message key="reunion.label.sala" /></label>
@@ -102,32 +100,38 @@
 												<form:errors path="idSala" cssStyle="color: red" />
 											</div>
 										</div>
-										
-										<c:if test="${reunionForm.idEvento!=null}">
-										<c:if test='${reunionForm.estado=="reunionNoConfirmado"}'>
-										<div class="control-group">
-											<label class="control-label" ><fmt:message key="reunion.label.estado" /></label> 
-											<div class="controls">
-											<form:radiobutton path="idEstado" value="1"/>Aceptado 
-											<form:radiobutton path="idEstado" value="2"/>Cancelado
-											</div>
-										</div>
-										</c:if>
 
 
-										<div class="control-group">
-											<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
-											<div class="controls">
-											
-												<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
-													${invitacion.usuario.nombre} - ${invitacion.aceptado}<br/>
-												</c:forEach>
-											
+										
+										<c:if test="${not empty reunionForm.idEvento}"><!-- si se esta editando -->
+										
+											<!-- estado -->		
+											<c:if test='${reunionForm.estado!="reunionAutor"}'><!-- si no soy el autor -->
+												<div class="control-group">
+													<label class="control-label" ><fmt:message key="reunion.label.estado" /></label> 
+													<div class="controls">
+														<c:if test='${reunionForm.estado=="reunionNoConfirmado"}'><!-- si no soy el autor y no caonfirme ni cancele-->
+															<form:radiobutton path="idEstado" value="1"/>Aceptado 
+															<form:radiobutton path="idEstado" value="2"/>Cancelado
+														</c:if>
+														<c:if test='${reunionForm.estado=="reunionConfirmada"}'>Confirmado</c:if>
+														<c:if test='${reunionForm.estado=="reunionCancelada"}'>Cancelado</c:if>
+													</div>
+												</div>
+											</c:if>
+											<!-- invitados -->
+											<div class="control-group">
+												<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
+												<div class="controls">
+													<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
+														${invitacion.usuario.nombre} - ${invitacion.aceptado}<br/>
+													</c:forEach>
+												</div>
 											</div>
-										</div>
 											
 										</c:if>
 										
+										<!-- usuarios invitados ------------------------------------------------------------------------------------->
 										<div class="control-group">
 											<fmt:message key='reunion.label.participantes' var="participantes" />
 											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
@@ -135,9 +139,7 @@
 												<form:select path="idsInvitados">
 										 			<option value="0">deseleccionar</option>
 												    <c:forEach items="${reunionForm.usuariosInvitados}" var="usIn" >
-												    
 												        <c:choose>
-												        
 												            <c:when test="${usIn.agregado}">
 												                <option value="${usIn.usuario.id}"   selected="true">${usIn.usuario.nombre}</option>
 												            </c:when>
@@ -151,6 +153,7 @@
 											</div>
 										</div>
 										
+										<!-- Botones ---------------------------------------------------------------------------------------->
  										<div class="form-actions">
 											<button type="submit" class="btn btn-primary"><fmt:message key="evento.label.guardar" /></button>
 											<button type="reset" class="btn"><fmt:message key="evento.label.cancelar" /></button>

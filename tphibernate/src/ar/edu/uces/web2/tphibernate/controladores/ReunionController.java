@@ -35,6 +35,7 @@ import ar.edu.uces.web2.tphibernate.validadores.ReunionFormValidator;
 
 @Controller
 public class ReunionController {
+	
 	private ReunionDAO reunionDAO;
 	private UsuarioDAO usuarioDAO;
 	private SalaDAO salaDAO;
@@ -66,7 +67,7 @@ public class ReunionController {
 	private ReunionFormValidator reunionValidator; 
 	
 	@RequestMapping(value = "/agenda/crearReunion")
-	public ModelAndView crear() {
+	public ModelAndView crear(@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {
 		
 		ReunionForm reunionForm=new ReunionForm();
 		// ------------------------------------------------
@@ -76,10 +77,12 @@ public class ReunionController {
 		List<Usuario> usuarios=usuarioDAO.getAll();
 		for(Usuario usuario : usuarios)
 		{
+			if (usuario.getId()!=usuarioLogueado.getId()){
 			UsuarioInvitado usuarioInvitado=new UsuarioInvitado();
 			usuarioInvitado.setUsuario(usuario);
 			usuarioInvitado.setAgregado(false);
 			usuariosInvitados.add(usuarioInvitado);
+			}
 		}
 		reunionForm.setUsuariosInvitados(usuariosInvitados);
 		// ------------------------------------------------
@@ -119,20 +122,22 @@ public class ReunionController {
 		List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();
 		
 		List<Usuario> usuarios=usuarioDAO.getAll();
-		for(Usuario usuarioActual : usuarios)
-		{
-			boolean estaInvitado=false;
-			UsuarioInvitado usuarioInvitado=new UsuarioInvitado();
-			usuarioInvitado.setUsuario(usuarioActual);
-			//usuario actual esta entre los invitados?
-			for(Invitacion invitacion:invitaciones)
-			{
-				if ((invitacion.getUsuario().getId()==usuarioActual.getId()))
-				{estaInvitado=true;}
+		for(Usuario usuario: usuarios)
+		{	
+			if (usuario.getId()!=usuarioLogueado.getId()){
+				boolean estaInvitado=false;
+				UsuarioInvitado usuarioInvitado=new UsuarioInvitado();
+				usuarioInvitado.setUsuario(usuario);
+				//usuario actual esta entre los invitados?
+			
+				for(Invitacion invitacion:invitaciones) 			{
+					if ((invitacion.getUsuario().getId()==usuario.getId()))
+					{estaInvitado=true;}
+				}
+	
+				usuarioInvitado.setAgregado(estaInvitado);
+				usuariosInvitados.add(usuarioInvitado);
 			}
-
-			usuarioInvitado.setAgregado(estaInvitado);
-			usuariosInvitados.add(usuarioInvitado);
 		}
 		reunionForm.setUsuariosInvitados(usuariosInvitados);
 		
