@@ -81,7 +81,7 @@ public class ReunionController {
 			if (usuario.getId()!=usuarioLogueado.getId()){
 			UsuarioInvitado usuarioInvitado=new UsuarioInvitado();
 			usuarioInvitado.setUsuario(usuario);
-			usuarioInvitado.setAgregado(false);
+			usuarioInvitado.setEstado(-1);
 			usuariosInvitados.add(usuarioInvitado);
 			}
 		}
@@ -126,17 +126,21 @@ public class ReunionController {
 		for(Usuario usuario: usuarios)
 		{	
 			if (usuario.getId()!=usuarioLogueado.getId()){
-				boolean estaInvitado=false;
+				//boolean estaInvitado=false;
+				int estado=-1;
 				UsuarioInvitado usuarioInvitado=new UsuarioInvitado();
 				usuarioInvitado.setUsuario(usuario);
 				//usuario actual esta entre los invitados?
 			
 				for(Invitacion invitacion:invitaciones) 			{
-					if ((invitacion.getUsuario().getId()==usuario.getId()))
-					{estaInvitado=true;}
+					if ((invitacion.getUsuario().getId()!=usuario.getId())){
+						estado=-1;
+					} else {estado=invitacion.getAceptado();}
+						
+					//if ((invitacion.getUsuario().getId()==usuario.getId())){estaInvitado=true;}
 				}
 	
-				usuarioInvitado.setAgregado(estaInvitado);
+				usuarioInvitado.setEstado(estado);
 				usuariosInvitados.add(usuarioInvitado);
 			}
 		}
@@ -197,9 +201,9 @@ public class ReunionController {
 
 			//TODO: agrega nuevos, no modifica
 			//for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
-			for(String parMapaInvitacion:reunionForm.getMapaInvitaciones())
+			for(String parMapaInvitado:reunionForm.getMapaInvitados())
 			{
-				StringTokenizer invitacionTokenizer=new StringTokenizer(parMapaInvitacion,"|");
+				StringTokenizer invitacionTokenizer=new StringTokenizer(parMapaInvitado,"|");
 				
 				int idInvitado=Integer.parseInt(invitacionTokenizer.nextToken());
 				String estadoInvitado=invitacionTokenizer.nextToken();

@@ -18,29 +18,19 @@ public class ReunionForm {
 	private String horaFin;
 	private String temario;
 	private long idSala;																	//la sala elegida
-	private List<Integer> idsInvitados=new ArrayList<Integer>() ;							//los usuarios elegidos
-//	private List<Usuario> usuarios=new ArrayList<Usuario>();								//los usuarios posibles//TODO: reemplazar por usuarios invitados
-	private List<String> mapaInvitaciones=new ArrayList<String>();
-	public List<String> getMapaInvitaciones() {
-		return mapaInvitaciones;
-	}
-
-
-
-	public void setMapaInvitaciones(List<String> mapaInvitaciones) {
-		this.mapaInvitaciones = mapaInvitaciones;
-	}
-	private List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();//		//todos los usuarios posibles, y seteados los agregados //TODO: listar solo los usuarios que no estar invitados 
 	private List<Sala>salas=new ArrayList<Sala>(); 											//todas las salas posibles
-	private Set<Invitacion> invitaciones=new HashSet<Invitacion>();
+	
 	private int idEstado;																	//noConfirmado, aceptado o cancelado
 	private String estado;																	//reunionAutor//reunionNoConfirmado//reunionConfirmada//reunionCancelada
-
-
+	
+	private List<String> mapaInvitados=new ArrayList<String>();								//lista de pares idUsuario|estado elegidoen el formulario
+	private List<Integer> idsInvitados=new ArrayList<Integer>() ;							//los usuarios elegidos	en el formulario ////TODO: reemplazar por mapa invitados
+	private List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();//		//todos los usuarios posibles, y seteados los agregados //TODO: listar solo los usuarios que no estar invitados 
+	
+	private Set<Invitacion> invitaciones=new HashSet<Invitacion>();							//invitaciones actuales solo para mostrar
+	
 	public ReunionForm(){}
 	
-
-
 	public String getIdEvento() {
 		return idEvento;
 	}
@@ -96,26 +86,12 @@ public class ReunionForm {
 		this.salas = salas;
 	}
 
-	
-	
-	/*
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-	public void setUsuarios(List<Usuario> list) {
-		this.usuarios = list;
-	}
-	*/
-	
-	
 	public List<UsuarioInvitado> getUsuariosInvitados() {
 		return usuariosInvitados;
 	}
 	public void setUsuariosInvitados(List<UsuarioInvitado> usuariosInvitados) {
 		this.usuariosInvitados = usuariosInvitados;
 	}
-	
-	
 
 	public Set<Invitacion> getInvitaciones() {
 		return invitaciones;
@@ -123,7 +99,6 @@ public class ReunionForm {
 	public void setInvitaciones(Set<Invitacion> invitaciones) {
 		this.invitaciones = invitaciones;
 	}
-
 	
 	public int getIdEstado() {
 		return idEstado;
@@ -132,11 +107,17 @@ public class ReunionForm {
 		this.idEstado = idEstado;
 	}
 	
-	
 	public String getEstado() {
 		return estado;
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	
+	public List<String> getMapaInvitados() {
+		return mapaInvitados;
+	}
+	public void setMapaInvitados(List<String> mapaInvitados) {
+		this.mapaInvitados = mapaInvitados;
 	}
 }
