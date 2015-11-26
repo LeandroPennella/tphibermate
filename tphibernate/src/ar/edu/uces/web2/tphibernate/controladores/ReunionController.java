@@ -30,6 +30,7 @@ import ar.edu.uces.web2.tphibernate.modelo.base.Tarea;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 import ar.edu.uces.web2.tphibernate.modelo.base.UsuarioInvitado;
 import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
+import ar.edu.uces.web2.tphibernate.validadores.EventoFormValidator;
 import ar.edu.uces.web2.tphibernate.validadores.ReunionFormValidator;
 
 @SessionAttributes("usuarioLogueado") 
@@ -66,6 +67,9 @@ public class ReunionController {
 	
 	@Autowired
 	private ReunionFormValidator reunionValidator; 
+
+	@Autowired
+	private EventoFormValidator eventoFormValidator; 
 	
 	@RequestMapping(value = "/agenda/crearReunion")
 	public ModelAndView crear(@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {
@@ -170,7 +174,7 @@ public class ReunionController {
 	@RequestMapping(value = "/agenda/agregarReunion")
 	public ModelAndView save(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado ) {
 
-		
+		this.eventoFormValidator.validate(reunionForm, result);
 		this.reunionValidator.validate(reunionForm, result);
 		if (result.hasErrors()) {
 			//TODO: Agregarle salas y usuarios

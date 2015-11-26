@@ -9,13 +9,15 @@ import ar.edu.uces.web2.tphibernate.modelo.base.Invitacion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
 import ar.edu.uces.web2.tphibernate.modelo.base.UsuarioInvitado;
 
-public class ReunionForm {
-	private String idEvento;
+public class ReunionForm extends EventoForm {
 	//TODO: extender de EventoForm
+	/*
+	private String idEvento;
 	private String Titulo;
 	private String Fecha;
 	private String HoraInicio;
 	private String horaFin;
+*/	
 	private String temario;
 	private long idSala;																	//la sala elegida
 	private List<Sala>salas=new ArrayList<Sala>(); 											//todas las salas posibles
@@ -30,7 +32,7 @@ public class ReunionForm {
 	private Set<Invitacion> invitaciones=new HashSet<Invitacion>();							//invitaciones actuales solo para mostrar
 	
 	public ReunionForm(){}
-	
+/*	
 	public String getIdEvento() {
 		return idEvento;
 	}
@@ -61,6 +63,7 @@ public class ReunionForm {
 	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
 	}
+*/	
 	public String getTemario() {
 		return temario;
 	}

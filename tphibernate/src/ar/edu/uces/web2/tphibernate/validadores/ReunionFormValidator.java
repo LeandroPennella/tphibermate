@@ -18,7 +18,7 @@ import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
 
 @Component
-public class ReunionFormValidator implements Validator{ //TODO: heredar de EventoFormValidator
+public class ReunionFormValidator extends EventoFormValidator implements Validator{ //TODO: heredar de EventoFormValidator
 	
 	
 	
@@ -31,12 +31,13 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 	public void validate(Object object, Errors errors) {
 
 		ReunionForm reunionForm= (ReunionForm) object;
+		/*
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "evento.error.tituloVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fecha", "evento.error.fechaVacio");	//TODO: como no solaparlo con type mismatch
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaInicio", "evento.error.horaInicioVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "horaFin", "evento.error.horaFinVacio");
 		
-		/*
+		//--
 		Date fecha=null;
 		if (!errors.hasFieldErrors("fecha"))
 		{				
@@ -52,7 +53,7 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 				e.printStackTrace();
 			}
 		}
-		*/
+		//--
 		if (!(errors.hasFieldErrors("horaInicio")&&errors.hasFieldErrors("horaFin"))) {
 			SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
 			Date desde = null;
@@ -76,9 +77,10 @@ public class ReunionFormValidator implements Validator{ //TODO: heredar de Event
 					errors.rejectValue("horaFin", "evento.error.intervalo");
 			}
 		}	
+		*/
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "temario", "reunion.error.temarioVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idSala", "reunion.error.salaVacio");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idsInvitados", "reunion.error.participantesVacio");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mapaInvitados", "reunion.error.participantesVacio");
 		if(!errors.hasErrors())
 		{
 
