@@ -123,9 +123,20 @@
 											<div class="control-group">
 												<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
 												<div class="controls">
+												<table>
+												<tr><th>Usuario</th><th>Estado</th></tr>
 													<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
-														${invitacion.usuario.nombre} - ${invitacion.aceptado}<br/>
+														<tr>
+															<td>${invitacion.usuario.nombre} </td>
+															<td> 
+															<c:if test="${invitacion.aceptado==0}">no confirmado</c:if>
+															<c:if test="${invitacion.aceptado==1}">confirmado</c:if>
+															<c:if test="${invitacion.aceptado==2}">cancelado</c:if>
+															</td>
+														</tr>
 													</c:forEach>
+													</tr>
+												</table>
 												</div>
 											</div>
 											
@@ -136,15 +147,15 @@
 											<fmt:message key='reunion.label.participantes' var="participantes" />
 											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
 											<div class="controls">
-												<form:select path="idsInvitados">
+												<form:select path="mapaInvitados"> <%-- idsInvitados"> --%>
 										 			<option value="0">deseleccionar</option>
 												    <c:forEach items="${reunionForm.usuariosInvitados}" var="usIn" >
 												        <c:choose>
 												            <c:when test="${usIn.estado!=-1}">
-												                <option value="${usIn.usuario.id}|${usIn.estado}"   selected="true">${usIn.usuario.nombre}</option>
+												                <option value="|${usIn.usuario.id}|${usIn.estado}"   selected="true">${usIn.usuario.nombre}</option>
 												            </c:when>
 												            <c:otherwise>
-												                <option value="${usIn.usuario.id}|${usIn.estado}"  >${usIn.usuario.nombre}</option>
+												                <option value="|${usIn.usuario.id}|${usIn.estado}"  >${usIn.usuario.nombre}</option>
 												            </c:otherwise>
 												        </c:choose> 
 												    </c:forEach>
