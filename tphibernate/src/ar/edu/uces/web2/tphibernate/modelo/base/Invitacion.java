@@ -3,7 +3,7 @@ package ar.edu.uces.web2.tphibernate.modelo.base;
 public class Invitacion {
 	private long id;
 	private Usuario usuario;
-	private int aceptado;
+	private int aceptado;				//TODO: idConfirmacion
 	//TODO: SolucionInvitados
 	private Reunion reunion;
 	

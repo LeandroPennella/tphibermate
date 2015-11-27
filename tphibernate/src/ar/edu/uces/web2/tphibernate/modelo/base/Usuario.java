@@ -1,6 +1,6 @@
 package ar.edu.uces.web2.tphibernate.modelo.base;
 
-public class Usuario {
+public class Usuario implements Comparable<Usuario> {
 	
 	private long id;
 	private String nombreUsuario;
@@ -49,5 +49,12 @@ public class Usuario {
 		this.idioma = idioma;
 	}
 	
+    public int compareTo(Usuario usuario) {
+    	if (this.id>usuario.id)
+    	return 1;
+    	else if (this.id<usuario.id)
+        	return -1;
+    	else return	0;
+    }
 
 }

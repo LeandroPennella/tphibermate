@@ -119,7 +119,7 @@
 													</div>
 												</div>
 											</c:if>
-											<!-- invitados -->
+											<!-- invitaciones -->
 											<div class="control-group">
 												<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
 												<div class="controls">
@@ -142,20 +142,23 @@
 											
 										</c:if>
 										
-										<!-- usuarios invitados ------------------------------------------------------------------------------------->
+										<!-- usuarios a invitar ------------------------------------------------------------------------------------->
 										<div class="control-group">
 											<fmt:message key='reunion.label.participantes' var="participantes" />
 											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
 											<div class="controls">
-												<form:select path="mapaInvitados"> <%-- idsInvitados"> --%>
+												<form:select path="tokensInvitadosMasConfirmacion"> <%-- idsInvitados"> --%>
 										 			<option value="0">deseleccionar</option>
-												    <c:forEach items="${reunionForm.usuariosInvitados}" var="usIn" >
+												    <c:forEach items="${reunionForm.mapaUsuariosMasConfirmacion}" var="usuarioMasConfirmacion" >
+												    	<!-- value=nombreUsuario-->
+												    	<!-- key=idUsuario|idConfirmacion -->
 												        <c:choose>
-												            <c:when test="${usIn.estado!=-1}">
-												                <option value="|${usIn.usuario.id}|${usIn.estado}"   selected="true">${usIn.usuario.nombre}</option>
+												            <c:when test="${usuarioMasConfirmacion.value!=-1}">
+												                <!-- <option value="|${usuarioMasConfirmacion.usuario.id}|${usuarioMasConfirmacion.idConfirmacion}"   selected="true">${usuarioMasConfirmacion.usuario.nombre}</option> -->
+												                <option value="|${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}"   selected="true">${usuarioMasConfirmacion.key.nombre}</option> 
 												            </c:when>
 												            <c:otherwise>
-												                <option value="|${usIn.usuario.id}|${usIn.estado}"  >${usIn.usuario.nombre}</option>
+												                <option value="|${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}"  >${usuarioMasConfirmacion.key.nombre}</option>
 												            </c:otherwise>
 												        </c:choose> 
 												    </c:forEach>

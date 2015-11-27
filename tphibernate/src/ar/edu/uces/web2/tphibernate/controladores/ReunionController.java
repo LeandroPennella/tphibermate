@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,6 @@ import ar.edu.uces.web2.tphibernate.dao.UsuarioDAO;
 import ar.edu.uces.web2.tphibernate.modelo.base.Invitacion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
-import ar.edu.uces.web2.tphibernate.modelo.base.Tarea;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 import ar.edu.uces.web2.tphibernate.modelo.base.UsuarioInvitado;
 import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
@@ -75,21 +75,19 @@ public class ReunionController {
 	public ModelAndView crear(@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {
 		
 		ReunionForm reunionForm=new ReunionForm();
-		// ------------------------------------------------
-		//reunionForm.setUsuarios(usuarioDAO.getAll());								//TODO: reemplazar
-		// ------------------------------------------------
-		List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();
-		List<Usuario> usuarios=usuarioDAO.getAll();
-		for(Usuario usuario : usuarios)
-		{
+		Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			//todos los usuarios, los invitados con idConfirmacion
+
+		List<Usuario> usuarios=usuarioDAO.getAll();//toma los usuarios en las invitaciones hechas y los marca como ya invitados
+		for(Usuario usuario: usuarios)
+		{	
 			if (usuario.getId()!=usuarioLogueado.getId()){
-			UsuarioInvitado usuarioInvitado=new UsuarioInvitado();
-			usuarioInvitado.setUsuario(usuario);
-			usuarioInvitado.setEstado(-1);
-			usuariosInvitados.add(usuarioInvitado);
+
+				mapaUsuariosMasConfirmacion.put(usuario, -1);
 			}
 		}
-		reunionForm.setUsuariosInvitados(usuariosInvitados);
+		reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);
+		
+		
 		// ------------------------------------------------
 		
 		reunionForm.setSalas(salaDAO.getAll());
@@ -123,34 +121,44 @@ public class ReunionController {
 		reunionForm.setEstado(reunion.obtenerEstado(usuarioLogueado));
 		
 		//---------------------------------------------
-		Set<Invitacion>invitaciones=reunion.getInvitaciones();
-		List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();
+		Set<Invitacion>invitacionesHechas=reunion.getInvitaciones();
+		reunionForm.setInvitaciones(invitacionesHechas);
 		
-		List<Usuario> usuarios=usuarioDAO.getAll();
+		
+		//TODO: Ajax:pasar en usuariosAinvitar solo los que restan invitar, des invitarlos desde InvitacionesHechas 
+		
+
+		Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			//todos los usuarios, los invitados con idConfirmacion
+		
+//		List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();
+
+		
+		List<Usuario> usuarios=usuarioDAO.getAll();//toma los usuarios en las invitaciones hechas y los marca como ya invitados
 		for(Usuario usuario: usuarios)
 		{	
 			if (usuario.getId()!=usuarioLogueado.getId()){
 				//boolean estaInvitado=false;
-				int estado=-1;
-				UsuarioInvitado usuarioInvitado=new UsuarioInvitado();
-				usuarioInvitado.setUsuario(usuario);
+				int idConfirmacion=-1;
+				//UsuarioInvitado usuarioInvitado=new UsuarioInvitado();
+				//usuarioInvitado.setUsuario(usuario);
 				//usuario actual esta entre los invitados?
 			
-				for(Invitacion invitacion:invitaciones) 			{
+				for(Invitacion invitacion:invitacionesHechas) 			{
 					if ((invitacion.getUsuario().getId()!=usuario.getId())){
-						estado=-1;
-					} else {estado=invitacion.getAceptado();}
+						idConfirmacion=-1;
+					} else {idConfirmacion=invitacion.getAceptado();}
 						
 					//if ((invitacion.getUsuario().getId()==usuario.getId())){estaInvitado=true;}
 				}
-	
-				usuarioInvitado.setEstado(estado);
-				usuariosInvitados.add(usuarioInvitado);
+				mapaUsuariosMasConfirmacion.put(usuario, idConfirmacion);
+				
+//				usuarioInvitado.setEstado(estado);
+//				usuariosInvitados.add(usuarioInvitado);
 			}
 		}
-		reunionForm.setUsuariosInvitados(usuariosInvitados);
+		//reunionForm.setUsuariosInvitados(usuariosInvitados);
+		reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);
 		
-		reunionForm.setInvitaciones(invitaciones);
 		
 		
 		
@@ -201,32 +209,38 @@ public class ReunionController {
 			sala.setId(reunionForm.getIdSala());
 			reunion.setSala(sala);
 			
-			Set<Invitacion>listaInvitados=new HashSet<Invitacion>();
+			
 
 			//TODO: agrega nuevos, no modifica
 			//for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
-			for(String parMapaInvitado:reunionForm.getMapaInvitados())
+
+			
+			//List<String> tokensInvitadosMasConfirmacion=new ArrayList<String>();							//lista de pares idUsuario|confirmacion elegidoen el formulario//todos los usuarios posibles, y seteados los agregados //TODO: Ajax: listar solo los usuarios que no estar invitados
+			Set<Invitacion>invitaciones=new HashSet<Invitacion>();
+			for(String tokenInvitadoMasConfirmacion:reunionForm.getTokensInvitadosMasConfirmacion())
 			{
-				StringTokenizer invitacionTokenizer=new StringTokenizer(parMapaInvitado,"|");
+				StringTokenizer invitacionTokenizer=new StringTokenizer(tokenInvitadoMasConfirmacion,"|");
 				
-				int idInvitado=Integer.parseInt(invitacionTokenizer.nextToken());
-				String estadoInvitado=invitacionTokenizer.nextToken();
-				if (idInvitado!=0){
-				Invitacion invitado=new Invitacion();
-				Usuario usuarioInvitado=new Usuario();
-				usuarioInvitado.setId(idInvitado);
-				invitado.setUsuario(usuarioInvitado);
-				invitado.setAceptado(0);
-				invitado.setReunion(reunion);	//TODO: SolucionInvitados
-				listaInvitados.add(invitado);
+				int idUsuario=Integer.parseInt(invitacionTokenizer.nextToken());
+				int idConfirmacion=Integer.parseInt(invitacionTokenizer.nextToken());
+				if (idUsuario!=0){
+					Invitacion invitacion=new Invitacion();
+					
+					Usuario usuarioInvitado=new Usuario();
+					usuarioInvitado.setId(idUsuario);
+					invitacion.setUsuario(usuarioInvitado);													//TODO: Contructor de usuario
+					
+					if (idConfirmacion!=-1){invitacion.setAceptado(idConfirmacion);}
+					invitacion.setReunion(reunion);	//TODO: SolucionInvitados
+					invitaciones.add(invitacion);
 				}
 			}
 			
 			if (reunion.getInvitaciones()==null){
-				reunion.setInvitaciones(listaInvitados);
+				reunion.setInvitaciones(invitaciones);
 			} else {
 				reunion.getInvitaciones().clear();
-				reunion.getInvitaciones().addAll(listaInvitados);
+				reunion.getInvitaciones().addAll(invitaciones);
 			}
 				
 			reunionDAO.save(reunion);
