@@ -80,7 +80,7 @@ public class ReunionFormValidator extends EventoFormValidator implements Validat
 		*/
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "temario", "reunion.error.temarioVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idSala", "reunion.error.salaVacio");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mapaInvitados", "reunion.error.participantesVacio");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tokensInvitadosMasConfirmacion", "reunion.error.participantesVacio");
 		if(!errors.hasErrors())
 		{
 

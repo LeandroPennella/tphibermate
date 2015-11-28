@@ -75,24 +75,17 @@ public class ReunionController {
 	public ModelAndView crear(@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {
 		
 		ReunionForm reunionForm=new ReunionForm();
-		Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			//todos los usuarios, los invitados con idConfirmacion
-
-		List<Usuario> usuarios=usuarioDAO.getAll();//toma los usuarios en las invitaciones hechas y los marca como ya invitados
+		Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			
+		List<Usuario> usuarios=usuarioDAO.getAll();													
 		for(Usuario usuario: usuarios)
 		{	
 			if (usuario.getId()!=usuarioLogueado.getId()){
-
 				mapaUsuariosMasConfirmacion.put(usuario, -1);
 			}
 		}
-		reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);
-		
-		
-		// ------------------------------------------------
-		
+		reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);					//todos los usuarios, todos con idConfirmacion -1 (no invitado)
 		reunionForm.setSalas(salaDAO.getAll());
 		ModelAndView mv=new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
-		mv.addObject("reunionAModificar",new Reunion());
 		return mv;
 	}
 	
@@ -127,37 +120,24 @@ public class ReunionController {
 		
 		//TODO: Ajax:pasar en usuariosAinvitar solo los que restan invitar, des invitarlos desde InvitacionesHechas 
 		
-
-		Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			//todos los usuarios, los invitados con idConfirmacion
-		
-//		List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();
-
-		
+		Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			
 		List<Usuario> usuarios=usuarioDAO.getAll();//toma los usuarios en las invitaciones hechas y los marca como ya invitados
 		for(Usuario usuario: usuarios)
 		{	
 			if (usuario.getId()!=usuarioLogueado.getId()){
-				//boolean estaInvitado=false;
 				int idConfirmacion=-1;
-				//UsuarioInvitado usuarioInvitado=new UsuarioInvitado();
-				//usuarioInvitado.setUsuario(usuario);
-				//usuario actual esta entre los invitados?
-			
-				for(Invitacion invitacion:invitacionesHechas) 			{
-					if ((invitacion.getUsuario().getId()!=usuario.getId())){
-						idConfirmacion=-1;
-					} else {idConfirmacion=invitacion.getAceptado();}
-						
-					//if ((invitacion.getUsuario().getId()==usuario.getId())){estaInvitado=true;}
+				for(Invitacion invitacion:invitacionesHechas) 			
+				{
+					if ((invitacion.getUsuario().getId()==usuario.getId()))
+					{
+						idConfirmacion=idConfirmacion=invitacion.getAceptado();
+					}
 				}
 				mapaUsuariosMasConfirmacion.put(usuario, idConfirmacion);
 				
-//				usuarioInvitado.setEstado(estado);
-//				usuariosInvitados.add(usuarioInvitado);
 			}
 		}
-		//reunionForm.setUsuariosInvitados(usuariosInvitados);
-		reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);
+		reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);							//todos los usuarios, los invitados con idConfirmacion, los que no con -1
 		
 		
 		

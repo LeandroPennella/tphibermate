@@ -25,11 +25,10 @@ public class ReunionForm extends EventoForm {
 	
 	
 	private List<String> tokensInvitadosMasConfirmacion=new ArrayList<String>();							//lista de pares idUsuario|confirmacion elegidoen el formulario//todos los usuarios posibles, y seteados los agregados //TODO: Ajax: listar solo los usuarios que no estar invitados
+//	private List<Invitacion> usuariosInvitaciones=new ArrayList<Invitacion>();
 	private Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			//usuario/idConfirmacion
 	//private List<Integer> idsInvitados=new ArrayList<Integer>() ;							//los usuarios elegidos	en el formulario ////TODO: reemplazar por mapa invitados
 	//private List<UsuarioInvitado> usuariosInvitados=new ArrayList<UsuarioInvitado>();//	//todos los usuarios posibles, y seteados los agregados //TODO: listar solo los usuarios que no estar invitados 
-	
-	
 	
 	public ReunionForm(){}
 
@@ -92,4 +91,14 @@ public class ReunionForm extends EventoForm {
 	}
 	
 
+	
+	/*
+	public List<Invitacion> getUsuariosInvitaciones() {
+		return usuariosInvitaciones;
+	}
+
+	public void setUsuariosInvitaciones(List<Invitacion> usuariosInvitaciones) {
+		usuariosInvitaciones = usuariosInvitaciones;
+	}
+*/
 }

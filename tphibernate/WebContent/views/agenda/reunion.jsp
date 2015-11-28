@@ -139,7 +139,6 @@
 												</table>
 												</div>
 											</div>
-											
 										</c:if>
 										
 										<!-- usuarios a invitar ------------------------------------------------------------------------------------->
@@ -147,25 +146,23 @@
 											<fmt:message key='reunion.label.participantes' var="participantes" />
 											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
 											<div class="controls">
-												<form:select path="tokensInvitadosMasConfirmacion"> <%-- idsInvitados"> --%>
-										 			<option value="0">deseleccionar</option>
-												    <c:forEach items="${reunionForm.mapaUsuariosMasConfirmacion}" var="usuarioMasConfirmacion" >
-												    	<!-- value=nombreUsuario-->
-												    	<!-- key=idUsuario|idConfirmacion -->
+												<form:select path="tokensInvitadosMasConfirmacion"> 
+													<option value="0">deseleccionar</option>
+													<c:forEach items="${reunionForm.getMapaUsuariosMasConfirmacion()}" var="usuarioMasConfirmacion" >
 												        <c:choose>
-												            <c:when test="${usuarioMasConfirmacion.value!=-1}">
-												                <!-- <option value="|${usuarioMasConfirmacion.usuario.id}|${usuarioMasConfirmacion.idConfirmacion}"   selected="true">${usuarioMasConfirmacion.usuario.nombre}</option> -->
-												                <option value="|${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}"   selected="true">${usuarioMasConfirmacion.key.nombre}</option> 
-												            </c:when>
-												            <c:otherwise>
-												                <option value="|${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}"  >${usuarioMasConfirmacion.key.nombre}</option>
-												            </c:otherwise>
-												        </c:choose> 
-												    </c:forEach>
+															<c:when test="${usuarioMasConfirmacion.value!=-1}">
+																<option value="${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}"   selected="true">${usuarioMasConfirmacion.key.nombre}</option>
+															</c:when>
+															<c:otherwise>
+																<option value="${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}">${usuarioMasConfirmacion.key.nombre}</option>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
 												</form:select>
-												<td><form:errors path="idsInvitados" /></td>
+												<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
 											</div>
 										</div>
+										
 										
 										<!-- Botones ---------------------------------------------------------------------------------------->
  										<div class="form-actions">
