@@ -21,9 +21,11 @@
 		.reunionNoConfirmado{background-color: yellow; border: 1px solid darkgrey;}
 		.reunionConfirmada{background-color: #16A765; border: 1px solid darkgrey;}
 		.reunionCancelada{background-color: red; border: 1px solid darkgrey;}
-		.dia{width:14%; float: left; border: solid 1px gray;height:100%; border: 1px solid darkgrey;}
+		.dia{width:13%; float: left; height:100%; border: 1px solid darkgrey;}
 		.hoy{ background-color: lightgray;}
 		.headerDia{background-color: silver; text-align: center; font-weight: bold;}
+		.hora{height:20px;border: solid 1px gray;}
+		.panelHoras{width:5%; float: left; }
 	</style>
 	<jsp:include page="master_header.jsp"></jsp:include>
 	<title><fmt:message key='calendario.titulo'/></title>
@@ -37,6 +39,17 @@
 		<div style="float: left;"><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset-1}"/>'><</a></div>
 		<div style="float: right;"><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset+1}"/>'>></a></div>
 	</div>
+	<div class="panelHoras">
+		<div class="headerDia">
+			Horas
+		</div>
+		<c:forEach begin="0" end="48" varStatus="ihora">
+			<div class="hora">
+				Index: ${ihora.index}
+			</div>
+		</c:forEach>
+	</div>
+	<!-- Dias ------------------------------------------------------------ -->
 	<c:forEach var="dia" items="${semana}">
 		<c:set var="diaFecha"  value="${dia.key}"></c:set>
 		<c:set var="eventosDia"  value="${dia.value}"></c:set>
@@ -51,6 +64,13 @@
 				${diaFechaCorta}
 			</div>
 			
+			<!-- Horas ------------------------------------------------------------ -->
+			<c:forEach begin="0" end="48" varStatus="ihora">
+			<div class="hora">
+			Index: ${ihora.index}
+			</div>
+			</c:forEach>
+			<%-- 
 			<c:forEach var="evento" items="${eventosDia}">
 				<c:set var="usuarioActual" value="${usuarioLogueado}"/>
 				<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
@@ -61,6 +81,7 @@
 					</a>
 				</div>
 			</c:forEach>
+			--%>
 		</div>
 	</c:forEach>
 </body>
