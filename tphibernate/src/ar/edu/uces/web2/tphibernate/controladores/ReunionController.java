@@ -158,7 +158,7 @@ public class ReunionController {
 		}
 		return new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
 	}
-	
+		
 	@RequestMapping(value = "/agenda/agregarReunion")
 	public ModelAndView save(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado ) {
 
@@ -167,8 +167,49 @@ public class ReunionController {
 		if (result.hasErrors()) {
 			//TODO: Agregarle salas y usuarios
 			reunionForm.setSalas(salaDAO.getAll());
+
+			if (!reunionForm.getIdEvento().isEmpty())  { //modificar
+				Reunion reunion=reunionDAO.get(Long.parseLong(reunionForm.getIdEvento()));
+				
+				reunionForm.setInvitaciones(reunion.getInvitaciones());
+			
+			
+				
+				Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			
+				List<Usuario> usuarios=usuarioDAO.getAll();//toma los usuarios en las invitaciones hechas y los marca como ya invitados
+				for(Usuario usuario: usuarios)
+				{	
+					if (usuario.getId()!=usuarioLogueado.getId()){
+						
+						int idConfirmacion=-1;
+						for(String tokenInvitadoMasConfirmacion:reunionForm.getTokensInvitadosMasConfirmacion()) 			
+						{
+							StringTokenizer invitacionTokenizer=new StringTokenizer(tokenInvitadoMasConfirmacion,"|");
+							int idUsuario=Integer.parseInt(invitacionTokenizer.nextToken());
+							//int idConfirmacion=Integer.parseInt(invitacionTokenizer.nextToken());
+
+							if ((idUsuario==usuario.getId()))
+							{
+								idConfirmacion=Integer.parseInt(invitacionTokenizer.nextToken());
+							}
+						}
+						mapaUsuariosMasConfirmacion.put(usuario, idConfirmacion);
+						
+					}
+				}
+				reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);							//todos los usuarios, los invitados con idConfirmacion, los que no con -1
+			}
+			
+			
+			
+			
 			
 			return new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
+			
+			
+			
+			
+			
 		} else {
 			Reunion reunion;
 			if (!reunionForm.getIdEvento().isEmpty())  { //modificar
