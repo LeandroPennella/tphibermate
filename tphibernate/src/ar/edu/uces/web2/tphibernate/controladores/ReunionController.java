@@ -164,23 +164,17 @@ public class ReunionController {
 
 		this.eventoFormValidator.validate(reunionForm, result);
 		this.reunionValidator.validate(reunionForm, result);
-		if (result.hasErrors()) {
+		if (result.hasErrors()) {		//tiene errores
 			//TODO: Agregarle salas y usuarios
-			reunionForm.setSalas(salaDAO.getAll());
 
-			if (!reunionForm.getIdEvento().isEmpty())  { //modificar
+			if (!reunionForm.getIdEvento().isEmpty())  { //en modificacion
 				Reunion reunion=reunionDAO.get(Long.parseLong(reunionForm.getIdEvento()));
-				
 				reunionForm.setInvitaciones(reunion.getInvitaciones());
-			
-			
-				
 				Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			
 				List<Usuario> usuarios=usuarioDAO.getAll();//toma los usuarios en las invitaciones hechas y los marca como ya invitados
 				for(Usuario usuario: usuarios)
 				{	
 					if (usuario.getId()!=usuarioLogueado.getId()){
-						
 						int idConfirmacion=-1;
 						for(String tokenInvitadoMasConfirmacion:reunionForm.getTokensInvitadosMasConfirmacion()) 			
 						{
@@ -188,29 +182,29 @@ public class ReunionController {
 							int idUsuario=Integer.parseInt(invitacionTokenizer.nextToken());
 							//int idConfirmacion=Integer.parseInt(invitacionTokenizer.nextToken());
 
-							if ((idUsuario==usuario.getId()))
-							{
+							if ((idUsuario==usuario.getId())) {
 								idConfirmacion=Integer.parseInt(invitacionTokenizer.nextToken());
 							}
 						}
-						mapaUsuariosMasConfirmacion.put(usuario, idConfirmacion);
-						
+						mapaUsuariosMasConfirmacion.put(usuario, idConfirmacion);			
 					}
 				}
 				reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);							//todos los usuarios, los invitados con idConfirmacion, los que no con -1
+			} else { 																//errores en creacion
+				Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			
+				List<Usuario> usuarios=usuarioDAO.getAll();													
+				for(Usuario usuario: usuarios)
+				{	
+					if (usuario.getId()!=usuarioLogueado.getId()){
+						mapaUsuariosMasConfirmacion.put(usuario, -1);
+					}
+				}
+				reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);	
 			}
-			
-			
-			
-			
-			
+			reunionForm.setSalas(salaDAO.getAll());
+			reunionForm.setIdEvento(null);
 			return new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
-			
-			
-			
-			
-			
-		} else {
+		} else {																							//no tiene errores
 			Reunion reunion;
 			if (!reunionForm.getIdEvento().isEmpty())  { //modificar
 				reunion=reunionDAO.get(Long.parseLong(reunionForm.getIdEvento()));

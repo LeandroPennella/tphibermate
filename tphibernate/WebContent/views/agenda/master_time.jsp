@@ -10,7 +10,8 @@
 		    format: "dd/mm/yyyy",
 		    language: "es",
 		    orientation: "bottom auto",
-		    todayHighlight: true
+		    todayHighlight: true,
+		    'autoclose': true
 		});
 		$("#fecha").addClass( "date start" );
 		$('#horaInicio').timepicker({ 'timeFormat': 'H:i' });

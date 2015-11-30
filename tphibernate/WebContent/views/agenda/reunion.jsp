@@ -40,6 +40,7 @@
 							<form:form method="POST" commandName="reunionForm" action="${x}" cssClass="form-horizontal" >
 									<fieldset>
 										<legend><fmt:message key='reunion.tituloAgregar'/></legend>
+										
 										<c:set value='${(reunionForm.estado!="reunionAutor")&&(not empty reunionForm.idEvento)}' var="soloLectura"/>
 										<!-- idEvento --------------------------------------------------------------------------------------------------->
 										<form:hidden path="idEvento"/>
