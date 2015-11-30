@@ -8,8 +8,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<jsp:include page="master_header.jsp"></jsp:include>
-<title><fmt:message key="tarea.tituloAgregar"/></title>
+	<jsp:include page="master_header.jsp"></jsp:include>
+	<jsp:include page="master_time.jsp"></jsp:include>
+	<title><fmt:message key="tarea.tituloAgregar"/></title>
 </head>
 <body>
 	<jsp:include page="master_menu.jsp"></jsp:include>
@@ -50,17 +51,14 @@
 										    <div class="controls form-inline">
 												
 												
-																								<%--
-												<fmt:formatDate value="${tarea.fecha}" var="dateString" pattern="dd/MM/yyyy" /> 
-												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${lfecha}" value="${dateString}"/>
-												--%>
-
 												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${lfecha}"/>
 												
 												
 									            <fmt:message key='evento.label.horaInicio' var="horaInicio" />
 												<label for="horaInicio"><fmt:message key="evento.label.horaInicio" /></label>
-												<form:input id="horaInicio" path="horaInicio" cssClass="input-small "  placeholder="${horaInicio}"/>
+												<form:input id="horaInicio" path="horaInicio" cssClass=" input-small"  placeholder="${horaInicio}"/>
+	
+	
 												
 												<fmt:message key='evento.label.horaFin' var="horaFin" />
 												<label for="horaFin"><fmt:message key="evento.label.horaFin" /></label>

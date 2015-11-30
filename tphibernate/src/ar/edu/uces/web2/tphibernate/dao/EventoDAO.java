@@ -37,13 +37,14 @@ public class EventoDAO {
 		"select distinct e from " +Evento.class.getName() + " as e " +
 				"left join fetch e.invitaciones as i " +
 				"where (e.autor.id = :idUsuario or i.usuario.id=:idUsuario) " +
-				"and e.fecha= :fecha";
+				"and e.fecha= :fecha " +
+				"order by e.horaInicio";
 		Query q=session.createQuery(sQuery);
 		q.setDate("fecha",fecha);
 		q.setLong("idUsuario", usuario.getId());
 		
 		List<Evento>eventos=(List<Evento>)q.list();
-		eventos.sort(new EventoPorHoraComparator());
+//		eventos.sort(new EventoPorHoraComparator());
 		return eventos;
 	}
 	

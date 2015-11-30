@@ -8,8 +8,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<jsp:include page="master_header.jsp"></jsp:include>
-<title><fmt:message key="reunion.tituloAgregar"/></title>
+	<jsp:include page="master_header.jsp"></jsp:include>
+	<jsp:include page="master_time.jsp"></jsp:include>
+	<title><fmt:message key="reunion.tituloAgregar"/></title>
 </head>
 <body>
 	<jsp:include page="master_menu.jsp"></jsp:include>
