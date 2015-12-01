@@ -9,6 +9,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<jsp:include page="master_header.jsp"></jsp:include>
 	<style >
 		html,body,.container
 		{
@@ -27,7 +28,8 @@
 		.hora{height:20px;border: solid 1px gray;}
 		.panelHoras{width:5%; float: left; }
 	</style>
-	<jsp:include page="master_header.jsp"></jsp:include>
+	
+     <script src="../ui/js/jquery-ui-1.11.4.js"></script>
 	<title><fmt:message key='calendario.titulo'/></title>
 </head>
 <body>
@@ -70,7 +72,7 @@
 			Index: ${ihora.index}
 			</div>
 			</c:forEach>
-			<%-- 
+			<%-- --%>
 			<c:forEach var="evento" items="${eventosDia}">
 				<c:set var="usuarioActual" value="${usuarioLogueado}"/>
 				<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
@@ -81,7 +83,7 @@
 					</a>
 				</div>
 			</c:forEach>
-			--%>
+			<%-- --%>
 		</div>
 	</c:forEach>
 </body>

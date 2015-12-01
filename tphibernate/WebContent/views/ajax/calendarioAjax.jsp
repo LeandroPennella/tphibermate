@@ -6,12 +6,7 @@
     	<jsp:include page="../agenda/master_header.jsp"></jsp:include>
         <title>Calendar</title>
         <link href="fullcalendar.css" rel="stylesheet" media="screen">
-        <!-- Bootstrap -->
-        <%--
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="vendors/fullcalendar/fullcalendar.css" rel="stylesheet" media="screen">
-        <link href="assets/styles.css" rel="stylesheet" media="screen">
-         --%>
+
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

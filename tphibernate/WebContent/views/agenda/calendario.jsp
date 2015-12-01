@@ -34,21 +34,23 @@
 		  background-color: #E0E0E0;
 		  padding: .5em; height:20px;">
 
-		<div style="float: left;"><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset-1}"/>'><</a></div>
-		<div style="float: right;"><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset+1}"/>'>></a></div>
+		<div style="float: left;"><a href='<c:url value="/agenda/mostrarCalendario.do?corrimientoSemana=${corrimientoSemana-1}"/>'><</a></div>
+		<div style="float: right;"><a href='<c:url value="/agenda/mostrarCalendario.do?corrimientoSemana=${corrimientoSemana+1}"/>'>></a></div>
 	</div>
 	<c:forEach var="dia" items="${semana}">
 		<c:set var="diaFecha"  value="${dia.key}"></c:set>
 		<c:set var="eventosDia"  value="${dia.value}"></c:set>
 		<c:set var="claseDia" value="nada"></c:set>
-		<c:if test="${sFechaHoy==diaFecha}" >
+		<c:if test="${diaFechas==FechaHoy}" >
 			<c:set var="claseDia" value="hoy"></c:set>
 		</c:if>
 		<div class="dia ${claseDia}">
 			
 			<div class="headerDia">
-				<c:set var="diaFechaCorta" value="${fn:substring(diaFecha, 0, 5)}" />
+				<%-- <c:set var="diaFechaCorta" value="${fn:substring(diaFecha, 0, 5)}" />
 				${diaFechaCorta}
+				--%>
+				<fmt:formatDate type="date" pattern="dd/MM/yyyy" value="${diaFecha}" />
 			</div>
 			
 			<c:forEach var="evento" items="${eventosDia}">

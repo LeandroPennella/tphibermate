@@ -35,37 +35,41 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/agenda/mostrarCalendario")
-	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado, @RequestParam(value="semanaOffset", required=false) Integer semanaOffset) {
+	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado, @RequestParam(value="corrimientoSemana", required=false) Integer corrimientoSemana) {
 		//Date fecha = new Date();
 		
 		//http://www.forosdelweb.com/f45/como-recorrer-fechas-374533/
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar calendar = Calendar.getInstance();
+		
+		Map<Date,List<Evento>> semana=new TreeMap<Date,List<Evento>>();
+		List<Evento> eventos;
+		
 		int diaSemana= calendar.get(Calendar.DAY_OF_WEEK);
 		int diasAlDomingo=diaSemana-1;
+		
 		calendar.roll(Calendar.DATE, -diasAlDomingo);
-		if (semanaOffset!=null)
-			{calendar.roll(Calendar.WEEK_OF_YEAR, semanaOffset);}
+		
+		if (corrimientoSemana!=null)
+			{calendar.roll(Calendar.WEEK_OF_YEAR, corrimientoSemana);}
 		else
-		{semanaOffset=0;}
-		Map<String,List<Evento>> semana=new TreeMap<String,List<Evento>>();
-		List<Evento> eventosDia;
+			{corrimientoSemana=0;}
 		
 		for(int i=0;i<7;i++){
-			eventosDia=eventoDAO.getByAutorAndDate(usuarioLogueado, calendar.getTime() );
-			for(Evento evento:eventosDia)
+			eventos=eventoDAO.getByAutorAndDate(usuarioLogueado, calendar.getTime() );
+			for(Evento evento:eventos)
 			{
 				evento.setUsuarioActual(usuarioLogueado);
 			}
-
-			String sFecha = sdf.format(calendar.getTime());
-			semana.put(sFecha, eventosDia);
+			
+			//String sFecha = sdf.format(calendar.getTime());
+			semana.put(calendar.getTime(), eventos);
 			calendar.add(Calendar.DATE, 1);
 		}
-		String sFechaHoy=sdf.format(new Date());
+		//String sFechaHoy=sdf.format(new Date());
 		ModelAndView mv=new ModelAndView("/views/agenda/calendario.jsp","semana", semana);
-		mv.addObject("semanaOffset", semanaOffset);
-		mv.addObject("sFechaHoy",sFechaHoy);
+		mv.addObject("corrimientoSemana", corrimientoSemana);
+		//mv.addObject("sFechaHoy",sFechaHoy);
 		return mv;
 	}
 }

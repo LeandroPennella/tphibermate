@@ -109,10 +109,10 @@ ALTER TABLE Contrasenias ADD FOREIGN KEY (usuario_id) REFERENCES Usuarios(idUsua
 -- Populate Tables ----------------------------------------------------------------------------------------------
 
 INSERT INTO Usuarios (nombre,apellido,nombreUsuario,idioma) VALUES 
-	('pepe','argento','pepea','es_AR'),
-	('uncle','tom','uncletom','en_US'),
-	('juan','alvarez','juana','en_US'),
-	('pablo','gimenez','pablog','en_US');
+	('pepe','argento','pepea','es'),
+	('uncle','tom','uncletom','en'),
+	('juan','alvarez','juana','en'),
+	('pablo','gimenez','pablog','en');
 	
 INSERT INTO Contrasenias (usuario_id ,valor) VALUES 
 	('1','elpepe'),
