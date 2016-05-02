@@ -30,6 +30,8 @@
 </head>
 <body>
 	<jsp:include page="master_menu.jsp"></jsp:include>
+
+
 	<div style="  border: 1px solid #CCC;
 		  background-color: #E0E0E0;
 		  padding: .5em; height:20px;">
@@ -37,11 +39,17 @@
 		<div style="float: left;"><a href='<c:url value="/agenda/mostrarCalendario.do?corrimientoSemana=${corrimientoSemana-1}"/>'><</a></div>
 		<div style="float: right;"><a href='<c:url value="/agenda/mostrarCalendario.do?corrimientoSemana=${corrimientoSemana+1}"/>'>></a></div>
 	</div>
+	
+<jsp:useBean id="now" class="java.util.Date" scope="page" />
+
 	<c:forEach var="dia" items="${semana}">
-		<c:set var="diaFecha"  value="${dia.key}"></c:set>
+		<%-- <c:set var="diaFecha"  value="${dia.key}"></c:set>--%>
+		<fmt:formatDate value="${dia.key}" pattern="dd/MM/yyyy"  var="diaFecha"/>
 		<c:set var="eventosDia"  value="${dia.value}"></c:set>
 		<c:set var="claseDia" value="nada"></c:set>
-		<c:if test="${diaFechas==FechaHoy}" >
+		<%-- <c:set var="diaHoy"  value="${now}" ></c:set>--%>
+		<fmt:formatDate value="${now}" pattern="dd/MM/yyyy" var="diaHoy" />
+		<c:if test="${diaFecha==diaHoy}" >
 			<c:set var="claseDia" value="hoy"></c:set>
 		</c:if>
 		<div class="dia ${claseDia}">
@@ -49,10 +57,14 @@
 			<div class="headerDia">
 				<%-- <c:set var="diaFechaCorta" value="${fn:substring(diaFecha, 0, 5)}" />
 				${diaFechaCorta}
-				--%>
 				<fmt:formatDate type="date" pattern="dd/MM/yyyy" value="${diaFecha}" />
+				--%>
+				${diaFecha}
+				
 			</div>
-			
+				
+				
+				
 			<c:forEach var="evento" items="${eventosDia}">
 				<c:set var="usuarioActual" value="${usuarioLogueado}"/>
 				<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
@@ -65,5 +77,6 @@
 			</c:forEach>
 		</div>
 	</c:forEach>
+				
 </body>
 </html>
