@@ -172,7 +172,9 @@
 											<button type="submit" class="btn btn-primary"><fmt:message key="evento.label.guardar" /></button>
 											
 											<a class="btn" href="<c:url value='/agenda/mostrarCalendario.do' />"><fmt:message key="evento.label.cancelar" /></a>
-											<a class="btn btn-cancel" href="<c:url value='/agenda/eliminarReunion.do?idEvento=${reunionForm.idEvento}' />"><fmt:message key="evento.label.eliminar" /></a>
+											<c:if test='${reunionForm.idEvento!=null}'>
+												<a class="btn btn-cancel" href="<c:url value='/agenda/eliminarReunion.do?idEvento=${reunionForm.idEvento}' />"><fmt:message key="evento.label.eliminar" /></a>
+											</c:if>
 										</div>
 									</fieldset>
 								</form:form>
