@@ -57,6 +57,7 @@ public class AgendaController {
 		
 		for(int i=0;i<7;i++){
 			eventos=eventoDAO.getByAutorAndDate(usuarioLogueado, calendar.getTime() );
+			
 			for(Evento evento:eventos)
 			{
 				evento.setUsuarioActual(usuarioLogueado);

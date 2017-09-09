@@ -7,6 +7,7 @@ public class EventoForm {
 	private String fecha;
 	private String horaInicio;
 	private String horaFin;
+	private String duracion;
 
 	public String getIdEvento() {
 		return idEvento;
@@ -37,5 +38,11 @@ public class EventoForm {
 	}
 	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
+	}
+	public String getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(String duracion) {
+		this.duracion = duracion;
 	}
 }

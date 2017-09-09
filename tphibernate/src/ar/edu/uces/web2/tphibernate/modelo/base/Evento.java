@@ -10,6 +10,9 @@ public class Evento {
 	private Date fecha;
 	private String horaInicio;
 	private String horaFin;
+//	private int duracion;
+	
+
 
 	private Usuario autor;
 	private Usuario usuarioActual;
@@ -48,12 +51,23 @@ public class Evento {
 	public void setHoraInicio(String horaInicio) {
 		this.horaInicio = horaInicio;
 	}
+	
+	
 	public String getHoraFin() {
 		return horaFin;
 	}
 	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
 	}
+	
+	
+//	public int getDuracion() {
+//		return duracion;
+//	}
+//	public void setDuracion(int duracion) {
+//		this.duracion = duracion;
+//	}
+	
 	public Usuario getAutor() {
 		return autor;
 	}
