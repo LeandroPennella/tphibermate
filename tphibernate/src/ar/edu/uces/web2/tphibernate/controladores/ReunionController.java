@@ -128,10 +128,18 @@ public class ReunionController {
 				int idConfirmacion=-1;
 				for(Invitacion invitacion:invitacionesHechas) 			
 				{
-					if ((invitacion.getUsuario().getId()==usuario.getId()))
-					{
+					//TODO: Revisar
+					
+					/*
+					 
+					if ((invitacion.getUsuario().getId()==usuario.getId())){
 						idConfirmacion=idConfirmacion=invitacion.getAceptado();
 					}
+					*/
+					
+					if ((invitacion.getUsuario().getId()!=usuario.getId())){
+ 						idConfirmacion=-1;		
+ 					} else {idConfirmacion=invitacion.getAceptado();}
 				}
 				mapaUsuariosMasConfirmacion.put(usuario, idConfirmacion);
 				

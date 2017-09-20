@@ -15,7 +15,7 @@
     </head>
     
     <body>
-    
+    ajax
     	<jsp:include page="../agenda/master_menu.jsp"></jsp:include>
     
         <div class="container-fluid">
