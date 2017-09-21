@@ -8,10 +8,10 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+//import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 import ar.edu.uces.web2.tphibernate.modelo.base.Tarea;
-import ar.edu.uces.web2.tphibernate.modelo.form.UsuarioAutenticacionForm;
+//import ar.edu.uces.web2.tphibernate.modelo.form.UsuarioAutenticacionForm;
 
 @Component
 public class TareaValidator implements Validator{ //TODO: heredar de EventoFormValidator

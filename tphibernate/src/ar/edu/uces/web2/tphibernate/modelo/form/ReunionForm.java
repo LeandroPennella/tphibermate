@@ -10,7 +10,7 @@ import java.util.TreeMap;
 import ar.edu.uces.web2.tphibernate.modelo.base.Invitacion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
-import ar.edu.uces.web2.tphibernate.modelo.base.UsuarioInvitado;
+//import ar.edu.uces.web2.tphibernate.modelo.base.UsuarioInvitado;
 
 public class ReunionForm extends EventoForm {
 

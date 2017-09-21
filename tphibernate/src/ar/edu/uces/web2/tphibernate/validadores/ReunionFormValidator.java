@@ -1,20 +1,21 @@
 package ar.edu.uces.web2.tphibernate.validadores;
-
+/*
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
+*/
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-
+/*
 import ar.edu.uces.web2.tphibernate.modelo.base.Invitacion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
+*/
 import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
 
 @Component
@@ -30,7 +31,7 @@ public class ReunionFormValidator extends EventoFormValidator implements Validat
 	@Override
 	public void validate(Object object, Errors errors) {
 
-		ReunionForm reunionForm= (ReunionForm) object;
+		//ReunionForm reunionForm= (ReunionForm) object;
 		/*
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "evento.error.tituloVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fecha", "evento.error.fechaVacio");	//TODO: como no solaparlo con type mismatch

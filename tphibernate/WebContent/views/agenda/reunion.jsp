@@ -126,7 +126,7 @@
 												<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
 												<div class="controls">
 												<table>
-												<tr><th>Usuario</th><th>Estado</th></tr>
+													<tr><th>Usuario</th><th>Estado</th></tr>
 													<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
 														<tr>
 															<td>${invitacion.usuario.nombre} </td>
@@ -137,7 +137,7 @@
 															</td>
 														</tr>
 													</c:forEach>
-													</tr>
+													<%-- </tr>  --%>
 												</table>
 												</div>
 											</div>

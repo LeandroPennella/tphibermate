@@ -1,7 +1,7 @@
 package ar.edu.uces.web2.tphibernate.modelo.form;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+//import java.util.LinkedHashMap;
+//import java.util.Map;
 
 public class UsuarioAutenticacionForm {
 	
