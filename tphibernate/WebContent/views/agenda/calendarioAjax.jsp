@@ -9,6 +9,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+
+
 	<jsp:include page="master_header.jsp"></jsp:include>
 	<style >
 		html,body,.container
@@ -22,7 +25,7 @@
 		.reunionNoConfirmado{background-color: yellow; border: 1px solid darkgrey;}
 		.reunionConfirmada{background-color: #16A765; border: 1px solid darkgrey;}
 		.reunionCancelada{background-color: red; border: 1px solid darkgrey;}
-		.dia{width:13%; float: left; height:100%; border: 1px solid darkgrey;}
+		.dia{width:13%; float: left; border: 1px solid darkgrey;}
 		.hoy{ background-color: lightgray;}
 		.headerDia{background-color: silver; text-align: center; font-weight: bold;}
 		.hora{height:20px;border: solid 1px gray;}
@@ -48,6 +51,9 @@
 		<c:forEach begin="0" end="48" varStatus="ihora">
 			<div class="hora">
 				Index: ${ihora.index}
+				<%-- (ihora.index)%2==0) --%>
+				<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
+				${indexPar}
 			</div>
 		</c:forEach>
 	</div>
@@ -68,9 +74,11 @@
 			
 			<!-- Horas ------------------------------------------------------------ -->
 			<c:forEach begin="0" end="48" varStatus="ihora">
-			<div class="hora">
-			Index: ${ihora.index}
-			</div>
+				<div class="hora">
+					Index: ${ihora.index}
+					<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
+					${indexPar}
+				</div>
 			</c:forEach>
 			<%-- --%>
 			<c:forEach var="evento" items="${eventosDia}">
