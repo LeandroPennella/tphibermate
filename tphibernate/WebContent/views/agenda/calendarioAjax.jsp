@@ -77,21 +77,36 @@
 				<div class="hora">
 					Index: ${ihora.index}
 					<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
+					
+					
+					
+					
+					<%-- --%>
+					<c:forEach var="evento" items="${eventosDia}">
+					<c:set var="minutosRenglon" value="ihora*30"/>
+					<c:set var="horarioRenglonHoras" value="(int)minutosrenglon/60"/>
+					<c:set var="horarioRenglonMinutos" value="minutosrenglon-(horarioRenglonHoras*60)"/>
+					<c:set var="horarioRenglon" value = "horarioRenglonHoras:horarioRenglonMinutos"/>
+					<c:if ${evento.getHoraInicio}==${ horarioRenglon}/>
+						<c:set var="usuarioActual" value="${usuarioLogueado}"/>
+						<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
+						<div class="${estadoEvento}">
+							<c:set var="sUrl" value="${(estadoEvento=='tarea')?'Tarea':'Reunion'}"></c:set>
+							<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${evento.id}"/>">
+								<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
+							</a>
+						</div>
+					</c:forEach>
+					<%-- --%>
+			
+			
+			
+					
+					
 					${indexPar}
 				</div>
 			</c:forEach>
-			<%-- --%>
-			<c:forEach var="evento" items="${eventosDia}">
-				<c:set var="usuarioActual" value="${usuarioLogueado}"/>
-				<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
-				<div class="${estadoEvento}">
-					<c:set var="sUrl" value="${(estadoEvento=='tarea')?'Tarea':'Reunion'}"></c:set>
-					<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${evento.id}"/>">
-						<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
-					</a>
-				</div>
-			</c:forEach>
-			<%-- --%>
+
 		</div>
 	</c:forEach>
 </body>
