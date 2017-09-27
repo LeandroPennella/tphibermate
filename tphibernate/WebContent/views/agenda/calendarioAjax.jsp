@@ -50,11 +50,15 @@
 		</div>
 		<c:forEach begin="0" end="48" varStatus="ihora">
 			<div class="hora">
-				Index: ${ihora.index}
+				<%-- Index: ${ihora.index}--%>
 				<%-- (ihora.index)%2==0) --%>
 				<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
-				${indexPar}
-			</div>
+				<%--${indexPar} --%>
+				<%-- <c:set var="horaRenglon" value="${Math.round(ihora.index/2)}"/>--%>
+				<fmt:formatNumber var="horaRenglon"  value="${(ihora.index) / 2}"  maxFractionDigits="0" /> 
+				<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2==0)?'30':'00')}"/>
+				${horaRenglon}
+				</div>
 		</c:forEach>
 	</div>
 	<!-- Dias ------------------------------------------------------------ -->
@@ -81,13 +85,13 @@
 					
 					
 					
-					<%-- --%>
+					<%----%> 
+					<fmt:formatNumber var="horaRenglon"  value="${(ihora.index) / 2}"  maxFractionDigits="0" /> 
+					<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2==0)?'30':'00')}"/>
+				
 					<c:forEach var="evento" items="${eventosDia}">
-					<c:set var="minutosRenglon" value="ihora*30"/>
-					<c:set var="horarioRenglonHoras" value="(int)minutosrenglon/60"/>
-					<c:set var="horarioRenglonMinutos" value="minutosrenglon-(horarioRenglonHoras*60)"/>
-					<c:set var="horarioRenglon" value = "horarioRenglonHoras:horarioRenglonMinutos"/>
-					<c:if ${evento.getHoraInicio}==${ horarioRenglon}/>
+
+					<c:if ${evento.getHoraInicio}==${horaRenglon}>
 						<c:set var="usuarioActual" value="${usuarioLogueado}"/>
 						<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
 						<div class="${estadoEvento}">
@@ -96,8 +100,9 @@
 								<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
 							</a>
 						</div>
+					</c:if>
 					</c:forEach>
-					<%-- --%>
+					<%----%>
 			
 			
 			
