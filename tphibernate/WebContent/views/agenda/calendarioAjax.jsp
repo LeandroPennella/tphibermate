@@ -81,17 +81,14 @@
 				<div class="hora">
 					Index: ${ihora.index}
 					<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
-					
-					
-					
-					
+
 					<%----%> 
 					<fmt:formatNumber var="horaRenglon"  value="${(ihora.index) / 2}"  maxFractionDigits="0" />
 					<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2==0)?'30':'00')}"/>
 				
 					<c:forEach var="evento" items="${eventosDia}">
-
-						<c:if ${evento.getHoraInicio}==${horaRenglon}>
+					<%--
+						<c:when test="${evento.getHoraInicio}==${horaRenglon}">
 						
 							<c:set var="usuarioActual" value="${usuarioLogueado}"/>
 							<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
@@ -102,14 +99,14 @@
 									<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
 								</a>
 							</div>
-						</c:if>
+	
+						sarasa<br/>
 						
+						</c:when>
+						${evento.${evento.getHoraInicio}}
+					--%>
+																
 					</c:forEach>
-					<%----%>
-			
-			
-			
-					
 					
 					${indexPar}
 				</div>
