@@ -67,12 +67,15 @@
 				
 			<c:forEach var="evento" items="${eventosDia}">
 				<c:set var="usuarioActual" value="${usuarioLogueado}"/>
-				<c:set var="duracion" value="${evento.getHoraFin}-${evento.getHoraIncio}"/>
+				<%--
+				<c:set var="duracion" value="${evento.getHoraFin()}-${evento.getHoraIncio()}"/> 
+				--%>
+				
 				<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
 				<div class="${estadoEvento}">
 					<c:set var="sUrl" value="${(estadoEvento=='tarea')?'Tarea':'Reunion'}"></c:set>
 					<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${evento.id}"/>">
-						<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo() - ${duracion}}
+						<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()} - duracion
 					</a>
 				</div>
 			</c:forEach>
