@@ -50,13 +50,13 @@
 		</div>
 		<c:forEach begin="0" end="48" varStatus="ihora">
 			<div class="hora">
-				<%-- Index: ${ihora.index}--%>
+				Ix: ${ihora.index} - 
 				<%-- (ihora.index)%2==0) --%>
 				<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
 				<%--${indexPar} --%>
 				<%-- <c:set var="horaRenglon" value="${Math.round(ihora.index/2)}"/>--%>
-				<fmt:formatNumber var="horaRenglon"  value="${(ihora.index) / 2}"  maxFractionDigits="0" /> 
-				<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2==0)?'30':'00')}"/>
+				<fmt:formatNumber var="horaRenglon"  value="${(ihora.index-0.2) / 2}"  maxFractionDigits="0" /> 
+				<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/>
 				${horaRenglon}
 				</div>
 		</c:forEach>
@@ -79,15 +79,20 @@
 			<!-- Horas ------------------------------------------------------------ -->
 			<c:forEach begin="0" end="48" varStatus="ihora">
 				<div class="hora">
-					Index: ${ihora.index}
+					<%-- IndexR: ${ihora.index} ${indexPar} --%>
 					<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
 
 					<%----%> 
-					<fmt:formatNumber var="horaRenglon"  value="${(ihora.index) / 2}"  maxFractionDigits="0" />
-					<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2==0)?'30':'00')}"/>
+					<fmt:formatNumber var="horaRenglon"  value="${(ihora.index-0.2) / 2}"  maxFractionDigits="0" /> 
+				<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/>
 				
 					<c:forEach var="evento" items="${eventosDia}">
-					<%--
+					hI:
+					${evento.getHoraInicio()} - 
+					
+					hR:
+					${horaRenglon}
+					
 						<c:when test="${evento.getHoraInicio}==${horaRenglon}">
 						
 							<c:set var="usuarioActual" value="${usuarioLogueado}"/>
@@ -103,12 +108,12 @@
 						sarasa<br/>
 						
 						</c:when>
-						${evento.${evento.getHoraInicio}}
-					--%>
+						
+					
 																
 					</c:forEach>
 					
-					${indexPar}
+					
 				</div>
 			</c:forEach>
 
