@@ -83,17 +83,29 @@
 					<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
 
 					<%----%> 
-					<fmt:formatNumber var="horaRenglon"  value="${(ihora.index-0.2) / 2}"  maxFractionDigits="0" /> 
-				<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/>
-				
+					<fmt:formatNumber var="horaRenglon"  value="${(ihora.index-0.2) / 2}"  maxFractionDigits="0" />
+					<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/>
+					<%-- <fmt:formatDate value="${horaRenglon}" pattern="h:m" var="horaRenglon" />--%>
+					<%-- <c:set var="horaInicio" value="${evento.getHoraInicio()}" />--%>
+					<fmt:formatDate value="${evento.getHoraInicio()}" pattern="H:m" var="horaInicio" />
+					<c:set var="strDate" value="${horaInicio}"/>
 					<c:forEach var="evento" items="${eventosDia}">
 					hI:
-					${evento.getHoraInicio()} - 
+					${strDate} - 
 					
 					hR:
 					${horaRenglon}
 					
-						<c:when test="${evento.getHoraInicio}==${horaRenglon}">
+				
+						
+						<c:set var="comp" value="${evento.getHoraInicio()==horaRenglon})" />
+						c:  
+						${comp} 
+						 |
+						 
+						 <c:choose>
+						 
+						<c:when test="${evento.getHoraInicio()}.equals(${horaRenglon})">
 						
 							<c:set var="usuarioActual" value="${usuarioLogueado}"/>
 							<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
@@ -108,7 +120,7 @@
 						sarasa<br/>
 						
 						</c:when>
-						
+						</c:choose>
 					
 																
 					</c:forEach>
