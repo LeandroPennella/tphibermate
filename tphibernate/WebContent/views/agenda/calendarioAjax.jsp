@@ -9,29 +9,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-
-
 	<jsp:include page="master_header.jsp"></jsp:include>
-	<style >
-		html,body,.container
-		{
-		    height:80%;
-		}
-		a:link{color:black;}
-		a:visited{color:black;}
-		.tarea{background-color: #4986E7; border: 1px solid darkgrey;}
-		.reunionAutor{background-color: #16A765; border: 1px solid darkgrey;}
-		.reunionNoConfirmado{background-color: yellow; border: 1px solid darkgrey;}
-		.reunionConfirmada{background-color: #16A765; border: 1px solid darkgrey;}
-		.reunionCancelada{background-color: red; border: 1px solid darkgrey;}
-		.dia{width:13%; float: left; border: 1px solid darkgrey;}
-		.hoy{ background-color: lightgray;}
-		.headerDia{background-color: silver; text-align: center; font-weight: bold;}
-		.hora{height:20px;border: solid 1px gray;}
-		.panelHoras{width:5%; float: left; }
-	</style>
-	
+	<link href='<c:url value="/views/ui/css/Calendario.css"/>' rel="stylesheet">
      <script src="../ui/js/jquery-ui-1.11.4.js"></script>
 	<title><fmt:message key='calendario.titulo'/></title>
 </head>
@@ -44,6 +23,9 @@
 		<div style="float: left;"><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset-1}"/>'><</a></div>
 		<div style="float: right;"><a href='<c:url value="/agenda/mostrarCalendario.do?semanaOffset=${semanaOffset+1}"/>'>></a></div>
 	</div>
+	
+	
+	
 	<div class="panelHoras">
 		<div class="headerDia">
 			Horas
@@ -61,6 +43,9 @@
 				</div>
 		</c:forEach>
 	</div>
+	
+	
+	
 	<!-- Dias ------------------------------------------------------------ -->
 	<c:forEach var="dia" items="${semana}">
 		<c:set var="diaFecha"  value="${dia.key}"></c:set>
@@ -82,46 +67,48 @@
 					<%-- IndexR: ${ihora.index} ${indexPar} --%>
 					<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
 
-					<%----%> 
+					 
 					<fmt:formatNumber var="horaRenglon"  value="${(ihora.index-0.2) / 2}"  maxFractionDigits="0" />
-					<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/>
+					<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/>					
 					<%-- <fmt:formatDate value="${horaRenglon}" pattern="h:m" var="horaRenglon" />--%>
+
+
+					<%--HoraEvento--%>
+
 					<%-- <c:set var="horaInicio" value="${evento.getHoraInicio()}" />--%>
 					<fmt:formatDate value="${evento.getHoraInicio()}" pattern="H:m" var="horaInicio" />
 					<c:set var="strDate" value="${horaInicio}"/>
 					<c:forEach var="evento" items="${eventosDia}">
+
 					hI:
-					${strDate} - 
+					<%-- ${strDate} ---%> 
+					${evento.getHoraInicio()}
+					>
+					${horaInicio}
 					
 					hR:
-					${horaRenglon}
-					
+					${horaRenglon}			
 				
-						
 						<c:set var="comp" value="${evento.getHoraInicio()==horaRenglon})" />
 						c:  
 						${comp} 
 						 |
 						 
-						 <c:choose>
-						 
-						<c:when test="${evento.getHoraInicio()}.equals(${horaRenglon})">
-						
-							<c:set var="usuarioActual" value="${usuarioLogueado}"/>
-							<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
+					 	<c:choose>						 
+							<c:when test="${evento.getHoraInicio()}.equals(${horaRenglon})">
 							
-							<div class="${estadoEvento}">
-								<c:set var="sUrl" value="${(estadoEvento=='tarea')?'Tarea':'Reunion'}"></c:set>
-								<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${evento.id}"/>">
-									<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
-								</a>
-							</div>
-	
-						sarasa<br/>
-						
-						</c:when>
-						</c:choose>
-					
+								<c:set var="usuarioActual" value="${usuarioLogueado}"/>
+								<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
+								
+								<div class="${estadoEvento}">
+									<c:set var="sUrl" value="${(estadoEvento=='tarea')?'Tarea':'Reunion'}"></c:set>
+									<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${evento.id}"/>">
+										<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
+									</a>
+								</div>
+							sarasa<br/>				
+							</c:when>
+						</c:choose>					
 																
 					</c:forEach>
 					
