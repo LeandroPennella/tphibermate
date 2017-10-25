@@ -67,18 +67,22 @@
 					<%-- IndexR: ${ihora.index} ${indexPar} --%>
 					<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
 
-					 
-					<fmt:formatNumber var="horaRenglon"  value="${(ihora.index-0.2) / 2}"  maxFractionDigits="0" />
-					<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/>					
 					
-					<%-- rompe al querer castear string a date --%>
-					<fmt:formatDate value="${horaRenglon}" pattern="h:m" var="horaRenglon" />
-
+					<%-- devuelve -0 --%>
+					
+					 
+					<fmt:formatNumber var="horaRenglon1"  value="${(ihora.index-0.2) / 2}"  maxFractionDigits="0" />
+					<c:set var="horaRenglon2" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/>					
+					
+					<%-- rompe al querer castear string a date por el -0 --%>
+					<%-- <fmt:formatDate value="${horaRenglon}"  pattern="h:m" var="horaRenglon" />--%>					      			      
+			      	<fmt:parseDate value = "${horaRenglon}" var = "horaRenglon" pattern = "dd-MM-yyyy" />
+					
 
 
 
 					<%--HoraEvento--%>
-					2 + 
+					5 + 
 					
 					<%--
 					 * averiguar que tipo trae evento.getHoraInicio
@@ -96,7 +100,7 @@
 					>
 					${horaInicioV}
 					
-					| hR:
+					| hR1:
 					${horaRenglon}			
 				
 						<c:set var="comp" value="${evento.getHoraInicio()==horaRenglon})" />
