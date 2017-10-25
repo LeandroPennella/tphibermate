@@ -28,17 +28,27 @@
 	
 	<div class="panelHoras">
 		<div class="headerDia">
-			Horas
+			Horas > 22
 		</div>
-		<c:forEach begin="0" end="48" varStatus="ihora">
+		<c:forEach begin="0" end="47" varStatus="ihora">
 			<div class="hora">
-				Ix: ${ihora.index} - 
-				<%-- (ihora.index)%2==0) --%>
-				<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
-				<%--${indexPar} --%>
+				Ix: ${ihora.index} >
+				
 				<%-- <c:set var="horaRenglon" value="${Math.round(ihora.index/2)}"/>--%>
-				<fmt:formatNumber var="horaRenglon"  value="${(ihora.index-0.2) / 2}"  maxFractionDigits="0" /> 
-				<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/>
+				<fmt:formatNumber var="horaRenglon"  value="${(ihora.index) / 2}"  />
+		      	hr1: ${horaRenglon} >
+		      	<c:set var = "horaRenglon" value = "${fn:substringBefore(horaRenglon, '.')}" />
+				hr2: ${horaRenglon} >
+<%-- 				<fmt:formatNumber value="${horaRenglon}" var="horaRenglon" maxIntegerDigits="3"/>  --%>
+				<c:set var="StringFechaRenglon" value=" "/>
+				
+				<c:set var="horaRenglon" value="${StringFechaRenglon.concat(horaRenglon)}" />
+ 				<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/> 
+ 				
+				
+				<%-- <fmt:formatDate value="${horaRenglon}"  pattern="h:m" var="horaRenglon" />--%>					      			      
+<%--  					 <fmt:parseDate value = "${horaRenglon}" var = "horaRenglon" pattern = "yyyy-MM-dd HH:mm" />    --%>
+				
 				${horaRenglon}
 				</div>
 		</c:forEach>
@@ -54,6 +64,8 @@
 		<c:if test="${sFechaHoy==diaFecha}" >
 			<c:set var="claseDia" value="hoy"></c:set>
 		</c:if>
+		
+		<!-- Dia ------------------------------------------------------------ -->
 		<div class="dia ${claseDia}">
 			
 			<div class="headerDia">
@@ -64,48 +76,44 @@
 			<!-- Horas ------------------------------------------------------------ -->
 			<c:forEach begin="0" end="48" varStatus="ihora">
 				<div class="hora">
-					<%-- IndexR: ${ihora.index} ${indexPar} --%>
-					<c:set var="indexPar" value="${((ihora.index)%2==0)?'+':'-'}"/> 
-
+				   IxD: ${ihora.index} >
 					
+					  
+									
 					<%-- devuelve -0 --%>
+				 
+<%-- 					<fmt:formatNumber var="horaRenglon"  value="${(ihora.index) / 2}"  maxFractionDigits="0" /> --%>
 					
-					 
-					<fmt:formatNumber var="horaRenglon1"  value="${(ihora.index-0.2) / 2}"  maxFractionDigits="0" />
-					<c:set var="horaRenglon2" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/>					
-					
-					<%-- rompe al querer castear string a date por el -0 --%>
+					<%-- <c:set var="horaRenglon2" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/> --%>				
+
+					<%-- rompe al querer castear string a date por el -0 --%>	
 					<%-- <fmt:formatDate value="${horaRenglon}"  pattern="h:m" var="horaRenglon" />--%>					      			      
-			      	<fmt:parseDate value = "${horaRenglon}" var = "horaRenglon" pattern = "dd-MM-yyyy" />
-					
-
-
+					<%-- <fmt:parseDate value = "${horaRenglon}" var = "horaRenglon" pattern = "dd-MM-yyyy" /> --%>
+	
 
 					<%--HoraEvento--%>
-					5 + 
+					
 					
 					<%--
 					 * averiguar que tipo trae evento.getHoraInicio
 					 * castearlo a string 
 					 --%>
 					 
-					<c:set var="horaInicioV" value="${evento.getHoraInicio()}" />	
+					<c:set var="horaInicioV" value="${evento.getHoraInicio()}" />
+					<%--	
 					<fmt:formatDate value="${evento.getHoraInicio()}" pattern="H:m" var="horaInicio" />
 					<c:set var="strDate" value="${horaInicio}"/>
+					 --%>
+					
 					<c:forEach var="evento" items="${eventosDia}">
 
-					hI:
-					<%-- ${strDate} ---%> 
-					${evento.getHoraInicio()}
-					>
-					${horaInicioV}
-					
-					| hR1:
-					${horaRenglon}			
+						
+						<%-- ${strDate} ---%>
+						  hI:${evento.getHoraInicio()} > ${horaInicioV}
+						| hR1: 	${horaRenglon}			
 				
 						<c:set var="comp" value="${evento.getHoraInicio()==horaRenglon})" />
-						| c:  
-						${comp} 
+						| c:  ${comp} 
 						
 						 
 					 	<c:choose>						 
