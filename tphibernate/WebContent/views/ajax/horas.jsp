@@ -10,6 +10,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+table, tr, td {
+border: solid 1px black;
+border-collapse: collapse;
+}
+</style>
 </head>
 <body>
 
@@ -19,27 +25,11 @@
 
 
 
-<c:forEach begin="0" end="47" varStatus="ihora">
-			<div class="hora">
-				Ix: ${ihora.index} >
-				
-				<%-- <c:set var="horaRenglon" value="${Math.round(ihora.index/2)}"/>--%>
-				<fmt:formatNumber var="horaRenglon"  value="${(ihora.index) / 2}"  />
-		      	hr1: ${horaRenglon} >
-		      	<c:set var = "horaRenglon" value = "${fn:substringBefore(horaRenglon, '.')}" />
-				hr2: ${horaRenglon} >
-<%-- 				<fmt:formatNumber value="${horaRenglon}" var="horaRenglon" maxIntegerDigits="3"/>  --%>
-				<c:set var="StringFechaRenglon" value=" "/>
-				
-				<c:set var="horaRenglon" value="${StringFechaRenglon.concat(horaRenglon)}" />
- 				<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/> 
- 				
-				
-				<%-- <fmt:formatDate value="${horaRenglon}"  pattern="h:m" var="horaRenglon" />--%>					      			      
-<%--  					 <fmt:parseDate value = "${horaRenglon}" var = "horaRenglon" pattern = "yyyy-MM-dd HH:mm" />    --%>
-				
-				${horaRenglon}
-				</div>
-		</c:forEach>
+
+
+<c:forEach items="${horas}" var="hora">
+    ${hora}<br>
+</c:forEach>
+
 </body>
 </html>
