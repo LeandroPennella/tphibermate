@@ -66,18 +66,20 @@ public class CalendarioController {
 			calendar.add(Calendar.DATE, 1);
 		}
 		String sFechaHoy=sdf.format(new Date());
-		
+		/*
 		List<String> horas = new ArrayList<String>();
 		horas.add("0:00");
 		horas.add("0:30");
 		horas.add("1:00");
-	    
-		//"/views/agenda/calendarioAjax.jsp"
-		ModelAndView mv=new ModelAndView("/views/ajax/horas.jsp","semana", semana);
+	    */
+		ModelAndView mv=new ModelAndView("/views/agenda/calendarioAjax.jsp","semana", semana);
 		mv.addObject("semanaOffset", semanaOffset);
 		mv.addObject("sFechaHoy",sFechaHoy);
-		mv.addObject("horas",horas);
+		//mv.addObject("horas",horas);
 		return mv;
 	}
+	
+
+	
 }
 
