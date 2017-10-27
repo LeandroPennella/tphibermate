@@ -66,16 +66,62 @@ public class CalendarioController {
 			calendar.add(Calendar.DATE, 1);
 		}
 		String sFechaHoy=sdf.format(new Date());
-		/*
+
+
 		List<String> horas = new ArrayList<String>();
 		horas.add("0:00");
 		horas.add("0:30");
 		horas.add("1:00");
-	    */
+		horas.add("1:30");
+		horas.add("2:00");
+		horas.add("2:30");
+		horas.add("3:00");
+		horas.add("3:30");
+		horas.add("4:00");
+		horas.add("4:30");
+		horas.add("5:00");
+		horas.add("5:30");
+		horas.add("6:00");
+		horas.add("6:30");
+		horas.add("7:00");
+		horas.add("7:30");
+		horas.add("8:00");
+		horas.add("8:30");
+		horas.add("9:00");
+		horas.add("9:30");
+		horas.add("10:00");
+		horas.add("10:30");
+		horas.add("11:00");
+		horas.add("11:30");
+		horas.add("12:00");
+		horas.add("12:30");
+		horas.add("13:00");
+		horas.add("13:30");
+		horas.add("14:00");
+		horas.add("14:30");
+		horas.add("15:00");
+		horas.add("15:30");
+		horas.add("16:00");
+		horas.add("16:30");
+		horas.add("17:00");
+		horas.add("17:30");
+		horas.add("18:00");
+		horas.add("18:30");
+		horas.add("19:00");
+		horas.add("19:30");
+		horas.add("20:00");
+		horas.add("20:30");
+		horas.add("21:00");
+		horas.add("21:30");
+		horas.add("22:00");
+		horas.add("22:30");
+		horas.add("23:00");
+		horas.add("23:30");
+		
 		ModelAndView mv=new ModelAndView("/views/agenda/calendarioAjax.jsp","semana", semana);
 		mv.addObject("semanaOffset", semanaOffset);
 		mv.addObject("sFechaHoy",sFechaHoy);
-		//mv.addObject("horas",horas);
+		mv.addObject("horas",horas);
 		return mv;
 	}
 	

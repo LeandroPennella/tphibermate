@@ -30,6 +30,9 @@
 		<div class="headerDia">
 			Horas > 22
 		</div>
+		<c:forEach items="${horas}" var="hora">
+    	<div class="hora">${hora}</div>
+		</c:forEach>
 		<c:forEach begin="0" end="47" varStatus="ihora">
 			<div class="hora">
 				Ix: ${ihora.index} >
