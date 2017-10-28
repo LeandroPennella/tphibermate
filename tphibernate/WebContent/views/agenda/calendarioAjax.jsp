@@ -28,33 +28,14 @@
 	
 	<div class="panelHoras">
 		<div class="headerDia">
-			Horas > 22
+			Horas > 29
 		</div>
+		
 		<c:forEach items="${horas}" var="hora">
-    	<div class="hora">${hora}</div>
+    		<div class="hora">${hora}</div>
 		</c:forEach>
-		<c:forEach begin="0" end="47" varStatus="ihora">
-			<div class="hora">
-				Ix: ${ihora.index} >
-				
-				<%-- <c:set var="horaRenglon" value="${Math.round(ihora.index/2)}"/>--%>
-				<fmt:formatNumber var="horaRenglon"  value="${(ihora.index) / 2}"  />
-		      	hr1: ${horaRenglon} >
-		      	<c:set var = "horaRenglon" value = "${fn:substringBefore(horaRenglon, '.')}" />
-				hr2: ${horaRenglon} >
-<%-- 				<fmt:formatNumber value="${horaRenglon}" var="horaRenglon" maxIntegerDigits="3"/>  --%>
-				<c:set var="StringFechaRenglon" value=" "/>
-				
-				<c:set var="horaRenglon" value="${StringFechaRenglon.concat(horaRenglon)}" />
- 				<c:set var="horaRenglon" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/> 
- 				
-				
-				<%-- <fmt:formatDate value="${horaRenglon}"  pattern="h:m" var="horaRenglon" />--%>					      			      
-<%--  					 <fmt:parseDate value = "${horaRenglon}" var = "horaRenglon" pattern = "yyyy-MM-dd HH:mm" />    --%>
-				
-				${horaRenglon}
-				</div>
-		</c:forEach>
+		
+
 	</div>
 	
 	
@@ -77,45 +58,19 @@
 			</div>
 			
 			<!-- Horas ------------------------------------------------------------ -->
-			<c:forEach begin="0" end="48" varStatus="ihora">
+			<c:forEach items="${horas}" var="hora">
 				<div class="hora">
-				   IxD: ${ihora.index} >
-					
-					  
-									
-					<%-- devuelve -0 --%>
-				 
-<%-- 					<fmt:formatNumber var="horaRenglon"  value="${(ihora.index) / 2}"  maxFractionDigits="0" /> --%>
-					
-					<%-- <c:set var="horaRenglon2" value="${horaRenglon.concat(':').concat((ihora.index%2!=0)?'30':'00')}"/> --%>				
-
-					<%-- rompe al querer castear string a date por el -0 --%>	
-					<%-- <fmt:formatDate value="${horaRenglon}"  pattern="h:m" var="horaRenglon" />--%>					      			      
-					<%-- <fmt:parseDate value = "${horaRenglon}" var = "horaRenglon" pattern = "dd-MM-yyyy" /> --%>
-	
-
-					<%--HoraEvento--%>
-					
-					
-					<%--
-					 * averiguar que tipo trae evento.getHoraInicio
-					 * castearlo a string 
-					 --%>
 					 
-					<c:set var="horaInicioV" value="${evento.getHoraInicio()}" />
-					<%--	
-					<fmt:formatDate value="${evento.getHoraInicio()}" pattern="H:m" var="horaInicio" />
-					<c:set var="strDate" value="${horaInicio}"/>
-					 --%>
-					
+					<c:set var="horaInicio" value="${evento.getHoraInicio()}" />
+
 					<c:forEach var="evento" items="${eventosDia}">
 
 						
 						<%-- ${strDate} ---%>
-						  hI:${evento.getHoraInicio()} > ${horaInicioV}
-						| hR1: 	${horaRenglon}			
+						  hI:${evento.getHoraInicio()} > ${horaInicio}
+						| hR: 	${hora}			
 				
-						<c:set var="comp" value="${evento.getHoraInicio()==horaRenglon})" />
+						<c:set var="comp" value="${evento.getHoraInicio()==hora})" />
 						| c:  ${comp} 
 						
 						 
