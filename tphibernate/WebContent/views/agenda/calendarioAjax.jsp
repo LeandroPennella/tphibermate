@@ -28,7 +28,7 @@
 	
 	<div class="panelHoras">
 		<div class="headerDia">
-			Horas > 29
+			Horas > 33
 		</div>
 		
 		<c:forEach items="${horas}" var="hora">
@@ -65,17 +65,13 @@
 
 					<c:forEach var="evento" items="${eventosDia}">
 
-						
-						<%-- ${strDate} ---%>
-						  hI:${evento.getHoraInicio()} > ${horaInicio}
-						| hR: 	${hora}			
+	
 				
-						<c:set var="comp" value="${evento.getHoraInicio()==hora})" />
-						| c:  ${comp} 
-						
+						<c:set var="comp" value="${evento.getHoraInicio()==hora}" />
+			
 						 
 					 	<c:choose>						 
-							<c:when test="${evento.getHoraInicio()}.equals(${horaRenglon})">
+							<c:when test="${comp}">
 							
 								<c:set var="usuarioActual" value="${usuarioLogueado}"/>
 								<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
@@ -85,8 +81,7 @@
 									<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${evento.id}"/>">
 										<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
 									</a>
-								</div>
-							sarasa<br/>				
+								</div>				
 							</c:when>
 						</c:choose>					
 																
