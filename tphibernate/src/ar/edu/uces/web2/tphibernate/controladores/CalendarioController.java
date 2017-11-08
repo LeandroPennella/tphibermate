@@ -37,7 +37,7 @@ public class CalendarioController {
 		this.eventoDAO = eventoDAO;
 	}
 	
-	@RequestMapping(value = "/agenda/mostrarCalendarioAjax")
+	@RequestMapping(value = "/calendario/mostrarCalendarioAjax")
 	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado, @RequestParam(value="semanaOffset", required=false) Integer semanaOffset) {
 		//Date fecha = new Date();
 		
@@ -118,7 +118,7 @@ public class CalendarioController {
 		horas.add("23:00");
 		horas.add("23:30");
 		
-		ModelAndView mv=new ModelAndView("/views/agenda/calendarioAjax.jsp","semana", semana);
+		ModelAndView mv=new ModelAndView("/views/calendario/calendarioAjax.jsp","semana", semana);
 		mv.addObject("semanaOffset", semanaOffset);
 		mv.addObject("sFechaHoy",sFechaHoy);
 		mv.addObject("horas",horas);

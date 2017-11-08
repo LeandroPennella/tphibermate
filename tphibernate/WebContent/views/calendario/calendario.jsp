@@ -36,8 +36,8 @@
 		  background-color: #E0E0E0;
 		  padding: .5em; height:20px;">
 
-		<div style="float: left;"><a href='<c:url value="/agenda/mostrarCalendario.do?corrimientoSemana=${corrimientoSemana-1}"/>'><</a></div>
-		<div style="float: right;"><a href='<c:url value="/agenda/mostrarCalendario.do?corrimientoSemana=${corrimientoSemana+1}"/>'>></a></div>
+		<div style="float: left;"><a href='<c:url value="/calendario/mostrarCalendario.do?corrimientoSemana=${corrimientoSemana-1}"/>'><</a></div>
+		<div style="float: right;"><a href='<c:url value="/calendario/mostrarCalendario.do?corrimientoSemana=${corrimientoSemana+1}"/>'>></a></div>
 	</div>
 	
 <jsp:useBean id="now" class="java.util.Date" scope="page" />
@@ -74,7 +74,7 @@
 				<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
 				<div class="${estadoEvento}">
 					<c:set var="sUrl" value="${(estadoEvento=='tarea')?'Tarea':'Reunion'}"></c:set>
-					<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${evento.id}"/>">
+					<a href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${evento.id}"/>">
 						<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()} - duracion
 					</a>
 				</div>

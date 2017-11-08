@@ -31,21 +31,21 @@
                      </ul>
                      <ul class="nav">
                          <li class="active">
-                             <a href="<c:url value="/agenda/mostrarCalendario.do" ></c:url>"><fmt:message key='calendario.titulo'/></a>
+                             <a href="<c:url value="/calendario/mostrarCalendario.do" ></c:url>"><fmt:message key='calendario.titulo'/></a>
                          </li>
                          <li class="dropdown">
                              <a href="#" data-toggle="dropdown" class="dropdown-toggle"><fmt:message key='menu.secciones'/><b class="caret"></b></a>
                              <ul class="dropdown-menu" id="menu1">
 
                                  <li>
-                                     <a href="<c:url value="/agenda/crearTarea.do" ></c:url>"><fmt:message key='tarea.tituloAgregar'/></a>
+                                     <a href="<c:url value="/calendario/crearTarea.do" ></c:url>"><fmt:message key='tarea.tituloAgregar'/></a>
                                  </li>
                                  <li>
-                                     <a href="<c:url value="/agenda/crearReunion.do" ></c:url>"><fmt:message key='reunion.tituloAgregar'/></a>
+                                     <a href="<c:url value="/calendario/crearReunion.do" ></c:url>"><fmt:message key='reunion.tituloAgregar'/></a>
                                  </li>
                                  <li class="divider"></li>
                                  <li>
-                                     <a href="<c:url value="/agenda/mostrarCalendario.do" ></c:url>"><fmt:message key='calendario.titulo'/></a>
+                                     <a href="<c:url value="/calendario/mostrarCalendario.do" ></c:url>"><fmt:message key='calendario.titulo'/></a>
                                  </li>
                              </ul>
                          </li>                         

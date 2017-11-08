@@ -40,8 +40,8 @@
 			<bean class="ar.edu.uces.web2.tphibernate.interceptores.interceptorLogin"></bean>		
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="/agenda/**"/>		
-			<bean class="ar.edu.uces.web2.tphibernate.interceptores.InterceptorAgenda"></bean>		
+			<mvc:mapping path="/calendario/**"/>		
+			<bean class="ar.edu.uces.web2.tphibernate.interceptores.InterceptorCalendario"></bean>		
 		</mvc:interceptor>
 	</mvc:interceptors>
 

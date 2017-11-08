@@ -31,10 +31,10 @@
 							<div class="span12">
 					        <c:choose>
 					            <c:when test='${reunionForm.estado=="reunionNoConfirmado"}'>
-									<c:url value="/agenda/modificarAsistenciaReunion.do" var="x"></c:url>
+									<c:url value="/calendario/modificarAsistenciaReunion.do" var="x"></c:url>
 								</c:when>
 								<c:otherwise>
-									<c:url value="/agenda/agregarReunion.do" var="x"></c:url>
+									<c:url value="/calendario/agregarReunion.do" var="x"></c:url>
 								</c:otherwise>
 							</c:choose>
 							<form:form method="POST" commandName="reunionForm" action="${x}" cssClass="form-horizontal" >
@@ -171,9 +171,9 @@
  										<div class="form-actions">
 											<button type="submit" class="btn btn-primary"><fmt:message key="evento.label.guardar" /></button>
 											
-											<a class="btn" href="<c:url value='/agenda/mostrarCalendario.do' />"><fmt:message key="evento.label.cancelar" /></a>
+											<a class="btn" href="<c:url value='/calendario/mostrarCalendario.do' />"><fmt:message key="evento.label.cancelar" /></a>
 											<c:if test='${reunionForm.idEvento!=null}'>
-												<a class="btn btn-cancel" href="<c:url value='/agenda/eliminarReunion.do?idEvento=${reunionForm.idEvento}' />"><fmt:message key="evento.label.eliminar" /></a>
+												<a class="btn btn-cancel" href="<c:url value='/calendario/eliminarReunion.do?idEvento=${reunionForm.idEvento}' />"><fmt:message key="evento.label.eliminar" /></a>
 											</c:if>
 										</div>
 									</fieldset>

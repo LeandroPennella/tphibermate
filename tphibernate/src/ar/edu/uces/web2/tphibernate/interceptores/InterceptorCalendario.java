@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 //intercepta la llegada al punto de inicio
 
-public class InterceptorAgenda implements HandlerInterceptor {
+public class InterceptorCalendario implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
 

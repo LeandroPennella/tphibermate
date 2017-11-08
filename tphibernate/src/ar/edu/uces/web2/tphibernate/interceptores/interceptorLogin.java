@@ -41,7 +41,7 @@ public class interceptorLogin implements HandlerInterceptor {
 		if ((session.getAttribute("usuarioLogueado")!=null))
 		{
 			// no pasar por el login
-			RequestDispatcher rd= request.getRequestDispatcher("/agenda/mostrarCalendario.do");
+			RequestDispatcher rd= request.getRequestDispatcher("/calendario/mostrarCalendario.do");
 			rd.forward(request, response);
 			return false;		
 		} else if ((cookieUsuario!=null)&&(cookieContraseña!=null)) { //existe en cookies
@@ -50,7 +50,7 @@ public class interceptorLogin implements HandlerInterceptor {
 			//persistir sesion
 			request.getSession().setAttribute("usuarioLogueado",usuario);
 			localeResolver.setLocale(request, response, new Locale(usuario.getIdioma()));
-			RequestDispatcher rd= request.getRequestDispatcher("/agenda/mostrarCalendario.do");
+			RequestDispatcher rd= request.getRequestDispatcher("/calendario/mostrarCalendario.do");
 			rd.forward(request, response);
 			return false;
 		}

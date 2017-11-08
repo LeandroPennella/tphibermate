@@ -34,7 +34,7 @@ public class AgendaController {
 		this.eventoDAO = eventoDAO;
 	}
 	
-	@RequestMapping(value = "/agenda/mostrarCalendario")
+	@RequestMapping(value = "/calendario/mostrarCalendario")
 	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado, @RequestParam(value="corrimientoSemana", required=false) Integer corrimientoSemana) {
 		//Date fecha = new Date();
 		
@@ -68,7 +68,7 @@ public class AgendaController {
 			calendar.add(Calendar.DATE, 1);
 		}
 		//String sFechaHoy=sdf.format(new Date());
-		ModelAndView mv=new ModelAndView("/views/agenda/calendario.jsp","semana", semana);
+		ModelAndView mv=new ModelAndView("/views/calendario/calendario.jsp","semana", semana);
 		mv.addObject("corrimientoSemana", corrimientoSemana);
 		//mv.addObject("sFechaHoy",sFechaHoy);
 		return mv;

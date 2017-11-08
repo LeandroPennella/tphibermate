@@ -71,7 +71,7 @@ public class ReunionController {
 	@Autowired
 	private EventoFormValidator eventoFormValidator; 
 	
-	@RequestMapping(value = "/agenda/crearReunion")
+	@RequestMapping(value = "/calendario/crearReunion")
 	public ModelAndView crear(@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {
 		
 		ReunionForm reunionForm=new ReunionForm();
@@ -85,11 +85,11 @@ public class ReunionController {
 		}
 		reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);					//todos los usuarios, todos con idConfirmacion -1 (no invitado)
 		reunionForm.setSalas(salaDAO.getAll());
-		ModelAndView mv=new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
+		ModelAndView mv=new ModelAndView("/views/calendario/reunion.jsp","reunionForm", reunionForm);
 		return mv;
 	}
 	
-	@RequestMapping(value = "/agenda/editarReunion")
+	@RequestMapping(value = "/calendario/editarReunion")
 	public ModelAndView editar(@RequestParam("idEvento")Long idReunion, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {		//viene del calendario con el id del evento a modificar
 
 		Reunion reunion=reunionDAO.get(idReunion);
@@ -150,10 +150,10 @@ public class ReunionController {
 		
 		
 		
-		return  new ModelAndView("/views/agenda/reunion.jsp","reunionForm",reunionForm);
+		return  new ModelAndView("/views/calendario/reunion.jsp","reunionForm",reunionForm);
 	}
 	
-	@RequestMapping(value = "/agenda/modificarAsistenciaReunion")
+	@RequestMapping(value = "/calendario/modificarAsistenciaReunion")
 	public ModelAndView modificarAsistencia(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado){
 	
 		if (!reunionForm.getIdEvento().isEmpty())  {
@@ -164,10 +164,10 @@ public class ReunionController {
 				return new ModelAndView("/views/index.jsp");
 			}
 		}
-		return new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
+		return new ModelAndView("/views/calendario/reunion.jsp","reunionForm", reunionForm);
 	}
 		
-	@RequestMapping(value = "/agenda/agregarReunion")
+	@RequestMapping(value = "/calendario/agregarReunion")
 	public ModelAndView save(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado ) {
 
 		this.eventoFormValidator.validate(reunionForm, result);
@@ -211,7 +211,7 @@ public class ReunionController {
 			}
 			reunionForm.setSalas(salaDAO.getAll());
 			reunionForm.setIdEvento(null);
-			return new ModelAndView("/views/agenda/reunion.jsp","reunionForm", reunionForm);
+			return new ModelAndView("/views/calendario/reunion.jsp","reunionForm", reunionForm);
 		} else {																							//no tiene errores
 			Reunion reunion;
 			if (!reunionForm.getIdEvento().isEmpty())  { //modificar
@@ -271,7 +271,7 @@ public class ReunionController {
 		}
 	}
 	
-	@RequestMapping(value = "/agenda/eliminarReunion")
+	@RequestMapping(value = "/calendario/eliminarReunion")
 	public ModelAndView delete(@RequestParam("idEvento")Integer idEvento){
 		Reunion reunion=reunionDAO.get(idEvento);
 		reunionDAO.delete(reunion);

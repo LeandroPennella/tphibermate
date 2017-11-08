@@ -29,7 +29,7 @@
 						</div>
 						<div class="block-content collapse in">
 							<div class="span12">
-								<c:url value="/agenda/agregarTarea.do" var="x"></c:url>
+								<c:url value="/calendario/agregarTarea.do" var="x"></c:url>
 								<form:form method="POST" commandName="tarea" action="${x}" cssClass="form-horizontal" >
 								
 									<fieldset>
@@ -95,10 +95,10 @@
 																				
 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary"><fmt:message key="evento.label.guardar" /></button>
-											<a class="btn" href="<c:url value='/agenda/mostrarCalendario.do' />"><fmt:message key="evento.label.cancelar" /></a>
+											<a class="btn" href="<c:url value='/calendario/mostrarCalendario.do' />"><fmt:message key="evento.label.cancelar" /></a>
 											
 											<c:if test='${tarea.idEvento!=null}'>
-												<a class="btn btn-cancel" href="<c:url value='/agenda/eliminarTarea.do?idEvento=${tarea.idEvento}' />"><fmt:message key="evento.label.eliminar" /></a>
+												<a class="btn btn-cancel" href="<c:url value='/calendario/eliminarTarea.do?idEvento=${tarea.idEvento}' />"><fmt:message key="evento.label.eliminar" /></a>
 											</c:if>
 											
 										</div>

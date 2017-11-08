@@ -32,12 +32,12 @@ public class TareaController {
 	@Autowired
 	private EventoFormValidator eventoFormValidator; 
 	
-	@RequestMapping(value = "/agenda/crearTarea")
+	@RequestMapping(value = "/calendario/crearTarea")
 	public ModelAndView crear() {
-		return new ModelAndView("/views/agenda/tarea.jsp", "tarea", new TareaForm());
+		return new ModelAndView("/views/calendario/tarea.jsp", "tarea", new TareaForm());
 	}
 	
-	@RequestMapping(value = "/agenda/editarTarea")
+	@RequestMapping(value = "/calendario/editarTarea")
 	public ModelAndView editar(@RequestParam("idEvento")Long idTarea) {
 		Tarea tarea=tareaDAO.get(idTarea);
 		TareaForm tareaForm=new TareaForm();
@@ -51,15 +51,15 @@ public class TareaController {
 		tareaForm.setHoraFin(tarea.getHoraFin());
 		tareaForm.setDescripcion(tarea.getDescripcion());
 		tareaForm.setDireccion(tarea.getDireccion());
-		return new ModelAndView("/views/agenda/tarea.jsp","tarea",tareaForm); 
+		return new ModelAndView("/views/calendario/tarea.jsp","tarea",tareaForm); 
 	}
 	
-	@RequestMapping(value = "/agenda/agregarTarea")
+	@RequestMapping(value = "/calendario/agregarTarea")
 	public ModelAndView save(@ModelAttribute("tarea") TareaForm tareaForm, BindingResult result, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {
 		
 		this.eventoFormValidator.validate(tareaForm, result);
 		if (result.hasErrors()) {
-			return new ModelAndView("/views/agenda/tarea.jsp","tarea", tareaForm);
+			return new ModelAndView("/views/calendario/tarea.jsp","tarea", tareaForm);
 		}
 		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
 		Date fecha=dateFormatter.parse(tareaForm.getFecha().toString(), new ParsePosition(0));	
@@ -81,7 +81,7 @@ public class TareaController {
 		return new ModelAndView("/views/index.jsp");
 	}
 	
-	@RequestMapping(value = "/agenda/eliminarTarea")
+	@RequestMapping(value = "/calendario/eliminarTarea")
 	public ModelAndView delete(@RequestParam("idEvento")Integer idEvento){
 		Tarea tarea=tareaDAO.get(idEvento);
 		tareaDAO.delete(tarea);
