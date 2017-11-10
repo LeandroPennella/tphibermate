@@ -41,11 +41,14 @@
 	
 	
 	<!-- Dias ------------------------------------------------------------ -->
-	<c:forEach var="dia" items="${semana}">
+	<%-- <c:forEach var="dia" items="${semana}">--%>
+	<c:forEach var="dia" items="${semanaDate}">
 		<c:set var="diaFecha"  value="${dia.key}"></c:set>
 		<c:set var="eventosDia"  value="${dia.value}"></c:set>
 		<c:set var="claseDia" value="nada"></c:set>
-		<c:if test="${sFechaHoy==diaFecha}" >
+
+		<%-- <c:if test="${sFechaHoy==diaFecha}" >--%>
+		<c:if test="${dFechaHoy==diaFecha}" >
 			<c:set var="claseDia" value="hoy"></c:set>
 		</c:if>
 		

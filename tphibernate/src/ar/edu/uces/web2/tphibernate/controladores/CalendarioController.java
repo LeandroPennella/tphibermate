@@ -69,8 +69,10 @@ public class CalendarioController {
 		
 		ModelAndView mv=new ModelAndView("/views/calendario/calendarioAjax.jsp");
 		mv.addObject("semana", getSemanaString(usuarioLogueado,  calendar,  sdf));
+		mv.addObject("semanaDate", getSemanaDate(usuarioLogueado,  calendar,  sdf));
 		mv.addObject("semanaOffset", semanaOffset);
 		mv.addObject("sFechaHoy",sFechaHoy);
+		mv.addObject("dFechaHoy",dFechaHoy);
 		mv.addObject("horas",getHorasDia());
 		return mv;
 	}
