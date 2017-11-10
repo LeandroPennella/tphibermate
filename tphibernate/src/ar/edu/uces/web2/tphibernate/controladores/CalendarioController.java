@@ -44,6 +44,8 @@ public class CalendarioController {
 		//http://www.forosdelweb.com/f45/como-recorrer-fechas-374533/
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar calendar = Calendar.getInstance();
+		
+		//semanaOffset
 		int diaSemana= calendar.get(Calendar.DAY_OF_WEEK);
 		int diasAlDomingo=diaSemana-1;
 		calendar.roll(Calendar.DATE, -diasAlDomingo);
@@ -51,24 +53,30 @@ public class CalendarioController {
 			{calendar.roll(Calendar.WEEK_OF_YEAR, semanaOffset);}
 		else
 		{semanaOffset=0;}
-		Map<String,List<Evento>> semana=new TreeMap<String,List<Evento>>();
-		List<Evento> eventosDia;
 		
-		for(int i=0;i<7;i++){
-			eventosDia=eventoDAO.getByAutorAndDate(usuarioLogueado, calendar.getTime() );
-			for(Evento evento:eventosDia)
-			{
-				evento.setUsuarioActual(usuarioLogueado);
-			}
 
-			String sFecha = sdf.format(calendar.getTime());
-			semana.put(sFecha, eventosDia);
-			calendar.add(Calendar.DATE, 1);
-		}
+		
+		
+		
+		
+		//fecha hoy
 		String sFechaHoy=sdf.format(new Date());
+		
+		Date dFechaHoy=new Date();
 
 
-		List<String> horas = new ArrayList<String>();
+		
+		
+		ModelAndView mv=new ModelAndView("/views/calendario/calendarioAjax.jsp");
+		mv.addObject("semana", getSemanaString(usuarioLogueado,  calendar,  sdf));
+		mv.addObject("semanaOffset", semanaOffset);
+		mv.addObject("sFechaHoy",sFechaHoy);
+		mv.addObject("horas",getHorasDia());
+		return mv;
+	}
+	
+	public List<String> getHorasDia() {
+		List<String> horas = new ArrayList<String>();	
 		horas.add("00:00");
 		horas.add("00:30");
 		horas.add("01:00");
@@ -117,15 +125,36 @@ public class CalendarioController {
 		horas.add("22:30");
 		horas.add("23:00");
 		horas.add("23:30");
+		return horas;
+	}
+	public Map<String,List<Evento>> getSemanaString(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf)
+	{
+		Map<String,List<Evento>> semana  =new TreeMap<String,List<Evento>>();
 		
-		ModelAndView mv=new ModelAndView("/views/calendario/calendarioAjax.jsp","semana", semana);
-		mv.addObject("semanaOffset", semanaOffset);
-		mv.addObject("sFechaHoy",sFechaHoy);
-		mv.addObject("horas",horas);
-		return mv;
+		List<Evento> eventosDia;
+		
+		for(int i=0;i<7;i++){
+			eventosDia=eventoDAO.getByAutorAndDate(usuarioLogueado, calendar.getTime() );
+			for(Evento evento:eventosDia)
+			{
+				evento.setUsuarioActual(usuarioLogueado);
+			}
+	
+			String sFecha = sdf.format(calendar.getTime());
+			semana.put(sFecha, eventosDia);
+			calendar.add(Calendar.DATE, 1);
+		}
+		return semana;
+	}
+	public Map<Date,List<Evento>> getSemanaDate(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf){
+
+		Map<Date,List<Evento>> semana = new TreeMap<Date,List<Evento>> (); 
+		
+		//
+		
+		return semana;
 	}
 	
-
 	
 }
 
