@@ -15,6 +15,8 @@
 	<title><fmt:message key='calendario.titulo'/></title>
 </head>
 <body>
+
+
 	<jsp:include page="master_menu.jsp"></jsp:include>
 	<div style="  border: 1px solid #CCC;
 		  background-color: #E0E0E0;
@@ -25,30 +27,34 @@
 	</div>
 	
 	
-	
+	<!-- Dias ------------------------------------------------------------ -->
 	<div class="panelHoras">
 		<div class="headerDia">
-			Horas > 33
+			Horas > 41
 		</div>
 		
 		<c:forEach items="${horas}" var="hora">
     		<div class="hora">${hora}</div>
-		</c:forEach>
-		
-
+		</c:forEach>	
 	</div>
 	
 	
 	
 	<!-- Dias ------------------------------------------------------------ -->
-	<%-- <c:forEach var="dia" items="${semana}">--%>
-	<c:forEach var="dia" items="${semanaDate}">
-		<c:set var="diaFecha"  value="${dia.key}"></c:set>
-		<c:set var="eventosDia"  value="${dia.value}"></c:set>
+	
+	 <c:forEach var="diaSemana" items="${semana}">
+	
+	<%-- <c:forEach var="diaSemana" items="${semanaDate}">--%>
+	
+		<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
+		<%-- <c:set var="diaFechaString"  value="${diaSemana.key}"></c:set>--%>
+		
+		<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
 		<c:set var="claseDia" value="nada"></c:set>
 
+		<!-- DiaHoy -->
 		<%-- <c:if test="${sFechaHoy==diaFecha}" >--%>
-		<c:if test="${dFechaHoy==diaFecha}" >
+		<c:if test="${sFechaHoy==diaFecha}" >
 			<c:set var="claseDia" value="hoy"></c:set>
 		</c:if>
 		
@@ -56,39 +62,34 @@
 		<div class="dia ${claseDia}">
 			
 			<div class="headerDia">
-				<c:set var="diaFechaCorta" value="${fn:substring(diaFecha, 0, 5)}" />
-				${diaFechaCorta}
+				<c:out value="${fn:substring(diaFecha, 0, 5)}" />
 			</div>
 			
 			<!-- Horas ------------------------------------------------------------ -->
-			<c:forEach items="${horas}" var="hora">
+			<c:forEach var="hora" items="${horas}" >
 				<div class="hora">
 					 
 					<c:set var="horaInicio" value="${evento.getHoraInicio()}" />
 
+					<!-- Eventos -->
 					<c:forEach var="evento" items="${eventosDia}">
-
-	
-				
-						<c:set var="comp" value="${evento.getHoraInicio()==hora}" />
-			
-						 
-					 	<c:choose>						 
-							<c:when test="${comp}">
+						
+						<!-- Evento -->
+						<jsp:include page="calendarioAjax_Evento.jsp">
 							
-								<c:set var="usuarioActual" value="${usuarioLogueado}"/>
-								<c:set var="estadoEvento" value="${evento.obtenerEstado(usuarioActual)}"/>
-								
-								<div class="${estadoEvento}">
-									<c:set var="sUrl" value="${(estadoEvento=='tarea')?'Tarea':'Reunion'}"></c:set>
-									<a href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${evento.id}"/>">
-										<b>${evento.getHoraInicio()} -  ${evento.getHoraFin()} </b>- ${evento.getTitulo()}
-									</a>
-								</div>				
-							</c:when>
-						</c:choose>					
-																
+							<jsp:param name="eventoHoraInicio" value ="${evento.getHoraInicio()}"/>
+							<jsp:param name="eventoHoraFin" value ="${evento.getHoraFin()}"/>
+							<jsp:param name="eventoTitulo" value ="${evento.getTitulo()}"/>
+							<jsp:param name="eventoEstadoUsuarioActual" value ="${evento.obtenerEstado(usuarioLogueado)}"/>
+							
+							<jsp:param name="estadoEvento" value ="${estadoEvento}"/>
+							
+							<jsp:param name="hora" value ="${hora}"/>
+							
+						</jsp:include>
+					
 					</c:forEach>
+					<!-- /Eventos -->
 					
 					
 				</div>
