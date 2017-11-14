@@ -1,4 +1,4 @@
-package ar.edu.uces.web2.tphibernate.modelo.base;
+	package ar.edu.uces.web2.tphibernate.modelo.base;
 
 import java.util.Date;
 
@@ -10,7 +10,10 @@ public class Evento {
 	private Date fecha;
 	private String horaInicio;
 	private String horaFin;
-//	private int duracion;
+
+	//TODO: buscar mapeo campo calculado hibernate hbm.xml
+	//https://www.adictosaltrabajo.com/tutoriales/eventosenhibernatei/
+	//private int minutosDuracion;
 	
 
 
@@ -60,10 +63,13 @@ public class Evento {
 		this.horaFin = horaFin;
 	}
 	
+	/*
+	public int getMinutosDuracion() {
+		minutosDuracion=
+		return minutosDuracion;
+	}
+	*/
 	
-//	public int getDuracion() {
-//		return duracion;
-//	}
 //	public void setDuracion(int duracion) {
 //		this.duracion = duracion;
 //	}

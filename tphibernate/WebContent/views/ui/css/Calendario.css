@@ -12,5 +12,5 @@
 		.dia{width:13%; float: left; border: 1px solid darkgrey;}
 		.hoy{ background-color: lightgray;}
 		.headerDia{background-color: silver; text-align: center; font-weight: bold;}
-		.hora{height:20px;border: solid 1px gray;}
+		.hora{height:21px;border: solid 1px gray;}
 		.panelHoras{width:5%; float: left; }

@@ -79,6 +79,7 @@
 							
 							<jsp:param name="eventoHoraInicio" value ="${evento.getHoraInicio()}"/>
 							<jsp:param name="eventoHoraFin" value ="${evento.getHoraFin()}"/>
+							
 							<jsp:param name="eventoTitulo" value ="${evento.getTitulo()}"/>
 							<jsp:param name="eventoEstadoUsuarioActual" value ="${evento.obtenerEstado(usuarioLogueado)}"/>
 							

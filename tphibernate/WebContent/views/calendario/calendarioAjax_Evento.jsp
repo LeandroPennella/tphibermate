@@ -30,7 +30,7 @@
 	
 	<c:set var="estadoEvento" value="${eventoEUA}"/>
 		
-		<div class="${estadoEvento}">
+		<div class="${estadoEvento}" >
 			<c:set var="sUrl" value="${(estadoEvento=='tarea')?'Tarea':'Reunion'}"></c:set>
 			<a href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>">
 				<b>${eventoHI} -  ${eventoHF} </b>- ${eventoT}
