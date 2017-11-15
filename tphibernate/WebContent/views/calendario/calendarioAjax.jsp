@@ -82,6 +82,7 @@
 						
 						<!-- Evento -->
 						<jsp:include page="calendarioAjax_Evento.jsp">
+							<jsp:param name="eventoID" value ="${evento.getId()}"/>
 							
 							<jsp:param name="eventoHoraInicio" value ="${evento.getHoraInicio()}"/>
 							<jsp:param name="eventoHoraFin" value ="${evento.getHoraFin()}"/>

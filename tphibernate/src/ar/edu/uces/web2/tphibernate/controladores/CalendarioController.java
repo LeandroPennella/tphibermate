@@ -45,14 +45,12 @@ public class CalendarioController {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar calendar = Calendar.getInstance();
 		
-		//semanaOffset
-		int diaSemana= calendar.get(Calendar.DAY_OF_WEEK);
-		int diasAlDomingo=diaSemana-1;
-		calendar.roll(Calendar.DATE, -diasAlDomingo);
-		if (semanaOffset!=null)
-			{calendar.roll(Calendar.WEEK_OF_YEAR, semanaOffset);}
-		else
-		{semanaOffset=0;}
+
+		int diasAlDomingo= (calendar.get(Calendar.DAY_OF_WEEK))-1;
+		//int diasAlDomingo=diaSemanaActual-1;
+		
+		//posicionar calendario en Domingo
+		posicionarCalendario (calendar, diasAlDomingo, semanaOffset);
 		
 
 		
@@ -61,20 +59,29 @@ public class CalendarioController {
 		
 		//fecha hoy
 		String sFechaHoy=sdf.format(new Date());
-		
 		Date dFechaHoy=new Date();
 
 
 		
 		
 		ModelAndView mv=new ModelAndView("/views/calendario/calendarioAjax.jsp");
-		mv.addObject("semana", getSemanaString(usuarioLogueado,  calendar,  sdf));
+		//mv.addObject("semana", getSemanaString(usuarioLogueado,  calendar,  sdf));
+		//posicionarCalendario(calendar, diasAlDomingo, semanaOffset);
 		mv.addObject("semanaDate", getSemanaDate(usuarioLogueado,  calendar,  sdf));
 		mv.addObject("semanaOffset", semanaOffset);
 		mv.addObject("sFechaHoy",sFechaHoy);
 		mv.addObject("dFechaHoy",dFechaHoy);
 		mv.addObject("horas",getHorasDia());
 		return mv;
+	}
+	
+	public void posicionarCalendario(Calendar calendar, int diasAlDomingo, Integer semanaOffset)
+	{
+		calendar.roll(Calendar.DATE, -diasAlDomingo);
+		if (semanaOffset!=null)
+			{calendar.roll(Calendar.WEEK_OF_YEAR, semanaOffset);}
+		else
+		{semanaOffset=0;}
 	}
 	
 	public List<String> getHorasDia() {
