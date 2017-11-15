@@ -152,7 +152,21 @@ public class CalendarioController {
 
 		Map<Date,List<Evento>> semana = new TreeMap<Date,List<Evento>> (); 
 		
-		//
+		List<Evento> eventosDia;
+		
+
+ 		for(int i=0;i<7;i++){
+			eventosDia=eventoDAO.getByAutorAndDate(usuarioLogueado, calendar.getTime() );
+			for(Evento evento:eventosDia)
+			{
+				evento.setUsuarioActual(usuarioLogueado);
+			}
+	
+			//String sFecha = sdf.format(calendar.getTime());
+			semana.put(calendar.getTime(), eventosDia);
+			calendar.add(Calendar.DATE, 1);
+		}
+		
 		
 		return semana;
 	}

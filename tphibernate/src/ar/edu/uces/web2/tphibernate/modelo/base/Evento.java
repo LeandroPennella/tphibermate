@@ -11,9 +11,9 @@ public class Evento {
 	private String horaInicio;
 	private String horaFin;
 
-	//TODO: buscar mapeo campo calculado hibernate hbm.xml
+	//TODO: buscar mapeo campo calculado transient hibernate hbm.xml
 	//https://www.adictosaltrabajo.com/tutoriales/eventosenhibernatei/
-	//private int minutosDuracion;
+	//transient private int minutosDuracion;
 	
 
 
@@ -63,12 +63,12 @@ public class Evento {
 		this.horaFin = horaFin;
 	}
 	
-	/*
+	
 	public int getMinutosDuracion() {
-		minutosDuracion=
+		int minutosDuracion=1;
 		return minutosDuracion;
 	}
-	*/
+	
 	
 //	public void setDuracion(int duracion) {
 //		this.duracion = duracion;

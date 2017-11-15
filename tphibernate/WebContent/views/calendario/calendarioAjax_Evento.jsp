@@ -13,6 +13,7 @@
 
 <c:set var="eventoHI" value="${param.eventoHoraInicio}"/>
 <c:set var="eventoHF" value="${param.eventoHoraFin}"/>
+
 <c:set var="eventoT" value="${param.eventoTitulo}"/>
 <c:set var="eventoEUA" value="${param.eventoEstadoUsuarioActual}"/>
 <c:set var="eventoId" value="${param.eventoID}"/>

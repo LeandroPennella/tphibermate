@@ -42,19 +42,22 @@
 	
 	<!-- Dias ------------------------------------------------------------ -->
 	
-	 <c:forEach var="diaSemana" items="${semana}">
-	
-	<%-- <c:forEach var="diaSemana" items="${semanaDate}">--%>
+	 <%-- <c:forEach var="diaSemana" items="${semana}">--%>
+	 <c:forEach var="diaSemana" items="${semanaDate}">
+	 
 	
 		<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
+		<fmt:formatDate value="${diaFecha}" var="diaFechaString" pattern="dd/MM/yyyy"/>
+		
 		<%-- <c:set var="diaFechaString"  value="${diaSemana.key}"></c:set>--%>
+	
 		
 		<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
 		<c:set var="claseDia" value="nada"></c:set>
 
 		<!-- DiaHoy -->
 		<%-- <c:if test="${sFechaHoy==diaFecha}" >--%>
-		<c:if test="${sFechaHoy==diaFecha}" >
+		<c:if test="${dFechaHoy==diaFecha}" >
 			<c:set var="claseDia" value="hoy"></c:set>
 		</c:if>
 		
@@ -62,12 +65,15 @@
 		<div class="dia ${claseDia}">
 			
 			<div class="headerDia">
-				<c:out value="${fn:substring(diaFecha, 0, 5)}" />
+				<c:out value="${fn:substring(diaFechaString, 0, 5)}" />
 			</div>
 			
 			<!-- Horas ------------------------------------------------------------ -->
 			<c:forEach var="hora" items="${horas}" >
-				<div class="hora">
+			
+			<c:set var="altoEvento" value="${evento.getMinutosDuracion()*21}" />
+			emd: ${evento.getMinutosDuracion()}
+				<div class="hora" style="height:21px;">
 					 
 					<c:set var="horaInicio" value="${evento.getHoraInicio()}" />
 
@@ -79,6 +85,7 @@
 							
 							<jsp:param name="eventoHoraInicio" value ="${evento.getHoraInicio()}"/>
 							<jsp:param name="eventoHoraFin" value ="${evento.getHoraFin()}"/>
+							
 							
 							<jsp:param name="eventoTitulo" value ="${evento.getTitulo()}"/>
 							<jsp:param name="eventoEstadoUsuarioActual" value ="${evento.obtenerEstado(usuarioLogueado)}"/>
