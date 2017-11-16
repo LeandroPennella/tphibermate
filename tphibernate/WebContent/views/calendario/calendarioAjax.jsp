@@ -72,7 +72,16 @@
 			<c:forEach var="hora" items="${horas}" >
 			
 			<c:set var="altoEvento" value="${evento.getMinutosDuracion()*21}" />
+			
+			
+			
+			
+			
+			
+			
+			
 			emd: ${evento.getMinutosDuracion()}
+			
 				<div class="hora" style="height:21px;">
 					 
 					<c:set var="horaInicio" value="${evento.getHoraInicio()}" />

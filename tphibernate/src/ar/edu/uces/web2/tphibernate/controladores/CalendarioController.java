@@ -62,7 +62,7 @@ public class CalendarioController {
 		Date dFechaHoy=new Date();
 
 
-		
+		 
 		
 		ModelAndView mv=new ModelAndView("/views/calendario/calendarioAjax.jsp");
 		//mv.addObject("semana", getSemanaString(usuarioLogueado,  calendar,  sdf));

@@ -13,7 +13,7 @@ public class Evento {
 
 	//TODO: buscar mapeo campo calculado transient hibernate hbm.xml
 	//https://www.adictosaltrabajo.com/tutoriales/eventosenhibernatei/
-	//transient private int minutosDuracion;
+	transient private int minutosDuracion=1;
 	
 
 
@@ -65,14 +65,18 @@ public class Evento {
 	
 	
 	public int getMinutosDuracion() {
-		int minutosDuracion=1;
-		return minutosDuracion;
+		//https://www.lawebdelprogramador.com/foros/Java/639065-Ayuda-con-Restar-horas-en-java.html
+	
+		String[] h1 = this.horaInicio.split(":");
+		String[] h2 = this.horaFin.split(":");
+	
+		int hora1enMinutos = (Integer.parseInt(h1[0])*60 + Integer.parseInt(h1[1]));
+		int hora2enMinutos = (Integer.parseInt(h2[0])*60 + Integer.parseInt(h2[1]));
+	
+		this.minutosDuracion = 1;//hora1enMinutos-hora2enMinutos;
+		return this.minutosDuracion;
+		
 	}
-	
-	
-//	public void setDuracion(int duracion) {
-//		this.duracion = duracion;
-//	}
 	
 	public Usuario getAutor() {
 		return autor;
