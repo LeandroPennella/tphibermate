@@ -30,14 +30,15 @@
 <c:choose>
 						 
 	<c:when test="${comp}">
+		<c:set var="sUrl" value="${(eventoEstadoUA=='tarea')?'Tarea':'Reunion'}"></c:set>
+			
+			<div class="${eventoEstadoUA}" style="height: ${altoEventoMD}px;">
+			<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${eventoId}"/>" style="padding-bottom: 21px;" >
+					<b>${eventoHI} -  ${eventoHF} </b>- ${eventoT}
 				
-		<div class="${eventoEstadoUA}" style="height: ${altoEventoMD}px;">
-			<c:set var="sUrl" value="${(eventoEstadoUA=='tarea')?'Tarea':'Reunion'}"></c:set>
-			<a href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>">
-				<b>${eventoHI} -  ${eventoHF} </b>- ${eventoT}
-			</a>
-		</div>
-						
+			</a>		
+			</div>
+		
 	</c:when>
 </c:choose>
  
