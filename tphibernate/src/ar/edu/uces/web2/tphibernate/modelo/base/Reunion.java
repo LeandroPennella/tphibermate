@@ -56,4 +56,14 @@ public class Reunion extends Evento {
 		}
 		return sEstado;
 	}
+	/*
+	@Override
+	public int obtenerMinutosDuracion() {
+
+	
+		
+		return 1;//hora1enMinutos-hora2enMinutos;
+		
+	}
+	*/
 }

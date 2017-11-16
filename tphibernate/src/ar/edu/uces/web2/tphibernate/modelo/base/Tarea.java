@@ -22,4 +22,13 @@ public class Tarea extends Evento {
 	
 	@Override
 	public String obtenerEstado(Usuario usuario){return "tarea";}
+	/*
+	@Override
+	public int obtenerMinutosDuracion() {
+
+	
+		
+		return 1;//hora1enMinutos-hora2enMinutos;
+		
+	}*/
 }

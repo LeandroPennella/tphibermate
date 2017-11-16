@@ -14,8 +14,11 @@
 <c:set var="eventoHI" value="${param.eventoHoraInicio}"/>
 <c:set var="eventoHF" value="${param.eventoHoraFin}"/>
 
+<c:set var="eventoMD" value="${param.eventoMinutosDuracion}"/>
+<c:set var="altoEventoMD" value="${((eventoMD)/30)*21}"/>
+
 <c:set var="eventoT" value="${param.eventoTitulo}"/>
-<c:set var="eventoEUA" value="${param.eventoEstadoUsuarioActual}"/>
+<c:set var="eventoEstadoUA" value="${param.eventoEstadoUsuarioActual}"/>
 <c:set var="eventoId" value="${param.eventoID}"/>
 
  
@@ -27,16 +30,14 @@
 <c:choose>
 						 
 	<c:when test="${comp}">
-
-	
-	<c:set var="estadoEvento" value="${eventoEUA}"/>
-		
-		<div class="${estadoEvento}" >
-			<c:set var="sUrl" value="${(estadoEvento=='tarea')?'Tarea':'Reunion'}"></c:set>
+				
+		<div class="${eventoEstadoUA}" style="height: ${altoEventoMD}px;">
+			<c:set var="sUrl" value="${(eventoEstadoUA=='tarea')?'Tarea':'Reunion'}"></c:set>
 			<a href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>">
 				<b>${eventoHI} -  ${eventoHF} </b>- ${eventoT}
 			</a>
-		</div>				
+		</div>
+						
 	</c:when>
 </c:choose>
  

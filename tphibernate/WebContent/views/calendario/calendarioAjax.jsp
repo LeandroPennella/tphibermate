@@ -70,22 +70,10 @@
 			
 			<!-- Horas ------------------------------------------------------------ -->
 			<c:forEach var="hora" items="${horas}" >
-			
-			<c:set var="altoEvento" value="${evento.getMinutosDuracion()*21}" />
-			
-			
-			
-			
-			
-			
-			
-			
-			emd: ${evento.getMinutosDuracion()}
-			
-				<div class="hora" style="height:21px;">
-					 
-					<c:set var="horaInicio" value="${evento.getHoraInicio()}" />
 
+			
+				<div class="hora">
+					 
 					<!-- Eventos -->
 					<c:forEach var="evento" items="${eventosDia}">
 						
@@ -95,7 +83,7 @@
 							
 							<jsp:param name="eventoHoraInicio" value ="${evento.getHoraInicio()}"/>
 							<jsp:param name="eventoHoraFin" value ="${evento.getHoraFin()}"/>
-							
+							<jsp:param name="eventoMinutosDuracion" value ="${evento.obtenerMinutosDuracion()}"/>
 							
 							<jsp:param name="eventoTitulo" value ="${evento.getTitulo()}"/>
 							<jsp:param name="eventoEstadoUsuarioActual" value ="${evento.obtenerEstado(usuarioLogueado)}"/>
