@@ -32,7 +32,7 @@
 	<c:when test="${comp}">
 		<c:set var="sUrl" value="${(eventoEstadoUA=='tarea')?'Tarea':'Reunion'}"></c:set>
 			
-			<div class="${eventoEstadoUA}" style="height: ${altoEventoMD}px;">
+			<div class="${eventoEstadoUA} dragable" style="height: ${altoEventoMD}px;">
 			<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${eventoId}"/>" style="padding-bottom: 21px;" >
 					<b>${eventoHI} -  ${eventoHF} </b>- ${eventoT}
 				
