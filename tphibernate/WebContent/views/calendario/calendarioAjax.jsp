@@ -16,6 +16,14 @@
      <script>
      $(function(){
     	 $(".dragable").draggable({snap:".hora", axis: "y"});
+    	 $(".hora").droppable({
+    	      drop: function( event, ui ) {
+    	          $( this )
+    	            .addClass( "ui-state-highlight" )
+    	            
+    	            
+    	        }
+    	    });
      })</script>
 	<title><fmt:message key='calendario.titulo'/></title>
 </head>
