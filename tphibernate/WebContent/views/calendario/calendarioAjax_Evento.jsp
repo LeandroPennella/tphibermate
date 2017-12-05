@@ -15,7 +15,7 @@
 <c:set var="eventoHF" value="${param.eventoHoraFin}"/>
 
 <c:set var="eventoMD" value="${param.eventoMinutosDuracion}"/>
-<c:set var="altoEventoMD" value="${((eventoMD)/30)*21}"/>
+<c:set var="altoEventoMD" value="${(((eventoMD)/30)*23)-1}"/> <%-- 21 div + 2 borde - 1 borde superior --%>
 
 <c:set var="eventoT" value="${param.eventoTitulo}"/>
 <c:set var="eventoEstadoUA" value="${param.eventoEstadoUsuarioActual}"/>
@@ -33,7 +33,7 @@
 		<c:set var="sUrl" value="${(eventoEstadoUA=='tarea')?'Tarea':'Reunion'}"></c:set>
 			
 			<div class="${eventoEstadoUA}" style="height: ${altoEventoMD}px;">
-			<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${eventoId}"/>" style="padding-bottom: 21px;" >
+			<a href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" style="padding-bottom: 21px;" >
 					<b>${eventoHI} -  ${eventoHF} </b>- ${eventoT}
 				
 			</a>		
