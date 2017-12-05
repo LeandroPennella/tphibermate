@@ -11,7 +11,20 @@
 <head>
 	<jsp:include page="master_header.jsp"></jsp:include>
 	<link href='<c:url value="/views/ui/css/Calendario.css"/>' rel="stylesheet">
-     <script src="../ui/js/jquery-ui-1.11.4.js"></script>
+     <!--  /<script src="../ui/js/jquery-ui-1.11.4.js"></script>-->
+       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     <script>
+     $(function(){
+    	 $(".dragable").draggable({snap:".hora", axis: "y"});
+    	 $(".hora").droppable({
+    	      drop: function( event, ui ) {
+    	          $( this )
+    	            .addClass( "ui-state-highlight" )
+    	            
+    	            
+    	        }
+    	    });
+     })</script>
 	<title><fmt:message key='calendario.titulo'/></title>
 </head>
 <body>
