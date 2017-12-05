@@ -85,7 +85,7 @@
 			<c:forEach var="hora" items="${horas}" >
 
 			
-				<div class="hora">
+				<div class="hora" id="${hora}">
 					 
 					<!-- Eventos -->
 					<c:forEach var="evento" items="${eventosDia}">
