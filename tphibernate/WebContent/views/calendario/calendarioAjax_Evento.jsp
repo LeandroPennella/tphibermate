@@ -32,13 +32,10 @@
 	<c:when test="${comp}">
 		<c:set var="sUrl" value="${(eventoEstadoUA=='tarea')?'Tarea':'Reunion'}"></c:set>
 			
-<<<<<<< HEAD
-			<div class="${eventoEstadoUA}" style="height: ${altoEventoMD}px;">
-			<a href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" style="padding-bottom: 21px;" >
-=======
+
 			<div class="${eventoEstadoUA} dragable" style="height: ${altoEventoMD}px;">
-			<a href="<c:url value="/agenda/editar${sUrl}.do?idEvento=${eventoId}"/>" style="padding-bottom: 21px;" >
->>>>>>> branch 'master' of https://github.com/LeandroPennella/uces.web2.agendaLean
+			<a href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" style="padding-bottom: 21px;" >
+
 					<b>${eventoHI} -  ${eventoHF} </b>- ${eventoT}
 				
 			</a>		
