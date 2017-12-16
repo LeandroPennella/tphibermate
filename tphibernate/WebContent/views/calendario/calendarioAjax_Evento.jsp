@@ -33,7 +33,7 @@
 		<c:set var="sUrl" value="${(eventoEstadoUA=='tarea')?'Tarea':'Reunion'}"></c:set>
 			
 
-			<div class="${eventoEstadoUA} dragable" style="height: ${altoEventoMD}px;">
+			<div class="${eventoEstadoUA} dragable" style="height: ${altoEventoMD}px;" id=${eventoId}>
 			<a href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" style="padding-bottom: 21px;" >
 
 					<b>${eventoHI} -  ${eventoHF} </b>- ${eventoT}

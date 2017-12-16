@@ -15,15 +15,27 @@
        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
      <script>
      $(function(){
-    	 $(".dragable").draggable({snap:".hora", axis: "y"});
+    	 $(".dragable").draggable({
+    		 snap:".hora", 
+    		 axis: "y"
+   		 });
     	 $(".hora").droppable({
     	      drop: function( event, ui ) {
+    	          var item_id = $(ui.draggable).attr('id');
+    	          var location = $(this).attr("id");
     	          $( this )
     	            .addClass( "ui-state-highlight" )
-    	            
-    	            
-    	        }
-    	    });
+    	            .find( "p" )
+    	            alert('evento '+item_id +' movido a '+ location);
+    	          $.ajax({
+    	              type: "GET",
+    	              timeout: 10000,
+    	              url: "../evento/mover.do?origenId="+item_id+"&destinoId="+location,
+    	              success: alert('evento movido'),
+    	              error: alert('no se pudo mover el evento')
+    	          });
+    	      }
+    	 });
      })</script>
 	<title><fmt:message key='calendario.titulo'/></title>
 </head>
