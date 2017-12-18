@@ -30,6 +30,7 @@
     	          $.ajax({
     	              type: "GET",
     	              timeout: 10000,
+    	              
     	              url: "../evento/mover.do?origenId="+item_id+"&destinoId="+location,
     	              success: alert('evento movido'),
     	              error: alert('no se pudo mover el evento')

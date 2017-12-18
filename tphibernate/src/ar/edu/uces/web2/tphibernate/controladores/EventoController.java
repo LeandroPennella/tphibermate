@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-@SessionAttributes("usuarioLogueado")
+
 @Controller
 public class EventoController {
 	private EventoDAO eventoDAO;
@@ -47,8 +47,10 @@ public class EventoController {
 	}
 	
 	@RequestMapping(value = "/evento/mover")
-	public @ResponseBody void moverEvento(HttpServletRequest request, HttpServletResponse response)//, @PathVariable String origenId, @PathVariable String destinoId)//, @RequestParam(value="origenId", required=true) Integer origenId, @RequestParam(value="destinoId", required=true) String destinoId) //@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado
+	public @ResponseBody void moverEvento(HttpServletRequest request, HttpServletResponse response, @RequestParam(value="origenId", required=true) Integer origenId, @RequestParam(value="destinoId", required=true) String destinoId) //@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado
 	{
-		//return  @ResponseBody();
+		//return void;
 	}
+	
+	
 }
