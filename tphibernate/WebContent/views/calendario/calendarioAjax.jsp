@@ -34,9 +34,11 @@
     	        	  url: "../evento/mover.do", //?origenId="+item_id+"&destinoId="+location,
     	              type: "POST",
     	              timeout: 10000,
+
     					data:  JSON.stringify(evento), 
     					dataType : "json",
     					contentType : "application/json;charset=UTF-8",
+
     	              success: alert('evento movido'),
     	              error: alert('no se pudo mover el evento')
     	          });
