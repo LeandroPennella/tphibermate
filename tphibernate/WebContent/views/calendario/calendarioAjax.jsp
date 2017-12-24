@@ -14,7 +14,10 @@
      <!--  /<script src="../ui/js/jquery-ui-1.11.4.js"></script>-->
        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
      <script>
+     
      $(function(){
+    	 var evento={id:item_id, horaInicio:location}
+    	 
     	 $(".dragable").draggable({
     		 snap:".hora", 
     		 axis: "y"
@@ -28,9 +31,12 @@
     	            .find( "p" )
     	            alert('evento '+item_id +' movido a '+ location);
     	          $.ajax({
-    	              type: "GET",
+    	        	  url: "../evento/mover.do", //?origenId="+item_id+"&destinoId="+location,
+    	              type: "POST",
     	              timeout: 10000,
-    	              url: "../evento/mover.do?origenId="+item_id+"&destinoId="+location,
+    					data:  JSON.stringify(evento), 
+    					dataType : "json",
+    					contentType : "application/json;charset=UTF-8",
     	              success: alert('evento movido'),
     	              error: alert('no se pudo mover el evento')
     	          });
