@@ -47,10 +47,17 @@ public class EventoController {
 	}
 	
 	@RequestMapping(value = "/evento/mover")
-	public @ResponseBody void moverEvento(HttpServletRequest request, HttpServletResponse response, @RequestParam(value="origenId", required=true) Integer origenId, @RequestParam(value="destinoId", required=true) String destinoId) //@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado
+	public @ResponseBody void moverEvento(HttpServletRequest request, HttpServletResponse response, @RequestParam Evento origenId)
 	{
 		//return void;
 	}
 	
+	/*
+	@RequestMapping(value = "/evento/mover")
+	public @ResponseBody void moverEvento(HttpServletRequest request, HttpServletResponse response, @RequestParam(value="origenId", required=true) Integer origenId, @RequestParam(value="destinoId", required=true) String destinoId) //@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado
+	{
+		//return void;
+	}
+	*/
 	
 }
