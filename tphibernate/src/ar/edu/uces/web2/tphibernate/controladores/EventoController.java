@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.uces.web2.tphibernate.dao.EventoDAO;
+import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 
 
@@ -47,9 +48,11 @@ public class EventoController {
 	}
 	
 	@RequestMapping(value = "/evento/mover")
-	public @ResponseBody void moverEvento(HttpServletRequest request, HttpServletResponse response, @RequestParam Evento origenId)
+	public @ResponseBody void  moverEvento(HttpServletRequest request, HttpServletResponse response, @RequestBody Evento evento)
 	{
-		//return void;
+		long i=evento.getId();
+		String a =evento.getHoraInicio();
+		//return "llego";
 	}
 	
 	/*

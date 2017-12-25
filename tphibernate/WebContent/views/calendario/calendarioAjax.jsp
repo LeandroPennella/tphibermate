@@ -16,7 +16,7 @@
      <script>
      
      $(function(){
-    	 var evento={id:item_id, horaInicio:location}
+    	 
     	 
     	 $(".dragable").draggable({
     		 snap:".hora", 
@@ -26,22 +26,40 @@
     	      drop: function( event, ui ) {
     	          var item_id = $(ui.draggable).attr('id');
     	          var location = $(this).attr("id");
+    	          var evento={id:item_id, horaInicio:location}
     	          $( this )
     	            .addClass( "ui-state-highlight" )
     	            .find( "p" )
     	            alert('evento '+item_id +' movido a '+ location);
     	          $.ajax({
-    	        	  url: "../evento/mover.do", //?origenId="+item_id+"&destinoId="+location,
-    	              type: "POST",
-    	              timeout: 10000,
-
-    					data:  JSON.stringify(evento), 
-    					dataType : "json",
-    					contentType : "application/json;charset=UTF-8",
-
-    	              success: alert('evento movido'),
-    	              error: alert('no se pudo mover el evento')
-    	          });
+					url: "../evento/mover.do", //?origenId="+item_id+"&destinoId="+location,
+					type: "POST",
+					//timeout: 10000,
+					data:  JSON.stringify(evento), 
+					dataType : "json",
+					contentType : "application/json;charset=UTF-8",
+					success :function(){}, 
+					/*
+					success:function(response){
+						  alert('bien ' + response);
+						  },
+					 */  						  
+					 /*
+					success : function(results, status, xhr){
+						alert(results);
+					},
+					*/					
+					error: function(jqXHR, textStatus,	errorThrown) {
+						
+					var errorHtml = "An error ocurred <br/>";
+					errorHtml += "Status: "
+							+ textStatus + "<br/>";
+					errorHtml += "Reason: <pre>"
+							+ errorThrown
+							+ "</pre> <br/>";
+					alert(errorHtml);
+				}
+          });
     	      }
     	 });
      })</script>
