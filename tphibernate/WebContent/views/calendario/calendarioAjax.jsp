@@ -25,7 +25,7 @@
     	 $(".hora").droppable({
     	      drop: function( event, ui ) {
     	          var item_id = $(ui.draggable).attr('id');
-    	          var location = $(this).attr("id");
+    	          var item_horaInicio = $(this).attr("id");
     	          var evento={id:item_id, horaInicio:location}
     	          $( this )
     	            .addClass( "ui-state-highlight" )
@@ -35,7 +35,7 @@
 					url: "../evento/mover.do", //?origenId="+item_id+"&destinoId="+location,
 					type: "POST",
 					//timeout: 10000,
-					data:  JSON.stringify(evento), 
+					data:{id:item_id, horaInicio:item_horaInicio}, //JSON.stringify(evento), 
 					dataType : "json",
 					contentType : "application/json;charset=UTF-8",
 					success :function(){}, 
