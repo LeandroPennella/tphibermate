@@ -26,11 +26,11 @@
     	      drop: function( event, ui ) {
     	          var item_id = $(ui.draggable).attr('id');
     	          var item_horaInicio = $(this).attr("id");
-    	          var evento={id:item_id, horaInicio:location}
+    	          var evento={id:item_id, horaInicio:item_horaInicio}
     	          $( this )
     	            .addClass( "ui-state-highlight" )
     	            .find( "p" )
-    	            alert('evento '+item_id +' movido a '+ location);
+    	            alert('evento '+item_id +' movido a '+ item_horaInicio);
     	          $.ajax({
 					url: "../evento/mover.do", //?origenId="+item_id+"&destinoId="+location,
 					type: "POST",
