@@ -73,12 +73,13 @@
 		  background-color: #E0E0E0;
 		  padding: .5em; height:20px;">
 
-		<div style="float: left;"><a href='<c:url value="/calendario/mostrarCalendario.do?semanaOffset=${semanaOffset-1}"/>'><</a></div>
-		<div style="float: right;"><a href='<c:url value="/calendario/mostrarCalendario.do?semanaOffset=${semanaOffset+1}"/>'>></a></div>
+		<div style="float: left;"><a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset-1}"/>'><</a></div>
+		<div style="float: left;"><a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=0"/>'>|Hoy|</a></div>
+		<div style="float: right;"><a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset+1}"/>'>></a></div>
 	</div>
 	
 	
-	<!-- Dias ------------------------------------------------------------ -->
+	<!-- Horas ------------------------------------------------------------ -->
 	<div class="panelHoras">
 		<div class="headerDia">
 			Horas > 41
@@ -94,7 +95,7 @@
 	<!-- Dias ------------------------------------------------------------ -->
 	
 	 <%-- <c:forEach var="diaSemana" items="${semana}">--%>
-	 <c:forEach var="diaSemana" items="${semanaDate}">
+	 <c:forEach var="diaSemana" items="${eventosSemanaDate}">
 	 
 	
 		<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
