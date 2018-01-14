@@ -52,6 +52,7 @@ public class EventoController {
 	{
 		long i=evento.getId();
 		String a =evento.getHoraInicio();
+		a=a+""+i;
 		//return "llego";
 	}
 	
