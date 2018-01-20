@@ -48,12 +48,12 @@ public class EventoController {
 	}
 	
 	@RequestMapping(value = "/evento/mover")
-	public @ResponseBody void  moverEvento(HttpServletRequest request, HttpServletResponse response, @RequestBody Evento evento)
+	public @ResponseBody boolean  moverEvento(HttpServletRequest request, HttpServletResponse response, @RequestBody Evento evento)
 	{
 		long i=evento.getId();
 		String a =evento.getHoraInicio();
 		a=a+""+i;
-		//return "llego";
+		return true;
 	}
 	
 	/*

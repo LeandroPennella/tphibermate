@@ -27,7 +27,7 @@
     	          var item_id = $(ui.draggable).attr('id');
     	          var item_horaInicio = $(this).attr("id").toString();
     	          item_horaInicio = item_horaInicio.replace(":","");
-    	          var evento={id:item_id, horaInicio:item_horaInicio}
+    	          var evento={"id":item_id, "horaInicio":item_horaInicio}
     	          $( this )
     	            .addClass( "ui-state-highlight" )
     	            .find( "p" )
@@ -40,12 +40,12 @@
 					data:JSON.stringify(evento), 
 					dataType : "json",
 					contentType : "application/json;charset=UTF-8",
-					success :function(){}, 
-					/*
+					//success :function(){}, 
+					
 					success:function(response){
 						  alert('bien ' + response);
 						  },
-					 */  						  
+					  						  
 					 /*
 					success : function(results, status, xhr){
 						alert(results);
