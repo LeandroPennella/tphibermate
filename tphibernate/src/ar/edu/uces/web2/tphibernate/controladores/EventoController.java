@@ -50,9 +50,7 @@ public class EventoController {
 	@RequestMapping(value = "/evento/mover")
 	public @ResponseBody boolean  moverEvento(HttpServletRequest request, HttpServletResponse response, @RequestBody Evento evento)
 	{
-		long i=evento.getId();
-		String a =evento.getHoraInicio();
-		a=a+""+i;
+		eventoDAO.mover(evento);
 		return true;
 	}
 	

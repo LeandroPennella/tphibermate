@@ -26,7 +26,7 @@
     	      drop: function( event, ui ) {
     	          var item_id = $(ui.draggable).attr('id');
     	          var item_horaInicio = $(this).attr("id").toString();
-    	          item_horaInicio = item_horaInicio.replace(":","");
+    	          //item_horaInicio = item_horaInicio.replace(":","");
     	          var evento={"id":item_id, "horaInicio":item_horaInicio}
     	          $( this )
     	            .addClass( "ui-state-highlight" )
@@ -40,26 +40,29 @@
 					data:JSON.stringify(evento), 
 					dataType : "json",
 					contentType : "application/json;charset=UTF-8",
-					//success :function(){}, 
-					
+					 
+					/*
 					success:function(response){
 						  alert('bien ' + response);
 						  },
-					  						  
-					 /*
+					  */						  
+					 
 					success : function(results, status, xhr){
-						alert(results);
-					},
-					*/					
-					error: function(jqXHR, textStatus,	errorThrown) {
 						
-					var errorHtml = "An error ocurred <br/>";
-					errorHtml += "Status: "
-							+ textStatus + "<br/>";
-					errorHtml += "Reason: <pre>"
-							+ errorThrown
-							+ "</pre> <br/>";
-					alert(errorHtml);
+						alert('resultado' + results + ' - status: ' + status + ' - xhr:'+xhr);
+						//if (results){alert('si')} else {alert('no')}
+					}
+					,
+										
+					error: function(jqXHR, textStatus,	errorThrown) {
+							
+						var errorHtml = "An error ocurred <br/>";
+						errorHtml += "Status: "
+								+ textStatus + "<br/>";
+						errorHtml += "Reason: <pre>"
+								+ errorThrown
+								+ "</pre> <br/>";
+						alert(errorHtml);
 				}
           });
     	      }
