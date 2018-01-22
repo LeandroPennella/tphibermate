@@ -49,8 +49,11 @@
 					 
 					success : function(results, status, xhr){
 						
-						alert('resultado' + results + ' - status: ' + status + ' - xhr:'+xhr);
-						//if (results){alert('si')} else {alert('no')}
+						//alert('resultado' + results + ' - status: ' + status + ' - xhr:'+xhr);
+						if (results){
+							//alert('si')
+							$("#"+item_id).children('a').children('b').html('hi:'+item_horaInicio);//todo: agregar horafin
+							} else {alert('no')}
 					}
 					,
 										
