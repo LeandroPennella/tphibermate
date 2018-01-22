@@ -37,9 +37,11 @@
 					type: "POST",
 					//timeout: 10000,
 					//data:{id:item_id, horaInicio:item_horaInicio}, //JSON.stringify(evento), 
-					data:JSON.stringify(evento), 
-					dataType : "json",
+					data:JSON.stringify(evento),
 					contentType : "application/json;charset=UTF-8",
+					
+					dataType : "text",//lo que recive
+					
 					 
 					/*
 					success:function(response){
@@ -50,21 +52,23 @@
 					success : function(results, status, xhr){
 						
 						//alert('resultado' + results + ' - status: ' + status + ' - xhr:'+xhr);
+						
 						if (results){
 							//alert('si')
-							$("#"+item_id).children('a').children('b').html('hi:'+item_horaInicio);//todo: agregar horafin
+							$("#"+item_id).children('a').children('b').html('hi:'+item_horaInicio + " HF:" +String(results));//todo: agregar horafin
 							} else {alert('no')}
+						
 					}
 					,
 										
-					error: function(jqXHR, textStatus,	errorThrown) {
+					error: function(XHR, jqXHR, textStatus,	errorThrown) {
 							
 						var errorHtml = "An error ocurred <br/>";
-						errorHtml += "Status: "
-								+ textStatus + "<br/>";
-						errorHtml += "Reason: <pre>"
-								+ errorThrown
-								+ "</pre> <br/>";
+						errorHtml += "Status: "+ textStatus 
+						errorHtml += " | Reason: "	+ errorThrown
+						errorHtml += " | XHR: "	+ XHR.responseText
+						errorHtml += " | jqXHR: "	+ jqXHR.responseText
+								
 						alert(errorHtml);
 				}
           });

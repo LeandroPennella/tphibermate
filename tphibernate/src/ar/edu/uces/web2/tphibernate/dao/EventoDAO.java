@@ -2,6 +2,7 @@ package ar.edu.uces.web2.tphibernate.dao;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
 import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
@@ -49,14 +52,18 @@ public class EventoDAO {
 		return eventos;
 	}
 	@Transactional(readOnly = false)
-	public boolean mover(Evento evento)
+	public String mover(Evento evento)
 	{
 		
 		Session session = sessionFactory.getCurrentSession();
+
+		// para mantener la duracion
+		mantenerDuracion((Evento)session.get(Evento.class, evento.getId()), evento);
 		
 		String sQuery=
 		"update from " +Evento.class.getName() + " as e " +
-			"set horaInicio='"+evento.getHoraInicio()+"' "+
+			"set horaInicio='"+evento.getHoraInicio()+"', "+
+				"horaFin='"+evento.getHoraFin()+"' "+
 			"where e.id="+evento.getId();
 		Query q=session.createQuery(sQuery);
 		q.executeUpdate();
@@ -64,8 +71,47 @@ public class EventoDAO {
 		Evento eventoBuffer=(Evento)session.get(Evento.class, evento.getId());
 		eventoBuffer.setHoraInicio(evento.getHoraInicio());
 		session.saveOrUpdate(eventoBuffer);*/
-		return true;
+		return evento.getHoraFin();
 	}
+	
+	
+	private void mantenerDuracion(Evento eventoOriginal, Evento eventoModificado)
+	{
+
+		
+		//obtener diferencia
+		//https://stackoverflow.com/questions/5351483/calculate-date-time-difference-in-java
+
+		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");  
+		Date dHoraInicioOriginal = null;
+		Date dHoraInicioNueva = null;
+		Date dHoraFinOriginal=null;
+		Date dHoraFinNueva=null;
+		try {
+			dHoraInicioNueva = formatter.parse(eventoModificado.getHoraInicio());
+			dHoraInicioOriginal = formatter.parse(eventoOriginal.getHoraInicio());
+			dHoraFinOriginal=formatter.parse(eventoOriginal.getHoraFin());
+		
+		} catch (ParseException | java.text.ParseException e) {
+		    e.printStackTrace();
+		} 
+		
+		int dDiferenciaHoraFin=(int)((dHoraInicioNueva.getTime()-dHoraInicioOriginal.getTime())/60000);
+		
+		
+		//modificar horaFin
+		//http://developando.com/blog/java-sumar-restar-horas-dias-fecha
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(dHoraFinOriginal); 
+		calendar.add(Calendar.MINUTE, dDiferenciaHoraFin);  
+		dHoraFinNueva=calendar.getTime();
+		eventoModificado.setHoraFin(formatter.format(dHoraFinNueva));
+		
+		
+	}
+	
+	
 	
 	//TODO: mover?
 	private class EventoPorHoraComparator implements Comparator<Evento> {
