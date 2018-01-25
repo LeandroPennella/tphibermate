@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
+l<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -84,10 +84,45 @@
 	<div style="  border: 1px solid #CCC;
 		  background-color: #E0E0E0;
 		  padding: .5em; height:20px;">
+		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=0"/>'>Hoy |</a>
+		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset-1}"/>'> < |</a>
+		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset+1}"/>'> > |</a>
 
-		<div style="float: left;"><a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset-1}"/>'><</a></div>
-		<div style="float: left;"><a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=0"/>'>|Hoy|</a></div>
-		<div style="float: right;"><a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset+1}"/>'>></a></div>
+	 	<c:forEach var="diaSemana" items="${SemanaConEventos}">
+			<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
+			
+			<fmt:formatDate value="${diaFecha}" var="mesIterado" pattern="MMMM"/>
+			<fmt:formatDate value="${diaFecha}" var="anoIterado" pattern="yyyy"/>
+			
+			<c:if test="${empty mesPrimero}">
+				<c:set var="mesPrimero"  value="${mesIterado}"></c:set>
+			</c:if>
+			<c:if test="${empty anoPrimero}">
+				<c:set var="anoPrimero"  value="${anoIterado}"></c:set>
+			</c:if>
+			
+			<c:if test="${mesIterado!=mesPrimero}">
+				<c:set var="mesSegundo"  value="${mesIterado}"></c:set>
+			</c:if>
+			<c:if test="${anoIterado!=anoPrimero}">
+				<c:set var="anoSegundo"  value="${anoIterado}"></c:set>
+			</c:if>
+		</c:forEach>
+		
+		<c:if test="${not empty mesSegundo}">
+			<c:if test="${empty anoSegundo}">
+				<c:set var="mesMostrado"  value="${mesPrimero} - ${mesSegundo} de ${anoPrimero} "></c:set>
+			</c:if>
+			<c:if test="${not empty anoSegundo}">
+				<c:set var="mesMostrado"  value="${mesPrimero} de ${anoPrimero} - ${mesSegundo} de ${anoSegundo}"></c:set>
+			</c:if>
+		</c:if>
+		<c:if test="${empty mesSegundo}">
+			<c:set var="mesMostrado"  value="${mesPrimero} de ${anoPrimero} "></c:set>
+		</c:if>
+		
+		
+		<c:out value=" ${mesMostrado}" />
 	</div>
 	
 	
@@ -107,7 +142,7 @@
 	<!-- Dias ------------------------------------------------------------ -->
 	
 	 <%-- <c:forEach var="diaSemana" items="${semana}">--%>
-	 <c:forEach var="diaSemana" items="${eventosSemanaDate}">
+	 <c:forEach var="diaSemana" items="${SemanaConEventos}">
 	 
 	
 		<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
@@ -129,7 +164,7 @@
 		<div class="dia ${claseDia}">
 			
 			<div class="headerDia">
-				<c:out value="${fn:substring(diaFechaString, 0, 5)}" />
+				<c:out value="${fn:substring(diaFechaString, 0, 2)}" />
 			</div>
 			
 			<!-- Horas ------------------------------------------------------------ -->

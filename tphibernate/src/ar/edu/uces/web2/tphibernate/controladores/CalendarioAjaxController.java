@@ -67,7 +67,7 @@ public class CalendarioAjaxController {
 		ModelAndView mv=new ModelAndView("/views/calendario/calendarioAjax.jsp");
 		//mv.addObject("semana", getSemanaString(usuarioLogueado,  calendar,  sdf));
 		//posicionarCalendario(calendar, diasAlDomingo, semanaOffset);
-		mv.addObject("eventosSemanaDate", getEventosSemanaDate(usuarioLogueado,  calendar,  new SimpleDateFormat("dd/MM/yyyy")/*sdf*/));
+		mv.addObject("SemanaConEventos", getSemanaConEventos(usuarioLogueado,  calendar,  new SimpleDateFormat("dd/MM/yyyy")/*sdf*/));
 		mv.addObject("semanaOffset", semanaOffset);
 		//mv.addObject("sFechaHoy",sFechaHoy);
 		mv.addObject("dFechaHoy",new Date());
@@ -167,7 +167,7 @@ public class CalendarioAjaxController {
 		return semana;
 	}
 	*/
-	public Map<Date,List<Evento>> getEventosSemanaDate(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf){
+	public Map<Date,List<Evento>> getSemanaConEventos(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf){
 
 		Map<Date,List<Evento>> semana = new TreeMap<Date,List<Evento>> (); 
 		
