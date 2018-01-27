@@ -85,11 +85,17 @@ public class CalendarioAjaxController {
 		
 		//???
 		calendar.roll(Calendar.DATE, -diasAlDomingo);
-		if (semanaOffset!=null)
+		if (semanaOffset!=null) {
 			//???
-			{calendar.roll(Calendar.WEEK_OF_YEAR, semanaOffset);}
-		else
-		{semanaOffset=0;}
+			
+			int semFut=calendar.get(Calendar.WEEK_OF_YEAR)+semanaOffset;
+			calendar.roll(Calendar.WEEK_OF_YEAR, semanaOffset);
+			if (semFut<1) {calendar.roll(Calendar.YEAR, -1);}
+
+			System.out.println("año:" +calendar.get(Calendar.YEAR)+ " - sem:" + calendar.get(Calendar.WEEK_OF_YEAR));
+		} else {
+			semanaOffset=0;
+			}
 
 		return calendar;
 	}
