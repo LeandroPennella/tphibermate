@@ -11,6 +11,44 @@
 	<jsp:include page="master_header.jsp"></jsp:include>
 	<jsp:include page="master_time.jsp"></jsp:include>
 	<title><fmt:message key="reunion.tituloAgregar"/></title>
+	<!--  https://jqueryui.com/autocomplete/#remote-jsonp-->
+	  <script>
+	  <!--  
+	  $( function() {
+		  
+		
+//	    function log( message ) {
+//	      $( "<div>" ).text( message ).prependTo( "#log" );
+//	      $( "#log" ).scrollTop( 0 );
+//	    }
+		
+		function agregar (usuarioId){
+			
+		}
+	 	
+	 	
+	    $( "#usuariosAutocomplete" ).autocomplete({
+	      source: function( request, response ) {
+	        $.ajax( {
+	          url: "usuariosAutocomplete.do",
+	          dataType: "jsonp",
+	          data: {
+	            term: request.term
+	          },
+	          success: function( data ) {
+	            response( data );
+	          }
+	        } );
+	      },
+	      minLength: 2,
+	      select: function( event, ui ) {
+	        //log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+	        //agregar(usuario.id);
+	      }
+	    } );
+	  } );
+	  -->
+  </script>
 </head>
 <body>
 	<jsp:include page="master_menu.jsp"></jsp:include>
@@ -149,6 +187,15 @@
 											<fmt:message key='reunion.label.participantes' var="participantes" />
 											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
 											<div class="controls">
+											
+											<div class="row">
+												<input class="input-xxlage" />
+												</div>
+												<div class="row">
+												<%-- 
+													<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
+													<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
+												--%>
 												<form:select path="tokensInvitadosMasConfirmacion" > 
 													<option value="0">deseleccionar</option>
 													<c:forEach items="${reunionForm.getMapaUsuariosMasConfirmacion()}" var="usuarioMasConfirmacion" >
@@ -162,6 +209,7 @@
 														</c:choose>
 													</c:forEach>
 												</form:select>
+												</div>
 												<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
 											</div>
 										</div>
@@ -171,7 +219,7 @@
  										<div class="form-actions">
 											<button type="submit" class="btn btn-primary"><fmt:message key="evento.label.guardar" /></button>
 											
-											<a class="btn" href="<c:url value='/calendario/mostrarCalendario.do' />"><fmt:message key="evento.label.cancelar" /></a>
+											<a class="btn" href="<c:url value='/calendario/mostrarCalendarioAjax.do' />"><fmt:message key="evento.label.cancelar" /></a>
 											<c:if test='${reunionForm.idEvento!=null}'>
 												<a class="btn btn-cancel" href="<c:url value='/calendario/eliminarReunion.do?idEvento=${reunionForm.idEvento}' />"><fmt:message key="evento.label.eliminar" /></a>
 											</c:if>
