@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -276,5 +277,11 @@ public class ReunionController {
 		Reunion reunion=reunionDAO.get(idEvento);
 		reunionDAO.delete(reunion);
 		return new ModelAndView("/views/index.jsp");
+	}
+
+	@RequestMapping(value = "/calendario/listadoUsuario")
+	public @ResponseBody List<Usuario> listadoDeUsuarios ()
+	{
+		 return usuarioDAO.getAll();													
 	}
 }

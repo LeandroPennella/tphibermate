@@ -13,7 +13,7 @@
 	<title><fmt:message key="reunion.tituloAgregar"/></title>
 	<!--  https://jqueryui.com/autocomplete/#remote-jsonp-->
 	  <script>
-	  <!--  
+	  
 	  $( function() {
 		  
 		
@@ -30,7 +30,7 @@
 	    $( "#usuariosAutocomplete" ).autocomplete({
 	      source: function( request, response ) {
 	        $.ajax( {
-	          url: "usuariosAutocomplete.do",
+	          url: "listadoUsuarios.do",
 	          dataType: "jsonp",
 	          data: {
 	            term: request.term
@@ -40,11 +40,13 @@
 	          }
 	        } );
 	      },
-	      minLength: 2,
+	      minLength: 2
+	      <!--  ,
 	      select: function( event, ui ) {
 	        //log( "Selected: " + ui.item.value + " aka " + ui.item.id );
 	        //agregar(usuario.id);
 	      }
+	      -->
 	    } );
 	  } );
 	  -->
@@ -189,7 +191,7 @@
 											<div class="controls">
 											
 											<div class="row">
-												<input class="input-xxlage" />
+												<input id="usuariosAutocomplete" class="input-xxlage" />
 												</div>
 												<div class="row">
 												<%-- 
