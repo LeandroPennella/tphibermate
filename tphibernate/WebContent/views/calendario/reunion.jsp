@@ -8,48 +8,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script src="<c:url value="/views/ui/js/jquery-1.11.3.min.js" />"></script>
+<script src="<c:url value="/resources/core/jquery.autocomplete.min.js" />"></script>
 	<jsp:include page="master_header.jsp"></jsp:include>
 	<jsp:include page="master_time.jsp"></jsp:include>
 	<title><fmt:message key="reunion.tituloAgregar"/></title>
 	<!--  https://jqueryui.com/autocomplete/#remote-jsonp-->
 	  <script>
 	  
-	  $( function() {
-		  
-		
-//	    function log( message ) {
-//	      $( "<div>" ).text( message ).prependTo( "#log" );
-//	      $( "#log" ).scrollTop( 0 );
-//	    }
-		
-		function agregar (usuarioId){
-			
-		}
-	 	
-	 	
+ $(function(){
+		function agregar (usuarioId){}
 	    $( "#usuariosAutocomplete" ).autocomplete({
-	      source: function( request, response ) {
-	        $.ajax( {
-	          url: "listadoUsuarios.do",
-	          dataType: "jsonp",
-	          data: {
-	            term: request.term
-	          },
-	          success: function( data ) {
-	            response( data );
-	          }
-	        } );
-	      },
-	      minLength: 2
-	      <!--  ,
-	      select: function( event, ui ) {
-	        //log( "Selected: " + ui.item.value + " aka " + ui.item.id );
-	        //agregar(usuario.id);
-	      }
-	      -->
-	    } );
-	  } );
-	  -->
+	      	source: function( request, response ) {
+		        $.ajax({
+			        	serviceUrl: '${pageContext.request.contextPath}/getTags',
+			        	paramName: "tagName",
+			    		delimiter: ",",
+			          	transformResult: function(response) {
+				      		return {      	
+				      		  //must convert json to javascript object before process
+				      		  suggestions: $.map($.parseJSON(response), function(item) {      	
+				      		      return { value: item.nombre, data: item.id };
+				      		   })            
+				      		 };
+			        	} 
+						//, minLength: 2
+      			});
+  			}})
+		});
+	  
   </script>
 </head>
 <body>
