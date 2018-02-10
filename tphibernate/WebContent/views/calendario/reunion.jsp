@@ -8,12 +8,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="<c:url value="/views/ui/js/jquery-1.11.3.min.js" />"></script>
-<script src="<c:url value="/resources/core/jquery.autocomplete.min.js" />"></script>
+
+
 	<jsp:include page="master_header.jsp"></jsp:include>
 	<jsp:include page="master_time.jsp"></jsp:include>
 	<title><fmt:message key="reunion.tituloAgregar"/></title>
 	<!--  https://jqueryui.com/autocomplete/#remote-jsonp-->
+	
+	<script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
 	  <script>
 	  
  $(function(){
@@ -21,18 +23,17 @@
 	    $( "#usuariosAutocomplete" ).autocomplete({
 	      	source: function( request, response ) {
 		        $.ajax({
-			        	serviceUrl: '${pageContext.request.contextPath}/getTags',
-			        	paramName: "tagName",
-			    		delimiter: ",",
-			          	transformResult: function(response) {
-				      		return {      	
-				      		  //must convert json to javascript object before process
-				      		  suggestions: $.map($.parseJSON(response), function(item) {      	
-				      		      return { value: item.nombre, data: item.id };
-				      		   })            
-				      		 };
-			        	} 
-						//, minLength: 2
+			        	url: 'listadoDeUsuarios.do',
+			        	type: "GET",
+			        	
+			            data: {
+			            	parteNombre: request.term
+		              	},
+		              	dataType : "json",
+		              	//contentType : "application/json;charset=UTF-8",
+			          success: function( data ) {
+			            response( data );
+			          }
       			});
   			}})
 		});
@@ -185,6 +186,7 @@
 													<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
 													<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
 												--%>
+												<%-- 
 												<form:select path="tokensInvitadosMasConfirmacion" > 
 													<option value="0">deseleccionar</option>
 													<c:forEach items="${reunionForm.getMapaUsuariosMasConfirmacion()}" var="usuarioMasConfirmacion" >
@@ -198,6 +200,7 @@
 														</c:choose>
 													</c:forEach>
 												</form:select>
+												--%>
 												</div>
 												<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
 											</div>

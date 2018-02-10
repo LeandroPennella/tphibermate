@@ -280,9 +280,16 @@ public class ReunionController {
 		return new ModelAndView("/views/index.jsp");
 	}
 
-	@RequestMapping(value = "/calendario/listadoUsuario", method = RequestMethod.GET)
+	@RequestMapping(value = "/calendario/listadoDeUsuarios", method = RequestMethod.GET)
 	public @ResponseBody List<Usuario> listadoDeUsuarios (String parteNombre)
 	{
 		 return usuarioDAO.getAll();													
+	}
+	
+	@RequestMapping(value = "/calendario/autocomplete")
+	public ModelAndView autocomplete() {
+		
+		return new ModelAndView("/views/calendario/pruebas/autocomplete.jsp");
+		
 	}
 }
