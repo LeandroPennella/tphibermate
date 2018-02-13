@@ -3,6 +3,7 @@ package ar.edu.uces.web2.tphibernate.controladores;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -281,9 +282,12 @@ public class ReunionController {
 	}
 
 	@RequestMapping(value = "/calendario/listadoDeUsuarios", method = RequestMethod.GET)
-	public @ResponseBody List<Usuario> listadoDeUsuarios (String parteNombre)
+	public @ResponseBody List<String> listadoDeUsuarios (String parteNombre)
 	{
-		 return usuarioDAO.getAll();													
+		//return usuarioDAO.getAll();	
+		return new ArrayList<String>(
+			    Arrays.asList("pepe", "pablo", "La Plata"));
+		
 	}
 	
 	@RequestMapping(value = "/calendario/autocomplete")

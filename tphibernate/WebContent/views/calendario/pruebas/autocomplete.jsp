@@ -1,38 +1,58 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	
-	<script src="http://localhost:8080/tphibernate/views/ui/js/jquery-1.11.3.min.js" /></script>
-	<script src="http://localhost:8080/tphibernate/views/ui/js/jquery-ui-1.11.4.js" /></script>
-	<link rel="stylesheet" href="http://localhost:8080/tphibernate/views/ui/css/jquery-ui.css">
-	<script>
-	  
-	 $(function(){
-			function agregar (usuarioId){}
-		    $( "#usuariosAutocomplete" ).autocomplete({
-		      	source: function( request, response ) {
-			        $.ajax({
-				        	url: 'listadoDeUsuarios.do',
-				        	type: "GET",
-				        	
-				            data: {
-				            	parteNombre: request.term
-			              	},
-			              	dataType : "json",
-			              	
-				          success: function( data ) {
-				            response( data );
-				          }
-	      			});
-	  			}})
-			});
-	  
-	</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Remote JSONP datasource</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+  .ui-autocomplete-loading {
+    background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    function log( message ) {
+      $( "<div>" ).text( message ).prependTo( "#log" );
+      $( "#log" ).scrollTop( 0 );
+    }
+ 
+    $( "#birds" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax( {
+        	url: 'listadoDeUsuarios.do',
+          dataType: "json",
+          data: {
+            term: request.term
+          },
+          success: function( data ) {
+            response( data );
+          }
+        } );
+      },
+      minLength: 2,
+      select: function( event, ui ) {
+        log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+      }
+    } );
+  } );
+  </script>
 </head>
 <body>
-<input id="usuariosAutocomplete"  />
+ 
+<div class="ui-widget">
+  <label for="birds">Birds: </label>
+  <input id="birds">
+</div>
+ 
+<div class="ui-widget" style="margin-top:2em; font-family:Arial">
+  Result:
+  <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+</div>
+ 
+ 
 </body>
 </html>
