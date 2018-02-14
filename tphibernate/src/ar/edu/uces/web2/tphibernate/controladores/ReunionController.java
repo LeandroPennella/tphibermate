@@ -282,11 +282,10 @@ public class ReunionController {
 	}
 
 	@RequestMapping(value = "/calendario/listadoDeUsuarios", method = RequestMethod.GET)
-	public @ResponseBody List<String> listadoDeUsuarios (String parteNombre)
+	public @ResponseBody List<Usuario> listadoDeUsuarios (String parteNombre)
 	{
-		//return usuarioDAO.getAll();	
-		return new ArrayList<String>(
-			    Arrays.asList("pepe", "pablo", "La Plata"));
+		return usuarioDAO.getAll();	
+		//return new ArrayList<String>(Arrays.asList("pepe", "pablo", "La Plata"));
 		
 	}
 	

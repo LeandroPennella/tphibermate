@@ -25,15 +25,19 @@
 		        $.ajax({
 			        	url: 'listadoDeUsuarios.do',
 			        	type: "GET",
-			        	
-			            data: {
-			            	parteNombre: request.term
-		              	},
+			            data: {parteNombre: request.term},
 		              	dataType : "json",
 		              	//contentType : "application/json;charset=UTF-8",
 			          success: function( data ) {
-			            response( data );
-			          }
+			        	  var nombres = [];
+			        	  for(var i=0; i<data.length; i++) {
+			        	  	//todo: revisar que no este ya invitado
+			        	  	nombres.push(data[i].nombre + ", " + data[i].apellido);
+			        	  }
+			        	  response(nombres);
+			        	  //response(nombres.slice(0,5));
+			          },
+			          select: function (event, ui) { alert('sa'); } 
       			});
   			}})
 		});
