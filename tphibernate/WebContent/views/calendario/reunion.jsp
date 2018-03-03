@@ -18,29 +18,49 @@
 	<script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
 	  <script>
 	  
- $(function(){
-		function agregar (usuarioId){}
-	    $( "#usuariosAutocomplete" ).autocomplete({
-	      	source: function( request, response ) {
-		        $.ajax({
-			        	url: 'listadoDeUsuarios.do',
-			        	type: "GET",
-			            data: {parteNombre: request.term},
-		              	dataType : "json",
-		              	//contentType : "application/json;charset=UTF-8",
-			          success: function( data ) {
-			        	  var nombres = [];
-			        	  for(var i=0; i<data.length; i++) {
-			        	  	//todo: revisar que no este ya invitado
-			        	  	nombres.push(data[i].nombre + ", " + data[i].apellido);
-			        	  }
-			        	  response(nombres);
-			        	  //response(nombres.slice(0,5));
-			          },
-			          select: function (event, ui) { alert('sa'); } 
-      			});
-  			}})
-		});
+ $(
+	 function()
+	 {
+	    $( "#usuariosAutocomplete" ).autocomplete
+	    (
+ 			{
+		      	source: function( request, response ) {
+			        $.ajax({
+				        	url: 'listadoDeUsuarios.do',
+				        	type: "GET",
+				            data: {parteNombre: request.term},
+			              	dataType : "json",
+			              	//contentType : "application/json;charset=UTF-8",
+				          success: function( data ) {
+				        	  
+				        	  var nombres = [];
+				        	  for(var i=0; i<data.length; i++) {
+				        	  	//todo: revisar que no este ya invitado
+				        	  	nombres.push(data[i].nombre + ", " + data[i].apellido);
+				        	  	//agregarAListado(data[i].nombre + ", " + data[i].apellido);
+				        	  	
+				        	  }
+				        	  response(nombres);
+				        	  
+				        	  //response(nombres.slice(0,5));
+				          }
+				           
+	      			});
+	  			},
+	  			select: function (event, ui){
+	  				//todo: sacar a funcion
+	  				
+	  				$("#listadoUsuariosTentativo").append('<li><a href="/user/messages"><span class="tab">'+ui.item.label+'</span></a></li>');
+				}
+		
+ 			}
+		)
+	}
+	 
+	 
+ );
+
+ 
 	  
   </script>
 </head>
@@ -177,6 +197,7 @@
 										
 										<!-- usuarios a invitar ------------------------------------------------------------------------------------->
 										<c:if test='${!soloLectura}'>
+										
 										<div class="control-group">
 											<fmt:message key='reunion.label.participantes' var="participantes" />
 											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
@@ -184,14 +205,18 @@
 											
 											<div class="row">
 												<input id="usuariosAutocomplete" class="input-xxlage" />
-												</div>
-												<div class="row">
-												<%-- 
-													<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
-													<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
-												--%>
-												<%-- 
-												<form:select path="tokensInvitadosMasConfirmacion" > 
+											</div>
+											<div class="row">
+												listado tentativo
+												<ul id="listadoUsuariosTentativo"></ul>
+											</div>
+											<%-- 
+											<div class="row">
+											
+												<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
+												<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
+											 
+												<form:select path="tokensInvitadosMasConfirmacion"  > 
 													<option value="0">deseleccionar</option>
 													<c:forEach items="${reunionForm.getMapaUsuariosMasConfirmacion()}" var="usuarioMasConfirmacion" >
 												        <c:choose>
@@ -203,10 +228,10 @@
 															</c:otherwise>
 														</c:choose>
 													</c:forEach>
-												</form:select>
-												--%>
-												</div>
-												<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
+												</form:select>											
+											</div>
+											<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
+											--%>
 											</div>
 										</div>
 										</c:if>
