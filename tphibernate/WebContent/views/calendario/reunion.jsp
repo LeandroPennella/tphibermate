@@ -17,7 +17,16 @@
 	
 	<script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
 	  <script>
-	  
+	  function agregarALista(id, nombre)
+	  {
+		  $("#listadoUsuariosTentativo").append('<li id='+id+'><a href="/user/messages"><span class="tab">'+nombre+'</span></a><a onclick="eliminar(this)">X</a></li>');
+	  };
+      function eliminar(elemento)
+      {
+          var id=elemento.parentNode.getAttribute("id");
+          node=document.getElementById(id);
+          node.parentNode.removeChild(node);
+      }
  $(
 	 function()
 	 {
@@ -49,8 +58,9 @@
 	  			},
 	  			select: function (event, ui){
 	  				//todo: sacar a funcion
-	  				
-	  				$("#listadoUsuariosTentativo").append('<li><a href="/user/messages"><span class="tab">'+ui.item.label+'</span></a></li>');
+	  				agregarALista(ui.item.id, ui.item.label);
+
+	  				//$("#listadoUsuariosTentativo").append('<li id='+ui.item.id+'><a href="/user/messages"><span class="tab">'+ui.item.label+'</span></a></li>');
 				}
 		
  			}
