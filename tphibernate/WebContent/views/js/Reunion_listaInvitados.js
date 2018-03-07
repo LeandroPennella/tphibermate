@@ -1,9 +1,14 @@
 	  function agregarALista(id, nombre)
 	  {
-		  $("#listadoUsuariosTentativo").append('<li id='+id+'><a href="/user/messages"><span class="tab">'+nombre+'</span></a><a onclick="eliminar(this)">X</a></li>');
+		  //todo: agregar estadox
+		  $("#listadoUsuariosTentativo").append(
+			  '<li id='+id+'>'+
+			  	'<a href="/user/messages"><span class="tab">'+nombre+'</span></a>'+
+			  	'<a onclick="sacarDeLista(this)">X</a></li>');
 	  };
-      function eliminar(elemento)
+      function sacarDeLista(elemento)
       {
+    	  
           var id=elemento.parentNode.getAttribute("id");
           node=document.getElementById(id);
           node.parentNode.removeChild(node);
@@ -40,7 +45,7 @@
 	  			select: function (event, ui){
 	  				//todo: sacar a funcion
 	  				agregarALista(ui.item.id, ui.item.label);
-
+	  				$(this).val('');
 	  				//$("#listadoUsuariosTentativo").append('<li id='+ui.item.id+'><a href="/user/messages"><span class="tab">'+ui.item.label+'</span></a></li>');
 				}
 		
