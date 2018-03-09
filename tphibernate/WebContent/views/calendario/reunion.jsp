@@ -16,8 +16,22 @@
 	<!--  https://jqueryui.com/autocomplete/#remote-jsonp-->
 	
 	<script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
-	  <script src="<c:url value="/views/js/Reunion_listaInvitados.js" />">
-  </script>
+	<script type="text/javascript">
+	
+	$(function(){		 //pasar a funcion cargar(listaInvitados);
+				
+		<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
+			listaInvitados.push({
+				id: "${invitacion.usuario.id}" , 
+				nombre:  "${invitacion.usuario.nombreUsuario}" + " (${invitacion.usuario.nombre} ${invitacion.usuario.apellido})" , 
+				estado:  "${invitacion.estado}"
+			});
+ 	    </c:forEach>
+ 	    console.log(listaInvitados)
+		//inicializar()
+		})
+	</script>
+	  <script src="<c:url value="/views/js/Reunion_listaInvitados.js" />">  </script>
 </head>
 <body>
 	<jsp:include page="master_menu.jsp"></jsp:include>
