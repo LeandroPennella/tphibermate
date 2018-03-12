@@ -1,4 +1,4 @@
-	  var nombres = [];
+  var nombres = [];
 
 function agregarALista(id, nombre)
   {
