@@ -20,7 +20,7 @@
 	<script type="text/javascript">
 	
 	$(function(){		 //pasar a funcion cargar(listaInvitados);
-		var listaInvitados = [];
+		
 		<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
 			listaInvitados.push({
 				id: "${invitacion.usuario.id}" , 
@@ -180,7 +180,7 @@
 												listado tentativo
 												<ul id="listadoUsuariosTentativo"></ul>
 											</div>
-											<%-- 
+											
 											<div class="row">
 											
 												<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
@@ -201,7 +201,7 @@
 												</form:select>											
 											</div>
 											<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
-											--%>
+											
 											</div>
 										</div>
 										</c:if>

@@ -1,5 +1,5 @@
   var nombres = [];
-
+  var listaInvitados = [];
 function agregarALista(id, nombre)
   {
 	  //todo: agregar estadox
