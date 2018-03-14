@@ -16,6 +16,7 @@
 	<!--  https://jqueryui.com/autocomplete/#remote-jsonp-->
 	
 	<script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
+	<link href='<c:url value="/views/ui/css/jquery-ui.css"/>' rel="stylesheet">
 	<script src="<c:url value="/views/js/Reunion_listaInvitados.js" />">  </script> 
 	<script type="text/javascript">
 	
@@ -182,10 +183,10 @@
 											</div>
 											
 											<div class="row">
-											
+											<%-- 
 												<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
 												<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
-											 
+											 --%>
 												<form:select path="tokensInvitadosMasConfirmacion"  > 
 													<option value="0">deseleccionar</option>
 													<c:forEach items="${reunionForm.getMapaUsuariosMasConfirmacion()}" var="usuarioMasConfirmacion" >
