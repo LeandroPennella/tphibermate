@@ -8,32 +8,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-
 	<jsp:include page="master_header.jsp"></jsp:include>
 	<jsp:include page="master_time.jsp"></jsp:include>
+	<jsp:include page="master_reunion_autocomplete.jsp"></jsp:include>
 	<title><fmt:message key="reunion.tituloAgregar"/></title>
-	<!--  https://jqueryui.com/autocomplete/#remote-jsonp-->
-	
-	<script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
-	<link href='<c:url value="/views/ui/css/jquery-ui.css"/>' rel="stylesheet">
-	<script src="<c:url value="/views/js/Reunion_listaInvitados.js" />">  </script> 
-	<script type="text/javascript">
-	
-	$(function(){		 //pasar a funcion cargar(listaInvitados);
-		
-		<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
-			listaInvitados.push({
-				id: "${invitacion.usuario.id}" , 
-				nombre:  "${invitacion.usuario.nombreUsuario}" + " (${invitacion.usuario.nombre} ${invitacion.usuario.apellido})" , 
-				estado:  "${invitacion.estado}"
-			});
- 	    </c:forEach>
- 	    console.log(listaInvitados)
-		//inicializar()
-		})
-	</script>
-	  
+	<!--  https://jqueryui.com/autocomplete/#remote-jsonp-->  
 </head>
 <body>
 	<jsp:include page="master_menu.jsp"></jsp:include>
@@ -86,16 +65,20 @@
 										    <span class="control-label"><fmt:message key="evento.label.fecha" /></span>
 										    <div class="controls form-inline">
 
+												<!--fecha-->
 												<form:input id="fecha" path="fecha" cssClass="input-small "  placeholder="${fecha}" disabled="${soloLectura}"/>
 												
+												<!--horainicio-->
 									            <fmt:message key='evento.label.horaInicio' var="horaInicio" />
 												<label for="horaInicio"><fmt:message key="evento.label.horaInicio" /></label>
 												<form:input id="horaInicio" path="horaInicio" cssClass="input-small "  placeholder="${horaInicio}" disabled="${soloLectura}"/>
 												
+												<!--horafin-->
 												<fmt:message key='evento.label.horaFin' var="horaFin" />
 												<label for="horaFin"><fmt:message key="evento.label.horaFin" /></label>
 												<form:input id="horaFin" path="horaFin" cssClass="input-small "  placeholder="${horaInicio}" disabled="${soloLectura}"/>
-												
+
+												<!--errores-->
 												<div><form:errors path="fecha" cssStyle="color: red" /></div>
 									  			<div><form:errors path="horaInicio" cssStyle="color: red" /></div>
 												<div><form:errors path="horaFin" cssStyle="color: red" /></div>
