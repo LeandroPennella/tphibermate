@@ -3,9 +3,9 @@
 <link href='<c:url value="/views/ui/css/jquery-ui.css"/>' rel="stylesheet">
 <script type="text/javascript">
 var nombres = [];
-var listaInvitados = [];
+var listaInvitaciones = [];
 
-function agregarALista(id, nombre)
+function agregarAListaImpresa(id, nombre)
 {
 	  //todo: agregar estadox
 	  $("#listadoUsuariosTentativo").append(
@@ -26,8 +26,8 @@ function llenarListaAutocompletar(data)
 {
 	  for(var i=0; i<data.length; i++) {
 	  	//todo: revisar que no este ya invitado
-			for(var j=0; j<listaInvitados.length; j++) {
-				if(listaInvitados[j].id == data[i].id) {	
+			for(var j=0; j<listaInvitaciones.length; j++) {
+				if(listaInvitaciones[j].id == data[i].id) {	
 					estaInvitado = true;
 					break;
 				}
@@ -54,29 +54,25 @@ $(
 				          success: function( data ) {
 				        	  response(llenarListaAutocompletar(data));	  
 				          }
-				           
 	      			});
 	  			},
 	  			select: function (event, ui){
-	  				
 	  				agregarALista(ui.item.id, ui.item.label);
-	  				
-	  				//todo:borrar contenido
-	  				//$(this).val('');
+	  				//todo:borrar contenido	//$(this).val('');
 				}
-		
 			}
 		)
 	} 	 
 );
 
 $(
-	function(){		 //pasar a funcion cargar(listaInvitados);	
+	//carga invitaciones (usuarios+estados)
+	function(){		 	
 	<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
-		listaInvitados.push({
+		listaInvitaciones.push({
 			id: "${invitacion.usuario.id}" , 
 			nombre:  "${invitacion.usuario.nombreUsuario}" + " (${invitacion.usuario.nombre} ${invitacion.usuario.apellido})" , 
-			estado:  "${invitacion.estado}"
+			estado:  "${invitacion.aceptado}"
 		});
 	    </c:forEach>
 	    console.log(listaInvitados)

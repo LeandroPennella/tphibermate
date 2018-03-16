@@ -127,6 +127,7 @@
 													</div>
 												</div>
 											</c:if>
+											
 											<!-- invitaciones -->
 											<div class="control-group">
 												<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
