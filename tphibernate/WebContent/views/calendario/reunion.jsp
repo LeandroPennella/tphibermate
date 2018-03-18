@@ -9,8 +9,16 @@
 <html>
 <head>
 	<jsp:include page="master_header.jsp"></jsp:include>
-	<jsp:include page="master_time.jsp"></jsp:include>
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	
+  	<%--<link rel="stylesheet" href="/resources/demos/style.css"> --%>
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
 	<jsp:include page="master_reunion_autocomplete.jsp"></jsp:include>
+	<jsp:include page="master_time.jsp"></jsp:include>
 	<title><fmt:message key="reunion.tituloAgregar"/></title>
 	<!--  https://jqueryui.com/autocomplete/#remote-jsonp-->  
 </head>
