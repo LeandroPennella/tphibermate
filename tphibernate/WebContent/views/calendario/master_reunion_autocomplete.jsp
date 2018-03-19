@@ -6,7 +6,7 @@
 <script type="text/javascript">
 var nombres = [];
 var listaInvitaciones = [];
-
+/*
 function agregarAListaImpresa(id, nombre)
 {
 	  //todo: agregar estadox
@@ -14,6 +14,16 @@ function agregarAListaImpresa(id, nombre)
 		  '<li id='+id+'>'+
 		  	'<a href="/user/messages"><span class="tab">'+nombre+'</span></a>'+
 		  	'<a onclick="sacarDeLista(this)">X</a></li>');
+}
+*/
+function agregarATablaInvitaciones(id, nombre)
+{
+	  //todo: agregar estadox
+	  $("#tablaInvitaciones").append(
+		  '<tr id='+id+'>'+
+		  '<td>'+nombre+'</td>'+
+		  '<td><a onclick="sacarDeLista(this)">X</a></td>'+
+		  '</tr>');
 }
 
 function sacarDeLista(elemento)
@@ -59,7 +69,7 @@ $(
 	      			});
 	  			},
 	  			select: function (event, ui){
-	  				agregarAListaImpresa(ui.item.id, ui.item.label);
+	  				agregarATablaInvitaciones(ui.item.id, ui.item.label);
 	  				//todo:borrar contenido	//$(this).val('');
 				}
 			}

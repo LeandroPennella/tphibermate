@@ -119,6 +119,54 @@
 
 
 										
+										<!-- usuarios a invitar ------------------------------------------------------------------------------------->
+										<c:if test='${!soloLectura}'>
+										
+										<div class="control-group">
+											<fmt:message key='reunion.label.participantes' var="participantes" />
+											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
+											<div class="controls">
+											
+												<input id="usuariosAutocomplete" class="input-xxlage" />
+												<%-- 
+												<div class="row">
+													<input id="usuariosAutocomplete" class="input-xxlage" />
+												</div>
+												<div class="row">
+													listado tentativo
+													<ul id="listadoUsuariosTentativo"></ul>
+												</div>
+												
+												<div class="row">
+												<%-- 
+													<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
+													<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
+												 --%>
+												 												<%-- 
+												 
+													<form:select path="tokensInvitadosMasConfirmacion"  > 
+														<option value="0">deseleccionar</option>
+														<c:forEach items="${reunionForm.getMapaUsuariosMasConfirmacion()}" var="usuarioMasConfirmacion" >
+													        <c:choose>
+																<c:when test="${usuarioMasConfirmacion.value!=-1}">
+																	<option value="${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}"   selected="true">${usuarioMasConfirmacion.key.nombre}</option>
+																</c:when>
+																<c:otherwise>
+																	<option value="${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}">${usuarioMasConfirmacion.key.nombre}</option>
+																</c:otherwise>
+															</c:choose>
+														</c:forEach>
+													</form:select>											
+												</div><!-- /row -->
+												<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
+												--%>
+											</div><!-- controls -->
+										</div><!-- control-group -->
+										</c:if>
+										
+										
+										<!-- invitaciones------------------------------------------------------------------------------------------------>
+										
 										<c:if test="${not empty reunionForm.idEvento}"><!-- si se esta editando -->
 										
 											<!-- estado -->		
@@ -136,11 +184,11 @@
 												</div>
 											</c:if>
 											
-											<!-- invitaciones -->
+											<!-- invitaciones(usuario+estado) -->
 											<div class="control-group">
 												<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
 												<div class="controls">
-												<table>
+												<table id="tablaInvitados">
 													<tr><th>Usuario</th><th>Estado</th></tr>
 													<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
 														<tr>
@@ -158,46 +206,7 @@
 											</div>
 										</c:if>
 										
-										<!-- usuarios a invitar ------------------------------------------------------------------------------------->
-										<c:if test='${!soloLectura}'>
 										
-										<div class="control-group">
-											<fmt:message key='reunion.label.participantes' var="participantes" />
-											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
-											<div class="controls">
-											
-											<div class="row">
-												<input id="usuariosAutocomplete" class="input-xxlage" />
-											</div>
-											<div class="row">
-												listado tentativo
-												<ul id="listadoUsuariosTentativo"></ul>
-											</div>
-											
-											<div class="row">
-											<%-- 
-												<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
-												<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
-											 --%>
-												<form:select path="tokensInvitadosMasConfirmacion"  > 
-													<option value="0">deseleccionar</option>
-													<c:forEach items="${reunionForm.getMapaUsuariosMasConfirmacion()}" var="usuarioMasConfirmacion" >
-												        <c:choose>
-															<c:when test="${usuarioMasConfirmacion.value!=-1}">
-																<option value="${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}"   selected="true">${usuarioMasConfirmacion.key.nombre}</option>
-															</c:when>
-															<c:otherwise>
-																<option value="${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}">${usuarioMasConfirmacion.key.nombre}</option>
-															</c:otherwise>
-														</c:choose>
-													</c:forEach>
-												</form:select>											
-											</div>
-											<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
-											
-											</div>
-										</div>
-										</c:if>
 										
 										<!-- Botones ---------------------------------------------------------------------------------------->
  										<div class="form-actions">
