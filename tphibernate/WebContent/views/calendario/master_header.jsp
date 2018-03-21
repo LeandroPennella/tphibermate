@@ -11,8 +11,9 @@
 
 <!-- https://github.com/VinceG/Bootstrap-Admin-Theme -->
 <!-- http://getbootstrap.com/2.3.2-->
-
+<%-- 
 <script type="text/javascript" src='<c:url value="/views/ui/js/jquery-1.9.1.min.js" />'></script>
+--%>
 <script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap.2.3.2.min.js" />'></script>
 <script type="text/javascript" src='<c:url value="/views/ui/js/master.js" />'></script>
 <script type="text/javascript" src='<c:url value="/views/ui/js/modernizr-2.6.2-respond-1.1.0.min.js" />'></script>

@@ -10,12 +10,16 @@
 <head>
 	<jsp:include page="master_header.jsp"></jsp:include>
 	
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   	
   	<%--<link rel="stylesheet" href="/resources/demos/style.css"> --%>
-  
+  <%--  
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  --%>
+  <link href='<c:url value="/views/ui/css/jquery-ui.css"/>' rel="stylesheet">
+  <script type="text/javascript" src="<c:url value="/views/ui/js/jquery-ui-1.12.4.js" />"></script>
   
 	<jsp:include page="master_reunion_autocomplete.jsp"></jsp:include>
 	<jsp:include page="master_time.jsp"></jsp:include>
@@ -183,29 +187,30 @@
 													</div>
 												</div>
 											</c:if>
-											
-											<!-- invitaciones(usuario+estado) -->
-											<div class="control-group">
-												<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
-												<div class="controls">
-												<table id="tablaInvitados">
-													<tr><th>Usuario</th><th>Estado</th></tr>
-													<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
-														<tr>
-															<td>${invitacion.usuario.nombre} </td>
-															<td> 
-															<c:if test="${invitacion.aceptado==0}">no confirmado</c:if>
-															<c:if test="${invitacion.aceptado==1}">confirmado</c:if>
-															<c:if test="${invitacion.aceptado==2}">cancelado</c:if>
-															</td>
-														</tr>
-													</c:forEach>
-													<%-- </tr>  --%>
-												</table>
-												</div>
-											</div>
 										</c:if>
 										
+										<!-- invitaciones(usuario+estado) -->
+										<div class="control-group">
+											<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
+											<div class="controls">
+											<table id="tablaInvitados">
+												<tr><th>Usuario</th><th>Estado</th></tr>
+												<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
+													<tr>
+														<td>${invitacion.usuario.nombre} </td>
+														<td> 
+														<c:if test="${invitacion.aceptado==0}">no confirmado</c:if>
+														<c:if test="${invitacion.aceptado==1}">confirmado</c:if>
+														<c:if test="${invitacion.aceptado==2}">cancelado</c:if>
+														</td>
+													</tr>
+												</c:forEach>
+												<%-- </tr>  --%>
+											</table>
+											</div>
+										</div>
+									
+									
 										
 										
 										<!-- Botones ---------------------------------------------------------------------------------------->

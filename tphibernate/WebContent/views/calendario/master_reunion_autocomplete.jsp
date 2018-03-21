@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--
 <script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
-<link href='<c:url value="/views/ui/css/jquery-ui.css"/>' rel="stylesheet">
  --%>
 <script type="text/javascript">
 var nombres = [];
