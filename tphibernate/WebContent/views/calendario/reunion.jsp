@@ -19,7 +19,7 @@
   
   --%>
   <link href='<c:url value="/views/ui/css/jquery-ui.css"/>' rel="stylesheet">
-  <script type="text/javascript" src="<c:url value="/views/ui/js/jquery-ui-1.12.4.js" />"></script>
+  <script type="text/javascript" src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
   
 	<jsp:include page="master_reunion_autocomplete.jsp"></jsp:include>
 	<jsp:include page="master_time.jsp"></jsp:include>
@@ -146,7 +146,7 @@
 													<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
 													<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
 												 --%>
-												 												<%-- 
+												 												
 												 
 													<form:select path="tokensInvitadosMasConfirmacion"  > 
 														<option value="0">deseleccionar</option>
@@ -160,10 +160,12 @@
 																</c:otherwise>
 															</c:choose>
 														</c:forEach>
-													</form:select>											
+													</form:select>
+													<%-- 											
 												</div><!-- /row -->
-												<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
 												--%>
+												<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
+												
 											</div><!-- controls -->
 										</div><!-- control-group -->
 										</c:if>
@@ -193,7 +195,7 @@
 										<div class="control-group">
 											<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
 											<div class="controls">
-											<table id="tablaInvitados">
+											<table id="tablaInvitaciones">
 												<tr><th>Usuario</th><th>Estado</th></tr>
 												<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
 													<tr>
