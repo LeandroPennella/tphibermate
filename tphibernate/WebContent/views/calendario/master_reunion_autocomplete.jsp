@@ -21,7 +21,8 @@ function agregarATablaInvitaciones(id, nombre)
 	  $("#tablaInvitaciones").append(
 		  '<tr id='+id+'>'+
 		  '<td>'+nombre+'</td>'+
-		  '<td><a onclick="sacarDeLista(this)">X</a></td>'+
+		  '<td>pendiente</td>'+
+	      '<td><input type="button" class="borrar" value="Eliminar" /></td>'+
 		  '</tr>');
 }
 
@@ -32,6 +33,7 @@ function sacarDeLista(elemento)
     node=document.getElementById(id);
     node.parentNode.removeChild(node);
 }
+
 
 function llenarListaAutocompletar(data)
 {
@@ -75,6 +77,11 @@ $(
 		)
 	} 	 
 );
+
+$(document).on('click', '.borrar', function (event) {
+    event.preventDefault();
+    $(this).closest('tr').remove();
+});
 
 $(
 	//carga invitaciones (usuarios+estados)
