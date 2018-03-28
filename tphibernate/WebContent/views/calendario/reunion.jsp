@@ -131,23 +131,24 @@
 											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
 											<div class="controls">
 											
+											<%-- tira error el path 
+												<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
+												<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
+												
+												--%>
+												 
 												<input id="usuariosAutocomplete" class="input-xxlage" />
+												
+												
 												<%-- 
 												<div class="row">
-													<input id="usuariosAutocomplete" class="input-xxlage" />
-												</div>
-												<div class="row">
-													listado tentativo
-													<ul id="listadoUsuariosTentativo"></ul>
-												</div>
-												
-												<div class="row">
+												--%>
 												<%-- 
 													<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
 													<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
 												 --%>
 												 												
-												 
+												 <%-- reemplazado por autocompletar y listaInvitaciones
 													<form:select path="tokensInvitadosMasConfirmacion"  > 
 														<option value="0">deseleccionar</option>
 														<c:forEach items="${reunionForm.getMapaUsuariosMasConfirmacion()}" var="usuarioMasConfirmacion" >
@@ -161,11 +162,12 @@
 															</c:choose>
 														</c:forEach>
 													</form:select>
+													 --%>
 													<%-- 											
 												</div><!-- /row -->
-												--%>
-												<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
 												
+												<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
+												--%>
 											</div><!-- controls -->
 										</div><!-- control-group -->
 										</c:if>

@@ -120,9 +120,8 @@ public class ReunionController {
 		Set<Invitacion>invitacionesHechas=reunion.getInvitaciones();
 		reunionForm.setInvitaciones(invitacionesHechas);
 		
-		
-		//TODO: Ajax:pasar en usuariosAinvitar solo los que restan invitar, des invitarlos desde InvitacionesHechas 
-		
+				
+		/*
 		Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			
 		List<Usuario> usuarios=usuarioDAO.getAll();//toma los usuarios en las invitaciones hechas y los marca como ya invitados
 		for(Usuario usuario: usuarios)
@@ -133,12 +132,12 @@ public class ReunionController {
 				{
 					//TODO: Revisar
 					
-					/*
+					
 					 
-					if ((invitacion.getUsuario().getId()==usuario.getId())){
-						idConfirmacion=idConfirmacion=invitacion.getAceptado();
-					}
-					*/
+					//if ((invitacion.getUsuario().getId()==usuario.getId())){
+//						idConfirmacion=idConfirmacion=invitacion.getAceptado();
+					//}
+
 					
 					if ((invitacion.getUsuario().getId()!=usuario.getId())){
  						idConfirmacion=-1;		
@@ -149,7 +148,7 @@ public class ReunionController {
 			}
 		}
 		reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);							//todos los usuarios, los invitados con idConfirmacion, los que no con -1
-		
+		*/
 		
 		
 		
