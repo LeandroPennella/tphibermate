@@ -78,6 +78,8 @@ public class ReunionController {
 	public ModelAndView crear(@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado) {
 		
 		ReunionForm reunionForm=new ReunionForm();
+		/*
+		 * reemplazado por autocomplete + tabla
 		Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			
 		List<Usuario> usuarios=usuarioDAO.getAll();													
 		for(Usuario usuario: usuarios)
@@ -87,6 +89,7 @@ public class ReunionController {
 			}
 		}
 		reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);					//todos los usuarios, todos con idConfirmacion -1 (no invitado)
+		*/
 		reunionForm.setSalas(salaDAO.getAll());
 		ModelAndView mv=new ModelAndView("/views/calendario/reunion.jsp","reunionForm", reunionForm);
 		return mv;
@@ -180,6 +183,9 @@ public class ReunionController {
 			if (!reunionForm.getIdEvento().isEmpty())  { //en modificacion
 				Reunion reunion=reunionDAO.get(Long.parseLong(reunionForm.getIdEvento()));
 				reunionForm.setInvitaciones(reunion.getInvitaciones());
+				/*
+				 * en desuso por autocomplete + tablainvitaciones
+				 
 				Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			
 				List<Usuario> usuarios=usuarioDAO.getAll();//toma los usuarios en las invitaciones hechas y los marca como ya invitados
 				for(Usuario usuario: usuarios)
@@ -200,7 +206,10 @@ public class ReunionController {
 					}
 				}
 				reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);							//todos los usuarios, los invitados con idConfirmacion, los que no con -1
+				*/
 			} else { 																//errores en creacion
+				/*
+				 * en desuso autocomplete + tablainvitaciones
 				Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			
 				List<Usuario> usuarios=usuarioDAO.getAll();													
 				for(Usuario usuario: usuarios)
@@ -209,8 +218,10 @@ public class ReunionController {
 						mapaUsuariosMasConfirmacion.put(usuario, -1);
 					}
 				}
-				reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);	
+				reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);
+				*/	
 			}
+			
 			reunionForm.setSalas(salaDAO.getAll());
 			reunionForm.setIdEvento(null);
 			return new ModelAndView("/views/calendario/reunion.jsp","reunionForm", reunionForm);
@@ -242,6 +253,7 @@ public class ReunionController {
 			
 			//List<String> tokensInvitadosMasConfirmacion=new ArrayList<String>();							//lista de pares idUsuario|confirmacion elegidoen el formulario//todos los usuarios posibles, y seteados los agregados //TODO: Ajax: listar solo los usuarios que no estar invitados
 			Set<Invitacion>invitaciones=new HashSet<Invitacion>();
+			/*
 			for(String tokenInvitadoMasConfirmacion:reunionForm.getTokensInvitadosMasConfirmacion())
 			{
 				StringTokenizer invitacionTokenizer=new StringTokenizer(tokenInvitadoMasConfirmacion,"|");
@@ -260,7 +272,7 @@ public class ReunionController {
 					invitaciones.add(invitacion);
 				}
 			}
-			
+			*/
 			if (reunion.getInvitaciones()==null){
 				reunion.setInvitaciones(invitaciones);
 			} else {

@@ -30,14 +30,11 @@
 	<jsp:include page="master_menu.jsp"></jsp:include>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span3" id="sidebar">
-			</div>
-			<!--/span-->
+			<div class="span3" id="sidebar"></div>
 			<div class="span9" id="content">
-				<!-- morris stacked chart -->
 				<div class="row-fluid">
-					<!-- block -->
 					<div class="block">
+					
 						<div class="navbar navbar-inner block-header">
 							<div class="muted pull-left"><fmt:message key='reunion.titulo'/></div>
 						</div>
@@ -136,8 +133,8 @@
 												<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
 												
 												--%>
-												 
-												<input id="usuariosAutocomplete" class="input-xxlage" />
+												 <!-- no tiene path porque no se persiste -->
+												<input id="usuariosAutocomplete" class="input-xxlage" placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
 												
 												
 												<%-- 
@@ -193,7 +190,7 @@
 											</c:if>
 										</c:if>
 										
-										<!-- invitaciones(usuario+estado) -->
+										<!-- tabla invitaciones(usuario+estado) -->
 										<div class="control-group">
 											<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
 											<div class="controls">
