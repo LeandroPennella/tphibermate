@@ -134,7 +134,7 @@
 												
 												--%>
 												 <!-- no tiene path porque no se persiste -->
-												<input id="usuariosAutocomplete" class="input-xxlage" placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
+												<input id="usuariosAutocomplete" class="input-xxlage" placeholder="${usuariosainvitar}" <%--  disabled="${soloLectura}" --%> />
 												
 												
 												<%-- 
