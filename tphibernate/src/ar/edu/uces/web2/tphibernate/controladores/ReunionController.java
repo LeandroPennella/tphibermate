@@ -77,8 +77,9 @@ public class ReunionController {
 	
 
 	@RequestMapping(value = "/calendario/listadoDeUsuarios", method = RequestMethod.GET)
-	public @ResponseBody List<Usuario> listadoDeUsuarios (String parteNombre)
+	public @ResponseBody List<Usuario> listadoDeUsuarios (String parteNombre, int cantMax)
 	{
+		//TODO: enviar solo los cantMax primeros
 		return usuarioDAO.find(parteNombre);			
 	}
 	

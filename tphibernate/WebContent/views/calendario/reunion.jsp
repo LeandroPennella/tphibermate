@@ -21,7 +21,7 @@
   <link href='<c:url value="/views/ui/css/jquery-ui.css"/>' rel="stylesheet">
   <script type="text/javascript" src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
   
-	<jsp:include page="master_reunion_autocomplete.jsp"></jsp:include>
+	<jsp:include page="reunion_autocomplete.jsp"></jsp:include>
 	<jsp:include page="master_time.jsp"></jsp:include>
 	<title><fmt:message key="reunion.tituloAgregar"/></title>
 	<!--  https://jqueryui.com/autocomplete/#remote-jsonp-->  

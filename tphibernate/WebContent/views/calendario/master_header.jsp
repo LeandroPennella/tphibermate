@@ -20,5 +20,8 @@
 <script type="text/javascript" src='<c:url value="/views/ui/js/modernizr-2.6.2-respond-1.1.0.min.js" />'></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate var="dia" value="${now}" pattern="d" />
+<!-- <link rel="shortcut icon" id="favicon" type="image/x-icon" href="https://calendar.google.com/googlecalendar/images/favicon_v2014_${dia}.ico"> -->
+<link rel="icon" id="favicon" type="image/x-icon" href="https://calendar.google.com/googlecalendar/images/favicon_v2014_${dia}.ico">
 <!--  <link rel="icon" href="<c:url value='/views/ui/imagenes/agenda.png'/>"> --> 
