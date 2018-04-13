@@ -3,7 +3,7 @@
 <script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
  --%>
 <script type="text/javascript">
-var listaAutocompletar = [];
+//var listaAutocompletar = [];
 var listaInvitaciones = [];
 
 function agregarATablaInvitaciones(id, nombre)
@@ -22,35 +22,50 @@ function agregarATablaInvitaciones(id, nombre)
 
 function llenarListaAutocompletar(data)
 {
-	  for(var i=0; i<data.length; i++) {
-	  	//todo: revisar que no este ya invitado
+	//console.log("> llenarListaAutocompletar ==================================================")
+	//console.log("data:"+data)
+	//console.log("listaAutocompletar:"+listaAutocompletar)
+	var estaInvitado;
+	var fueRecienInvitado;
+	var listaAutocompletar=[];
+	
+	for(var i=0; i<data.length; i++) {
+		//console.log ("* data "+i+": "+ data[i] + " | " + data[i].nombre)
+		
+		//estaInvitado?
+		//console.log ("* - estaInvitado?")
 		for(var j=0; j<listaInvitaciones.length; j++) {
 			if(listaInvitaciones[j].id == data[i].id) {	
 				estaInvitado = true;
 				break;
 			}
 		}
-	  	//todo: revisar que no este cargado
-	  	
-	  	//listaAutocompletar.push(data[i].nombre + ", " + data[i].apellido);
-		
-	  	listaAutocompletar.push({
-			id: data[i].id},  
-			nombre:  data[i].nombreUsuario + " (" + data[i].nombre + ", " + data[i].apellido+")" , 
-			estado:  data[i].aceptado
-		});
-		/*
-	  	listaAutocompletar.push({
-			id: "${invitacion.usuario.id}" , 
-			nombre:  "${invitacion.usuario.nombreUsuario}" + " (${invitacion.usuario.nombre} ${invitacion.usuario.apellido})" , 
-			estado:  "${invitacion.aceptado}"
-		});
-		*/
-	  	//agregarAListado(data[i].nombre + ", " + data[i].apellido);
+	
+		 //estaCargado?
+		 var label=data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")" ;
+		  //console.log ("* - estaCargado? | Lista:"+listaAutocompletar )
+		//console.log("    listaAutocompletar.length:"+listaAutocompletar.length)
+/*
+		 if (listaAutocompletar.length>0)
+		 {
+		  for (var j=0; j<listaAutocompletar.length;j++){
+			  //console.log("    comprobacion: " + listaAutocompletar[j]+" | " + label + ";")
+			  if(listaAutocompletar[j]==label){
+				  estaCargado = true;
+				  break;
+			  }
+		  }
+		 }
+	 */
+	 
+	 //todo: fueRecienInvitado
+	 
+	  if ((estaInvitado != true) && (fueRecienInvitado != true)){
+	  	listaAutocompletar.push(label);
 	  }
-	  console.log("listaAutocompletar")
-    	console.log(listaAutocompletar)
-
+	}
+	  
+	  //console.log(" < llenarListaAutocompletar | listaAutocompletar: "+ listaAutocompletar)
 	  return listaAutocompletar;
 	  //response(nombres.slice(0,5)); > para limitar la lista, pero se hace desde el controlador
 }
@@ -69,7 +84,7 @@ $(
 	<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
 		listaInvitaciones.push({
 			id: "${invitacion.usuario.id}" , 
-			nombre:  "${invitacion.usuario.nombreUsuario}" + " (${invitacion.usuario.nombre} ${invitacion.usuario.apellido})" , 
+			nombre:  "${invitacion.usuario.nombre} ${invitacion.usuario.apellido} (${invitacion.usuario.nombreUsuario})" , 
 			estado:  "${invitacion.aceptado}"
 		});
     </c:forEach>
