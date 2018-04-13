@@ -32,12 +32,20 @@ function llenarListaAutocompletar(data)
 		}
 	  	//todo: revisar que no este cargado
 	  	
-	  	listaAutocompletar.push(data[i].nombre + ", " + data[i].apellido);
+	  	//listaAutocompletar.push(data[i].nombre + ", " + data[i].apellido);
+		
+	  	listaAutocompletar.push({
+			id: data[i].id},  
+			nombre:  data[i].nombreUsuario + " (" + data[i].nombre + ", " + data[i].apellido+")" , 
+			estado:  data[i].aceptado
+		});
+		/*
 	  	listaAutocompletar.push({
 			id: "${invitacion.usuario.id}" , 
 			nombre:  "${invitacion.usuario.nombreUsuario}" + " (${invitacion.usuario.nombre} ${invitacion.usuario.apellido})" , 
 			estado:  "${invitacion.aceptado}"
 		});
+		*/
 	  	//agregarAListado(data[i].nombre + ", " + data[i].apellido);
 	  }
 	  console.log("listaAutocompletar")
