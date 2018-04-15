@@ -6,18 +6,29 @@
 //var listaAutocompletar = [];
 var listaInvitaciones = [];
 
-function agregarATablaInvitaciones(id, nombre)
+function agregarATablaInvitaciones(id, nombreCompuesto)
 {
 	  //todo: agregar estadox
 	  $("#tablaInvitaciones").append(
 		  '<tr id='+id+'>'+
-		  '<td>'+nombre+'</td>'+
+		  '<td class="celdaNombreCompuesto">'+nombreCompuesto+'</td>'+
 		  '<td>pendiente</td>'+
 	      '<td><input type="button" class="borrar" value="Eliminar" /></td>'+
 		  '</tr>');
 }
 
-
+//busca por nombreUsuario si el usuario esta agregado en la tabla invitaciones
+function buscarEnTablaInvitaciones(nombreCompuesto){
+	var encontrado=false;
+	$(".celdaNombreCompuesto").each(
+		function() {		     			
+   			if($(this).html() == nombreCompuesto){
+   				encontrado=true;
+   			}
+		}		
+	)	
+	return encontrado;
+}
 
 
 function llenarListaAutocompletar(data)
@@ -34,13 +45,17 @@ function llenarListaAutocompletar(data)
 		
 		//estaInvitado?
 		//console.log ("* - estaInvitado?")
+		
+		/*
+		//TODO: reemplazar por leerTablaInvitaciones
 		for(var j=0; j<listaInvitaciones.length; j++) {
 			if(listaInvitaciones[j].id == data[i].id) {	
 				estaInvitado = true;
 				break;
 			}
 		}
-	
+		*/
+		
 		 //estaCargado?
 		 var label=data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")" ;
 		  //console.log ("* - estaCargado? | Lista:"+listaAutocompletar )
@@ -60,9 +75,15 @@ function llenarListaAutocompletar(data)
 	 
 	 //todo: fueRecienInvitado
 	 
+	 /*
 	  if ((estaInvitado != true) && (fueRecienInvitado != true)){
 	  	listaAutocompletar.push(label);
 	  }
+		*/
+		console.log("esta?"+buscarEnTablaInvitaciones(label))
+	  if(buscarEnTablaInvitaciones(label)==false){
+		  listaAutocompletar.push(label);
+		}
 	}
 	  
 	  //console.log(" < llenarListaAutocompletar | listaAutocompletar: "+ listaAutocompletar)
@@ -109,7 +130,8 @@ $(
 	  			},
 	  			select: function (event, ui){
 	  				agregarATablaInvitaciones(ui.item.id, ui.item.label);
-	  				//todo:borrar contenido	//$(this).val('');
+	  			    $(this).val("");
+	  			    return false;
 				}
 			}
 		)
