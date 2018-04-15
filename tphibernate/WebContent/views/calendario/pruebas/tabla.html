@@ -1,0 +1,78 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(
+	function() {
+		$("#ok").click(
+			function() {
+	    		var valores = "";
+				/*
+				//recorre todos los dv de del tr padre del elemento .numero
+				$(".numero").parent("tr").find("td").each(
+					function() {
+		     			if($(this).html() != "coger valores de la fila"){
+		          			valores += $(this).html() + " ";
+	          			}
+					}
+				);
+				*/
+				//recorre todos los elementos .numero
+				$(".numero").each(
+						function() {		     			
+		          			valores += $(this).html() + " ";		          			
+						}
+					);
+		        valores = valores + "\n";
+		        alert(valores);
+	      	}
+		);
+		
+     	$(".boton").click(
+			function() {
+        		var valores = "";
+        		// Obtenemos todos los valores contenidos en los <td> de la fila seleccionada
+		        $(this).parents("tr").find(".numero").each(
+	        		function() {
+	          			valores += $(this).html() + "\n";
+		        	}
+        		);
+		        console.log(valores);
+		        alert(valores);
+    		}
+		);
+    }
+);
+  </script>
+ 
+  <table border="1" cellspacing="0" cellpadding="5" id="tbl">
+    <thead>
+      <tr>
+        <td>Nombre 1</td>
+        <td>Nombre 2</td>
+        <td>Apellido 1</td>
+        <td>Mantenimiento</td>
+      </tr>
+    </thead>
+    <tr>
+      <td class="numero">Kevin</td>
+      <td>Joseph</td>
+      <td>Ramos</td>
+      <td class="boton">coger valores de la fila</td>
+    </tr>
+    <tr>
+      <td class="numero">Viviana</td>
+      <td>Belen</td>
+      <td>Rojas</td>
+      <td class="boton">coger valores de la fila</td>
+    </tr>
+    <tr>
+      <td class="numero">Junior</td>
+      <td>Gerardo</td>
+      <td>Nosé</td>
+      <td class="boton">coger valores de la fila</td>
+    </tr>
+  </table>
+  <br>
+  <form action="">
+    <label for="">Nombre</label>
+    <input type="button" value="ok" id="ok" class="boton2">
+  </form>
