@@ -11,9 +11,12 @@ function agregarATablaInvitaciones(id, nombreCompuesto)
 	  //todo: agregar estadox
 	  $("#tablaInvitaciones").append(
 		  '<tr id='+id+'>'+
-		  '<td class="celdaNombreCompuesto">'+nombreCompuesto+'</td>'+
-		  '<td>pendiente</td>'+
-	      '<td><input type="button" class="borrar" value="Eliminar" /></td>'+
+			  '<td class="celdaNombreCompuesto">'+nombreCompuesto+'</td>'+
+			  '<td>pendiente</td>'+
+		      '<td>'+
+		      	'<input type="hidden" name="usuario_id">'+id+
+			  	'<input type="button" class="borrar" value="Eliminar" />'+
+			  '</td>'+
 		  '</tr>');
 }
 
@@ -82,11 +85,11 @@ function llenarListaAutocompletar(data)
 		*/
 		console.log("esta?"+buscarEnTablaInvitaciones(label))
 	  if(buscarEnTablaInvitaciones(label)==false){
-		  listaAutocompletar.push(label);
+		  listaAutocompletar.push(data[i].id ,label);
 		}
 	}
 	  
-	  //console.log(" < llenarListaAutocompletar | listaAutocompletar: "+ listaAutocompletar)
+	  console.log(" < llenarListaAutocompletar | listaAutocompletar: "+ listaAutocompletar)
 	  return listaAutocompletar;
 	  //response(nombres.slice(0,5)); > para limitar la lista, pero se hace desde el controlador
 }
@@ -129,6 +132,7 @@ $(
 	      			});
 	  			},
 	  			select: function (event, ui){
+	  				console.log("agregar:"+ui.item)
 	  				agregarATablaInvitaciones(ui.item.id, ui.item.label);
 	  			    $(this).val("");
 	  			    return false;
