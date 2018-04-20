@@ -22,7 +22,7 @@ public class ReunionForm extends EventoForm {
 	private String estado;																	//reunionAutor//reunionNoConfirmado//reunionConfirmada//reunionCancelada
 	
 	private Set<Invitacion> invitaciones=new HashSet<Invitacion>();							//invitaciones actuales solo para mostrar
-	
+	private int[] invitados;																//invitados a establecer
 	
 	
 //	private List<Invitacion> usuariosInvitaciones=new ArrayList<Invitacion>();
@@ -78,6 +78,14 @@ public class ReunionForm extends EventoForm {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public int[] getInvitados() {
+		return invitados;
+	}
+
+	public void setInvitados(int[] invitados) {
+		this.invitados = invitados;
 	}
 
 /*

@@ -14,7 +14,7 @@ function agregarATablaInvitaciones(id, nombreCompuesto)
 			  '<td class="celdaNombreCompuesto">'+nombreCompuesto+'</td>'+
 			  '<td>pendiente</td>'+
 		      '<td>'+
-		      	'<input type="hidden" name="usuario_id">'+id+
+		      	'<input type="hidden" name="invitados[]" value="'+id+'" />"'
 			  	'<input type="button" class="borrar" value="Eliminar" />'+
 			  '</td>'+
 		  '</tr>');

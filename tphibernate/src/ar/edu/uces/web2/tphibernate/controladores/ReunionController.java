@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.org.apache.xml.internal.resolver.helpers.Debug;
+
 import ar.edu.uces.web2.tphibernate.dao.InvitacionDAO;
 import ar.edu.uces.web2.tphibernate.dao.ReunionDAO;
 import ar.edu.uces.web2.tphibernate.dao.SalaDAO;
@@ -266,7 +268,10 @@ public class ReunionController {
 		sala.setId(reunionForm.getIdSala());
 		reunion.setSala(sala);
 		
-		
+		for(int idUsuario : reunionForm.getInvitados())
+		{
+			System.out.println(idUsuario);
+		}
 
 		//TODO: agrega nuevos, no modifica
 		//for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
