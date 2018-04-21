@@ -14,7 +14,7 @@ function agregarATablaInvitaciones(id, nombreCompuesto)
 			  '<td class="celdaNombreCompuesto">'+nombreCompuesto+'</td>'+
 			  '<td>pendiente</td>'+
 		      '<td>'+
-		      	'<input type="hidden" name="invitados[]" value="'+id+'" />"'
+		      	'<input type="hidden" name="invitados" value="'+id+'" />'+
 			  	'<input type="button" class="borrar" value="Eliminar" />'+
 			  '</td>'+
 		  '</tr>');
@@ -32,8 +32,17 @@ function buscarEnTablaInvitaciones(nombreCompuesto){
 	)	
 	return encontrado;
 }
-
-
+/*
+function llenarListaAutocompletar(data) {                     
+    var array = {
+            label: sarasa,
+            value: 2
+        }
+    
+    //response(array);
+    return array;
+}
+*/
 function llenarListaAutocompletar(data)
 {
 	//console.log("> llenarListaAutocompletar ==================================================")
@@ -83,14 +92,25 @@ function llenarListaAutocompletar(data)
 	  	listaAutocompletar.push(label);
 	  }
 		*/
-		console.log("esta?"+buscarEnTablaInvitaciones(label))
+		//console.log("esta?"+buscarEnTablaInvitaciones(label))
+		
 	  if(buscarEnTablaInvitaciones(label)==false){
-		  listaAutocompletar.push(data[i].id ,label);
+		  
+		  //value:data[i].id , label: data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")"
+		  /*
+		  var object = {
+                value: data[i].id;
+				label: data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")";
+		};
+		
+		listaAutocompletar.push(object);
+		  */
+	  	listaAutocompletar.push({value:data[i].id, label:data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")"});
 		}
 	}
 	  
 	  console.log(" < llenarListaAutocompletar | listaAutocompletar: "+ listaAutocompletar)
-	  return listaAutocompletar;
+	  return (listaAutocompletar);
 	  //response(nombres.slice(0,5)); > para limitar la lista, pero se hace desde el controlador
 }
 
@@ -112,8 +132,8 @@ $(
 			estado:  "${invitacion.aceptado}"
 		});
     </c:forEach>
-    console.log("listaInvitaciones")
-    console.log(listaInvitaciones)
+    //console.log("listaInvitaciones")
+    //console.log(listaInvitaciones)
 
     //autocomplete
 	 $( "#usuariosAutocomplete" ).autocomplete
@@ -126,14 +146,12 @@ $(
 				            data: {parteNombre: request.term, cantMax:5},
 			              	dataType : "json",
 			              	//contentType : "application/json;charset=UTF-8",
-				          success: function( data ) {
-				        	  response(llenarListaAutocompletar(data));	  
-				          }
+				          success: function(data) {response (llenarListaAutocompletar(data));}
 	      			});
 	  			},
 	  			select: function (event, ui){
-	  				console.log("agregar:"+ui.item)
-	  				agregarATablaInvitaciones(ui.item.id, ui.item.label);
+	  				console.log("agregar:"+ui.item.value +"|"+ui.item.label)
+	  				agregarATablaInvitaciones(ui.item.value, ui.item.label);
 	  			    $(this).val("");
 	  			    return false;
 				}
