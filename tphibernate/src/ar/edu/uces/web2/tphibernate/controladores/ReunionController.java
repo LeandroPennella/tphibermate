@@ -187,7 +187,7 @@ public class ReunionController {
 		
 	@RequestMapping(value = "/calendario/agregarReunion")//TODO: modificar url
 	public ModelAndView save(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado ) {
-
+		//https://github.com/LeandroPennella/uces.web2.agendaLean/blob/a05fcbf6fe13135ba2522b92cad78ed0d24bd55b/tphibernate/src/ar/edu/uces/web2/tphibernate/controladores/ReunionController.java
 		this.eventoFormValidator.validate(reunionForm, result);
 		this.reunionValidator.validate(reunionForm, result);
 		if (result.hasErrors()) {		//tiene errores
@@ -268,18 +268,46 @@ public class ReunionController {
 		sala.setId(reunionForm.getIdSala());
 		reunion.setSala(sala);
 		
-		for(int idUsuario : reunionForm.getInvitados())
+		Set<Invitacion>invitacionesAnteriores=new HashSet<Invitacion>();
+		Set<Invitacion>invitacionesActuales=new HashSet<Invitacion>();
+		invitacionesAnteriores=reunionForm.getInvitaciones();
+		//TODO: revisar invitados
+		boolean estaba;
+		for(int idUsuarioInvitado : reunionForm.getInvitados())
 		{
+			estaba=false;
+			for(Invitacion invitacion:invitaciones)
+			{
+				if (invitacion.getUsuario().getId()==idUsuarioInvitado)
+				{
+					estaba=true;
+					invitacionesActuales.add(invitacion);
+					break;
+				}
+			}
+			if (!estaba) {
+				invitacionesActuales.add(new Invitacion{idUsuario=idUsuarioInvitado, aceptado=0 })
+			}
+			//> si no estaban agregar,  si estaban y no estan, quitarlos
+			
 			System.out.println(idUsuario);
 		}
+		
+		
+
 
 		//TODO: agrega nuevos, no modifica
 		//for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
 
 		
 		//List<String> tokensInvitadosMasConfirmacion=new ArrayList<String>();							//lista de pares idUsuario|confirmacion elegidoen el formulario//todos los usuarios posibles, y seteados los agregados //TODO: Ajax: listar solo los usuarios que no estar invitados
-		Set<Invitacion>invitaciones=new HashSet<Invitacion>();
-		//TODO: revisar invitados > si no estaban agregar,  si estaban y no estan, quitarlos
+		
+		
+		
+		
+		
+		
+		
 		/*
 		for(String tokenInvitadoMasConfirmacion:reunionForm.getTokensInvitadosMasConfirmacion())
 		{
@@ -300,13 +328,14 @@ public class ReunionController {
 			}
 		}
 		*/
+		/*
 		if (reunion.getInvitaciones()==null){
 			reunion.setInvitaciones(invitaciones);
 		} else {
 			reunion.getInvitaciones().clear();
 			reunion.getInvitaciones().addAll(invitaciones);
 		}
-			
+			*/
 		reunionDAO.save(reunion);
 	}
 	
