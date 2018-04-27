@@ -4,9 +4,20 @@ public class Invitacion {
 	private long id;
 	private Usuario usuario;
 	private int aceptado;				//TODO: idConfirmacion
+	/*
+	 * 0>no confirmado
+		1>confirmado
+		2>cancelado
+	 */
 	//TODO: SolucionInvitados
 	private Reunion reunion;
-	
+	public Invitacion() {}
+	public Invitacion(int idUsuario, int aceptado) {
+		Usuario usuario=new Usuario();
+		usuario.setId(idUsuario);
+		this.setUsuario(usuario);
+		this.setAceptado(aceptado);
+	}
 	public Reunion getReunion() {
 		return reunion;
 	}

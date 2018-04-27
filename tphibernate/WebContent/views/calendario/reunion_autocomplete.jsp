@@ -6,32 +6,21 @@
 //var listaAutocompletar = [];
 var listaInvitaciones = [];
 
-function agregarATablaInvitaciones(id, nombreCompuesto)
-{
-	  //todo: agregar estadox
-	  $("#tablaInvitaciones").append(
-		  '<tr id='+id+'>'+
-			  '<td class="celdaNombreCompuesto">'+nombreCompuesto+'</td>'+
-			  '<td>pendiente</td>'+
-		      '<td>'+
-		      	'<input type="hidden" name="invitados" value="'+id+'" />'+
-			  	'<input type="button" class="borrar" value="Eliminar" />'+
-			  '</td>'+
-		  '</tr>');
-}
 
+/*
 //busca por nombreUsuario si el usuario esta agregado en la tabla invitaciones
-function buscarEnTablaInvitaciones(nombreCompuesto){
+function buscarLabelUsuarioEnTablaInvitaciones(labelUsuario){
 	var encontrado=false;
 	$(".celdaNombreCompuesto").each(
 		function() {		     			
-   			if($(this).html() == nombreCompuesto){
+   			if($(this).html() == labelUsuario){
    				encontrado=true;
    			}
 		}		
 	)	
 	return encontrado;
 }
+*/
 /*
 function llenarListaAutocompletar(data) {                     
     var array = {
@@ -43,78 +32,26 @@ function llenarListaAutocompletar(data) {
     return array;
 }
 */
-function llenarListaAutocompletar(data)
-{
-	//console.log("> llenarListaAutocompletar ==================================================")
-	//console.log("data:"+data)
-	//console.log("listaAutocompletar:"+listaAutocompletar)
-	var estaInvitado;
-	var fueRecienInvitado;
-	var listaAutocompletar=[];
-	
-	for(var i=0; i<data.length; i++) {
-		//console.log ("* data "+i+": "+ data[i] + " | " + data[i].nombre)
-		
-		//estaInvitado?
-		//console.log ("* - estaInvitado?")
-		
-		/*
-		//TODO: reemplazar por leerTablaInvitaciones
-		for(var j=0; j<listaInvitaciones.length; j++) {
-			if(listaInvitaciones[j].id == data[i].id) {	
-				estaInvitado = true;
-				break;
-			}
-		}
-		*/
-		
-		 //estaCargado?
-		 var label=data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")" ;
-		  //console.log ("* - estaCargado? | Lista:"+listaAutocompletar )
-		//console.log("    listaAutocompletar.length:"+listaAutocompletar.length)
+
+
 /*
-		 if (listaAutocompletar.length>0)
-		 {
-		  for (var j=0; j<listaAutocompletar.length;j++){
-			  //console.log("    comprobacion: " + listaAutocompletar[j]+" | " + label + ";")
-			  if(listaAutocompletar[j]==label){
-				  estaCargado = true;
-				  break;
-			  }
-		  }
-		 }
-	 */
-	 
-	 //todo: fueRecienInvitado
-	 
-	 /*
-	  if ((estaInvitado != true) && (fueRecienInvitado != true)){
-	  	listaAutocompletar.push(label);
-	  }
-		*/
-		//console.log("esta?"+buscarEnTablaInvitaciones(label))
-		
-	  if(buscarEnTablaInvitaciones(label)==false){
-		  
-		  //value:data[i].id , label: data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")"
-		  /*
-		  var object = {
-                value: data[i].id;
-				label: data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")";
-		};
-		
-		listaAutocompletar.push(object);
-		  */
-	  	listaAutocompletar.push({value:data[i].id, label:data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")"});
-		}
-	}
-	  
-	  console.log(" < llenarListaAutocompletar | listaAutocompletar: "+ listaAutocompletar)
-	  return (listaAutocompletar);
-	  //response(nombres.slice(0,5)); > para limitar la lista, pero se hace desde el controlador
+function agregarAListaImpresa(id, nombre)
+{
+	  //todo: agregar estadox
+	  $("#listadoUsuariosTentativo").append(
+		  '<li id='+id+'>'+
+		  	'<a href="/user/messages"><span class="tab">'+nombre+'</span></a>'+
+		  	'<a onclick="sacarDeLista(this)">X</a></li>');
 }
 
-
+function sacarDeLista(elemento)
+{
+	  
+    var id=elemento.parentNode.getAttribute("id");
+    node=document.getElementById(id);
+    node.parentNode.removeChild(node);
+}
+*/
 
 $(document).on('click', '.borrar', function (event) {
     event.preventDefault();
@@ -146,7 +83,7 @@ $(
 				            data: {parteNombre: request.term, cantMax:5},
 			              	dataType : "json",
 			              	//contentType : "application/json;charset=UTF-8",
-				          success: function(data) {response (llenarListaAutocompletar(data));}
+				          success: function(data) {response (filtrarListaAutocompletar(data));}
 	      			});
 	  			},
 	  			select: function (event, ui){
@@ -160,22 +97,55 @@ $(
 	} 	 
 )
 
-/*
-function agregarAListaImpresa(id, nombre)
+function filtrarListaAutocompletar(data)
 {
-	  //todo: agregar estadox
-	  $("#listadoUsuariosTentativo").append(
-		  '<li id='+id+'>'+
-		  	'<a href="/user/messages"><span class="tab">'+nombre+'</span></a>'+
-		  	'<a onclick="sacarDeLista(this)">X</a></li>');
+	//exluye los usuarios ya invitados al evento y al usuario logueado
+	
+	var estaInvitado;
+	var fueRecienInvitado;
+	var listaAutocompletar=[];
+	
+	//TODO: no incluir usuario logueado
+	
+	//busca en data(los usuarios que vienen del DAO) aquellos que no estan ya invitados, los agrega a listaAutocompletar y los devuelve
+	
+	for(var i=0; i<data.length; i++) {
+		var label=data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")" ;
+	
+		//busca por nombreUsuario si el usuario esta agregado en la tabla invitaciones
+		console.log("== buscando en tabla == label: >"+ label +"<");
+		var yaInvitado=false;
+		$(".celdaNombreCompuesto").each(
+			function() {		     		
+				console.log("comparando  celda: >"+ $(this).html()+"<");
+	   			if($.trim($(this).html())== $.trim(label)){
+	   				yaInvitado=true;
+	   			}
+			}		
+		)
+		console.log("label: "+label+" > encontrado:" + yaInvitado)
+		//estaCargado?	
+	  	if(yaInvitado==false){
+	  		listaAutocompletar.push({value:data[i].id, label:data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")"});
+		}
+	}
+	  
+	return (listaAutocompletar);
+	  
 }
 
-function sacarDeLista(elemento)
+function agregarATablaInvitaciones(id, nombreCompuesto)
 {
-	  
-    var id=elemento.parentNode.getAttribute("id");
-    node=document.getElementById(id);
-    node.parentNode.removeChild(node);
+	  //todo: agregar estadox
+	  $("#tablaInvitaciones").append(
+		  '<tr id='+id+'>'+
+			  '<td class="celdaNombreCompuesto">'+nombreCompuesto+'</td>'+
+			  '<td>pendiente</td>'+
+		      '<td>'+
+		      	'<input type="hidden" name="invitados" value="'+id+'" />'+
+			  	'<input type="button" class="borrar" value="Eliminar" />'+
+			  '</td>'+
+		  '</tr>');
 }
-*/
+
 </script>

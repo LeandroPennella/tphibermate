@@ -198,7 +198,7 @@
 												<tr><th>Usuario</th><th>Estado</th></tr>
 												<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
 													<tr>
-														<td>${invitacion.usuario.nombre} </td>
+														<td class="celdaNombreCompuesto">${invitacion.usuario.nombre} ${invitacion.usuario.apellido} (${invitacion.usuario.nombreUsuario})</td>
 														<td> 
 														<c:if test="${invitacion.aceptado==0}">no confirmado</c:if>
 														<c:if test="${invitacion.aceptado==1}">confirmado</c:if>

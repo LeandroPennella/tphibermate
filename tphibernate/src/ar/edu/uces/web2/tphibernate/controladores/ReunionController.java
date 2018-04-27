@@ -82,6 +82,7 @@ public class ReunionController {
 	public @ResponseBody List<Usuario> listadoDeUsuarios (String parteNombre, int cantMax)
 	{
 		//TODO: enviar solo los cantMax primeros
+
 		return usuarioDAO.find(parteNombre);			
 	}
 	
@@ -267,35 +268,55 @@ public class ReunionController {
 		Sala sala=new Sala();
 		sala.setId(reunionForm.getIdSala());
 		reunion.setSala(sala);
-		
-		Set<Invitacion>invitacionesAnteriores=new HashSet<Invitacion>();
-		Set<Invitacion>invitacionesActuales=new HashSet<Invitacion>();
+		int[] idsUsuariosInvitados=reunionForm.getInvitados();
+		Set<Invitacion>invitacionesAnteriores=new HashSet<Invitacion>();	//las que vienen del evento antes de editar
+		Set<Invitacion>invitacionesActuales=new HashSet<Invitacion>(); 		//a guardar
 		invitacionesAnteriores=reunionForm.getInvitaciones();
-		//TODO: revisar invitados
-		boolean estaba;
-		for(int idUsuarioInvitado : reunionForm.getInvitados())
+		
+		
+		
+		//TODO: revisar cada invitado, si estaba en una invitacion anterior a la edicion, mantener el estado de la invitacion; sino aceptado=0
+		
+		
+		if (idsUsuariosInvitados!=null)
 		{
-			estaba=false;
-			for(Invitacion invitacion:invitacionesAnteriores)
+			boolean estaba;
+			for(int idUsuarioInvitado : idsUsuariosInvitados)
 			{
-				if (invitacion.getUsuario().getId()==idUsuarioInvitado)
+				estaba=false;
+				for(Invitacion invitacion:invitacionesAnteriores)
 				{
-					estaba=true;
-					invitacionesActuales.add(invitacion);
-					break;
+					if (invitacion.getUsuario().getId()==idUsuarioInvitado)
+					{
+						estaba=true;
+						//no hsvr falta agregar, los mantiene
+						//invitacionesActuales.add(invitacion);
+						break;
+					}
 				}
+				//> si no estaban agregar,  
+	
+				if (!estaba) {
+					
+					invitacionesActuales.add(new Invitacion(idUsuarioInvitado, 0 ));
+				} else {}
+				
+				//error > si estaban y no estan, se quitan al no agregarlos
+				
+				//TODO: ver como eliminar
+				
+				//System.out.println(idUsuario);
 			}
-			if (!estaba) {
-				//todo: constructor
-				//invitacionesActuales.add(new Invitacion{idUsuario=idUsuarioInvitado, aceptado=0 })
-			}
-			//> si no estaban agregar,  si estaban y no estan, quitarlos
-			
-			//System.out.println(idUsuario);
 		}
 		
-		
+		//reunion.setInvitaciones(invitacionesActuales);
 
+		if (reunion.getInvitaciones()==null){
+			reunion.setInvitaciones(invitacionesActuales);
+		} else {
+			reunion.getInvitaciones().clear();
+			reunion.getInvitaciones().addAll(invitacionesActuales);
+		}
 
 		//TODO: agrega nuevos, no modifica
 		//for(Integer idInvitado:reunionForm.getIdsInvitados())//{listaParticipantes.addAll(new Usuario(){id=idParticipante}}	
@@ -329,6 +350,7 @@ public class ReunionController {
 			}
 		}
 		*/
+		
 		/*
 		if (reunion.getInvitaciones()==null){
 			reunion.setInvitaciones(invitaciones);
