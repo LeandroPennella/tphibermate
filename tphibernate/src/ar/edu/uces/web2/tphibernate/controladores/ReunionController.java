@@ -276,7 +276,7 @@ public class ReunionController {
 		for(int idUsuarioInvitado : reunionForm.getInvitados())
 		{
 			estaba=false;
-			for(Invitacion invitacion:invitaciones)
+			for(Invitacion invitacion:invitacionesAnteriores)
 			{
 				if (invitacion.getUsuario().getId()==idUsuarioInvitado)
 				{
@@ -286,11 +286,12 @@ public class ReunionController {
 				}
 			}
 			if (!estaba) {
-				invitacionesActuales.add(new Invitacion{idUsuario=idUsuarioInvitado, aceptado=0 })
+				//todo: constructor
+				//invitacionesActuales.add(new Invitacion{idUsuario=idUsuarioInvitado, aceptado=0 })
 			}
 			//> si no estaban agregar,  si estaban y no estan, quitarlos
 			
-			System.out.println(idUsuario);
+			//System.out.println(idUsuario);
 		}
 		
 		
