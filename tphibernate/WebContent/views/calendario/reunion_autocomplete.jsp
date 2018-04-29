@@ -114,8 +114,22 @@ function filtrarListaAutocompletar(data)
 		var id=data[i].id;
 	
 		//busca por nombreUsuario si el usuario esta agregado en la tabla invitaciones
-		console.log("== buscando en tabla == label: >"+ label +"<");
+		console.log("== buscando en tabla == id: >"+ id+"<");
 		var yaInvitado=false;
+		
+		$(".celdaIdInvitado").each(
+				function() {		     		
+					console.log("comparando  celda: >"+ $(this).html()+"<");
+		   			if($.trim($(this).html())== $.trim(label)){
+		   				yaInvitado=true;
+		   			}
+				}		
+			)
+		
+			console.log("label: "+label+" > encontrado:" + yaInvitado)
+			
+		
+		/*
 		$(".celdaNombreCompuesto").each(
 			function() {		     		
 				console.log("comparando  celda: >"+ $(this).html()+"<");
@@ -124,7 +138,10 @@ function filtrarListaAutocompletar(data)
 	   			}
 			}		
 		)
+	
 		console.log("label: "+label+" > encontrado:" + yaInvitado)
+		*/
+		
 		//estaCargado?	
 	  	if(yaInvitado==false){
 	  		listaAutocompletar.push({value:data[i].id, label:data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")"});

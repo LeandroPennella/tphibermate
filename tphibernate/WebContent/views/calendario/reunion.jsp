@@ -204,8 +204,8 @@
 														<c:if test="${invitacion.aceptado==1}">confirmado</c:if>
 														<c:if test="${invitacion.aceptado==2}">cancelado</c:if>
 														</td>
-														<td>
-												      		<input type="hidden" name="invitados" value="${invitacion.usuario.id}" />
+														<td class="celdaIdInvitado">
+												      		<input type="hidden" name="invitados"  value="${invitacion.usuario.id}" />
 															eliminar</td>
 													</tr>
 												</c:forEach>
