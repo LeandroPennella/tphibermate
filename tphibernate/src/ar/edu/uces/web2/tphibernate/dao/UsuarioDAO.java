@@ -67,7 +67,13 @@ public class UsuarioDAO {
 	public List<Usuario> find(String parte)
 	{
 		Session session = sessionFactory.getCurrentSession();
-		Query q=session.createQuery("from " +Usuario.class.getName()+"  as u where u.nombreUsuario like '%"+parte+"%'");
+		Query q=session.createQuery(""
+				+ "from " +Usuario.class.getName()+"  as u "
+						+ "where "
+							+ "u.nombreUsuario like '%"+parte+"%' or "
+							+ "u.nombre like '%"+parte+"%' or "
+							+ "u.apellido like '%"+parte+"%'");
+		
 		List<Usuario>usuarios=(List<Usuario>)q.list();
 		return usuarios;
 	}
