@@ -111,6 +111,7 @@ function filtrarListaAutocompletar(data)
 	
 	for(var i=0; i<data.length; i++) {
 		var label=data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")" ;
+		var id=data[i].id;
 	
 		//busca por nombreUsuario si el usuario esta agregado en la tabla invitaciones
 		console.log("== buscando en tabla == label: >"+ label +"<");
