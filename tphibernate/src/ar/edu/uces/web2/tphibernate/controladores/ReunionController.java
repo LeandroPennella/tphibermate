@@ -83,18 +83,19 @@ public class ReunionController {
 	{
 		
 		List<Usuario> usuarios=usuarioDAO.find(parteNombre);
-		
-		//saca usuarioLogueado
+		int cantidad=0;
+		//saca usuarioLogueado y limita cantidad a cantMax
 		for(Usuario usuario:usuarios)
 		{
-			if (usuario.getId()==usuarioLogueado.getId())
+			if ((usuario.getId()==usuarioLogueado.getId())||(cantidad>cantMax))
 			{
+				
 				usuarios.remove(usuario);
-				break;
 			}
+			cantidad++;
 		}
 		
-		//TODO: enviar solo los cantMax primeros
+		
 		
 		return usuarios;
 	}

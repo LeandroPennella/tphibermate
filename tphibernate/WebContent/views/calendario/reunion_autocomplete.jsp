@@ -3,55 +3,10 @@
 <script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
  --%>
 <script type="text/javascript">
-//var listaAutocompletar = [];
+
 var listaInvitaciones = [];
 
 
-/*
-//busca por nombreUsuario si el usuario esta agregado en la tabla invitaciones
-function buscarLabelUsuarioEnTablaInvitaciones(labelUsuario){
-	var encontrado=false;
-	$(".celdaNombreCompuesto").each(
-		function() {		     			
-   			if($(this).html() == labelUsuario){
-   				encontrado=true;
-   			}
-		}		
-	)	
-	return encontrado;
-}
-*/
-/*
-function llenarListaAutocompletar(data) {                     
-    var array = {
-            label: sarasa,
-            value: 2
-        }
-    
-    //response(array);
-    return array;
-}
-*/
-
-
-/*
-function agregarAListaImpresa(id, nombre)
-{
-	  //todo: agregar estadox
-	  $("#listadoUsuariosTentativo").append(
-		  '<li id='+id+'>'+
-		  	'<a href="/user/messages"><span class="tab">'+nombre+'</span></a>'+
-		  	'<a onclick="sacarDeLista(this)">X</a></li>');
-}
-
-function sacarDeLista(elemento)
-{
-	  
-    var id=elemento.parentNode.getAttribute("id");
-    node=document.getElementById(id);
-    node.parentNode.removeChild(node);
-}
-*/
 
 $(document).on('click', '.borrar', function (event) {
     event.preventDefault();
@@ -69,8 +24,7 @@ $(
 			estado:  "${invitacion.aceptado}"
 		});
     </c:forEach>
-    //console.log("listaInvitaciones")
-    //console.log(listaInvitaciones)
+
 
     //autocomplete
 	 $( "#usuariosAutocomplete" ).autocomplete
@@ -113,36 +67,19 @@ function filtrarListaAutocompletar(data)
 		var label=data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")" ;
 		var id=data[i].id;
 	
-		//busca por nombreUsuario si el usuario esta agregado en la tabla invitaciones
+		//busca por id si el usuario esta agregado en la tabla invitaciones
 		console.log("== buscando en tabla == id: >"+ id+"<");
 		var yaInvitado=false;
 		
-		$(".celdaIdInvitado").each(
+		$(".hiddenIdInvitado").each(
 				function() {		     		
-					console.log("comparando  celda: >"+ $(this).html()+"<");
-		   			if($.trim($(this).html())== $.trim(label)){
+					console.log("comparando  celda: >"+ $(this).val()+"<");
+		   			if($.trim($(this).val())== id){
 		   				yaInvitado=true;
 		   			}
 				}		
 			)
 		
-			console.log("label: "+label+" > encontrado:" + yaInvitado)
-			
-		
-		/*
-		$(".celdaNombreCompuesto").each(
-			function() {		     		
-				console.log("comparando  celda: >"+ $(this).html()+"<");
-	   			if($.trim($(this).html())== $.trim(label)){
-	   				yaInvitado=true;
-	   			}
-			}		
-		)
-	
-		console.log("label: "+label+" > encontrado:" + yaInvitado)
-		*/
-		
-		//estaCargado?	
 	  	if(yaInvitado==false){
 	  		listaAutocompletar.push({value:data[i].id, label:data[i].nombre + " " +   data[i].apellido+ " (" + data[i].nombreUsuario + ")"});
 		}
@@ -156,11 +93,12 @@ function agregarATablaInvitaciones(id, nombreCompuesto)
 {
 	  //todo: agregar estadox
 	  $("#tablaInvitaciones").append(
-		  '<tr id='+id+'>'+
+		  '<tr>'+//id='+id+'
 			  '<td class="celdaNombreCompuesto">'+nombreCompuesto+'</td>'+
+				//TODO: reemplazar texto estado por iconos
 			  '<td>pendiente</td>'+
 		      '<td>'+
-		      	'<input type="hidden" name="invitados" value="'+id+'" />'+
+		      	'<input type="hidden" name="invitados" class="hiddenIdInvitado" value="'+id+'" />'+
 			  	'<input type="button" class="borrar" value="Eliminar" />'+
 			  '</td>'+
 		  '</tr>');

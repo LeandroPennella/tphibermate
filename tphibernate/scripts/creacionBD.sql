@@ -127,5 +127,19 @@ INSERT INTO Salas ( descripcion) VALUES
 
 GRANT ALL PRIVILEGES ON `agenda`.* TO 'noroot'@'localhost'  IDENTIFIED BY PASSWORD '*B04E11FAAAE9A5A019BAF695B40F3BF1997EB194';
 
-
+-- usuarios relleno -------------------------------
+INSERT INTO Usuarios (nombre,apellido,nombreUsuario,idioma) VALUES 
+	('usuario1','relleno','ur1','es'),
+	('usuario2','relleno','ur2','en'),
+	('usuario3','relleno','ur3','en'),
+	('usuario4','relleno','ur4','en'),
+	('usuario5','relleno','ur5','en'),
+	('usuario6','relleno','ur6','en');
+INSERT INTO Contrasenias (usuario_id ,valor) VALUES 
+	('5','ur'),
+	('6','ur'),
+	('7','ur'),
+	('8','ur'),
+	('9','ur'),
+	('10','ur');
 
