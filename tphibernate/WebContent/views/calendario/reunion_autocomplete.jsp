@@ -54,7 +54,8 @@ $(
 function filtrarListaAutocompletar(data)
 {
 	//exluye los usuarios ya invitados al evento y al usuario logueado
-	
+			console.log("recibidos: "+data.length);
+
 	var estaInvitado;
 	var fueRecienInvitado;
 	var listaAutocompletar=[];
@@ -68,7 +69,6 @@ function filtrarListaAutocompletar(data)
 		var id=data[i].id;
 	
 		//busca por id si el usuario esta agregado en la tabla invitaciones
-		console.log("== buscando en tabla == id: >"+ id+"<");
 		var yaInvitado=false;
 		
 		$(".hiddenIdInvitado").each(
@@ -85,7 +85,7 @@ function filtrarListaAutocompletar(data)
 		}
 	}
 	  
-	return (listaAutocompletar);
+	return (listaAutocompletar.slice(0,5));
 	  
 }
 

@@ -134,12 +134,14 @@ INSERT INTO Usuarios (nombre,apellido,nombreUsuario,idioma) VALUES
 	('usuario3','relleno','ur3','en'),
 	('usuario4','relleno','ur4','en'),
 	('usuario5','relleno','ur5','en'),
-	('usuario6','relleno','ur6','en');
+	('usuario6','relleno','ur6','en'),
+	('usuario7','relleno','ur7','en');
 INSERT INTO Contrasenias (usuario_id ,valor) VALUES 
 	('5','ur'),
 	('6','ur'),
 	('7','ur'),
 	('8','ur'),
 	('9','ur'),
-	('10','ur');
+	('10','ur'),
+	('11','ur');
 

@@ -79,42 +79,22 @@ public class ReunionController {
 	
 
 	@RequestMapping(value = "/calendario/listadoDeUsuarios", method = RequestMethod.GET)
-	public @ResponseBody List<Usuario> listadoDeUsuarios (String parteNombre, int cantMax,@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado )
+	public @ResponseBody List<Usuario> listadoDeUsuarios (String parteNombre, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado )
 	{
-		/*
-		List<Usuario> usuarios=usuarioDAO.find(parteNombre);
-		List<Usuario> usuariosProcesados=new ArrayList<Usuario>();
-		int cantidad=0;
-		//saca usuarioLogueado y limita cantidad a cantMax
-		for(Usuario usuario:usuarios)
-		{
-			if ((usuario.getId()!=usuarioLogueado.getId())&&(cantidad<=cantMax))
-			{
-				usuariosProcesados.add(usuario);
-				cantidad++;
-				//usuarios.remove(usuario);
-			}
-			
-		}	
-		return usuariosProcesados;
-		*/
 		
 		List<Usuario> usuarios=usuarioDAO.find(parteNombre);
-		List<Usuario> usuariosProcesados=new ArrayList<Usuario>();
-		int cantidad=0;
-		//saca usuarioLogueado y limita cantidad a cantMax
+		
+		//saca usuarioLogueado
 		for(Usuario usuario:usuarios)
 		{
-			if ((usuario.getId()!=usuarioLogueado.getId())&&(cantidad<=cantMax))
-			{
-				usuariosProcesados.add(usuario);
-				cantidad++;
-				//usuarios.remove(usuario);
+			if (usuario.getId()==usuarioLogueado.getId())
+			{								
+				usuarios.remove(usuario);
+				break;
 			}
-			
 		}	
-		return usuariosProcesados;
-		
+		return usuarios;
+
 	}
 	
 	

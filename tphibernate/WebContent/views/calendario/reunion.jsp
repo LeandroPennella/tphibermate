@@ -206,7 +206,8 @@
 														</td>
 														<td >
 												      		<input type="hidden" name="invitados"  class="hiddenIdInvitado" value="${invitacion.usuario.id}" />
-															eliminar</td>
+															<input type="button" class="borrar" value="Eliminar" />
+														</td>
 													</tr>
 												</c:forEach>
 												<%-- </tr>  --%>
