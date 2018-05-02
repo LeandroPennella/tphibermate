@@ -34,7 +34,7 @@ public class interceptorLogin implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
 
 		Cookie cookieUsuario = obtenerCookie(request, "nombreUsuario");
-		Cookie cookieContraseña = obtenerCookie(request, "contrasenia");
+		Cookie cookieContrasenia = obtenerCookie(request, "contrasenia");
 		
 		HttpSession session= request.getSession();
 		//si existe el usuario en sesion
@@ -44,9 +44,9 @@ public class interceptorLogin implements HandlerInterceptor {
 			RequestDispatcher rd= request.getRequestDispatcher("/calendario/mostrarCalendarioAjax.do");
 			rd.forward(request, response);
 			return false;		
-		} else if ((cookieUsuario!=null)&&(cookieContraseña!=null)) { //existe en cookies
-			//validar usuario y contraseña de cookies y 
-			Usuario usuario=usuarioDAO.autenticar(cookieUsuario.getValue(), cookieContraseña.getValue());
+		} else if ((cookieUsuario!=null)&&(cookieContrasenia!=null)) { //existe en cookies
+			//validar usuario y contraseï¿½a de cookies y 
+			Usuario usuario=usuarioDAO.autenticar(cookieUsuario.getValue(), cookieContrasenia.getValue());
 			//persistir sesion
 			request.getSession().setAttribute("usuarioLogueado",usuario);
 			localeResolver.setLocale(request, response, new Locale(usuario.getIdioma()));

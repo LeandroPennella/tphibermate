@@ -64,12 +64,12 @@ public class UsuarioController {
 			cookiear(usuarioLogueado,request,response,usuarioAutenticacionForm.getRecordarme());
 			//todo: separar lengua_pais
 			localeResolver.setLocale(request, response, new Locale(usuarioLogueado.getIdioma()));
-			//return new ModelAndView("/views/calendario/mostrarCalendarioAjax.do");//usurio y contraseña no coinciden	
-			return new ModelAndView("/views/index.jsp");//usurio y contraseña  coinciden
+			//return new ModelAndView("/views/calendario/mostrarCalendarioAjax.do");//usurio y contraseï¿½a no coinciden	
+			return new ModelAndView("/views/index.jsp");//usurio y contraseï¿½a  coinciden
 		}
 		else {
 			request.setAttribute("error", "login.error.noAutenticado"); 		//TODO: completar
-			return new ModelAndView("/views/autenticacion/login.jsp");			//usurio y contraseña no coinciden	
+			return new ModelAndView("/views/autenticacion/login.jsp");			//usurio y contraseï¿½a no coinciden	
 		}
 	}
 	
@@ -77,8 +77,8 @@ public class UsuarioController {
 	{
 		boolean encontrado=false;
 		Cookie cookieUsuario = obtenerCookie(request, "nombreUsuario");
-		Cookie cookieContraseña = obtenerCookie(request, "contrasenia");
-		if ((cookieUsuario!=null)&&(cookieContraseña!=null))
+		Cookie cookieContrasenia = obtenerCookie(request, "contrasenia");
+		if ((cookieUsuario!=null)&&(cookieContrasenia!=null))
 			encontrado=true;
          
 		//si esta marcado recordar, guarda una cookie
@@ -94,10 +94,10 @@ public class UsuarioController {
 				cookieUsuario.setPath("/");
 				response.addCookie(cookieUsuario);
 				
-				cookieContraseña=new Cookie("contrasenia",usuario.getContrasenia().getValor());
-				cookieContraseña.setMaxAge(60*60*24*365);
-				cookieContraseña.setPath("/");
-				response.addCookie(cookieContraseña);
+				cookieContrasenia=new Cookie("contrasenia",usuario.getContrasenia().getValor());
+				cookieContrasenia.setMaxAge(60*60*24*365);
+				cookieContrasenia.setPath("/");
+				response.addCookie(cookieContrasenia);
 			}
 		}
 		else //si no hay que recordar
@@ -127,11 +127,11 @@ public class UsuarioController {
 			cookieUsuario.setPath("/");
 			response.addCookie(cookieUsuario);
 		}
-		Cookie cookieContraseña = obtenerCookie(request, "contrasenia");
-		if (cookieContraseña!=null) {
-			cookieContraseña.setMaxAge(0);
-			cookieContraseña.setPath("/");
-			response.addCookie(cookieContraseña);
+		Cookie cookieContrasenia = obtenerCookie(request, "contrasenia");
+		if (cookieContrasenia!=null) {
+			cookieContrasenia.setMaxAge(0);
+			cookieContrasenia.setPath("/");
+			response.addCookie(cookieContrasenia);
 		}
 		return new ModelAndView("/views/index.jsp");
 	}
