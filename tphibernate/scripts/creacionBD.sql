@@ -8,12 +8,6 @@ USE `agenda`;
 
 -- Create Tables ----------------------------------------------------------------------------------------------
 
-
-
-
- 
-
-
 CREATE TABLE Usuarios
 (
 	`idUsuario` INT NOT NULL AUTO_INCREMENT
@@ -21,7 +15,8 @@ CREATE TABLE Usuarios
 	,`nombre` VARCHAR(50) NOT NULL 
 	,`apellido` VARCHAR(50) NOT NULL 
 	,`nombreUsuario` VARCHAR(50) NOT NULL 
-	,`idioma` VARCHAR(7) NOT NULL 
+	,`idioma` VARCHAR(7) NOT NULL
+	, UNIQUE(nombreUsuario) 
 )
 ENGINE=INNODB;
 
@@ -112,13 +107,27 @@ INSERT INTO Usuarios (nombre,apellido,nombreUsuario,idioma) VALUES
 	('pepe','argento','pepea','es'),
 	('uncle','tom','uncletom','en'),
 	('juan','alvarez','juana','en'),
-	('pablo','gimenez','pablog','en');
+	('pablo','gimenez','pablog','en'),
+	('usuario1','relleno','ur1','es'),
+	('usuario2','relleno','ur2','en'),
+	('usuario3','relleno','ur3','en'),
+	('usuario4','relleno','ur4','en'),
+	('usuario5','relleno','ur5','en'),
+	('usuario6','relleno','ur6','en'),
+	('usuario7','relleno','ur7','en');
 	
 INSERT INTO Contrasenias (usuario_id ,valor) VALUES 
 	('1','elpepe'),
 	('2','ilovewar'),
 	('3','juanp'),
-	('4','pablop');
+	('4','pablop'),
+	('5','ur'),
+	('6','ur'),
+	('7','ur'),
+	('8','ur'),
+	('9','ur'),
+	('10','ur'),
+	('11','ur');	
 
 INSERT INTO Salas ( descripcion) VALUES 
 	('sala oval'),
@@ -127,21 +136,6 @@ INSERT INTO Salas ( descripcion) VALUES
 
 GRANT ALL PRIVILEGES ON `agenda`.* TO 'noroot'@'localhost'  IDENTIFIED BY PASSWORD '*B04E11FAAAE9A5A019BAF695B40F3BF1997EB194';
 
--- usuarios relleno -------------------------------
-INSERT INTO Usuarios (nombre,apellido,nombreUsuario,idioma) VALUES 
-	('usuario1','relleno','ur1','es'),
-	('usuario2','relleno','ur2','en'),
-	('usuario3','relleno','ur3','en'),
-	('usuario4','relleno','ur4','en'),
-	('usuario5','relleno','ur5','en'),
-	('usuario6','relleno','ur6','en'),
-	('usuario7','relleno','ur7','en');
-INSERT INTO Contrasenias (usuario_id ,valor) VALUES 
-	('5','ur'),
-	('6','ur'),
-	('7','ur'),
-	('8','ur'),
-	('9','ur'),
-	('10','ur'),
-	('11','ur');
+
+
 
