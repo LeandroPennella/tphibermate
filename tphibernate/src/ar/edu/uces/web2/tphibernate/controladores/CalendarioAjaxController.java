@@ -67,6 +67,9 @@ public class CalendarioAjaxController {
 		ModelAndView mv=new ModelAndView("/views/calendario/calendarioAjax.jsp");
 		//mv.addObject("semana", getSemanaString(usuarioLogueado,  calendar,  sdf));
 		//posicionarCalendario(calendar, diasAlDomingo, semanaOffset);
+		
+
+		
 		mv.addObject("SemanaConEventos", getSemanaConEventos(usuarioLogueado,  calendar,  new SimpleDateFormat("dd/MM/yyyy")/*sdf*/));
 		mv.addObject("semanaOffset", semanaOffset);
 		//mv.addObject("sFechaHoy",sFechaHoy);
@@ -79,12 +82,21 @@ public class CalendarioAjaxController {
 	{
 		Calendar calendar = Calendar.getInstance();
 
+		System.out.println("fecha incio crearCalendar:" + calendar.getTime());
+		System.out.println("semana n:"+calendar.get(Calendar.WEEK_OF_YEAR)+" - offset: "+semanaOffset);
+		
 		int diasAlDomingo= (calendar.get(Calendar.DAY_OF_WEEK))-1;
+		System.out.println("dias al domingo:" + diasAlDomingo );
 
 		//posicionar
 		
 		//???
-		calendar.roll(Calendar.DATE, -diasAlDomingo);
+		calendar.roll(Calendar.DAY_OF_YEAR, -diasAlDomingo);//TODO: ERROR!!!!! calendar.date cambia el dia pero no el mes!!!!
+		
+		
+		System.out.println("fecha domingo inicio:" + calendar.getTime());
+
+		
 		if (semanaOffset!=null) {
 			//???
 			
@@ -92,7 +104,7 @@ public class CalendarioAjaxController {
 			calendar.roll(Calendar.WEEK_OF_YEAR, semanaOffset);
 			if (semFut<1) {calendar.roll(Calendar.YEAR, -1);}
 
-			System.out.println("año:" +calendar.get(Calendar.YEAR)+ " - sem:" + calendar.get(Calendar.WEEK_OF_YEAR));
+			System.out.println("aï¿½o:" +calendar.get(Calendar.YEAR)+ " - sem:" + calendar.get(Calendar.WEEK_OF_YEAR));
 		} else {
 			semanaOffset=0;
 			}
@@ -102,6 +114,7 @@ public class CalendarioAjaxController {
 	
 	public List<String> getHorasDia() {
 		List<String> horas = new ArrayList<String>();	
+		//TODO: implementar con for
 		horas.add("00:00");
 		horas.add("00:30");
 		horas.add("01:00");
@@ -152,6 +165,7 @@ public class CalendarioAjaxController {
 		horas.add("23:30");
 		return horas;
 	}
+
 	/*
 	public Map<String,List<Evento>> getSemanaString(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf)
 	{
@@ -173,8 +187,10 @@ public class CalendarioAjaxController {
 		return semana;
 	}
 	*/
+
 	public Map<Date,List<Evento>> getSemanaConEventos(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf){
 
+		
 		Map<Date,List<Evento>> semana = new TreeMap<Date,List<Evento>> (); 
 		
 		List<Evento> eventosDia;

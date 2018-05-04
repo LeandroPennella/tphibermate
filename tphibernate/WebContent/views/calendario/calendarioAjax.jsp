@@ -88,7 +88,10 @@
 		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset-1}"/>'> < |</a>
 		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset+1}"/>'> > |</a>
 
+		<!--  Mes mostrado -->
+
 	 	<c:forEach var="diaSemana" items="${SemanaConEventos}">
+	 	
 			<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
 			
 			<fmt:formatDate value="${diaFecha}" var="mesIterado" pattern="MMMM"/>
@@ -120,9 +123,11 @@
 		<c:if test="${empty mesSegundo}">
 			<c:set var="mesMostrado"  value="${mesPrimero} de ${anoPrimero} "></c:set>
 		</c:if>
-		
-		
+				
 		<c:out value=" ${mesMostrado}" />
+
+		<!-- / Mes mostrado -->
+
 	</div>
 	
 	
