@@ -33,11 +33,11 @@
 		<c:set var="sUrl" value="${(eventoEstadoUA=='tarea')?'Tarea':'Reunion'}"></c:set>
 			
 
-			<!--  <div >-->
-			<a class="${eventoEstadoUA} dragable" style="height: ${altoEventoMD}px;" id=${eventoId} href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" style="padding-bottom: 21px;" >
-
+			<!--  <div >sa-->
+			<a class="dragable ui-draggable ui-draggable-handle"  id=${eventoId} href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" style="padding-bottom: 21px; position:relative;" >
+				<div class="${eventoEstadoUA}" style="height: ${altoEventoMD}px;">
 					<b>${eventoHI} -  ${eventoHF} </b>- ${eventoT}
-			
+				</div>
 			</a>		
 			<!-- </div>-->
 		

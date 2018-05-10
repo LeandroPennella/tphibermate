@@ -91,7 +91,7 @@ public class CalendarioAjaxController {
 		//posicionar
 		
 		//???
-		calendar.roll(Calendar.DAY_OF_YEAR, -diasAlDomingo);//TODO: ERROR!!!!! calendar.date cambia el dia pero no el mes!!!!
+		calendar.roll(Calendar.DAY_OF_YEAR, -diasAlDomingo);//TODO: revisar
 		
 		
 		System.out.println("fecha domingo inicio:" + calendar.getTime());
