@@ -82,11 +82,11 @@ public class CalendarioAjaxController {
 	{
 		Calendar calendar = Calendar.getInstance();
 
-		System.out.println("fecha incio crearCalendar:" + calendar.getTime());
-		System.out.println("semana n:"+calendar.get(Calendar.WEEK_OF_YEAR)+" - offset: "+semanaOffset);
+		//System.out.println("fecha incio crearCalendar:" + calendar.getTime());
+		//System.out.println("semana n:"+calendar.get(Calendar.WEEK_OF_YEAR)+" - offset: "+semanaOffset);
 		
 		int diasAlDomingo= (calendar.get(Calendar.DAY_OF_WEEK))-1;
-		System.out.println("dias al domingo:" + diasAlDomingo );
+		//System.out.println("dias al domingo:" + diasAlDomingo );
 
 		//posicionar
 		
@@ -94,7 +94,7 @@ public class CalendarioAjaxController {
 		calendar.roll(Calendar.DAY_OF_YEAR, -diasAlDomingo);//TODO: revisar
 		
 		
-		System.out.println("fecha domingo inicio:" + calendar.getTime());
+		//System.out.println("fecha domingo inicio:" + calendar.getTime());
 
 		
 		if (semanaOffset!=null) {

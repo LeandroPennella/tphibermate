@@ -264,6 +264,7 @@ public class ReunionController {
 		Reunion reunion;
 		if (!reunionForm.getIdEvento().isEmpty())  { //modificar
 			reunion=reunionDAO.get(Long.parseLong(reunionForm.getIdEvento()));
+			System.out.println(reunion.getId());
 		}  else  {									//crear
 			reunion=new Reunion();
 			reunion.setAutor(usuarioLogueado);
@@ -300,7 +301,7 @@ public class ReunionController {
 					if (invitacion.getUsuario().getId()==idUsuarioInvitado)
 					{
 						estaba=true;
-						//no hsvr falta agregar, los mantiene
+						//mantiene el usuario invitado
 						//invitacionesActuales.add(invitacion);
 						break;
 					}
