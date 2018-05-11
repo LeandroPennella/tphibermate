@@ -280,10 +280,16 @@ public class ReunionController {
 		Sala sala=new Sala();
 		sala.setId(reunionForm.getIdSala());
 		reunion.setSala(sala);
+		
+		
+		
+		//invitaciones
+		
+		
 		int[] idsUsuariosInvitados=reunionForm.getInvitados();
 		Set<Invitacion>invitacionesAnteriores=new HashSet<Invitacion>();	//las que vienen del evento antes de editar
 		Set<Invitacion>invitacionesActuales=new HashSet<Invitacion>(); 		//a guardar
-		invitacionesAnteriores=reunionForm.getInvitaciones();
+		invitacionesAnteriores=reunion.getInvitaciones();
 		
 		
 		
@@ -293,16 +299,19 @@ public class ReunionController {
 		if (idsUsuariosInvitados!=null)
 		{
 			boolean estaba;
+			
+			System.out.println("invtaciones anteriores:");
 			for(int idUsuarioInvitado : idsUsuariosInvitados)
 			{
 				estaba=false;
 				for(Invitacion invitacion:invitacionesAnteriores)
 				{
+					System.out.println(invitacion.getUsuario().getNombreUsuario());
 					if (invitacion.getUsuario().getId()==idUsuarioInvitado)
 					{
 						estaba=true;
 						//mantiene el usuario invitado
-						//invitacionesActuales.add(invitacion);
+						invitacionesActuales.add(invitacion);
 						break;
 					}
 				}
@@ -320,6 +329,10 @@ public class ReunionController {
 				//System.out.println(idUsuario);
 			}
 		}
+		System.out.println("invtaciones actuales:");
+		for(Invitacion invitacionPrint:invitacionesActuales)
+		{System.out.println(invitacionPrint.getUsuario().getId()+""+invitacionPrint.getAceptado());}
+		
 		
 		//reunion.setInvitaciones(invitacionesActuales);
 
