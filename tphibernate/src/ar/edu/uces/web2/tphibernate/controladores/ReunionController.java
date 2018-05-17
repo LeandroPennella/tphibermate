@@ -186,11 +186,14 @@ public class ReunionController {
 	@RequestMapping(value = "/calendario/modificarAsistenciaReunion")
 	public ModelAndView modificarAsistencia(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado){
 	
-		if (!reunionForm.getIdEvento().isEmpty())  {
-			if (reunionForm.getIdEstado()!=0){				
+		if (!reunionForm.getIdEvento().isEmpty())  {//TODO: ver para que es esta validacion // sumarla a la siguiente
+			if (reunionForm.getIdEstado()!=0){			
 				Invitacion invitacion=invitacionDAO.getByReunionUsuario(Long.parseLong(reunionForm.getIdEvento()), usuarioLogueado.getId());
-				invitacion.setAceptado(reunionForm.getIdEstado());
-				invitacionDAO.update(invitacion);
+				if (invitacion!=null)
+				{
+					invitacion.setAceptado(reunionForm.getIdEstado());
+					invitacionDAO.update(invitacion);
+				} //TODO: manejar error
 				return new ModelAndView("/views/index.jsp");
 			}
 		}
@@ -205,7 +208,11 @@ public class ReunionController {
 		if (result.hasErrors()) {		//tiene errores
 			return new ModelAndView("/views/calendario/reunion.jsp","reunionForm", save_conError(reunionForm));
 		} else {																							//no tiene errores
-			save_sinError(reunionForm, usuarioLogueado);
+			if(save_sinError(reunionForm, usuarioLogueado)==false){
+				//TODO: manejarlo con excepciones?
+				
+				//TODO:mensaje de error - reunion eliminada por el autor
+			}
 			return new ModelAndView("/views/index.jsp");
 		}
 	}
@@ -258,23 +265,27 @@ public class ReunionController {
 		reunionForm.setSalas(salaDAO.getAll());
 		//TODO:agregar los idUsuariosInvitados > invitacionesPendiente  con estado pendientes 
 		Set<Invitacion> invitaciones=new HashSet<Invitacion>();
-		for(int idUsuarioInvitado:reunionForm.getInvitados())
+		if(reunionForm.getInvitados()!=null)
 		{
-			Invitacion invitacion=new Invitacion();
-			invitacion.setUsuario(usuarioDAO.get(idUsuarioInvitado));
-			invitacion.setAceptado(0);
-			invitaciones.add(invitacion);
+			for(int idUsuarioInvitado:reunionForm.getInvitados())
+			{
+				Invitacion invitacion=new Invitacion();
+				invitacion.setUsuario(usuarioDAO.get(idUsuarioInvitado));
+				invitacion.setAceptado(0);
+				invitaciones.add(invitacion);
+			}
 		}
 		reunionForm.setInvitaciones(invitaciones);
 		return reunionForm;
 
 	}
-	private void save_sinError(ReunionForm reunionForm, Usuario usuarioLogueado) {
+	private boolean save_sinError(ReunionForm reunionForm, Usuario usuarioLogueado) {
 		
 		Reunion reunion;
 		if (!reunionForm.getIdEvento().isEmpty())  { //modificar
 			reunion=reunionDAO.get(Long.parseLong(reunionForm.getIdEvento()));
-			System.out.println(reunion.getId());
+		if (reunion==null) {return false;}
+			//System.out.println(reunion.getId());
 		}  else  {									//crear
 			reunion=new Reunion();
 			reunion.setAutor(usuarioLogueado);
@@ -313,6 +324,7 @@ public class ReunionController {
 			System.out.println("invtaciones anteriores:");
 			for(int idUsuarioInvitado : idsUsuariosInvitados)
 			{
+				
 				estaba=false;
 				if(invitacionesAnteriores!=null)
 				{
@@ -328,6 +340,7 @@ public class ReunionController {
 						}
 					}
 				}
+				
 				//> si no estaban agregar,  
 	
 				if (!estaba || reunionForm.getIdEvento().isEmpty()) {
@@ -398,6 +411,7 @@ public class ReunionController {
 		}
 			*/
 		reunionDAO.save(reunion);
+		return true;
 	}
 	
 	@RequestMapping(value = "/calendario/eliminarReunion")

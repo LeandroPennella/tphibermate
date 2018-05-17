@@ -81,6 +81,8 @@ public class ReunionFormValidator extends EventoFormValidator implements Validat
 		*/
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "temario", "reunion.error.temarioVacio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idSala", "reunion.error.salaVacio");
+		//TODO: validar que haya usuarios
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "invitados", "reunion.error.invitadosVacio");
 		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tokensInvitadosMasConfirmacion", "reunion.error.participantesVacio");
 		if(!errors.hasErrors())
 		{

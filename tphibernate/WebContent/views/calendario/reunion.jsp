@@ -206,7 +206,9 @@
 														</td>
 														<td >
 												      		<input type="hidden" name="invitados"  class="hiddenIdInvitado" value="${invitacion.usuario.id}" />
-															<input type="button" class="borrar" value="Eliminar" />
+															<input type="button" class="borrar" value="Eliminar"  														<c:if test="${invitacion.aceptado==2}">cancelado</c:if>
+															<c:if test="${soloLectura==true}">disabled</c:if>
+															/>
 														</td>
 													</tr>
 												</c:forEach>
@@ -214,7 +216,7 @@
 											</table>
 											</div>
 										</div>
-									
+									<div><form:errors path="invitados" cssStyle="color: red" /></div>
 									
 										
 										
