@@ -257,6 +257,15 @@ public class ReunionController {
 		
 		reunionForm.setSalas(salaDAO.getAll());
 		//TODO:agregar los idUsuariosInvitados > invitacionesPendiente  con estado pendientes 
+		Set<Invitacion> invitaciones=new HashSet<Invitacion>();
+		for(int idUsuarioInvitado:reunionForm.getInvitados())
+		{
+			Invitacion invitacion=new Invitacion();
+			invitacion.setUsuario(usuarioDAO.get(idUsuarioInvitado));
+			invitacion.setAceptado(0);
+			invitaciones.add(invitacion);
+		}
+		reunionForm.setInvitaciones(invitaciones);
 		return reunionForm;
 
 	}
@@ -297,7 +306,7 @@ public class ReunionController {
 		//TODO: revisar cada invitado, si estaba en una invitacion anterior a la edicion, mantener el estado de la invitacion; sino aceptado=0
 		
 		
-		if (idsUsuariosInvitados!=null&&invitacionesAnteriores!=null)
+		if (idsUsuariosInvitados!=null)
 		{
 			boolean estaba;
 			
@@ -305,23 +314,26 @@ public class ReunionController {
 			for(int idUsuarioInvitado : idsUsuariosInvitados)
 			{
 				estaba=false;
-				for(Invitacion invitacion:invitacionesAnteriores)
+				if(invitacionesAnteriores!=null)
 				{
-					System.out.println(invitacion.getUsuario().getNombreUsuario());
-					if (invitacion.getUsuario().getId()==idUsuarioInvitado)
+					for(Invitacion invitacion:invitacionesAnteriores)
 					{
-						estaba=true;
-						//mantiene el usuario invitado
-						invitacionesActuales.add(invitacion);
-						break;
+						System.out.println(invitacion.getUsuario().getNombreUsuario());
+						if (invitacion.getUsuario().getId()==idUsuarioInvitado)
+						{
+							estaba=true;
+							//mantiene el usuario invitado
+							invitacionesActuales.add(invitacion);
+							break;
+						}
 					}
 				}
 				//> si no estaban agregar,  
 	
-				if (!estaba) {
+				if (!estaba || reunionForm.getIdEvento().isEmpty()) {
 					
 					invitacionesActuales.add(new Invitacion(idUsuarioInvitado, 0 ));
-				} else {}
+				} 
 				
 				//error > si estaban y no estan, se quitan al no agregarlos
 				
