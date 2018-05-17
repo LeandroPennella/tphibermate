@@ -256,7 +256,7 @@ public class ReunionController {
 		}
 		
 		reunionForm.setSalas(salaDAO.getAll());
-		
+		//TODO:agregar los idUsuariosInvitados > invitacionesPendiente  con estado pendientes 
 		return reunionForm;
 
 	}
@@ -297,7 +297,7 @@ public class ReunionController {
 		//TODO: revisar cada invitado, si estaba en una invitacion anterior a la edicion, mantener el estado de la invitacion; sino aceptado=0
 		
 		
-		if (idsUsuariosInvitados!=null)
+		if (idsUsuariosInvitados!=null&&invitacionesAnteriores!=null)
 		{
 			boolean estaba;
 			

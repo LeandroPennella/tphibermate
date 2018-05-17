@@ -55,7 +55,7 @@
 										<c:set value='${(reunionForm.estado!="reunionAutor")&&(not empty reunionForm.idEvento)}' var="soloLectura"/>
 										<!-- idEvento --------------------------------------------------------------------------------------------------->
 										<form:hidden path="idEvento"/>
-										
+										<form:hidden path="estado"/>										
 										<!-- titulo ----------------------------------------------------------------------------------------------------->	
 										<div class="control-group">
 											<fmt:message key='evento.label.titulo' var="titulo" />
