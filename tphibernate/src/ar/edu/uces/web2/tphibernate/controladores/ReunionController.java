@@ -251,11 +251,12 @@ public class ReunionController {
 				}
 			}
 			reunionForm.setMapaUsuariosMasConfirmacion(mapaUsuariosMasConfirmacion);
-			*/	
+			*/
+			reunionForm.setIdEvento(null);//TODO: para que???
 		}
 		
 		reunionForm.setSalas(salaDAO.getAll());
-		reunionForm.setIdEvento(null);
+		
 		return reunionForm;
 
 	}
