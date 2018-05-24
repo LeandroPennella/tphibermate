@@ -180,11 +180,11 @@
 													<label class="control-label" ><fmt:message key="reunion.label.estado" /></label> 
 													<div class="controls">
 														<c:if test='${reunionForm.estado=="reunionNoConfirmado"}'><!-- si no soy el autor y no caonfirme ni cancele-->
-															<form:radiobutton path="idEstado" value="1"/>Aceptado 
-															<form:radiobutton path="idEstado" value="2"/>Cancelado
+															<form:radiobutton path="idEstado" value="1"/><fmt:message key="reunion.estado.confirmado" /> 
+															<form:radiobutton path="idEstado" value="2"/><fmt:message key="reunion.estado.cancelado" />
 														</c:if>
-														<c:if test='${reunionForm.estado=="reunionConfirmada"}'>Confirmado</c:if>
-														<c:if test='${reunionForm.estado=="reunionCancelada"}'>Cancelado</c:if>
+														<c:if test='${reunionForm.estado=="reunionConfirmada"}'><fmt:message key="reunion.estado.confirmado" /> </c:if>
+														<c:if test='${reunionForm.estado=="reunionCancelada"}'><fmt:message key="reunion.estado.cancelado" /></c:if>
 													</div>
 												</div>
 											</c:if>

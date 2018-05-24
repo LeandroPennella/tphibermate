@@ -23,7 +23,7 @@
                                  </li>
                                  <li class="divider"></li>
                                  <li>
-                                 	<a href="<c:url value="/logout/logout.do" ></c:url>">Salir</a>
+                                 	<a href="<c:url value="/logout/logout.do" ></c:url>"><fmt:message key='login.label.salir'/></a>
                                      <!-- <a tabindex="-1" href="login.html">Logout</a> -->
                                  </li>
                              </ul>
