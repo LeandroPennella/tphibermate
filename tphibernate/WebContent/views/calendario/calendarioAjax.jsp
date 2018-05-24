@@ -84,7 +84,7 @@
 	<div style="  border: 1px solid #CCC;
 		  background-color: #E0E0E0;
 		  padding: .5em; height:20px;">
-		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=0"/>'>Hoy |</a>
+		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=0"/>'><fmt:message key="calendario.accion.hoy" /> |</a>
 		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset-1}"/>'> < |</a>
 		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset+1}"/>'> > |</a>
 
@@ -134,7 +134,7 @@
 	<!-- Horas ------------------------------------------------------------ -->
 	<div class="panelHoras">
 		<div class="headerDia">
-			Horas
+			<fmt:message key="calendario.etiquetas.hora" />
 		</div>
 		
 		<c:forEach items="${horas}" var="hora">
@@ -152,7 +152,7 @@
 	
 		<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
 		<fmt:formatDate value="${diaFecha}" var="diaFechaString" pattern="dd/MM/yyyy"/>
-		
+		<fmt:formatDate value="${diaFecha}" var="nombreDia" pattern="EEE"/>
 		<%-- <c:set var="diaFechaString"  value="${diaSemana.key}"></c:set>--%>
 	
 		
@@ -169,7 +169,11 @@
 		<div class="dia ${claseDia}">
 			
 			<div class="headerDia">
+				
+				<c:out value="${nombreDia}" />
+				<!-- <c:out value="${diaFechaString}" /> -->
 				<c:out value="${fn:substring(diaFechaString, 0, 2)}" />
+				
 			</div>
 			
 			<!-- Horas ------------------------------------------------------------ -->

@@ -195,18 +195,21 @@
 											<label class="control-label" ><fmt:message key="reunion.label.invitados" /></label> 
 											<div class="controls">
 											<table id="tablaInvitaciones">
-												<tr><th>Usuario</th><th>Estado</th></tr>
+												<tr>
+													<th><fmt:message key="usuario.nombre" /></th>
+													<th><fmt:message key="reunion.label.estado" /></th>
+												</tr>
 												<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
 													<tr>
 														<td class="celdaNombreCompuesto">${invitacion.usuario.nombre} ${invitacion.usuario.apellido} (${invitacion.usuario.nombreUsuario})</td>
 														<td> 
-														<c:if test="${invitacion.aceptado==0}">no confirmado</c:if>
-														<c:if test="${invitacion.aceptado==1}">confirmado</c:if>
-														<c:if test="${invitacion.aceptado==2}">cancelado</c:if>
+														<c:if test="${invitacion.aceptado==0}"><fmt:message key="reunion.estado.pendiente" /></c:if>
+														<c:if test="${invitacion.aceptado==1}"><fmt:message key="reunion.estado.confirmado" /></c:if>
+														<c:if test="${invitacion.aceptado==2}"><fmt:message key="reunion.estado.cancelado" /></c:if>
 														</td>
 														<td >
 												      		<input type="hidden" name="invitados"  class="hiddenIdInvitado" value="${invitacion.usuario.id}" />
-															<input type="button" class="borrar" value="Eliminar"  														<c:if test="${invitacion.aceptado==2}">cancelado</c:if>
+															<input type="button" class="borrar" value="<fmt:message key="evento.label.eliminar" />"  														<c:if test="${invitacion.aceptado==2}">cancelado</c:if>
 															<c:if test="${soloLectura==true}">disabled</c:if>
 															/>
 														</td>
