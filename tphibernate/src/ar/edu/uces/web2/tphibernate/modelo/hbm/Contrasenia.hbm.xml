@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!--  Agregado en hibernate-context -->
 <hibernate-mapping>
-	<class name="ar.edu.uces.web2.tphibernate.modelo.base.Contrasenia" table="contrasenias">
+	<class name="ar.edu.uces.web2.tphibernate.modelo.base.Contrasenia" table="Contrasenias">
 		<id column="usuario_id" name="id"/>
 		<property name="valor" column="valor"/>
 	</class>

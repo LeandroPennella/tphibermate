@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!--  Agregado en hibernate-context -->
 <hibernate-mapping>
-	<class name="ar.edu.uces.web2.tphibernate.modelo.base.Invitacion" table="invitaciones">
+	<class name="ar.edu.uces.web2.tphibernate.modelo.base.Invitacion" table="Invitaciones">
 		<id column="idInvitacion" name="id">
 			<generator class="native" />
 		</id>

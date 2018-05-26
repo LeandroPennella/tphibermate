@@ -4,7 +4,7 @@
  
 <hibernate-mapping>
  
-    <class name="ar.edu.uces.web2.tphibernate.modelo.base.Evento" table="eventos">
+    <class name="ar.edu.uces.web2.tphibernate.modelo.base.Evento" table="Eventos">
     
         <id name="id" column="idEvento">
             <generator class="native" />
