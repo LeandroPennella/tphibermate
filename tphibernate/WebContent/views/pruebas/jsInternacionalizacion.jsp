@@ -11,11 +11,11 @@
 
 jQuery.i18n.properties({
     name: 'mensajes', 
-    path: 'messages/', 
+    path: '/tphibernate/recursos/messages/', 
     mode: 'both',
-    language: 'en', 
+    language: 'es', 
     callback: function() {
-        $("#eliminar").text(jQuery.i18n.prop('evento.label.eliminar'));
+    	alert(jQuery.i18n.prop('evento.label.eliminar'));
         
     }
 });</script>

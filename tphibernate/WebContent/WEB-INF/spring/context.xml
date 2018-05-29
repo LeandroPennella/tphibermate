@@ -21,12 +21,20 @@
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
 
 
+	<!-- recursos (i18n)-->
+	<mvc:resources location="/, classpath:recursos/" mapping="/recursos/**" />
+        
 	<!-- message resources -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="recursos/messages/mensajes" />
 	</bean>
 	
-	
+	<!-- message resources (i18n)
+	<bean id="messageSource2" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="ISO-8859-1" /> 		 
+		<property name="basename" value="recursos/messages/mensajes" /> 
+	</bean>
+	-->
 	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.controladores" />
 	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.validadores" />
 	

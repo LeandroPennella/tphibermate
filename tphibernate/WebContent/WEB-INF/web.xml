@@ -29,4 +29,15 @@
 	<welcome-file-list>
 		<welcome-file>views/index.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<!-- (i18n) -->
+	<mime-mapping>
+    	<extension>properties</extension>
+    	<mime-type>text/plain</mime-type>
+	</mime-mapping>
+
+
+		
 </web-app>
+
+
