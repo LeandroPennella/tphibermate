@@ -25,11 +25,11 @@
 		.hoy{ background-color: lightgray;}
 		.headerDia{background-color: silver; text-align: center; font-weight: bold;}
 	</style>
-	<jsp:include page="../master_header.jsp"></jsp:include>
+	<jsp:include page="../calendario/master_header.jsp"></jsp:include>
 	<title><fmt:message key='calendario.titulo'/></title>
 </head>
 <body>
-	<jsp:include page="../master_menu.jsp"></jsp:include>
+	<jsp:include page="../calendario/master_menu.jsp"></jsp:include>
 
 
 	<div style="  border: 1px solid #CCC;

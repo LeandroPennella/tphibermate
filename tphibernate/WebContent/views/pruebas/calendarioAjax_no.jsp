@@ -3,7 +3,7 @@
     
     <head>
     	
-    	<jsp:include page="../master_header.jsp"></jsp:include>
+    	<jsp:include page="../calendario/master_header.jsp"></jsp:include>
         <title>Calendar</title>
         <link href="fullcalendar.css" rel="stylesheet" media="screen">
 
@@ -16,7 +16,7 @@
     
     <body>
     ajax
-    	<jsp:include page="../master_menu.jsp"></jsp:include>
+    	<jsp:include page="../calendario/master_menu.jsp"></jsp:include>
     
         <div class="container-fluid">
             <div class="row-fluid">

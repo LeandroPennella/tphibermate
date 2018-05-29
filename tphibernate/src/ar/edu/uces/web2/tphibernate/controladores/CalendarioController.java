@@ -33,7 +33,9 @@ public class CalendarioController {
 	public void setEventoDAO(EventoDAO eventoDAO) {
 		this.eventoDAO = eventoDAO;
 	}
-	
+
+
+
 	@RequestMapping(value = "/calendario/mostrarCalendario")
 	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado, @RequestParam(value="corrimientoSemana", required=false) Integer corrimientoSemana) {
 		//Date fecha = new Date();

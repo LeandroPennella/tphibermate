@@ -37,6 +37,8 @@ public class CalendarioAjaxController {
 		this.eventoDAO = eventoDAO;
 	}
 	
+	
+	
 	@RequestMapping(value = "/calendario/mostrarCalendarioAjax")
 	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado, @RequestParam(value="semanaOffset", required=false) Integer semanaOffset) {
 		//Date fecha = new Date();
