@@ -22,8 +22,16 @@
 
 
 	<!-- recursos (i18n)-->
-	<mvc:resources location="/, classpath:recursos/" mapping="/recursos/**" />
-        
+	
+	
+	<mvc:resources mapping="/resmes/**" location="/recursos/messages/" />
+	
+	<!--
+	<mvc:resources location=",, classpath:/recursos/messages/" mapping="/mensajesR/**" />
+	<spring:url var="/recursos/mesaages/" context="/estatico/" value="/mensajesU" />
+	 -->
+	 
+	 
 	<!-- message resources -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="recursos/messages/mensajes" />
