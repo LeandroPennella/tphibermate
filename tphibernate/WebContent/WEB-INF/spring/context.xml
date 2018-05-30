@@ -23,8 +23,16 @@
 
 	<!-- recursos (i18n)-->
 	
-	
-	<mvc:resources mapping="/resmes/**" location="/recursos/messages/" />
+	 <bean
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix">
+		<value>/src/recursos/messages</value>
+	</property>
+	<property name="suffix">
+		<value>.properties</value>
+	</property>
+    </bean>
+	<mvc:resources mapping="/resmes/**" location="classpath:/src/recursos/messages/" />
 	
 	<!--
 	<mvc:resources location=",, classpath:/recursos/messages/" mapping="/mensajesR/**" />
