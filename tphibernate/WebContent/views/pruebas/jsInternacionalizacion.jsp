@@ -8,7 +8,6 @@
 <html>
 <head>
 <title>Insert title here</title>
-	<spring:url value="/resmes/" var="mensPath" />
 
 <script type="text/javascript" src="../ui/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="../ui/js/jquery.i18n.properties.js"></script>
@@ -16,21 +15,21 @@
 <script>
 
 
-$(document).ready(function(){$('.botonEliminar').val("NS/NR");})
-/*
+//$(document).ready(function(){$('.botonEliminar').val("NS/NR");})
+
 jQuery.i18n.properties({
     name: 'mensajes',
     path: '../messages/',  
     mode: 'both',
     language: 'es', 
     callback: function() {
-    	//$('.botoneliminar').val(jQuery.i18n.prop('evento.label.eliminar'));
-        $('.botonEliminar').val("NS/NR");  
+    	alert(jQuery.i18n.prop('evento.label.eliminar'));
+        //$('.botonEliminar').val("NS/NR");  
 
         
     }
 });
-*/</script>
+</script>
 </head>
 <body>
 <input class="botonEliminar" type="text"/> 
