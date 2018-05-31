@@ -17,23 +17,22 @@
 
 $(document).ready(
     function(){
-        //$('.botonEliminar').val("NS/NR");
-        changeLang('es');
-        })
-function changeLang(lang) {
+        $('.botonEliminar').val(getLabel('es','evento.label.eliminar'));
+})
 
-jQuery.i18n.properties({
-    name: 'mensajes',
-    path: '../messages/',  
-    mode: 'both',
-    language: 'es', 
-    callback: function() {
-    	alert(jQuery.i18n.prop('evento.label.eliminar'));
-        $(".botonEliminar").val(jQuery.i18n.prop('evento.label.eliminar'));
+function getLabel(lang, tag) {
+	var leliminar;
+	jQuery.i18n.properties({
+	    name: 'mensajes',
+	    path: '../ui/messages/',  
+	    mode: 'both',
+	    language: lang, 
+	    callback: function() {
+	    	leliminar= jQuery.i18n.prop(tag);        
+	    }
+	});
+	return leliminar;
 
-        
-    }
-});
 }
 </script>
 </head>

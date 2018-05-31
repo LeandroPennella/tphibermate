@@ -2,6 +2,8 @@
 <%--
 <script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
  --%>
+ <script type="text/javascript" src="../views/ui/js/jquery.i18n.properties.js"></script>
+ 
 <script type="text/javascript">
 
 var listaInvitaciones = [];
@@ -51,6 +53,21 @@ $(
 	} 	 
 )
 
+function getLabel(lang, tag) {
+	var leliminar;
+	jQuery.i18n.properties({
+	    name: 'mensajes',
+	    path: '../views/ui/messages/',  
+	    mode: 'both',
+	    language: lang, 
+	    callback: function() {
+	    	leliminar= jQuery.i18n.prop(tag);        
+	    }
+	});
+	return leliminar;
+
+}
+
 function filtrarListaAutocompletar(data)
 {
 	//exluye los usuarios ya invitados al evento y al usuario logueado
@@ -99,7 +116,7 @@ function agregarATablaInvitaciones(id, nombreCompuesto)
 			  '<td>pendiente</td>'+
 		      '<td>'+
 		      	'<input type="hidden" name="invitados" class="hiddenIdInvitado" value="'+id+'" />'+
-			  	'<input type="button" class="borrar" value="Eliminar" />'+
+			  	'<input type="button" class="borrar" value='+getLabel('en','evento.label.eliminar')+' />'+
 			  '</td>'+
 		  '</tr>');
 }

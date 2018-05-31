@@ -2,7 +2,7 @@
     <wb-module deploy-name="tphibernate">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WebContent/views/messages"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WebContent/views/ui/messages"/>
         <property name="context-root" value="tphibernate"/>
         <property name="java-output-path" value="/tphibernate/build/classes"/>
     </wb-module>
