@@ -15,21 +15,24 @@
 
 <script>
 
+
+$(document).ready(function(){$('.botonEliminar').val("NS/NR");})
+/*
 jQuery.i18n.properties({
     name: 'mensajes',
     path: '../messages/',  
     mode: 'both',
     language: 'es', 
     callback: function() {
-    	alert(jQuery.i18n.prop('evento.label.eliminar'));
+    	//$('.botoneliminar').val(jQuery.i18n.prop('evento.label.eliminar'));
+        $('.botonEliminar').val("NS/NR");  
+
         
     }
-});</script>
+});
+*/</script>
 </head>
 <body>
-<input id="eliminar"></input> 
-	
-	<c:out value="${menPath}" />
- <div><c:out value="${pageContext.request.contextPath}"/></div>
+<input class="botonEliminar" type="text"/> 
 </body>
 </html>
