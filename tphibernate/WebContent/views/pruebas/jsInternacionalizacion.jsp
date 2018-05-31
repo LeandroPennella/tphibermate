@@ -8,7 +8,7 @@
 <html>
 <head>
 <title>Insert title here</title>
-	<spring:url value="/resmes/mensajes" var="mensfile" />
+	<spring:url value="/resmes/" var="mensPath" />
 
 <script type="text/javascript" src="../ui/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="../ui/js/jquery.i18n.properties.js"></script>
@@ -16,7 +16,8 @@
 <script>
 
 jQuery.i18n.properties({
-    name: '${mensfile}',  
+    name: 'mensajes',
+    path: '../messages/',  
     mode: 'both',
     language: 'es', 
     callback: function() {
@@ -27,7 +28,7 @@ jQuery.i18n.properties({
 </head>
 <body>
 <input id="eliminar"></input> 
-	<spring:url var="menPath" value="/resmes" />
+	
 	<c:out value="${menPath}" />
  <div><c:out value="${pageContext.request.contextPath}"/></div>
 </body>

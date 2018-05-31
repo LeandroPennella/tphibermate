@@ -20,37 +20,31 @@
 	<!--  -->
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
 
+	
+	<mvc:resources mapping="/resmes/**" location="/" />     
+    <mvc:annotation-driven />
 
-	<!-- recursos (i18n)-->
+	<!-- recursos (ji18n)
 	
-	 <bean
-	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	<property name="prefix">
-		<value>/src/recursos/messages</value>
-	</property>
-	<property name="suffix">
-		<value>.properties</value>
-	</property>
-    </bean>
-	<mvc:resources mapping="/resmes/**" location="classpath:/src/recursos/messages/" />
 	
-	<!--
+	
 	<mvc:resources location=",, classpath:/recursos/messages/" mapping="/mensajesR/**" />
 	<spring:url var="/recursos/mesaages/" context="/estatico/" value="/mensajesU" />
+
+	<bean id="messageSource2" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="ISO-8859-1" /> 		 
+		<property name="basename" value="recursos/messages/mensajes" /> 
+	</bean>
+
 	 -->
 	 
 	 
 	<!-- message resources -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="recursos/messages/mensajes" />
+		<!--<property name="basename" value="recursos/messages/mensajes" />-->
+		<property name="basename" value="mensajes" /><!-- Explorer > Properties > Java Build Path > Source  (WEB-INF/messages)-->
 	</bean>
 	
-	<!-- message resources (i18n)
-	<bean id="messageSource2" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="defaultEncoding" value="ISO-8859-1" /> 		 
-		<property name="basename" value="recursos/messages/mensajes" /> 
-	</bean>
-	-->
 	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.controladores" />
 	<context:component-scan base-package="ar.edu.uces.web2.tphibernate.validadores" />
 	
