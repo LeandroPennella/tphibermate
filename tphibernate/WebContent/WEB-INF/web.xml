@@ -35,17 +35,7 @@
 		<welcome-file>views/index.jsp</welcome-file>
 	</welcome-file-list>
 	
-	<!-- (ji18n) 
-	<mime-mapping>
-    	<extension>properties</extension>
-    	<mime-type>text/plain</mime-type>
-	</mime-mapping>
 
-	<servlet-mapping>   
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.properties</url-pattern>
-	</servlet-mapping>
-	-->
 	
 </web-app>
 

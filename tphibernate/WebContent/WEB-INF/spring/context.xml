@@ -22,26 +22,12 @@
 
 	
 
-	<!-- recursos (ji18n)
-	
-	<mvc:resources mapping="/resmes/**" location="/" />     
-    <mvc:annotation-driven />
-	
-	
-	<mvc:resources location=",, classpath:/recursos/messages/" mapping="/mensajesR/**" />
-	<spring:url var="/recursos/mesaages/" context="/estatico/" value="/mensajesU" />
 
-	<bean id="messageSource2" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="defaultEncoding" value="ISO-8859-1" /> 		 
-		<property name="basename" value="recursos/messages/mensajes" /> 
-	</bean>
-
-	 -->
 	 
 	 
 	<!-- message resources -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<!--<property name="basename" value="recursos/messages/mensajes" />-->
+
 		<property name="basename" value="mensajes" /><!-- Explorer > Properties > Java Build Path > Source  (WebContent/views/messages)-->
 	</bean>
 	
