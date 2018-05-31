@@ -15,7 +15,12 @@
 <script>
 
 
-//$(document).ready(function(){$('.botonEliminar').val("NS/NR");})
+$(document).ready(
+    function(){
+        //$('.botonEliminar').val("NS/NR");
+        changeLang('es');
+        })
+function changeLang(lang) {
 
 jQuery.i18n.properties({
     name: 'mensajes',
@@ -24,14 +29,16 @@ jQuery.i18n.properties({
     language: 'es', 
     callback: function() {
     	alert(jQuery.i18n.prop('evento.label.eliminar'));
-        //$('.botonEliminar').val("NS/NR");  
+        $(".botonEliminar").val(jQuery.i18n.prop('evento.label.eliminar'));
 
         
     }
 });
+}
 </script>
 </head>
 <body>
-<input class="botonEliminar" type="text"/> 
+<input class="botonEliminar" id="b1" type="text"/> 
+<div id="d1"></div>
 </body>
 </html>
