@@ -88,6 +88,8 @@
 		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset-1}"/>'> < |</a>
 		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset+1}"/>'> > |</a>
 
+		 
+
 		<!--  Mes mostrado -->
 
 	 	<c:forEach var="diaSemana" items="${SemanaConEventos}">
@@ -128,6 +130,7 @@
 
 		<!-- / Mes mostrado -->
 
+ 
 	</div>
 	
 	

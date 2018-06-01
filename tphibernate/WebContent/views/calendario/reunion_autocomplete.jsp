@@ -1,7 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="org.springframework.web.servlet.support.RequestContext"%> 
+<% String lang = (new RequestContext(request)).getLocale().getLanguage(); %>
+
+
 <%--
 <script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
  --%>
+
+
  <script type="text/javascript" src="../views/ui/js/jquery.i18n.properties.js"></script>
  
 <script type="text/javascript">
@@ -9,6 +15,8 @@
 var listaInvitaciones = [];
 
 
+		
+var localeLanguage='<%=lang%>';
 
 $(document).on('click', '.borrar', function (event) {
     event.preventDefault();
@@ -53,13 +61,13 @@ $(
 	} 	 
 )
 
-function getLabel(lang, tag) {
+function getLabel(tag) {
 	var leliminar;
 	jQuery.i18n.properties({
 	    name: 'mensajes',
 	    path: '../views/ui/messages/',  
 	    mode: 'both',
-	    language: lang, 
+	    language: localeLanguage, 
 	    callback: function() {
 	    	leliminar= jQuery.i18n.prop(tag);        
 	    }
@@ -113,10 +121,10 @@ function agregarATablaInvitaciones(id, nombreCompuesto)
 		  '<tr>'+//id='+id+'
 			  '<td class="celdaNombreCompuesto">'+nombreCompuesto+'</td>'+
 				//TODO: reemplazar texto estado por iconos
-			  '<td>pendiente</td>'+
+			  '<td>'+getLabel('reunion.estado.pendiente')+'</td>'+
 		      '<td>'+
 		      	'<input type="hidden" name="invitados" class="hiddenIdInvitado" value="'+id+'" />'+
-			  	'<input type="button" class="borrar" value='+getLabel('en','evento.label.eliminar')+' />'+
+			  	'<input type="button" class="borrar" value='+getLabel('evento.label.eliminar')+' />'+
 			  '</td>'+
 		  '</tr>');
 }
