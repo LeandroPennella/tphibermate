@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="org.springframework.web.servlet.support.RequestContext"%> 
-<% String lang = (new RequestContext(request)).getLocale().getLanguage(); %>
+
+
 
 
 <%--
@@ -16,7 +16,7 @@ var listaInvitaciones = [];
 
 
 		
-var localeLanguage='<%=lang%>';
+
 
 $(document).on('click', '.borrar', function (event) {
     event.preventDefault();

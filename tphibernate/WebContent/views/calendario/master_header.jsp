@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page import="org.springframework.web.servlet.support.RequestContext"%> 
 
 <link href='<c:url value="/views/ui/css/bootstrap-responsive.2.min.css"/>' rel="stylesheet">
 <link href='<c:url value="/views/ui/css/bootstrap.2.min.css"/>' rel="stylesheet">
@@ -25,3 +26,7 @@
 <!-- <link rel="shortcut icon" id="favicon" type="image/x-icon" href="https://calendar.google.com/googlecalendar/images/favicon_v2014_${dia}.ico"> -->
 <link rel="icon" id="favicon" type="image/x-icon" href="https://calendar.google.com/googlecalendar/images/favicon_v2014_${dia}.ico">
 <!--  <link rel="icon" href="<c:url value='/views/ui/imagenes/agenda.png'/>"> --> 
+<% String lang = (new RequestContext(request)).getLocale().getLanguage(); %>
+<script type="text/javascript">
+var localeLanguage='<%=lang%>';
+</script>

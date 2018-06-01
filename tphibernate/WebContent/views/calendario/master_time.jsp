@@ -13,7 +13,7 @@
 	$(function() {
 		$('#fecha').datepicker({
 		    format: "dd/mm/yyyy",
-		    language: "es",
+		    language: localeLanguage,
 		    orientation: "bottom auto",
 		    todayHighlight: true,
 		    'autoclose': true
