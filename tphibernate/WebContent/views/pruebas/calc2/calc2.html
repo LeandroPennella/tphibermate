@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    
+    
+
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    
+	<link rel="stylesheet" type="text/css" href="calc2.1.css">
+ 
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+     <script>
+     
+      $(function() {
+        $('[class^="evento"]').draggable();
+        $(".filas").droppable();
+        $('#datetimepicker').datepicker({
+          inline: true,
+          sideBySide: true
+        });
+        $("#toggleBoton").click(function() {alternar();});
+        alternar();
+      });
+
+
+
+      function alternar() {
+        $('#mySidenav').toggleClass('active');
+        if (!$('#mySidenav').hasClass('active')) {
+          $('#mySidenav').css('width', '250px');
+          $('#main').css('margin-left', '250px');
+
+          /*$('[class^="mitable"]').css('width', 'calc(96vw-250px)');*/
+          /*$('.mitable').css('width', 'calc(96vw-250px)');*/
+          $('.calendario-cabecera').css('width', 'calc((96vw - 250px) + 1px)'); /*1847.4*/
+          $('.calendario-cuerpo').css('width', 'calc((96vw - 250px) + 0.5vw + 0.5px)'); //96+0.5>scrollbar
+          $('.columnas-horas').css('width', 'calc((96vw - 250px)/36)');
+          $('.columnas-dias').css('width', 'calc(((96vw - 250px)/36)*5)');
+          //calc((100vw-250px)/36)
+          //calc(((100vw-250px)/36)*5)
+
+        } else {
+          $('#mySidenav').css('width', '0px');
+          $('#main').css('margin-left', '0px');
+          $('.calendario-cabecera').css('width', 'calc(96vw + 1px)'); /*1847.4*/
+          $('.calendario-cuerpo').css('width', 'calc(96.5vw + 0.5px)'); //96+0.5>scrollbar
+          $('.columnas-horas').css('width', 'calc(96vw/36)');
+          $('.columnas-dias').css('width', 'calc((96vw/36)*5)');
+          //calc((100vw-8px)/36)
+          //calc(((100vw - 8px)/36)*5)";
+        }
+      }
+
+      
+      
+    </script>
+    <!-- <script src="calc2.js"></script> -->
+  </head>
+
+  <body>
+
+    <div style="font-size:30px;cursor:pointer" id="toggleBoton">&#9776; Calendar</div>
+    <div id="mySidenav" class="sidenav">
+
+
+
+      <div id="datetimepicker"></div>
+      <div class="botonera">
+
+
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+      </div>
+
+
+
+    </div>
+
+    <div id="main">
+
+      <div class="calendario-cabecera">
+        <div class="columnas-horas">
+          <div class="filas "></div>
+        </div>
+        <div class="columnas-dias">
+          <div class="filas ">
+            <div class="DiaNombre">Lun</div>
+            <div class="DiaNumero">4</div>
+          </div>
+        </div>
+        <div class="columnas-dias">
+          <div class="filas ">
+            <div class="DiaNombre">Mar</div>
+            <div class="DiaNumero">5</div>
+          </div>
+        </div>
+        <div class="columnas-dias">
+          <div class="filas ">
+            <div class="DiaNombre">Mie</div>
+            <div class="DiaNumero">6</div>
+          </div>
+        </div>
+        <div class="columnas-dias">
+          <div class="filas ">
+            <div class="DiaNombre">Jue</div>
+            <div class="DiaNumero">7</div>
+          </div>
+        </div>
+        <div class="columnas-dias">
+          <div class="filas ">
+            <div class="DiaNombre">Vie</div>
+            <div class="DiaNumero">8</div>
+          </div>
+        </div>
+        <div class="columnas-dias">
+          <div class="filas ">
+            <div class="DiaNombre">Sab</div>
+            <div class="DiaNumero">9</div>
+          </div>
+        </div>
+        <div class="columnas-dias">
+          <div class="filas ">
+            <div class="DiaNombre">Dom</div>
+            <div class="DiaNumero">10</div>
+          </div>
+        </div>
+      </div>
+
+      <div class=" calendario-cuerpo">
+        <div class="columnas-horas">
+          <div class="filas">01:00</div>
+          <div class="filas">02:00</div>
+          <div class="filas">03:00</div>
+          <div class="filas">04:00</div>
+          <div class="filas">05:00</div>
+          <div class="filas">06:00</div>
+          <div class="filas">07:00</div>
+          <div class="filas">08:00</div>
+          <div class="filas">09:00</div>
+          <div class="filas">10:00</div>
+          <div class="filas">11:00</div>
+          <div class="filas">12:00</div>
+          <div class="filas">13:00</div>
+          <div class="filas">14:00</div>
+          <div class="filas">15:00</div>
+          <div class="filas">16:00</div>
+          <div class="filas">17:00</div>
+          <div class="filas">18:00</div>
+          <div class="filas">19:00</div>
+          <div class="filas">20:00</div>
+          <div class="filas">21:00</div>
+          <div class="filas">22:00</div>
+          <div class="filas">23:00</div>
+          <div class="filas">24:00</div>
+        </div>
+        <!--lunes-->
+        <div class="columnas-dias">
+          <div class="filas"></div>
+          <div class="filas">
+            <div class="evento-2">sarasa</div>
+            <div class="evento-2">sasasa</div>
+          </div>
+          <div class="filas"></div>
+          <div class="filas">
+            <div class="evento-1">1</div>
+          </div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>          
+        </div>
+        <div class="columnas-dias">
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>          
+        </div>
+        <div class="columnas-dias">
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>          
+        </div>
+        <div class="columnas-dias">
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>          
+        </div>
+        <div class="columnas-dias">
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>          
+        </div>
+        <div class="columnas-dias">
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>          
+        </div>
+        <div class="columnas-dias">
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>
+          <div class="filas"></div>          
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </body>
+
+</html>
