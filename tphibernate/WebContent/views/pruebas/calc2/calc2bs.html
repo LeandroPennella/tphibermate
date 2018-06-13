@@ -33,7 +33,7 @@
         });
         */
 
-		$('#fecha').datepicker({
+		$('#calendarioenlinea').datepicker({
 		    format: "dd/mm/yyyy",
 		    language: 'es',
 		    
@@ -81,16 +81,19 @@
   </head>
 
   <body>
-
-    <div style="font-size:30px;cursor:pointer" id="toggleBoton">&#9776; Calendar</div>
+<div style="  border: 1px solid #CCC;
+		  background-color: #E0E0E0;
+		  padding: .5em; ">
+    <div style="font-size:30px;cursor:pointer;float:left;" id="toggleBoton">&#9776; </div> 
+    <div style="font-size:30px;float:left;">hoy | < | > | junio de 2018</div>
+    </div>
+    <div style="clear:both;"></div>
     <div id="mySidenav" class="sidenav">
 
 
 <!--  -->
-      <div id="datetimepicker"></div>
-      
-		<input id="fecha" name="fecha" class="input-small  date start" placeholder="Fecha" type="text" value="">
-      
+      <div id="calendarioenlinea"></div>
+      <!-- 
       <div class="botonera">
 
 
@@ -99,7 +102,7 @@
         <a href="#">Clients</a>
         <a href="#">Contact</a>
       </div>
-
+ -->
 
 
     </div>
