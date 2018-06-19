@@ -12,18 +12,18 @@
   /*color:#888;*/
 }
 
-
 /*
-[class|=calendario] {
-  box-sizing: border-box;
+[class|=mitable] {
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+
+    box-sizing: border-box;
+  
   transition: 0.5s;
+    //width: 100vw;
+    //float: left;
 }
 */
-
-
-
-
-
 
 .calendario-cabecera {
   box-sizing: border-box;
@@ -113,6 +113,7 @@ body {
   /*padding-top: 60px;*/
 }
 
+<!-- -->
 .sidenav .botonera a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
@@ -124,15 +125,29 @@ body {
 .sidenav a:hover {
   color: #f1f1f1;
 }
-
-.sidenav  {
+<!-- -->
+.sidenav .closebtn {
   position: absolute;
   top: 0;
   right: 25px;
   font-size: 36px;
   margin-left: 2vw;
 }
-
+<!-- -->
+#barrasuperior
+{
+	border: 1px solid #CCC; 
+	background-color: #E0E0E0; 
+	padding: .5em;
+}
+	
+#toggleBoton{
+	font-size:20px;
+	cursor:pointer;
+	float:left; 
+	padding-right:5px; 
+	margin-top:-5px;}
+	
 #main {
   transition: margin-left .5s;
   padding-left: 1vw;

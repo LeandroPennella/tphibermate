@@ -4,107 +4,29 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-        <link rel="stylesheet" type="text/css" href="../../ui/css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../ui/css/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="../../ui/css/bootstrap.3.min.css">
-	<link rel="stylesheet" type="text/css" href="calc2.1.css">
+	<link rel="stylesheet" type="text/css" href="calc2.css">
  
     <script src="../../ui/js/jquery-1.12.4.js"></script>
     <script src="../../ui/js/jquery-ui-1.11.4.js"></script>
     <script src="../../ui/js/bootstrap.min.js"></script>
     
-    
+	<link href='../../ui/css/bootstrap-datepicker.min.css' rel="stylesheet">
+	<script type="text/javascript" src="../../ui/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript" src="../../ui/js/bootstrap-datepicker.es.min.js"></script>
 
-
-
-    
-		<link href='../../ui/css/bootstrap-datepicker.min.css' rel="stylesheet">
-		<script type="text/javascript" src="../../ui/js/bootstrap-datepicker.min.js"></script>
-		<script type="text/javascript" src="../../ui/js/bootstrap-datepicker.es.min.js"></script>
+	<script src="calc2.js"></script>
 	
-     <script>
-     
-      $(function() {
-        $('[class^="evento"]').draggable();
-        $(".filas").droppable();
-        /*
-        $('#datetimepicker').datepicker({
-          inline: true,
-          sideBySide: true
-        });
-        */
-
-		$('#calendarioenlinea').datepicker({
-		    format: "dd/mm/yyyy",
-		    language: 'es',
-		    
-		    todayHighlight: true,
-		    isInline: true
-		});
-
-        $("#toggleBoton").click(function() {alternar();});
-        alternar();
-      });
-
-
-
-      function alternar() {
-        $('#mySidenav').toggleClass('active');
-        if (!$('#mySidenav').hasClass('active')) {
-          $('#mySidenav').css('width', '250px');
-          $('#main').css('margin-left', '250px');
-
-          /*$('[class^="mitable"]').css('width', 'calc(96vw-250px)');*/
-          /*$('.mitable').css('width', 'calc(96vw-250px)');*/
-          $('.calendario-cabecera').css('width', 'calc((96vw - 250px) + 1px)'); /*1847.4*/
-          $('.calendario-cuerpo').css('width', 'calc((96vw - 250px) + 0.5vw + 0.5px)'); //96+0.5>scrollbar
-          $('.columnas-horas').css('width', 'calc((96vw - 250px)/36)');
-          $('.columnas-dias').css('width', 'calc(((96vw - 250px)/36)*5)');
-          //calc((100vw-250px)/36)
-          //calc(((100vw-250px)/36)*5)
-
-        } else {
-          $('#mySidenav').css('width', '0px');
-          $('#main').css('margin-left', '0px');
-          $('.calendario-cabecera').css('width', 'calc(96vw + 1px)'); /*1847.4*/
-          $('.calendario-cuerpo').css('width', 'calc(96.5vw + 0.5px)'); //96+0.5>scrollbar
-          $('.columnas-horas').css('width', 'calc(96vw/36)');
-          $('.columnas-dias').css('width', 'calc((96vw/36)*5)');
-          //calc((100vw-8px)/36)
-          //calc(((100vw - 8px)/36)*5)";
-        }
-      }
-
-      
-      
-    </script>
-    <!-- <script src="calc2.js"></script> -->
   </head>
 
   <body>
-<div style="  border: 1px solid #CCC;
-		  background-color: #E0E0E0;
-		  padding: .5em; ">
-    <div style="font-size:30px;cursor:pointer;float:left;" id="toggleBoton">&#9776; </div> 
-    <div style="font-size:30px;float:left;">hoy | < | > | junio de 2018</div>
+	<div id="barrasuperior">
+    	<div id="toggleBoton">&#9776; </div>  hoy | < | > | junio de 2018
     </div>
     <div style="clear:both;"></div>
     <div id="mySidenav" class="sidenav">
-
-
-<!--  -->
       <div id="calendarioenlinea"></div>
-      <!-- 
-      <div class="botonera">
-
-
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-      </div>
- -->
-
-
     </div>
 
     <div id="main">
