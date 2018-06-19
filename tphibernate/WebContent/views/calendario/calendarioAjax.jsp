@@ -11,76 +11,38 @@
 <head>
 	<jsp:include page="master_header.jsp"></jsp:include>
 	<link href='<c:url value="/views/ui/css/Calendario.css"/>' rel="stylesheet">
-     <!--  /<script src="../ui/js/jquery-ui-1.11.4.js"></script>-->
-       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-     <script>
-     
-     $(function(){
-    	 
-    	 
-    	 $(".dragable").draggable({
-    		 snap:".hora", 
-    		 axis: "y"
-   		 });
-    	 $(".hora").droppable({
-    	      drop: function( event, ui ) {
-    	          var item_id = $(ui.draggable).attr('id');
-    	          var item_horaInicio = $(this).attr("id").toString();
-    	          //item_horaInicio = item_horaInicio.replace(":","");
-    	          var evento={"id":item_id, "horaInicio":item_horaInicio}
-    	          $( this )
-    	            .addClass( "ui-state-highlight" )
-    	            .find( "p" )
-    	            alert('evento '+item_id +' movido a '+ item_horaInicio);
-    	          $.ajax({
-					url: "../evento/mover.do", //?origenId="+item_id+"&destinoId="+location,
-					type: "POST",
-					//timeout: 10000,
-					//data:{id:item_id, horaInicio:item_horaInicio}, //JSON.stringify(evento), 
-					data:JSON.stringify(evento),
-					contentType : "application/json;charset=UTF-8",
-					
-					dataType : "text",//lo que recive
-					
-					 
-					/*
-					success:function(response){
-						  alert('bien ' + response);
-						  },
-					  */						  
-					 
-					success : function(results, status, xhr){
-						
-						//alert('resultado' + results + ' - status: ' + status + ' - xhr:'+xhr);
-						
-						if (results){
-							//alert('si')
-							$("#"+item_id).children('a').children('b').html('hi:'+item_horaInicio + " HF:" +String(results));//todo: agregar horafin
-							} else {alert('no')}
-						
-					}
-					,
-										
-					error: function(XHR, jqXHR, textStatus,	errorThrown) {
-							
-						var errorHtml = "An error ocurred <br/>";
-						errorHtml += "Status: "+ textStatus 
-						errorHtml += " | Reason: "	+ errorThrown
-						errorHtml += " | XHR: "	+ XHR.responseText
-						errorHtml += " | jqXHR: "	+ jqXHR.responseText
-								
-						alert(errorHtml);
-				}
-          });
-    	      }
-    	 });
-     })</script>
+	<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+	
+
+	<!--navegador-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+
+    <link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/jquery-ui.css"/>'>
+    <!-- en master  <link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/bootstrap.3.min.css"/>'>-->
+	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/calendarioNavegacion.css"/>'>
+	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/bootstrap-datepicker.min.css"/>'>
+	 
+    <!-- en master <script type="text/javascript" src='<c:url value="/views/ui/js/jquery-1.12.4.js"/>'></script>-->
+    <script type="text/javascript" src='<c:url value="/views/ui/js/jquery-ui-1.11.4.js"/>'></script>
+    <script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap.min.js"/>'></script>
+    
+	
+	<script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap-datepicker.min.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap-datepicker.es.min.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="/views/ui/js/calendarioNavegacion.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="/views/ui/js/calendarioDragnDrop.js" />'></script>
+	<!--navegador-->
 	<title><fmt:message key='calendario.titulo'/></title>
 </head>
 <body>
 
 
 	<jsp:include page="master_menu.jsp"></jsp:include>
+
+
+
 	<div style="  border: 1px solid #CCC;
 		  background-color: #E0E0E0;
 		  padding: .5em; height:20px;">

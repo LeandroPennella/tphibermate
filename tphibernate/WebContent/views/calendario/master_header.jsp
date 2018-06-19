@@ -5,9 +5,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page import="org.springframework.web.servlet.support.RequestContext"%> 
-
+<!-- x nav modificar -->
 <link href='<c:url value="/views/ui/css/bootstrap-responsive.2.min.css"/>' rel="stylesheet">
 <link href='<c:url value="/views/ui/css/bootstrap.2.min.css"/>' rel="stylesheet">
+
+
+<!--<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/bootstrap.3.min.css"/>'>-->
+
+
+
+
 <link href='<c:url value="/views/ui/css/master.css"/>' rel="stylesheet">
 
 <!-- https://github.com/VinceG/Bootstrap-Admin-Theme -->
