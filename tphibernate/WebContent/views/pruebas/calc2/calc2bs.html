@@ -4,6 +4,8 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+    <title></title>
+    
     <link rel="stylesheet" type="text/css" href="../../ui/css/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="../../ui/css/bootstrap.3.min.css">
 	<link rel="stylesheet" type="text/css" href="../../ui/css/calendarioNavegacion.css">
@@ -18,16 +20,175 @@
 	<script type="text/javascript" src="../../ui/js/bootstrap-datepicker.es.min.js"></script>
 	<script type="text/javascript" src="../../ui/js/calendarioNavegacion.js"></script>
 	
+	
+	<style>
+	.navbar {margin-bottom:0 !important;}
+	.navbar-default {background-image: linear-gradient(to bottom,#fff,#f2f2f2) !important;}
+	.navbar{min-height:auto !important;}
+	
+	.navbar-brand{height:auto !important;}
+	
+	.navbar .nav>li>a, .navbar-brand {			
+	    text-shadow: 0 1px 0 #fff !important;
+	    padding:10px 15px !important;
+	    }
+	    
+	</style>
   </head>
 
   <body>
+  
+  
+  
+  <nav class="navbar navbar-default">
+  
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Calendario</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Tarea<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Reunion</a></li>
+
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+
+</nav>
+  
+  
+  
+  <!-- 
+  <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li><a href="../navbar-static-top/">Static top</a></li>
+            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div>  
+      </div>
+      
+      -->
+      
+      
+   <!--  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">titulo</a>
+            <div class="nav-collapse collapse">
+	            <ul class="nav">
+		            <li class="active">
+		                <a href="#">Titulo</a>
+		            </li>
+	                <li>
+	                    <a href="#">Tarea</a>
+	                </li>
+	                <li>
+	                    <a href="#">Reunion</a>
+	                </li>
+	           </ul>
+	           <ul class="nav pull-right">
+	               <li class="dropdown">
+	                   <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Usuario <i class="caret"></i></a>
+	                   <ul class="dropdown-menu">
+	                       <li>
+	                           <a tabindex="-1" href="#">Perfil</a>
+	                       </li>
+	                       <li class="divider"></li>
+	                       <li>
+	                       		<a href="#">salir</a>
+	                       </li>
+	                   </ul>
+	               </li>
+	           </ul>
+        	</div>
+        </div>
+    </div>
+</div>
+   -->
+   
+   
+  
 	<div id="barrasuperior">
     	<div id="toggleBoton">&#9776; </div>  hoy | < | > | junio de 2018
     </div>
+    
+    
+    
+    
+    
     <div style="clear:both;"></div>
     <div id="mySidenav" class="sidenav">
       <div id="calendarioenlinea"></div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
 
     <div id="main">
 
