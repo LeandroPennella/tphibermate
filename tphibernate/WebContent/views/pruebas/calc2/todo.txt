@@ -1,0 +1,4 @@
+filas > dos por hora
+dragndrop > tope sup / inf
+dragndrop > redibujar (repartir espacio horizontal)
+

@@ -1,5 +1,9 @@
       $(function() {
-        $('[class^="evento"]').draggable();
+        $('[class^="evento"]').draggable(
+        		{
+           		 snap:".filas", 
+        		 axis: "y"
+        		});
         $(".filas").droppable();
 
 
