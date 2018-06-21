@@ -1,10 +1,10 @@
       $(function() {
         $('[class^="evento"]').draggable(
         		{
-           		 snap:".filas", 
+           		 snap:".fila", 
         		 axis: "y"
         		});
-        $(".filas").droppable();
+        $(".fila").droppable();
 
 
 		$('#calendarioenlinea').datepicker({

@@ -22,7 +22,7 @@ import ar.edu.uces.web2.tphibernate.dao.EventoDAO;
 import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 
-
+/*
 @SessionAttributes("usuarioLogueado")
 @Controller
 public class CalendarioController {
@@ -76,3 +76,4 @@ public class CalendarioController {
 		return mv;
 	}
 }
+*/

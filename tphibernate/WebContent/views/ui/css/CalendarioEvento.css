@@ -1,0 +1,20 @@
+/*-- Evento ---------------------------------------------------------------*/
+[class|=evento] {
+  border-radius: 2px;
+  box-sizing: border-box;
+  float: left;
+  width: 50%;
+  background-color: rgb(240, 147, 0);
+  border: 1px solid white;
+  padding: 1px;
+  font-size: 1em;
+  height: 2.5vh;
+}
+
+.evento-1 {
+  width: 100%;
+}
+
+.evento-2 {
+  width: 50%;
+}
