@@ -213,8 +213,8 @@
 	 
 	
 		<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
-		<fmt:formatDate value="${diaFecha}" var="diaFechaString" pattern="dd/MM/yyyy"/>
-		<fmt:formatDate value="${diaFecha}" var="nombreDia" pattern="EEE"/>		
+		
+				
 		<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
 		<c:set var="claseDia" value="nada"></c:set>
 
@@ -230,7 +230,13 @@
         <div class="columnas-dias">
           	<div class="fila ">
             	<div class="DiaNombre">Lun</div>
-            	<div class="DiaNumero">4</div>
+				<div class="DiaNumero">4</div>
+				
+				<fmt:formatDate value="${diaFecha}" var="nombreDia" pattern="EEE"/>
+				<c:out value="${nombreDia}" />
+				
+				<fmt:formatDate value="${diaFecha}" var="diaFechaString" pattern="dd/MM/yyyy"/>
+				<c:out value="${fn:substring(diaFechaString, 0, 2)}" />
           	</div>
 		</div>
 	</div>
