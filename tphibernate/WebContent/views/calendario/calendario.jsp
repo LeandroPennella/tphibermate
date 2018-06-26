@@ -201,7 +201,9 @@
 
 	<div class="calendario-cabecera">
         <div class="columnas-horas">
-          	<div class="fila "></div>
+          	<div class="fila ">
+          	<%-- <fmt:message key="calendario.etiquetas.hora" />--%>
+          	</div>
         </div>
 
 	
@@ -227,26 +229,30 @@
 
 
 
-        <div class="columnas-dias">
+        <div class="columnas-dias<%-- claseDia --%>">
           	<div class="fila ">
-            	
-				
-				
+            
 				<fmt:formatDate value="${diaFecha}" var="nombreDia" pattern="EEE"/>
 				<div class="DiaNombre"><c:out value="${nombreDia}" /></div>
 				
 				<fmt:formatDate value="${diaFecha}" var="diaFechaString" pattern="dd/MM/yyyy"/>
 				<div class="DiaNumero"><c:out value="${fn:substring(diaFechaString, 0, 2)}" /></div>
+          	
           	</div>
 		</div>
 		</c:forEach>
 	</div>
 
 
-
-
-
-
+      <div class=" calendario-cuerpo">
+        <div class="columnas-horas">
+			<c:forEach var="hora" items="${horas}" >
+          		<div class="fila fila-sup">${hora}</div>
+          		<div class="fila fila-inf">&nbsp;</div>
+			</c:forEach>
+		</div>
+		
+	</div>	
 
 
 
