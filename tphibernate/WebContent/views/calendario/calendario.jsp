@@ -6,22 +6,20 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
-<!--  master -->
-<%-- 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
+
+ 
+<!--master -->
 <%@ page isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page import="org.springframework.web.servlet.support.RequestContext"%>
+
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate var="dia" value="${now}" pattern="d" />
 <% String lang = (new RequestContext(request)).getLocale().getLanguage(); %>
+
 <script type="text/javascript">
-var localeLanguage='<%=lang%>';
+	var localeLanguage='<%=lang%>';
 </script> 
---%>
+<!--/master -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -61,17 +59,17 @@ var localeLanguage='<%=lang%>';
 <body>
 
 
-	<%-- <jsp:include page="master_menu.jsp"></jsp:include>--%>
+	
 
 <!-- Menu -->
 
-  <nav class="navbar navbar-default">
-  
+<nav class="navbar navbar-default">
+
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- agrupa Brand y toggle  -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Alternar navegacion</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -79,8 +77,8 @@ var localeLanguage='<%=lang%>';
       <a class="navbar-brand" href="#">Calendario</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <!-- toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Tarea<span class="sr-only">(current)</span></a></li>
         <li><a href="#">Reunion</a></li>
@@ -90,13 +88,15 @@ var localeLanguage='<%=lang%>';
       <ul class="nav navbar-nav navbar-right">
         
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			  	<i class="icon-user"></i> 
+				${usuarioLogueado.getNombreUsuario()}
+				<span class="caret"></span>
+			</a>
+          <ul class="dropdown-menu">            
+            <li><a tabindex="-1" href="#"><fmt:message key='login.label.perfil'/></a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="<c:url value="/logout/logout.do" ></c:url>"><fmt:message key='login.label.salir'/></a></li>
           </ul>
         </li>
       </ul>
@@ -109,9 +109,8 @@ var localeLanguage='<%=lang%>';
 
 
 
-	<div style="  border: 1px solid #CCC;
-		  background-color: #E0E0E0;
-		  padding: .5em; height:20px;">
+	<div id="barrasuperior">
+    	<div id="toggleBoton">&#9776; </div>  
 		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=0"/>'><fmt:message key="calendario.accion.hoy" /> |</a>
 		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset-1}"/>'> < |</a>
 		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset+1}"/>'> > |</a>
@@ -161,7 +160,103 @@ var localeLanguage='<%=lang%>';
  
 	</div>
 	
+
+	<div style="clear:both;"></div>
 	
+    <div id="mySidenav" class="sidenav">
+      <div id="calendarioenlinea"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="main">
+
+
+
+
+
+	<!-- Dias ------------------------------------------------------------ -->
+
+	<div class="calendario-cabecera">
+        <div class="columnas-horas">
+          	<div class="fila "></div>
+        </div>
+        <div class="columnas-dias">
+          	<div class="fila ">
+            	<div class="DiaNombre">Lun</div>
+            	<div class="DiaNumero">4</div>
+          	</div>
+		</div>
+	</div>
+	
+
+	
+	
+	 
+	 <c:forEach var="diaSemana" items="${SemanaConEventos}">
+	 
+	
+		<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
+		<fmt:formatDate value="${diaFecha}" var="diaFechaString" pattern="dd/MM/yyyy"/>
+		<fmt:formatDate value="${diaFecha}" var="nombreDia" pattern="EEE"/>
+		
+	
+		
+		<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
+		<c:set var="claseDia" value="nada"></c:set>
+
+		<!-- set DiaHoy -->
+		
+		<c:if test="${dFechaHoy==diaFecha}" >
+			<c:set var="claseDia" value="hoy"></c:set>
+		</c:if>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<!-- Horas ------------------------------------------------------------ -->
 	<div class="panelHoras">
 		<div class="headerDia">
@@ -177,21 +272,21 @@ var localeLanguage='<%=lang%>';
 	
 	<!-- Dias ------------------------------------------------------------ -->
 	
-	 <%-- <c:forEach var="diaSemana" items="${semana}">--%>
+	 
 	 <c:forEach var="diaSemana" items="${SemanaConEventos}">
 	 
 	
 		<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
 		<fmt:formatDate value="${diaFecha}" var="diaFechaString" pattern="dd/MM/yyyy"/>
 		<fmt:formatDate value="${diaFecha}" var="nombreDia" pattern="EEE"/>
-		<%-- <c:set var="diaFechaString"  value="${diaSemana.key}"></c:set>--%>
+		
 	
 		
 		<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
 		<c:set var="claseDia" value="nada"></c:set>
 
-		<!-- DiaHoy -->
-		<%-- <c:if test="${sFechaHoy==diaFecha}" >--%>
+		<!-- set DiaHoy -->
+		
 		<c:if test="${dFechaHoy==diaFecha}" >
 			<c:set var="claseDia" value="hoy"></c:set>
 		</c:if>
@@ -242,5 +337,7 @@ var localeLanguage='<%=lang%>';
 
 		</div>
 	</c:forEach>
+
+	</div>	
 </body>
 </html>

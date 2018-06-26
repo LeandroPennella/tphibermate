@@ -66,9 +66,9 @@ public class CalendarioAjaxController {
 
 		 
 		
-		//ModelAndView mv=new ModelAndView("/views/calendario/calendarioAjax.jsp");
+		ModelAndView mv=new ModelAndView("/views/calendario/calendarioAjax.jsp");
 		
-		ModelAndView mv=new ModelAndView("/views/calendario/calendario.jsp"); //navegacion
+		//ModelAndView mv=new ModelAndView("/views/calendario/calendario.jsp"); //navegacion
 		
 		
 		//mv.addObject("semana", getSemanaString(usuarioLogueado,  calendar,  sdf));
