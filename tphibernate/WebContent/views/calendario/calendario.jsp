@@ -203,13 +203,7 @@
         <div class="columnas-horas">
           	<div class="fila "></div>
         </div>
-        <div class="columnas-dias">
-          	<div class="fila ">
-            	<div class="DiaNombre">Lun</div>
-            	<div class="DiaNumero">4</div>
-          	</div>
-		</div>
-	</div>
+
 	
 
 	
@@ -220,18 +214,12 @@
 	
 		<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
 		<fmt:formatDate value="${diaFecha}" var="diaFechaString" pattern="dd/MM/yyyy"/>
-		<fmt:formatDate value="${diaFecha}" var="nombreDia" pattern="EEE"/>
-		
-	
-		
+		<fmt:formatDate value="${diaFecha}" var="nombreDia" pattern="EEE"/>		
 		<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
 		<c:set var="claseDia" value="nada"></c:set>
 
-		<!-- set DiaHoy -->
-		
-		<c:if test="${dFechaHoy==diaFecha}" >
-			<c:set var="claseDia" value="hoy"></c:set>
-		</c:if>
+		<!-- set DiaHoy -->		
+		<c:if test="${dFechaHoy==diaFecha}" ><c:set var="claseDia" value="hoy"></c:set></c:if>
 
 
 
@@ -239,7 +227,13 @@
 
 
 
-
+        <div class="columnas-dias">
+          	<div class="fila ">
+            	<div class="DiaNombre">Lun</div>
+            	<div class="DiaNumero">4</div>
+          	</div>
+		</div>
+	</div>
 
 
 
