@@ -73,12 +73,10 @@
   border-right: 1px solid LightGray;
 }
 /*TODO: filas pares e impares*/
-.fila-sup{
+.fila:nth-child(even) {border-bottom: 1px solid LightGray;}
+/*.fila-sup{}*/
 
-    
-}
-
-.fila-inf, .calendario-cabecera .fila{
+/*.fila-inf,*/ .calendario-cabecera .fila{
 	border-bottom: 1px solid LightGray;
 }
 

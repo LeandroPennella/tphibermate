@@ -238,12 +238,12 @@
         <div class="columnas-horas">
         	<c:set var="mediaHora" value="false"></c:set>
 			<c:forEach var="hora" items="${horas}" >
-				<c:if test="${mediaHora eq false}">
-          		<div class="fila fila-sup">${hora}</div>
-          		</c:if>
-          		<c:if test="${mediaHora eq true}">
-          		<div class="fila fila-inf">&nbsp;</div>
-          		</c:if>
+				
+          		<div class="fila ">
+					<c:if test="${mediaHora eq false}">
+					  ${hora}
+					</c:if>
+				</div>         		
           		<c:set var="mediaHora" value="${not mediaHora}"></c:set> 
 			</c:forEach>
 		</div>
@@ -251,8 +251,9 @@
 		<c:forEach var="diaSemana" items="${SemanaConEventos}">
 			<div class="columnas-dias">	
 			<c:forEach var="hora" items="${horas}" >
-	          	<div class="fila fila-sup">&nbsp;</div>
-       			<div class="fila fila-inf">&nbsp;</div>
+				
+	          	<div class="fila ">&nbsp;</div>
+       			
 			</c:forEach>
 			</div>	
 		</c:forEach>	
