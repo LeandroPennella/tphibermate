@@ -229,16 +229,17 @@
 
         <div class="columnas-dias">
           	<div class="fila ">
-            	<div class="DiaNombre">Lun</div>
-				<div class="DiaNumero">4</div>
+            	
+				
 				
 				<fmt:formatDate value="${diaFecha}" var="nombreDia" pattern="EEE"/>
-				<c:out value="${nombreDia}" />
+				<div class="DiaNombre"><c:out value="${nombreDia}" /></div>
 				
 				<fmt:formatDate value="${diaFecha}" var="diaFechaString" pattern="dd/MM/yyyy"/>
-				<c:out value="${fn:substring(diaFechaString, 0, 2)}" />
+				<div class="DiaNumero"><c:out value="${fn:substring(diaFechaString, 0, 2)}" /></div>
           	</div>
 		</div>
+		</c:forEach>
 	</div>
 
 
@@ -254,7 +255,7 @@
 
 
 
-
+<%-- 
 
 
 	<!-- Horas ------------------------------------------------------------ -->
@@ -337,7 +338,7 @@
 
 		</div>
 	</c:forEach>
-
+--%>
 	</div>	
 </body>
 </html>
