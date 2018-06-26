@@ -250,10 +250,8 @@
 		
 		<c:forEach var="diaSemana" items="${SemanaConEventos}">
 			<div class="columnas-dias">	
-			<c:forEach var="hora" items="${horas}" >
-				
-	          	<div class="fila ">&nbsp;</div>
-       			
+			<c:forEach var="hora" items="${horas}" >			
+	          	<div class="fila ">&nbsp;</div>       			
 			</c:forEach>
 			</div>	
 		</c:forEach>	
