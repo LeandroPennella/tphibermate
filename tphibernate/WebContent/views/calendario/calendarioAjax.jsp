@@ -148,6 +148,7 @@
 				<div class="hora" id="${hora}">
 					 
 					<!-- Eventos -->
+					<c:out value="${eventosDia}"/>
 					<c:forEach var="evento" items="${eventosDia}">
 						
 						<!-- Evento -->

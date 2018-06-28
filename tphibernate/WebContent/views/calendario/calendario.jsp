@@ -213,7 +213,7 @@
 	 
 	 <c:forEach var="diaSemana" items="${SemanaConEventos}">
 	 	<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
-		<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
+	
 		<c:set var="claseDia" value="nada"></c:set>
 
 		<!-- set DiaHoy -->		
@@ -249,9 +249,36 @@
 		</div>
 		
 		<c:forEach var="diaSemana" items="${SemanaConEventos}">
+			<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
 			<div class="columnas-dias">	
 			<c:forEach var="hora" items="${horas}" >			
-	          	<div class="fila ">&nbsp;</div>       			
+	          	<div class="fila ">
+					<!-- Eventos -->
+					
+					<c:forEach var="evento" items="${eventosDia}">
+					
+						
+						<!-- Evento -->
+						<jsp:include page="calendario_Evento.jsp">
+							<jsp:param name="eventoID" value ="${evento.getId()}"/>
+							
+							<jsp:param name="eventoHoraInicio" value ="${evento.getHoraInicio()}"/>
+							<jsp:param name="eventoHoraFin" value ="${evento.getHoraFin()}"/>
+							<jsp:param name="eventoMinutosDuracion" value ="${evento.obtenerMinutosDuracion()}"/>
+							
+							<jsp:param name="eventoTitulo" value ="${evento.getTitulo()}"/>
+							<jsp:param name="eventoEstadoUsuarioActual" value ="${evento.obtenerEstado(usuarioLogueado)}"/>
+							
+							<jsp:param name="estadoEvento" value ="${estadoEvento}"/>
+							
+							<jsp:param name="hora" value ="${hora}"/>
+							
+						</jsp:include>
+					
+					</c:forEach>
+					<!-- /Eventos -->
+
+				  </div>       			
 			</c:forEach>
 			</div>	
 		</c:forEach>	
