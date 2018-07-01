@@ -7,12 +7,9 @@
 		
 		.dia{width:13%; float: left; border: 1px solid darkgrey;}
 		.hora{height:21px;border: solid 1px gray;/* position:relative;*/}
-		.tarea{background-color: #4986E7; border: 1px solid darkgrey; /*position:absolute; top:0px;*/}
+		
 
-		.reunionAutor{background-color: #16A765; border: 1px solid darkgrey;}
-		.reunionNoConfirmado{background-color: yellow; border: 1px solid darkgrey;}
-		.reunionConfirmada{background-color: #16A765; border: 1px solid darkgrey;}
-		.reunionCancelada{background-color: red; border: 1px solid darkgrey;}
+
 		
 		.hoy{ background-color: lightgray;}
 		.headerDia{background-color: silver; text-align: center; font-weight: bold;}

@@ -9,8 +9,16 @@
   padding: 1px;
   font-size: 1em;
   height: 2.5vh;
+  flex-basis: 100%;
 }
 
+
+		.reunionAutor{background-color: #16A765; border: 1px solid darkgrey;}
+		.reunionNoConfirmado{background-color: yellow; border: 1px solid darkgrey;}
+		.reunionConfirmada{background-color: #16A765; border: 1px solid darkgrey;}
+		.reunionCancelada{background-color: red; border: 1px solid darkgrey;}
+	.tarea{background-color: #4986E7; border: 1px solid darkgrey; /*position:absolute; top:0px;*/}
+		/*
 .evento-1 {
   width: 100%;
 }
@@ -18,3 +26,4 @@
 .evento-2 {
   width: 50%;
 }
+*/
