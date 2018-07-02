@@ -1,29 +1,27 @@
 /*-- Evento ---------------------------------------------------------------*/
-[class|=evento] {
+
+
+.reunionAutor{background-color: #16A765;}
+.reunionNoConfirmado{background-color: yellow; }
+.reunionConfirmada{background-color: #16A765; }
+.reunionCancelada{background-color: red; }
+.tarea{background-color: #4986E7; }
+.evento {
   border-radius: 2px;
   box-sizing: border-box;
-  float: left;
-  width: 50%;
-  background-color: rgb(240, 147, 0);
   border: 1px solid white;
   padding: 1px;
-  font-size: 1em;
-  height: 2.5vh;
-  flex-basis: 100%;
-}
+  font-size: 0.9em; 
+  
+  color:black !important;
+  padding-bottom: 21px;
+  
+  /*flex-basis: 100%;*/ 
+  position:relative;
 
-
-		.reunionAutor{background-color: #16A765; border: 1px solid darkgrey;}
-		.reunionNoConfirmado{background-color: yellow; border: 1px solid darkgrey;}
-		.reunionConfirmada{background-color: #16A765; border: 1px solid darkgrey;}
-		.reunionCancelada{background-color: red; border: 1px solid darkgrey;}
-	.tarea{background-color: #4986E7; border: 1px solid darkgrey; /*position:absolute; top:0px;*/}
-		/*
-.evento-1 {
-  width: 100%;
 }
-
-.evento-2 {
-  width: 50%;
-}
-*/
+.evento:hover{  text-decoration: none;}
+  /*float: left;*/
+  /*width: 50%;*/
+  /*background-color: rgb(240, 147, 0);*/
+  /*height: 2.5vh;*/

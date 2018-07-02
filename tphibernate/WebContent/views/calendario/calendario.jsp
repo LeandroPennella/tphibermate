@@ -41,7 +41,7 @@
     <link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/jquery-ui.css"/>'>
     <link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/bootstrap.3.min.css"/>'>
     <link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/CalendarioGrilla.css"/>'>
-    <link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/CalendarioEvento.css"/>'>
+    
 	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/calendarioNavegacion.css"/>'>
 	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/bootstrap-datepicker.min.css"/>'>
 	 
@@ -249,7 +249,12 @@
 		</div>
 		
 		<c:forEach var="diaSemana" items="${SemanaConEventos}">
+		
+
 			<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
+
+			<jsp:include page="calendario_Eventos_Horizontal.jsp">
+			
 			<div class="columnas-dias">	
 			<c:forEach var="hora" items="${horas}" >			
 	          	<div class="fila ">

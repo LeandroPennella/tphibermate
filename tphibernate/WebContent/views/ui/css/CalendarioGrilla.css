@@ -71,7 +71,7 @@
   box-sizing: border-box;  
   /*height: 56px !important;*/
   border-right: 1px solid LightGray;
-  display: flex;    
+  display: block;    
 }
 /*TODO: filas pares e impares*/
 .fila:nth-child(even) {border-bottom: 1px solid LightGray;}

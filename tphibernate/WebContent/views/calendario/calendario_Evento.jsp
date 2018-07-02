@@ -6,6 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
+
 <c:set var="hora" value="${param.hora}"/>
 
 <c:set var="estadoEvento" value="${param.estadoEvento}"/>
@@ -35,12 +36,15 @@
 			
 
 			<!--  <div >sa-->
-			<a class="dragable ui-draggable ui-draggable-handle"  
+			<a class="evento dragable ui-draggable ui-draggable-handle"  
 				id=${eventoId} 	
 				href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" 
-				style="padding-bottom: 21px; position:relative;" >
-				<div class="evento ${eventoEstadoUsuarioActual}" style="height: ${altoEventoMinutosDuracion}px;">
-					<b>${eventoHoraInicio} -  ${eventoHoraFin} </b>- ${eventoTitulo}
+				style="width:100%;" 
+				title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}"
+				>
+				<div class=" ${eventoEstadoUsuarioActual}" 
+				style="height: ${altoEventoMinutosDuracion}px;">
+					<b>${eventoTitulo}</b> ${eventoHoraInicio} -  ${eventoHoraFin} 
 				</div>
 			</a>		
 			<!-- </div>-->
