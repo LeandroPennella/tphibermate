@@ -41,44 +41,12 @@ public class CalendarioController {
 	
 	@RequestMapping(value = "/calendario/mostrarCalendario")
 	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado, @RequestParam(value="semanaOffset", required=false) Integer semanaOffset) {
-		//Date fecha = new Date();
-		
-		//http://www.forosdelweb.com/f45/como-recorrer-fechas-374533/
-		//SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		//Calendar calendar = Calendar.getInstance();
-		
-
-		//int diasAlDomingo= (calendar.get(Calendar.DAY_OF_WEEK))-1;
-		//int diasAlDomingo=diaSemanaActual-1;
-		
-		//posicionar calendario en Domingo
-		//posicionarCalendario (calendar, /*diasAlDomingo,*/ semanaOffset);
 		Calendar calendar = crearCalendario (semanaOffset);
-
-		
-		
-		
-		
-		//fecha hoy
-		//String sFechaHoy=sdf.format(new Date());
-		//Date dFechaHoy=new Date();
-
-
-		 
-		
-		//ModelAndView mv=new ModelAndView("/views/calendario/calendarioAjax.jsp");
 		
 		ModelAndView mv=new ModelAndView("/views/calendario/calendario.jsp"); //navegacion
 		
-		
-		//mv.addObject("semana", getSemanaString(usuarioLogueado,  calendar,  sdf));
-		//posicionarCalendario(calendar, diasAlDomingo, semanaOffset);
-		
-
-		
 		mv.addObject("SemanaConEventos", getSemanaConEventos(usuarioLogueado,  calendar,  new SimpleDateFormat("dd/MM/yyyy")/*sdf*/));
 		mv.addObject("semanaOffset", semanaOffset);
-		//mv.addObject("sFechaHoy",sFechaHoy);
 		mv.addObject("dFechaHoy",new Date());
 		mv.addObject("horas",getHorasDia());
 		return mv;
@@ -87,22 +55,13 @@ public class CalendarioController {
 	public Calendar /*void*/ crearCalendario(/*Calendar calendar, int diasAlDomingo, */Integer semanaOffset)
 	{
 		Calendar calendar = Calendar.getInstance();
-
-		//System.out.println("fecha incio crearCalendar:" + calendar.getTime());
-		//System.out.println("semana n:"+calendar.get(Calendar.WEEK_OF_YEAR)+" - offset: "+semanaOffset);
 		
 		int diasAlDomingo= (calendar.get(Calendar.DAY_OF_WEEK))-1;
-		//System.out.println("dias al domingo:" + diasAlDomingo );
-
-		//posicionar
-		
+		//posicionar		
 		//???
 		calendar.roll(Calendar.DAY_OF_YEAR, -diasAlDomingo);//TODO: revisar
 		
-		
-		//System.out.println("fecha domingo inicio:" + calendar.getTime());
-
-		
+			
 		if (semanaOffset!=null) {
 			//???
 			
@@ -110,7 +69,7 @@ public class CalendarioController {
 			calendar.roll(Calendar.WEEK_OF_YEAR, semanaOffset);
 			if (semFut<1) {calendar.roll(Calendar.YEAR, -1);}
 
-			System.out.println("a�o:" +calendar.get(Calendar.YEAR)+ " - sem:" + calendar.get(Calendar.WEEK_OF_YEAR));
+			//System.out.println("a�o:" +calendar.get(Calendar.YEAR)+ " - sem:" + calendar.get(Calendar.WEEK_OF_YEAR));
 		} else {
 			semanaOffset=0;
 			}
@@ -121,6 +80,7 @@ public class CalendarioController {
 	public List<String> getHorasDia() {
 		List<String> horas = new ArrayList<String>();	
 		//TODO: implementar con for
+
 		horas.add("00:00");
 		horas.add("00:30");
 		horas.add("01:00");
@@ -172,27 +132,6 @@ public class CalendarioController {
 		return horas;
 	}
 
-	/*
-	public Map<String,List<Evento>> getSemanaString(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf)
-	{
-		Map<String,List<Evento>> semana  =new TreeMap<String,List<Evento>>();
-		
-		List<Evento> eventosDia;
-		
-		for(int i=0;i<7;i++){
-			eventosDia=eventoDAO.getByAutorAndDate(usuarioLogueado, calendar.getTime() );
-			for(Evento evento:eventosDia)
-			{
-				evento.setUsuarioActual(usuarioLogueado);
-			}
-	
-			String sFecha = sdf.format(calendar.getTime());
-			semana.put(sFecha, eventosDia);
-			calendar.add(Calendar.DATE, 1);
-		}
-		return semana;
-	}
-	*/
 
 	public Map<Date,List<Evento>> getSemanaConEventos(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf){
 
@@ -218,6 +157,20 @@ public class CalendarioController {
 		return semana;
 	}
 	
-	
+	public List<Evento> posicionarEventosDia(List<Evento> eventos){
+		for(Evento evento : eventos)
+		{
+			for(Evento eventoComparado : eventos)
+			{
+				if (eventoComparado.getId()!=evento.getId())
+				{
+					if((eventoComparado.getHoraInicio()>=evento.getHoraInicio())&&(eventoComparado.getHoraFin()<=evento.getHoraFin()))
+					{
+						evento.set
+					}
+				}
+			}
+		}
+	}
 }
 

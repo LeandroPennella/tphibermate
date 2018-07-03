@@ -253,7 +253,7 @@
 
 			<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
 
-			<jsp:include page="calendario_Eventos_Horizontal.jsp">
+			
 			
 			<div class="columnas-dias">	
 			<c:forEach var="hora" items="${horas}" >			
