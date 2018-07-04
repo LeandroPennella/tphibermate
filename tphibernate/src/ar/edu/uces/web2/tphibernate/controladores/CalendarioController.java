@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.uces.web2.tphibernate.dao.EventoDAO;
 import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
+import ar.edu.uces.web2.tphibernate.modelo.form.EventoForm;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 
 
@@ -133,23 +134,24 @@ public class CalendarioController {
 	}
 
 
-	public Map<Date,List<Evento>> getSemanaConEventos(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf){
+	public Map<Date,List<EventoForm>> getSemanaConEventos(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf){
 
 		
-		Map<Date,List<Evento>> semana = new TreeMap<Date,List<Evento>> (); 
+		Map<Date,List<EventoForm>> semana = new TreeMap<Date,List<EventoForm>> (); 
 		
 		List<Evento> eventosDia;
-		
+		List<EventoForm> eventosFormDia=new ArrayList<EventoForm>();
 
  		for(int i=0;i<7;i++){
 			eventosDia=eventoDAO.getByAutorAndDate(usuarioLogueado, calendar.getTime() );
 			for(Evento evento:eventosDia)
 			{
 				evento.setUsuarioActual(usuarioLogueado);
+				eventosFormDia.add(new EventoForm(evento));
 			}
 	
 			//String sFecha = sdf.format(calendar.getTime());
-			semana.put(calendar.getTime(), eventosDia);
+			semana.put(calendar.getTime(), eventosFormDia);
 			calendar.add(Calendar.DATE, 1);
 		}
 		
@@ -157,16 +159,22 @@ public class CalendarioController {
 		return semana;
 	}
 	
-	public List<Evento> posicionarEventosDia(List<Evento> eventos){
-		for(Evento evento : eventos)
+	public void posicionarEventosDia(List<EventoForm> eventos){
+		for(EventoForm evento : eventos)
 		{
-			for(Evento eventoComparado : eventos)
+			for(EventoForm eventoComparado : eventos)
 			{
-				if (eventoComparado.getId()!=evento.getId())
+				if (eventoComparado.getIdEvento()!=evento.getIdEvento())
 				{
+					//todo: crear setRenglon? 
+
+					//todo: pasar ##:## > ### y comparar numericamente
+					int horaInicio=Integer.parseInt(eventoComparado.getHoraInicio().replaceAll(":", ""));
+					int horaFin=Integer.parseInt(eventoComparado.getHoraFin().replaceAll(":", ""));
+					
 					if((eventoComparado.getHoraInicio()>=evento.getHoraInicio())&&(eventoComparado.getHoraFin()<=evento.getHoraFin()))
 					{
-						evento.set
+						evento.setEventosSimultaneos(evento.getEventosSimultaneos()+1);
 					}
 				}
 			}

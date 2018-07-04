@@ -1,5 +1,12 @@
 package ar.edu.uces.web2.tphibernate.modelo.form;
 
+import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
+import oracle.sql.DATE;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
 public class EventoForm {
 	
 	private String idEvento;
@@ -8,7 +15,22 @@ public class EventoForm {
 	private String horaInicio;
 	private String horaFin;
 	private String duracion;
-
+	private Usuario usuarioActual;
+	private int eventosSimultaneos;
+	public EventoForm() {}
+	public EventoForm(Evento evento)
+	{
+		this.setIdEvento(Long.toString(evento.getId()));
+		this.setTitulo(evento.getTitulo());
+		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
+		this.setFecha(dateFormatter.format(evento.getFecha()));
+		this.setHoraInicio(evento.getHoraInicio());
+		this.setHoraFin(evento.getHoraFin());
+		this.setDuracion("");
+		this.setUsuarioActual(evento.getUsuarioActual());
+		
+	}
+	
 	public String getIdEvento() {
 		return idEvento;
 	}
@@ -44,5 +66,18 @@ public class EventoForm {
 	}
 	public void setDuracion(String duracion) {
 		this.duracion = duracion;
+	}
+
+	public Usuario getUsuarioActual() {
+		return usuarioActual;
+	}
+	public void setUsuarioActual(Usuario usuarioActual) {
+		this.usuarioActual = usuarioActual;
+	}
+	public int getEventosSimultaneos() {
+		return eventosSimultaneos;
+	}
+	public void setEventosSimultaneos(int eventosSimultaneos) {
+		this.eventosSimultaneos = eventosSimultaneos;
 	}
 }
