@@ -40,7 +40,7 @@ public class TareaController {
 	@RequestMapping(value = "/calendario/editarTarea")
 	public ModelAndView editar(@RequestParam("idEvento")Long idTarea) {
 		Tarea tarea=tareaDAO.get(idTarea);
-		TareaForm tareaForm=new TareaForm();
+		TareaForm tareaForm=new TareaForm(); //todo: constructor conversor de tarea
 		tareaForm.setIdEvento(Long.toString(tarea.getId()));
 		tareaForm.setTitulo(tarea.getTitulo());
 		

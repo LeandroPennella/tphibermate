@@ -63,7 +63,7 @@ public class Evento {
 		this.horaFin = horaFin;
 	}
 	
-	
+	/*
 	public int obtenerMinutosDuracion() {
 		//https://www.lawebdelprogramador.com/foros/Java/639065-Ayuda-con-Restar-horas-en-java.html
 	
@@ -77,7 +77,7 @@ public class Evento {
 		return hora2enMinutos-hora1enMinutos;
 		
 	}
-	
+	*/
 	public Usuario getAutor() {
 		return autor;
 	}
@@ -85,6 +85,6 @@ public class Evento {
 		this.autor = autor;
 	}
 	
-	public String obtenerEstado(Usuario usuario){return "evento";}
+	//public String obtenerEstado(Usuario usuario){return "evento";}
 		
 }

@@ -20,8 +20,10 @@ public class Tarea extends Evento {
 		this.direccion = direccion;
 	}
 	
+	/*
 	@Override
 	public String obtenerEstado(Usuario usuario){return "tarea";}
+	*/
 	/*
 	@Override
 	public int obtenerMinutosDuracion() {

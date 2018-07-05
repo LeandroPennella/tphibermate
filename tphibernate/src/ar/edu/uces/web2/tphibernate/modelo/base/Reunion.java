@@ -29,7 +29,7 @@ public class Reunion extends Evento {
 	public void setInvitaciones(Set<Invitacion> invitacion) {
 		this.invitaciones = invitacion;
 	}
-	
+	/*
 	@Override
 	public String obtenerEstado(Usuario usuario){
 		String sEstado="reunion";
@@ -56,6 +56,7 @@ public class Reunion extends Evento {
 		}
 		return sEstado;
 	}
+	*/
 	/*
 	@Override
 	public int obtenerMinutosDuracion() {

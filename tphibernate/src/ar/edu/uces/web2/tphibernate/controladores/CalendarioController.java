@@ -23,7 +23,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.uces.web2.tphibernate.dao.EventoDAO;
 import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
+import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
+import ar.edu.uces.web2.tphibernate.modelo.base.Tarea;
 import ar.edu.uces.web2.tphibernate.modelo.form.EventoForm;
+import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
+import ar.edu.uces.web2.tphibernate.modelo.form.TareaForm;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 
 
@@ -140,14 +144,16 @@ public class CalendarioController {
 		Map<Date,List<EventoForm>> semana = new TreeMap<Date,List<EventoForm>> (); 
 		
 		List<Evento> eventosDia;
-		List<EventoForm> eventosFormDia=new ArrayList<EventoForm>();
+		List<EventoForm> eventosFormDia;
 
  		for(int i=0;i<7;i++){
 			eventosDia=eventoDAO.getByAutorAndDate(usuarioLogueado, calendar.getTime() );
+			eventosFormDia=new ArrayList<EventoForm>();
 			for(Evento evento:eventosDia)
 			{
 				evento.setUsuarioActual(usuarioLogueado);
-				eventosFormDia.add(new EventoForm(evento));
+				if (evento instanceof Reunion) {eventosFormDia.add(new ReunionForm(evento));} 
+				if (evento instanceof Tarea) {eventosFormDia.add(new TareaForm(evento));}
 			}
 	
 			//String sFecha = sdf.format(calendar.getTime());

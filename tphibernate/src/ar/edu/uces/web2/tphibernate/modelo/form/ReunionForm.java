@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
 import ar.edu.uces.web2.tphibernate.modelo.base.Invitacion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
@@ -39,6 +40,8 @@ public class ReunionForm extends EventoForm {
 	
 	public ReunionForm(){}
 
+	public ReunionForm(Evento evento){super (evento);}
+	
 	public String getTemario() {
 		return temario;
 	}
@@ -118,4 +121,32 @@ public class ReunionForm extends EventoForm {
 		usuariosInvitaciones = usuariosInvitaciones;
 	}
 */
+	
+
+	@Override
+	public String obtenerEstado(Usuario usuario){
+		String sEstado="reunion";
+		if (this.getAutor().getId()==usuario.getId())
+			sEstado="reunionAutor";
+		else  {
+			for(Invitacion invitacion: this.getInvitaciones())
+			{
+				if (invitacion.getUsuario().getId()==usuario.getId())
+				{
+					switch(invitacion.getAceptado()){
+						case 0:
+							sEstado="reunionNoConfirmado";
+							break;
+						case 1:
+							sEstado="reunionConfirmada";
+							break;
+						default :
+							sEstado="reunionCancelada";
+							break;
+					}		
+				}
+			}
+		}
+		return sEstado;
+	}
 }

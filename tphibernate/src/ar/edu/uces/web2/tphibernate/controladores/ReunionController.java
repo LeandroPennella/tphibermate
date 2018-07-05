@@ -142,7 +142,8 @@ public class ReunionController {
 		reunionForm.setSalas(salaDAO.getAll());
 		
 		
-		reunionForm.setEstado(reunion.obtenerEstado(usuarioLogueado));
+		//reunionForm.setEstado(reunion.obtenerEstado(usuarioLogueado));
+		//reunionForm.setEstado(reunion.obtenerEstado(usuarioLogueado));
 		
 		//---------------------------------------------
 		Set<Invitacion>invitacionesHechas=reunion.getInvitaciones();

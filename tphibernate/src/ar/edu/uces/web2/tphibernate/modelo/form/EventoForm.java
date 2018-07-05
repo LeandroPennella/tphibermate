@@ -17,6 +17,9 @@ public class EventoForm {
 	private String duracion;
 	private Usuario usuarioActual;
 	private int eventosSimultaneos;
+	private Usuario autor;
+	
+	
 	public EventoForm() {}
 	public EventoForm(Evento evento)
 	{
@@ -97,4 +100,11 @@ public class EventoForm {
 	}
 	
 	public String obtenerEstado(Usuario usuario){return "evento";}
+	
+	public Usuario getAutor() {
+		return autor;
+	}
+	public void setAutor(Usuario autor) {
+		this.autor = autor;
+	}
 }
