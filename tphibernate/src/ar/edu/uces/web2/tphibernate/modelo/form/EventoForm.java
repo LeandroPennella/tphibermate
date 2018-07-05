@@ -80,4 +80,21 @@ public class EventoForm {
 	public void setEventosSimultaneos(int eventosSimultaneos) {
 		this.eventosSimultaneos = eventosSimultaneos;
 	}
+	
+	
+	public int obtenerMinutosDuracion() {
+		//https://www.lawebdelprogramador.com/foros/Java/639065-Ayuda-con-Restar-horas-en-java.html
+	
+		String[] h1 = this.horaInicio.split(":");
+		String[] h2 = this.horaFin.split(":");
+	
+		int hora1enMinutos = (Integer.parseInt(h1[0])*60 + Integer.parseInt(h1[1]));
+		int hora2enMinutos = (Integer.parseInt(h2[0])*60 + Integer.parseInt(h2[1]));
+	
+		
+		return hora2enMinutos-hora1enMinutos;
+		
+	}
+	
+	public String obtenerEstado(Usuario usuario){return "evento";}
 }

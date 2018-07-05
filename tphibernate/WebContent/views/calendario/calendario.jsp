@@ -265,7 +265,7 @@
 						
 						<!-- Evento -->
 						<jsp:include page="calendario_Evento.jsp">
-							<jsp:param name="eventoID" value ="${evento.getId()}"/>
+							<jsp:param name="eventoID" value ="${evento.getIdEvento()}"/>
 							
 							<jsp:param name="eventoHoraInicio" value ="${evento.getHoraInicio()}"/>
 							<jsp:param name="eventoHoraFin" value ="${evento.getHoraFin()}"/>

@@ -171,11 +171,12 @@ public class CalendarioController {
 					//todo: pasar ##:## > ### y comparar numericamente
 					int horaInicio=Integer.parseInt(eventoComparado.getHoraInicio().replaceAll(":", ""));
 					int horaFin=Integer.parseInt(eventoComparado.getHoraFin().replaceAll(":", ""));
-					
+					/*
 					if((eventoComparado.getHoraInicio()>=evento.getHoraInicio())&&(eventoComparado.getHoraFin()<=evento.getHoraFin()))
 					{
 						evento.setEventosSimultaneos(evento.getEventosSimultaneos()+1);
 					}
+					*/
 				}
 			}
 		}
