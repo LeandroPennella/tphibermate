@@ -31,7 +31,7 @@ public class EventoForm {
 		this.setHoraFin(evento.getHoraFin());
 		this.setDuracion("");
 		this.setUsuarioActual(evento.getUsuarioActual());
-		
+		this.setAutor(evento.getAutor());
 	}
 	
 	public String getIdEvento() {

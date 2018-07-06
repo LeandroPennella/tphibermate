@@ -164,7 +164,7 @@ public class CalendarioController {
 		
 		return semana;
 	}
-	
+	/*
 	public void posicionarEventosDia(List<EventoForm> eventos){
 		for(EventoForm evento : eventos)
 		{
@@ -177,15 +177,15 @@ public class CalendarioController {
 					//todo: pasar ##:## > ### y comparar numericamente
 					int horaInicio=Integer.parseInt(eventoComparado.getHoraInicio().replaceAll(":", ""));
 					int horaFin=Integer.parseInt(eventoComparado.getHoraFin().replaceAll(":", ""));
-					/*
-					if((eventoComparado.getHoraInicio()>=evento.getHoraInicio())&&(eventoComparado.getHoraFin()<=evento.getHoraFin()))
-					{
-						evento.setEventosSimultaneos(evento.getEventosSimultaneos()+1);
-					}
-					*/
+					
+					//if((eventoComparado.getHoraInicio()>=evento.getHoraInicio())&&(eventoComparado.getHoraFin()<=evento.getHoraFin()))
+					//{
+//						evento.setEventosSimultaneos(evento.getEventosSimultaneos()+1);
+					//}
+					
 				}
 			}
 		}
-	}
+	}*/
 }
 

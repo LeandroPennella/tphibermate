@@ -42,8 +42,9 @@
 				style="width:100%;" 
 				title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}"
 				>
-				<div class=" ${eventoEstadoUsuarioActual}" 
-				style="height: ${altoEventoMinutosDuracion}px;">
+				<div 
+					class=" ${eventoEstadoUsuarioActual}" 
+					style="height: ${altoEventoMinutosDuracion}px;">
 					<b>${eventoTitulo}</b> ${eventoHoraInicio} -  ${eventoHoraFin} 
 				</div>
 			</a>		

@@ -74,15 +74,25 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Calendario</a>
+      <a class="navbar-brand active" href="#">Calendario<span class="sr-only">(current)</span></a>
     </div>
 
     <!-- toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav">
+      <!-- 
         <li class="active"><a href="#">Tarea<span class="sr-only">(current)</span></a></li>
         <li><a href="#">Reunion</a></li>
+ -->
 
+
+
+                            <li>
+                                <a href="<c:url value="/calendario/crearTarea.do" ></c:url>"><fmt:message key='tarea.tituloAgregar'/></a>
+                            </li>
+                            <li>
+                                <a href="<c:url value="/calendario/crearReunion.do" ></c:url>"><fmt:message key='reunion.tituloAgregar'/></a>
+                            </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -257,6 +267,7 @@
 			
 			<div class="columnas-dias">	
 			<c:forEach var="hora" items="${horas}" >			
+			
 	          	<div class="fila ">
 					<!-- Eventos -->
 					
