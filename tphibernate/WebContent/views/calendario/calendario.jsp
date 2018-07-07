@@ -121,9 +121,9 @@
 
 	<div id="barrasuperior">
     	<div id="toggleBoton">&#9776; </div>  
-		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=0"/>'><fmt:message key="calendario.accion.hoy" /> |</a>
-		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset-1}"/>'> < |</a>
-		<a href='<c:url value="/calendario/mostrarCalendarioAjax.do?semanaOffset=${semanaOffset+1}"/>'> > |</a>
+		<a href='<c:url value="/calendario/mostrarCalendario.do?semanaOffset=0"/>'><fmt:message key="calendario.accion.hoy" /> |</a>
+		<a href='<c:url value="/calendario/mostrarCalendario.do?semanaOffset=${semanaOffset-1}"/>'> < |</a>
+		<a href='<c:url value="/calendario/mostrarCalendario.do?semanaOffset=${semanaOffset+1}"/>'> > |</a>
 
 		 
 

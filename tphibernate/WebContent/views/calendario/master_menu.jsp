@@ -17,7 +17,7 @@
             <!-- botonera -->
             <ul class="nav">
                     <li class="active">
-                        <a href="<c:url value="/calendario/mostrarCalendarioAjax.do" ></c:url>"><fmt:message key='calendario.titulo'/></a>
+                        <a href="<c:url value="/calendario/mostrarCalendario.do" ></c:url>"><fmt:message key='calendario.titulo'/></a>
                     </li>
                     <!-- 
                     <li class="dropdown">
