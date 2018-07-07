@@ -23,6 +23,8 @@ public class TareaForm extends EventoForm{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
 	@Override
-	public String obtenerEstado(Usuario usuario){return "tarea";}	
+	public String obtenerEstado(Usuario usuario){return "tarea";}
+		
 }

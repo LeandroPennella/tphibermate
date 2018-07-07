@@ -5,7 +5,9 @@
 .reunionNoConfirmado{background-color: yellow; }
 .reunionConfirmada{background-color: #16A765; }
 .reunionCancelada{background-color: red; }
+
 .tarea{background-color: #4986E7; }
+
 .evento {
   border-radius: 2px;
   

@@ -126,29 +126,31 @@ public class ReunionController {
 		Reunion reunion=reunionDAO.get(idReunion);
 
 		
-		ReunionForm reunionForm=new ReunionForm();
-		reunionForm.setIdEvento(Long.toString(reunion.getId()));
-		reunionForm.setTitulo(reunion.getTitulo());
-		
+		ReunionForm reunionForm=new ReunionForm(reunion);	
+		reunionForm.setEstado(reunionForm.obtenerEstado(usuarioLogueado));
+		reunionForm.setSalas(salaDAO.getAll());
+		/*
 		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
 		String sFecha=dateFormatter.format(reunion.getFecha());
-		reunionForm.setFecha(sFecha);
+		reunionForm.setFecha(sFecha);	
+		reunionForm.setIdEvento(Long.toString(reunion.getId()));
+		reunionForm.setTitulo(reunion.getTitulo());	
 		reunionForm.setHoraInicio(reunion.getHoraInicio());		
-		reunionForm.setHoraFin(reunion.getHoraFin());
+		reunionForm.setHoraFin(reunion.getHoraFin());	
+
 		
-		reunionForm.setTemario(reunion.getTemario());
-		reunionForm.setIdSala(reunion.getSala().getId());
-	
-		reunionForm.setSalas(salaDAO.getAll());
+		reunionForm.setAutor(reunion.getAutor());
 		
-		
-		//reunionForm.setEstado(reunion.obtenerEstado(usuarioLogueado));
 		//reunionForm.setEstado(reunion.obtenerEstado(usuarioLogueado));
 		
 		//---------------------------------------------
+		reunionForm.setTemario(reunion.getTemario());
+		reunionForm.setIdSala(reunion.getSala().getId());
+		
+		
 		Set<Invitacion>invitacionesHechas=reunion.getInvitaciones();
 		reunionForm.setInvitaciones(invitacionesHechas);
-		
+		*/
 				
 		/*
 		Map<Usuario,Integer> mapaUsuariosMasConfirmacion=new TreeMap<Usuario,Integer>();			

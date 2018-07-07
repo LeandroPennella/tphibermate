@@ -16,7 +16,7 @@ public class EventoForm {
 	private String horaFin;
 	private String duracion;
 	private Usuario usuarioActual;
-	private int eventosSimultaneos;
+	//private int eventosSimultaneos;
 	private Usuario autor;
 	
 	
@@ -29,9 +29,10 @@ public class EventoForm {
 		this.setFecha(dateFormatter.format(evento.getFecha()));
 		this.setHoraInicio(evento.getHoraInicio());
 		this.setHoraFin(evento.getHoraFin());
-		this.setDuracion("");
+		//this.setDuracion("");
 		this.setUsuarioActual(evento.getUsuarioActual());
 		this.setAutor(evento.getAutor());
+		
 	}
 	
 	public String getIdEvento() {
@@ -77,13 +78,14 @@ public class EventoForm {
 	public void setUsuarioActual(Usuario usuarioActual) {
 		this.usuarioActual = usuarioActual;
 	}
+	/*
 	public int getEventosSimultaneos() {
 		return eventosSimultaneos;
 	}
 	public void setEventosSimultaneos(int eventosSimultaneos) {
 		this.eventosSimultaneos = eventosSimultaneos;
 	}
-	
+	*/
 	
 	public int obtenerMinutosDuracion() {
 		//https://www.lawebdelprogramador.com/foros/Java/639065-Ayuda-con-Restar-horas-en-java.html

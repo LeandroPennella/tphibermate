@@ -1,5 +1,6 @@
 package ar.edu.uces.web2.tphibernate.modelo.form;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.TreeMap;
 
 import ar.edu.uces.web2.tphibernate.modelo.base.Evento;
 import ar.edu.uces.web2.tphibernate.modelo.base.Invitacion;
+import ar.edu.uces.web2.tphibernate.modelo.base.Reunion;
 import ar.edu.uces.web2.tphibernate.modelo.base.Sala;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 //import ar.edu.uces.web2.tphibernate.modelo.base.UsuarioInvitado;
@@ -40,7 +42,32 @@ public class ReunionForm extends EventoForm {
 	
 	public ReunionForm(){}
 
-	public ReunionForm(Evento evento){super (evento);}
+	public ReunionForm(Evento evento){super (evento);}//para visualizar en Calendario
+	
+	public ReunionForm(Reunion reunion)
+	{
+		this.setIdEvento(Long.toString(reunion.getId()));
+		this.setTitulo(reunion.getTitulo());
+		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
+		this.setFecha(dateFormatter.format(reunion.getFecha()));			
+			
+		this.setHoraInicio(reunion.getHoraInicio());		
+		this.setHoraFin(reunion.getHoraFin());	
+		
+		this.setAutor(reunion.getAutor());
+		
+		//this.setEstado(this.obtenerEstado(usuarioLogueado)); usuarioLogueado ==usuarioActual???
+	
+		//reunionForm.setEstado(reunion.obtenerEstado(usuarioLogueado));
+		
+		//---------------------------------------------
+		this.setTemario(reunion.getTemario());
+		this.setIdSala(reunion.getSala().getId());
+		//this.setSalas(salaDAO.getAll());
+		
+		Set<Invitacion>invitacionesHechas=reunion.getInvitaciones();
+		this.setInvitaciones(invitacionesHechas);
+	}
 	
 	public String getTemario() {
 		return temario;
@@ -125,12 +152,24 @@ public class ReunionForm extends EventoForm {
 
 	@Override
 	public String obtenerEstado(Usuario usuario){
+		System.out.println("obteniendo estado...");
+		System.out.println("| usuario:"+usuario.getNombre());
+		System.out.println("| usuario.getId: "+ usuario.getId());
+		System.out.println("| getAutor.getId: "+ this.getAutor().getId());
 		String sEstado="reunion";
+		
+		
+		
+		
 		if (this.getAutor().getId()==usuario.getId())
 			sEstado="reunionAutor";
 		else  {
+			
+			System.out.println("| invitaciones...");			
 			for(Invitacion invitacion: this.getInvitaciones())
 			{
+				System.out.println("| - getUsuario.getId: "+ invitacion.getUsuario().getId());
+				System.out.println("| - invitacion.getAceptado(): "+ invitacion.getAceptado());
 				if (invitacion.getUsuario().getId()==usuario.getId())
 				{
 					switch(invitacion.getAceptado()){
@@ -147,6 +186,9 @@ public class ReunionForm extends EventoForm {
 				}
 			}
 		}
+		System.out.println("| estado: "+ sEstado);
+		
 		return sEstado;
 	}
+
 }
