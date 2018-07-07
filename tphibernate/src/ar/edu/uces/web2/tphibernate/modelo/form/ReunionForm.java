@@ -42,7 +42,7 @@ public class ReunionForm extends EventoForm {
 	
 	public ReunionForm(){}
 
-	public ReunionForm(Evento evento){super (evento);}//para visualizar en Calendario
+	//public ReunionForm(Evento evento){super (evento);}//para visualizar en Calendario > no, x invitaciones
 	
 	public ReunionForm(Reunion reunion)
 	{
@@ -152,20 +152,21 @@ public class ReunionForm extends EventoForm {
 
 	@Override
 	public String obtenerEstado(Usuario usuario){
-		System.out.println("obteniendo estado...");
+		System.out.println("obteniendo estado de: " + this.getTitulo());
 		System.out.println("| usuario:"+usuario.getNombre());
+		System.out.println("| autor:"+this.getAutor().getNombre());
 		System.out.println("| usuario.getId: "+ usuario.getId());
 		System.out.println("| getAutor.getId: "+ this.getAutor().getId());
 		String sEstado="reunion";
 		
 		
 		
-		
+		System.out.println("| invitaciones: "+this.getInvitaciones().size());
 		if (this.getAutor().getId()==usuario.getId())
 			sEstado="reunionAutor";
 		else  {
 			
-			System.out.println("| invitaciones...");			
+			System.out.println("| - invitaciones...");			
 			for(Invitacion invitacion: this.getInvitaciones())
 			{
 				System.out.println("| - getUsuario.getId: "+ invitacion.getUsuario().getId());

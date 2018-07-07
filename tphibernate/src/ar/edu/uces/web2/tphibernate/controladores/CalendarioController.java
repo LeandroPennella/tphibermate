@@ -152,8 +152,8 @@ public class CalendarioController {
 			for(Evento evento:eventosDia)
 			{
 				evento.setUsuarioActual(usuarioLogueado);
-				if (evento instanceof Reunion) {eventosFormDia.add(new ReunionForm(evento));} 
-				if (evento instanceof Tarea) {eventosFormDia.add(new TareaForm(evento));}
+				if (evento instanceof Reunion) {eventosFormDia.add(new ReunionForm((Reunion)evento));} 
+				if (evento instanceof Tarea) {eventosFormDia.add(new TareaForm((Tarea)evento));}
 			}
 	
 			//String sFecha = sdf.format(calendar.getTime());
