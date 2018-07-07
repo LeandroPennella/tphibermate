@@ -8,15 +8,15 @@
 .tarea{background-color: #4986E7; }
 .evento {
   border-radius: 2px;
-  box-sizing: border-box;
+  
   border: 1px solid white;
   padding: 1px;
   font-size: 0.9em; 
   
   color:black !important;
-  padding-bottom: 21px;
-  
-  /*flex-basis: 100%;*/ 
+  /*padding-bottom: 21px;*/
+  box-sizing: border-box;
+/*  flex-basis: 100%;*/ 
   position:relative;
 
 }

@@ -35,20 +35,17 @@
 		<c:set var="sUrl" value="${(eventoEstadoUsuarioActual=='tarea')?'Tarea':'Reunion'}"></c:set>
 			
 
-			<!--  <div >sa-->
-			<a class="evento dragable ui-draggable ui-draggable-handle"  
-				id=${eventoId} 	
-				href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" 
-				style="width:100%;" 
-				title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}"
-				>
-				<div 
-					class=" ${eventoEstadoUsuarioActual}" 
-					style="height: ${altoEventoMinutosDuracion}px;">
+			<div style="flex-basis: 100%; ">
+			<a id=${eventoId} href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}" 
+			class="   dragable ui-draggable ui-draggable-handle" 
+			> 
+			<%--   --%>				  
+				<div style="height: ${altoEventoMinutosDuracion}px;" 
+					class="evento   ${eventoEstadoUsuarioActual}" >
 					<b>${eventoTitulo}</b> ${eventoHoraInicio} -  ${eventoHoraFin} 
 				</div>
 			</a>		
-			<!-- </div>-->
+			 </div>
 		
 	</c:when>
 </c:choose>
