@@ -46,13 +46,44 @@
 	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/bootstrap-datepicker.min.css"/>'>
 	 
     <script type="text/javascript" src='<c:url value="/views/ui/js/jquery-1.12.4.js"/>'></script>
-    <script type="text/javascript" src='<c:url value="/views/ui/js/jquery-ui-1.11.4.js"/>'></script>
+    <!-- <script type="text/javascript" src='<c:url value="/views/ui/js/jquery-ui-1.11.4.js"/>'></script> -->
+    <script type="text/javascript" src='<c:url value="/views/ui/js/jquery-ui-1.12.1.js"/>'></script> 
+     
     <script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap.min.js"/>'></script>
 	<script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap-datepicker.min.js"/>'></script>
 	<script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap-datepicker.es.min.js"/>'></script>
 	
 	<script type="text/javascript" src='<c:url value="/views/ui/js/calendarioNavegacion.js"/>'></script>
-	<script type="text/javascript" src='<c:url value="/views/ui/js/calendarioDragnDrop.js" />'></script>
+	 
+	<!-- <script type="text/javascript" src='<c:url value="/views/ui/js/calendarioDragnDrop.js" />'></script> -->
+	<script type="text/javascript">
+
+    $(function(){
+   	 
+   	 
+   		$(".dragable").draggable({
+   			snap:".fila", 
+   		 	axis: "y" ,//containment:".columnas-horas"
+   		 	
+   		 	
+   		 	stop:function( event, ui ) {
+	 	        var item_id = $(ui.draggable).attr('id');
+	 	        var item_horaInicio = $(this).attr("id").toString();	 	        
+	 	        alert('evento '+item_id +' movido a '+ item_horaInicio);
+   		 	}
+  		});
+   	 
+   	 /*
+	   	 $(".fila").droppable({
+			drop: function( event, ui ) {
+	 	        var item_id = $(ui.draggable).attr('id');
+	 	        var item_horaInicio = $(this).attr("id").toString();	 	        
+	 	        alert('evento '+item_id +' movido a '+ item_horaInicio);
+	  	    }
+	   	 });
+   	 */
+	})
+	</script>
 	<!--navegador-->
 	<title><fmt:message key='calendario.titulo'/></title>
 </head>
@@ -268,7 +299,7 @@
 			<div class="columnas-dias">	
 			<c:forEach var="hora" items="${horas}" >			
 			
-	          	<div class="fila ">
+	          	<div class="fila " id="${hora}">
 					<!-- Eventos -->
 					
 					<c:forEach var="evento" items="${eventosDia}">
