@@ -61,6 +61,7 @@
     $(function(){
    	 
    	 
+    	/*
    		$(".dragable").draggable({
    			snap:".fila", 
    		 	axis: "y" ,//containment:".columnas-horas"
@@ -72,7 +73,28 @@
 	 	        alert('evento '+item_id +' movido a '+ item_horaInicio);
    		 	}
   		});
+   	 */
+   	
+   		$('.draggable').each(function(){
+   	  	var $d = $(this);
+   	   		$d.draggable({
+   	   			axis:"y",
+   	   			containment:$d.closest('.dia'),
+   	        snap:".droppable"//,snapTolerance:2
+   	      });
+   		});
    	 
+   	 
+   	 
+     $( ".droppable" ).droppable({
+         drop: function( event, ui ) {
+         
+          var item_id = $(ui.draggable).attr('id');
+   	 	   var item_horaInicio = $(this).attr("id").toString();	 	        
+   	 	   alert('evento '+item_id +' movido a '+ item_horaInicio);
+           //$( this ).addClass( "ui-state-highlight" )
+         }
+       });
    	 /*
 	   	 $(".fila").droppable({
 			drop: function( event, ui ) {

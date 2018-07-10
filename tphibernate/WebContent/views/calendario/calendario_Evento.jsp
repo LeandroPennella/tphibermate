@@ -33,20 +33,23 @@
 						 
 	<c:when test="${esLaHora}">
 		<c:set var="sUrl" value="${(eventoEstadoUsuarioActual=='tarea')?'Tarea':'Reunion'}"></c:set>
-			
 
-			<div style="flex-basis: 100%; ">
-			<a id=${eventoId} href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}" 
-			class="dragable" 
-			> 
-			<%--   --%>				  
-				<div style="height: ${altoEventoMinutosDuracion}px;" 
-					class=" evento   ${eventoEstadoUsuarioActual}" >
+		<div style="flex-basis: 100%; ">
+			<a 
+				id=${eventoId} 
+				class="dragable"  
+				href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" 
+				title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}" 			
+				> 
+							  
+				<div 
+					class=" evento   ${eventoEstadoUsuarioActual}"   
+					style="height: ${altoEventoMinutosDuracion}px;" 
+					>					
 					<b>${eventoTitulo}</b> ${eventoHoraInicio} -  ${eventoHoraFin} 
 				</div>
 			</a>		
-			 </div>
-		
+		 </div>		
 	</c:when>
 </c:choose>
  
