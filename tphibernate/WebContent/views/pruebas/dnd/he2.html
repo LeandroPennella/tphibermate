@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Draggable - Handles</title>
+    <script type="text/javascript" src="../../ui/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="../../ui/js/jquery-ui-1.11.4.js"></script>
+<style>
+	.dia {float:left;}
+	
+	.celda {width: 40px; height: 40px;border:1px solid gray;z-index:0;}
+	.droppable {width: 30px; height: 1px;border:0;z-index:0;}
+	  
+	.recuadro{width:30px;height:90px;border:1px solid red;}
+	.draggable{width:1px;height:1px; z-index:1;border:0; }
+</style>
+    
+    
+<script>
+$( function() {
+	$e=$('#dia1').children('.celda').children('.droppable');
+	var $es='';
+	$e.each(function(){
+		$es+='#'+($(this).attr('id')+',');
+   	});
+    $es=$es.slice(0,-1);
+    
+	$('#e1').draggable({
+		axis:"y",
+		containment:$('#dia1'),
+   		snap:$es,
+   		snamMode:'inner'
+	  });
+	
+    $('#e2').draggable({
+		axis:"y",
+		containment:$('#dia2'),
+    	snap:'#d2h1,#d2h2,#d2h3,#d2h4,#d2h5',
+    	snamMode:'inner'
+    });
+
+	$( ".droppable" ).droppable({
+  		drop: function( event, ui ) {
+			var item_id = $(ui.draggable).attr('id');
+ 	   		var item_horaInicio = $(this).attr("id").toString();	 	        
+ 	   		alert('evento '+item_id +' movido a '+ item_horaInicio);   
+  		}
+	});
+});
+</script>
+
+</head>
+<body>
+<div class="dia" id="dia1">
+  <div class="celda"><div class="droppable" id="d1h1"></div></div>
+  <div class="celda"><div class="droppable" id="d1h2">
+    <div class="draggable" id="e1">
+      <div class="recuadro" >sarasa</div>
+    </div>
+  </div></div>
+  <div class="celda"><div class="droppable" id="d1h3"></div></div>
+  <div class="celda"><div class="droppable"  id="d1h4"></div></div>
+  <div class="celda"><div class="droppable" id="d1h5"></div></div>
+</div>
+
+<div class="dia" id="dia2">
+
+  <div class="celda"><div class="droppable" id="d2h1"></div></div>
+  <div class="celda"><div class="droppable" id="d2h2">
+    <div class="draggable" id="e2">
+      
+      <div class="recuadro" >sarasa</div>
+    </div>
+  </div></div>
+  <div class="celda"><div class="droppable" id="d2h3"></div></div>
+  <div class="celda"><div class="droppable" id="d2h4"></div></div>
+  <div class="celda"><div class="droppable"  id="d2h5"></div></div>
+</div>
+ 
+</body>
+</html>
