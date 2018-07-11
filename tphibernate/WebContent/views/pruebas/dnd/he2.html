@@ -6,19 +6,32 @@
     <title>jQuery UI Draggable - Handles</title>
     <script type="text/javascript" src="../../ui/js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="../../ui/js/jquery-ui-1.11.4.js"></script>
-<style>
-	.dia {float:left;}
-	
-	.celda {width: 40px; height: 40px;border:1px solid gray;z-index:0;}
-	.droppable {width: 30px; height: 1px;border:0;z-index:0;}
-	  
-	.recuadro{width:30px;height:90px;border:1px solid red;}
-	.draggable{width:1px;height:1px; z-index:1;border:0; }
-</style>
+
     
     
 <script>
 $( function() {
+	
+	
+	$dias=$('.dia').each(
+			
+			$('.droppable').each(
+					function(){
+						alert($(this).attr('id'));
+					})
+			)
+			
+	$('.evento').each(function(){
+		$(this)draggable({
+			axis:"y",
+			containment:$('#dia1'),
+	   		snap:$es,
+	   		snamMode:'inner'
+		  });
+	})	
+			
+	/*
+		
 	$e=$('#dia1').children('.celda').children('.droppable');
 	var $es='';
 	$e.each(function(){
@@ -47,15 +60,24 @@ $( function() {
  	   		alert('evento '+item_id +' movido a '+ item_horaInicio);   
   		}
 	});
+	*/
 });
 </script>
-
+<style>
+	.dia {float:left;}
+	
+	.celda {width: 40px; height: 40px;border:1px solid gray;z-index:0;}
+	.droppable {width: 40px; height: 1px;border:0;z-index:0;}
+	  
+	.recuadro{width:100%;height:90px;border:1px solid red;}
+	.draggable{width:1px;height:1px; z-index:1;border:0; }
+</style>
 </head>
 <body>
 <div class="dia" id="dia1">
   <div class="celda"><div class="droppable" id="d1h1"></div></div>
   <div class="celda"><div class="droppable" id="d1h2">
-    <div class="draggable" id="e1">
+    <div class="draggable evento" id="e1">
       <div class="recuadro" >sarasa</div>
     </div>
   </div></div>
@@ -68,7 +90,7 @@ $( function() {
 
   <div class="celda"><div class="droppable" id="d2h1"></div></div>
   <div class="celda"><div class="droppable" id="d2h2">
-    <div class="draggable" id="e2">
+    <div class="draggable  evento" id="e2">
       
       <div class="recuadro" >sarasa</div>
     </div>
