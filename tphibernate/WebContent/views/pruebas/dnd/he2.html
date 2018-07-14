@@ -12,7 +12,7 @@
 <script>
 $( function() {
 	
-	
+	/*
 	$dias=$('.dia').each(
 			
 			$('.droppable').each(
@@ -29,8 +29,8 @@ $( function() {
 	   		snamMode:'inner'
 		  });
 	})	
-			
-	/*
+*/			
+	
 		
 	$e=$('#dia1').children('.celda').children('.droppable');
 	var $es='';
@@ -43,14 +43,14 @@ $( function() {
 		axis:"y",
 		containment:$('#dia1'),
    		snap:$es,
-   		snamMode:'inner'
+   		snapMode:'inner'
 	  });
 	
     $('#e2').draggable({
 		axis:"y",
 		containment:$('#dia2'),
     	snap:'#d2h1,#d2h2,#d2h3,#d2h4,#d2h5',
-    	snamMode:'inner'
+    	snapMode:'inner'
     });
 
 	$( ".droppable" ).droppable({
@@ -60,7 +60,7 @@ $( function() {
  	   		alert('evento '+item_id +' movido a '+ item_horaInicio);   
   		}
 	});
-	*/
+	
 });
 </script>
 <style>
@@ -69,7 +69,7 @@ $( function() {
 	.celda {width: 40px; height: 40px;border:1px solid gray;z-index:0;}
 	.droppable {width: 40px; height: 1px;border:0;z-index:0;}
 	  
-	.recuadro{width:100%;height:90px;border:1px solid red;}
+	.recuadro{width:40px;height:90px;border:1px solid red;}
 	.draggable{width:1px;height:1px; z-index:1;border:0; }
 </style>
 </head>

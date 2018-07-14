@@ -37,7 +37,7 @@
 		<div style="flex-basis: 100%; ">
 			<a 
 				id=${eventoId} 
-				class="dragable"  
+				class="draggable"  
 				href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" 
 				title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}" 			
 				> 
