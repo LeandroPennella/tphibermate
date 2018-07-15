@@ -1,0 +1,29 @@
+/*-- Evento ---------------------------------------------------------------*/
+
+
+.reunionAutor{background-color: #16A765;}
+.reunionNoConfirmado{background-color: yellow; }
+.reunionConfirmada{background-color: #16A765; }
+.reunionCancelada{background-color: red; }
+
+.tarea{background-color: #4986E7; }
+
+.evento {
+  border-radius: 2px;
+  
+  border: 1px solid white;
+  padding: 1px;
+  font-size: 0.9em; 
+  
+  color:black !important;
+  /*padding-bottom: 21px;*/
+  box-sizing: border-box;
+/*  flex-basis: 100%;*/ 
+  position:relative;
+
+}
+.evento:hover{  text-decoration: none;}
+  /*float: left;*/
+  /*width: 50%;*/
+  /*background-color: rgb(240, 147, 0);*/
+  /*height: 2.5vh;*/

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Draggable - Handles</title>
+    <script type="text/javascript" src="../../../ui/js/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="../../../ui/js/jquery-ui-1.11.4.js"></script>
+ 
+    
+    
+<script>
+
+//dia//horario=//evento//duracion
+
+var semana=[];
+var eventos=[];
+
+function mostrarSemana(){
+	//debugger; 
+	//alert('semana');
+}
+
+$( function() {
+	
+	
+	$('.dia').each(
+	
+		function(){
+			var $dia=$(this);
+			var $dia_id=$(this).attr('id');
+			//alert($dia_id);
+			
+			$droppables=$dia.children('.celda').children('.droppable');
+			var $droppables_ids='';
+			$droppables.each(function(){
+				$droppables_ids+='#'+($(this).attr('id')+',');
+		   	});
+		    $droppables_ids=$droppables_ids.slice(0,-1);
+		    //alert($droppables_ids);
+			var dia=[];	    
+		    dia.id=$dia_id;
+			$dia.find('.evento').each(
+					
+				function(){
+					var $evento=$(this);
+					var $evento_id=$(this).attr('id');
+					//alert('e: ' +$evento_id + ' c:' + $dia_id + 's:'+ $droppables_ids);
+					
+					$evento.draggable({
+						axis:"y",
+						containment:$dia,
+				   		snap:$droppables_ids,
+				   		snapMode:'inner'
+				   		
+					  });
+					
+					
+					var evento={};					
+					evento.id=$evento_id
+					dia.push(evento);
+					//tablaPosiciones.push[{"dia":$dia_id}]
+					//todo: crear tabla posiciones
+				}
+			)			
+			semana.push(dia);
+		}
+	);
+	
+	
+
+	$( ".droppable" ).droppable({
+  		drop: function( event, ui ) {
+			var evento_id = $(ui.draggable).attr('id');
+ 	   		var evento_nuevaHoraInicio = $(this).attr("id").toString();	 	        
+ 	   		alert('evento '+evento_id +' movido a '+ evento_nuevaHoraInicio);   
+ 	   		cambiarEvento(evento_id,evento_nuevaHoraInicio);
+  		}
+	});
+	
+	mostrarSemana();
+
+});
+</script>
+<style>
+	.dia {float:left;}
+	
+	.celda {width: 42px; height: 40px;border:1px solid gray;z-index:0; }
+	.droppable {width: 42px; height: 1px;border:0;z-index:0;}
+	  
+	.recuadro{width:40px;height:90px;border:1px solid red;}
+	.draggable{width:40px;height:1px; z-index:1;border:0;float:left;}
+</style>
+
+
+</head>
+<body>
+<div class="dia" id="d1">
+  <div class="celda"><div class="droppable" id="d1h1"></div></div>
+  <div class="celda"><div class="droppable" id="d1h2">
+  
+    <div class="draggable evento"  id="e1" style="width:20px; float:left;">
+      <div class="recuadro"  style="width:20px; float:left;">
+      	<a href="#">sarasa</a>
+      </div>
+    </div>
+    
+    <div class="draggable evento" id="e1b" style="width:20px; float:left;">
+      <div class="recuadro" style="width:20px; float:left;">
+      	<a href="#">sarasa</a>
+      </div>
+    </div>
+    
+  </div></div>
+  <div class="celda"><div class="droppable" id="d1h3"></div></div>
+  <div class="celda"><div class="droppable"  id="d1h4"></div></div>
+  <div class="celda"><div class="droppable" id="d1h5"></div></div>
+</div>
+
+<div class="dia" id="d2">
+
+  <div class="celda"><div class="droppable" id="d2h1"></div></div>
+  <div class="celda"><div class="droppable" id="d2h2">
+    <div class="draggable  evento" id="e2">
+      
+      <div class="recuadro" >sarasa</div>
+    </div>
+  </div></div>
+  <div class="celda"><div class="droppable" id="d2h3"></div></div>
+  <div class="celda"><div class="droppable" id="d2h4"></div></div>
+  <div class="celda"><div class="droppable"  id="d2h5"></div></div>
+</div>
+ 
+</body>
+</html>
