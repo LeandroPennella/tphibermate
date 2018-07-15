@@ -5,7 +5,6 @@
 .reunionNoConfirmado{background-color: yellow; }
 .reunionConfirmada{background-color: #16A765; }
 .reunionCancelada{background-color: red; }
-
 .tarea{background-color: #4986E7; }
 
 .evento {
@@ -18,8 +17,12 @@
   color:black !important;
   /*padding-bottom: 21px;*/
   box-sizing: border-box;
-/*  flex-basis: 100%;*/ 
+ 
   position:relative;
+  		
+		word-break: break-all; 
+		word-wrap: break-word;
+		flex-basis: 100%;
 
 }
 .evento:hover{  text-decoration: none;}
@@ -27,3 +30,14 @@
   /*width: 50%;*/
   /*background-color: rgb(240, 147, 0);*/
   /*height: 2.5vh;*/
+  
+
+	
+	.draggable{
+		height:1px; 
+		z-index:1;
+		border:0;
+		word-break: break-all; 
+		word-wrap: break-word;
+		flex-basis: 100%;
+	}

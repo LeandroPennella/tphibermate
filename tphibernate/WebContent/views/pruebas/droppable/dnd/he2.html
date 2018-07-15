@@ -46,7 +46,7 @@ $( function() {
 		    //alert($droppables_ids);
 			var dia=[];	    
 		    dia.id=$dia_id;
-			$dia.find('.evento').each(
+			$dia.find('.draggable').each(
 					
 				function(){
 					var $evento=$(this);
@@ -93,13 +93,37 @@ $( function() {
 });
 </script>
 <style>
-	.dia {float:left;}
+	.dia {float:left; width:13.33vw;}
 	
-	.celda {width: 42px; height: 40px;border:1px solid gray;z-index:0; }
-	.droppable {width: 42px; height: 1px;border:0;z-index:0;}
+	.celda {
+		height: 40px;
+		border:1px solid gray;
+		z-index:0; 
+		display:flex;
+		width: 100%; 
+	}
+	
+	.droppable {
+		height: 1px;
+		border:0;
+		z-index:0;
+		display:flex;
+		width: 100%; 
+	}
 	  
-	.recuadro{width:40px;height:90px;border:1px solid red;box-sizing: border-box;word-break: break-all; word-wrap: break-word}
-	.draggable{width:40px;height:1px; z-index:1;border:0;float:left;word-break: break-all; word-wrap: break-word}
+	.evento{
+		height:90px;
+		border:1px solid red;
+		box-sizing: border-box;
+		word-break: break-all; 
+		word-wrap: break-word;
+		flex-basis: 100%;
+	}
+	
+	.draggable{
+		height:1px; 
+		flex-basis: 100%;
+	}
 </style>
 
 
@@ -109,14 +133,14 @@ $( function() {
   <div class="celda"><div class="droppable" id="d1h1"></div></div>
   <div class="celda"><div class="droppable" id="d1h2">
   
-    <div class="draggable evento"  id="e1" style="width:19px; float:left;">
-      <div class="recuadro"  style="width:19px; float:left;">
+    <div class="draggable "  id="e1" >
+      <div class="evento"  >
       	<a href="#">sarasa</a>
       </div>
     </div>
     
-    <div class="draggable evento" id="e1b" style="width:19px; float:left;">
-      <div class="recuadro" style="width:19px; float:left;">
+    <div class="draggable " id="e1b" >
+      <div class="evento" >
       	<a href="#">sarasa</a>
       </div>
     </div>
@@ -131,9 +155,12 @@ $( function() {
 
   <div class="celda"><div class="droppable" id="d2h1"></div></div>
   <div class="celda"><div class="droppable" id="d2h2">
-    <div class="draggable  evento" id="e2">
-      
-      <div class="recuadro" >sarasa</div>
+    <div class="draggable  " id="e2">      
+      <div class="evento" >
+	      <a href="#">
+	      	sarasa
+	      </a>
+      </div>
     </div>
   </div></div>
   <div class="celda"><div class="droppable" id="d2h3"></div></div>
