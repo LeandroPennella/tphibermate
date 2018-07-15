@@ -21,6 +21,12 @@ function mostrarSemana(){
 	//alert('semana');
 }
 
+function cambiarEvento( evento, evento_nuevoRecipiente){
+	alert('evento '+evento_id +' movido a '+ evento_nuevaHoraInicio);  
+	//encontrar elemento
+	
+}
+
 $( function() {
 	
 	
@@ -58,6 +64,7 @@ $( function() {
 					
 					var evento={};					
 					evento.id=$evento_id
+					evento.horario=$evento.parent().attr('id')
 					dia.push(evento);
 					//tablaPosiciones.push[{"dia":$dia_id}]
 					//todo: crear tabla posiciones
@@ -72,9 +79,12 @@ $( function() {
 	$( ".droppable" ).droppable({
   		drop: function( event, ui ) {
 			var evento_id = $(ui.draggable).attr('id');
- 	   		var evento_nuevaHoraInicio = $(this).attr("id").toString();	 	        
- 	   		alert('evento '+evento_id +' movido a '+ evento_nuevaHoraInicio);   
- 	   		cambiarEvento(evento_id,evento_nuevaHoraInicio);
+			var evento = $(ui.draggable);
+ 	   		var evento_nuevaHoraInicio = $(this).attr("id").toString();	 	         	   		
+ 	   		//cambiarEvento(evento_id,evento_nuevaHoraInicio);
+ 	   		evento.css('top',0);
+ 	   		evento.css('left',0);
+ 	   		$(this).append($(ui.draggable));
   		}
 	});
 	
@@ -88,8 +98,8 @@ $( function() {
 	.celda {width: 42px; height: 40px;border:1px solid gray;z-index:0; }
 	.droppable {width: 42px; height: 1px;border:0;z-index:0;}
 	  
-	.recuadro{width:40px;height:90px;border:1px solid red;}
-	.draggable{width:40px;height:1px; z-index:1;border:0;float:left;}
+	.recuadro{width:40px;height:90px;border:1px solid red;box-sizing: border-box;word-break: break-all; word-wrap: break-word}
+	.draggable{width:40px;height:1px; z-index:1;border:0;float:left;word-break: break-all; word-wrap: break-word}
 </style>
 
 
@@ -99,14 +109,14 @@ $( function() {
   <div class="celda"><div class="droppable" id="d1h1"></div></div>
   <div class="celda"><div class="droppable" id="d1h2">
   
-    <div class="draggable evento"  id="e1" style="width:20px; float:left;">
-      <div class="recuadro"  style="width:20px; float:left;">
+    <div class="draggable evento"  id="e1" style="width:19px; float:left;">
+      <div class="recuadro"  style="width:19px; float:left;">
       	<a href="#">sarasa</a>
       </div>
     </div>
     
-    <div class="draggable evento" id="e1b" style="width:20px; float:left;">
-      <div class="recuadro" style="width:20px; float:left;">
+    <div class="draggable evento" id="e1b" style="width:19px; float:left;">
+      <div class="recuadro" style="width:19px; float:left;">
       	<a href="#">sarasa</a>
       </div>
     </div>
