@@ -1,0 +1,84 @@
+[class*=Dia] {
+  color: #888;
+}
+
+.DiaNombre {}
+
+.DiaNumero {
+  /*TODO: tabla-cabecera > Div > div2 */
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.1;
+
+}
+
+
+.calendario-cabecera {
+  box-sizing: border-box;
+  transition: 0.5s;
+  height: 56px;
+}
+
+.calendario-cuerpo {
+  box-sizing: border-box;
+  transition: 0.5s;
+  height: calc(90vh - 56px);
+  overflow-y: scroll;
+  clear: both;
+}
+
+[class|=columnas] {
+
+  float: left;
+  box-sizing: border-box;
+  transition: 0.5s;
+  
+}
+
+.columnas-horas {
+  /*TODO: tabla-cabecera > Div */
+  border-top: none;
+  font-size: 0.8vw;
+  text-align: center;
+}
+
+.columnas-horas .mirow {
+  line-height: 20vh;
+  border-bottom: none;
+}
+.calendario-cabecera .columnas-dias {
+  border-top: 1px solid LightGray;
+}
+
+.celda{
+  height: 2.5vh;
+  box-sizing: border-box;  
+  border-right: 1px solid LightGray;
+  display: flex;
+  /* faltan?
+  width: 100%;
+  z-index:0;
+  */    
+}
+
+.celda:nth-child(even) {
+	border-bottom: 1px solid LightGray;}
+
+ .calendario-cabecera .celda{
+	border-bottom: 1px solid LightGray;
+	display: block;
+	height: 56px !important;    
+}
+
+.calendario-cabecera .fila {
+  height: 56px !important;
+}	
+.droppable {
+	height: 1px;
+	border:0;
+	z-index:0;
+	display:flex;
+	width: 100%; 
+}
+
+

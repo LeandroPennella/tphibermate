@@ -22,34 +22,26 @@
 <c:set var="eventoTitulo" value="${param.eventoTitulo}"/>
 <c:set var="eventoEstadoUsuarioActual" value="${param.eventoEstadoUsuarioActual}"/>
 <c:set var="eventoId" value="${param.eventoID}"/>
+<c:set var="esLaHora" value="${eventoHoraInicio==hora}" />
 
- 
-
-
-
-
- <c:set var="esLaHora" value="${eventoHoraInicio==hora}" />
 <c:choose>
-						 
+					 
 	<c:when test="${esLaHora}">
 		<c:set var="sUrl" value="${(eventoEstadoUsuarioActual=='tarea')?'Tarea':'Reunion'}"></c:set>
 
-		<div style="flex-basis: 100%; ">
-			<a 
-				id=${eventoId} 
-				class="draggable"  
-				href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" 
-				title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}" 			
-				> 
-							  
-				<div 
-					class=" evento   ${eventoEstadoUsuarioActual}"   
-					style="height: ${altoEventoMinutosDuracion}px;" 
-					>					
+		<div class="draggable" id="e${eventoId}">
+			<div 
+				class=" evento   ${eventoEstadoUsuarioActual}"
+				style="height: ${altoEventoMinutosDuracion}px;" >
+				<a 
+					href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" 
+					title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}">
 					<b>${eventoTitulo}</b> ${eventoHoraInicio} -  ${eventoHoraFin} 
-				</div>
-			</a>		
-		 </div>		
+				</a>					  
+			</div>
+	 	</div>
+	 			
 	</c:when>
+	
 </c:choose>
  

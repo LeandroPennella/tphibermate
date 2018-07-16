@@ -28,121 +28,33 @@
 	
 	<!--  old  --<link href='<c:url value="/views/ui/css/Calendario.css"/>' rel="stylesheet">-->
 	
-	<link href='<c:url value="/views/ui/css/CalendarioGrilla.css"/>' rel="stylesheet">
-	<link href='<c:url value="/views/ui/css/CalendarioEvento.css"/>' rel="stylesheet">
+
 	<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 	
 
 	<!--navegador-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	
-
     <link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/jquery-ui.css"/>'>
     <link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/bootstrap.3.min.css"/>'>
-    <link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/CalendarioGrilla.css"/>'>
-    
-	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/calendarioNavegacion.css"/>'>
-	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/bootstrap-datepicker.min.css"/>'>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/bootstrap-datepicker.min.css"/>'>
 	 
     <script type="text/javascript" src='<c:url value="/views/ui/js/jquery-1.12.4.js"/>'></script>
-    <!-- <script type="text/javascript" src='<c:url value="/views/ui/js/jquery-ui-1.11.4.js"/>'></script> -->
     <script type="text/javascript" src='<c:url value="/views/ui/js/jquery-ui-1.12.1.js"/>'></script> 
      
     <script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap.min.js"/>'></script>
 	<script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap-datepicker.min.js"/>'></script>
 	<script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap-datepicker.es.min.js"/>'></script>
 	
+	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/calendarioNavegacion.css"/>'>
 	<script type="text/javascript" src='<c:url value="/views/ui/js/calendarioNavegacion.js"/>'></script>
-	 
-	<!-- <script type="text/javascript" src='<c:url value="/views/ui/js/calendarioDragnDrop.js" />'></script> -->
-	<script type="text/javascript">
 
-    $( function() {
-   	 
-   	 
-    	/*
-   		$(".dragable").draggable({
-   			snap:".fila", 
-   		 	axis: "y" ,//containment:".columnas-horas"
-   		 	
-   		 	
-   		 	stop:function( event, ui ) {
-	 	        var item_id = $(ui.draggable).attr('id');
-	 	        var item_horaInicio = $(this).attr("id").toString();	 	        
-	 	        alert('evento '+item_id +' movido a '+ item_horaInicio);
-   		 	}
-  		});
-   	 */
-   	
-   		$( '.draggable' ).each(function(){
-   	  	var $d = $(this);
-   	   		$d.draggable({
-   	   			axis:"y",
-   	   			/*containment:$d.closest('.dia'),*/
-   	        	snap:".fila"//,snapTolerance:2
-   	      });
-   		});
-   	 
-   	 
-   	/*
- 		$( ".fila" ).droppable({
-        	drop: function( event, ui ) {
-        		alert('drop');
-	         	
-	          	var item_id = $(ui.draggable).attr('id');
-	   	 	   	var item_horaInicio = $(this).attr("id").toString();	
-	   	 		var evento={"id":item_id, "horaInicio":item_horaInicio};
-	   	 	   	alert('evento '+item_id +' movido a '+ item_horaInicio);
-	   	 	   	
-	           	
-	           	
-				$.ajax({
-					url: "../evento/mover.do", //?origenId="+item_id+"&destinoId="+location,
-					type: "POST",
-					//timeout: 10000,
-					//data:{id:item_id, horaInicio:item_horaInicio}, //JSON.stringify(evento), 
-					data:JSON.stringify(evento),
-					contentType : "application/json;charset=UTF-8",
-					dataType : "text",//lo que recive
-					
-					success : function(results, status, xhr){
-						//alert('resultado' + results + ' - status: ' + status + ' - xhr:'+xhr);
-						if (results){
-							alert('si');
-							$("#"+item_id).children('a').children('b').html('hi:'+item_horaInicio + " HF:" +String(results));//todo: agregar horafin
-						} else {
-							alert('no');
-						}
-					},
-									
-					error: function(XHR, jqXHR, textStatus,	errorThrown) {
-						var errorHtml = "An error ocurred <br/>";
-						errorHtml += "Status: "+ textStatus 
-						errorHtml += " | Reason: "	+ errorThrown
-						errorHtml += " | XHR: "	+ XHR.responseText
-						errorHtml += " | jqXHR: "	+ jqXHR.responseText
-						alert(errorHtml);
-					}
-	          	});
-	           
-         	}
-		});
-        		*/
-   	 
-	   	 $( '.fila' ).droppable({
-	   		
-			drop: function( event, ui ) {
-				
-	 	        var item_id = $(ui.draggable).attr('id');
-	 	        var item_horaInicio = $(this).attr("id").toString();	 	        
-	 	        alert('evento '+item_id +' movido a '+ item_horaInicio);	  	    
- 	        }
-	   	 	
-	   	 });
-   	
-	});
-	</script>
+	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/calendario/calendarioGrilla.css"/>'>
+	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/calendario/calendarioEvento.css"/>'>
+    <script type="text/javascript" src='<c:url value="/views/ui/calendario/calendarioDragnDrop.js"/>'></script>   	
+	 
+	
+
 	<!--navegador-->
 	<title><fmt:message key='calendario.titulo'/></title>
 </head>
@@ -174,15 +86,12 @@
         <li class="active"><a href="#">Tarea<span class="sr-only">(current)</span></a></li>
         <li><a href="#">Reunion</a></li>
  -->
-
-
-
-                            <li>
-                                <a href="<c:url value="/calendario/crearTarea.do" ></c:url>"><fmt:message key='tarea.tituloAgregar'/></a>
-                            </li>
-                            <li>
-                                <a href="<c:url value="/calendario/crearReunion.do" ></c:url>"><fmt:message key='reunion.tituloAgregar'/></a>
-                            </li>
+		<li>
+		    <a href="<c:url value="/calendario/crearTarea.do" ></c:url>"><fmt:message key='tarea.tituloAgregar'/></a>
+		</li>
+		<li>
+		    <a href="<c:url value="/calendario/crearReunion.do" ></c:url>"><fmt:message key='reunion.tituloAgregar'/></a>
+		</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -301,7 +210,7 @@
 
 	<div class="calendario-cabecera">
         <div class="columnas-horas">
-          	<div class="fila ">
+          	<div class="celda ">
           	<%-- <fmt:message key="calendario.etiquetas.hora" />--%>
           	</div>
         </div>
@@ -320,7 +229,7 @@
 		<c:if test="${dFechaHoy==diaFecha}" ><c:set var="claseDia" value="hoy"></c:set></c:if>
 
         <div class="columnas-dias<%-- claseDia --%>">
-          	<div class="fila ">
+          	<div class="celda ">
             
 				<fmt:formatDate value="${diaFecha}" var="nombreDia" pattern="EEE"/>
 				<div class="DiaNombre"><c:out value="${nombreDia}" /></div>
@@ -339,7 +248,7 @@
         	<c:set var="mediaHora" value="false"></c:set>
 			<c:forEach var="hora" items="${horas}" >
 				
-          		<div class="fila ">
+          		<div class="celda ">
 					<c:if test="${mediaHora eq false}">
 					  ${hora}
 					</c:if>
@@ -352,17 +261,16 @@
 		
 
 			<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
-
+			<fmt:formatDate value="${diaFecha}" var="diaFechaString" pattern="dd/MM/yyyy"/>
+			<c:set var="numeroDia" value="${fn:substring(diaFechaString, 0, 2)}" />
 			
-			
-			<div class="columnas-dias">	
+			<div class="columnas-dias" id="d${numeroDia}">	
 			<c:forEach var="hora" items="${horas}" >			
-			
-	          	<div class="fila " id="${hora}">
+				
+	          	<div class="celda "><div class="droppable" id="d${numeroDia}h${fn:replace(hora, ':', '')}">
 					<!-- Eventos -->
 					
-					<c:forEach var="evento" items="${eventosDia}">
-					
+					<c:forEach var="evento" items="${eventosDia}">				
 						
 						<!-- Evento -->
 						<jsp:include page="calendario_Evento.jsp">
@@ -384,7 +292,7 @@
 					</c:forEach>
 					<!-- /Eventos -->
 
-				  </div>       			
+				  </div></div>       			
 			</c:forEach>
 			</div>	
 		</c:forEach>	
