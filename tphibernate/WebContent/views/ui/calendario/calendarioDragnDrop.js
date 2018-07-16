@@ -1,18 +1,4 @@
 
-var semana=[];
-var eventos=[];
-
-function mostrarSemana(){
-	//debugger; 
-	//alert('semana');
-}
-
-function cambiarEvento( evento, evento_nuevoRecipiente){
-	alert('evento '+evento_id +' movido a '+ evento_nuevaHoraInicio);  
-	//encontrar elemento
-	
-}
-
 $( function() {
 	
 	
@@ -46,19 +32,9 @@ $( function() {
 				   		snap:$droppables_ids,
 				   		snapMode:'inner'
 				   		//todo: minimo movimiento
-					  });
-					
-					
-					var evento={};					
-					evento.id=$evento_id
-					evento.horario=$evento.parent().attr('id')
-					dia.push(evento);
-
-
+					});
 				}
 			)
-	    	
-			semana.push(dia);
 		}
 	);
 	
@@ -68,27 +44,15 @@ $( function() {
   		drop: function( event, ui ) {
   			var evento = $(ui.draggable);
 			var evento_id = $(ui.draggable).attr('id');		
- 	   		var evento_nuevaHoraInicio = $(this).attr("id").toString();
- 	   		
+ 	   		var evento_droppedId= $(this).attr("id").toString();
+			var evento_nuevaHoraInicio=evento_droppedId.substr(-4,2)+':'+evento_droppedId.substr(-2);
+			
  	   		var evento_titulo=$(evento).find('#titulo').text();
- 	   		var evento_horaInicio=$(evento).find('#horaInicio').text();
- 	   		var evento_horaFin=$(evento).find('#horaFin').text();
- 	   		
- 	   		var evento_nuevaHoraFin;//todo: calcular
  	   		
  	   		var droppable=$(this);
  	   		
- 	   		var eventoJson_id=evento_id.substr(1);
- 	   		var eventoJson_hr=evento_nuevaHoraInicio.substr(-4,2)+':'+evento_nuevaHoraInicio.substr(-2);
- 	   		var eventoJson={"id":eventoJson_id, "horaInicio":eventoJson_hr};
+ 	   		var eventoJson={"id":evento_id.substr(1), "horaInicio":evento_nuevaHoraInicio};
 
- 	   		
- 	   		
- 	   		
- 	   		//cambiarEvento(evento_id,evento_nuevaHoraInicio);
- 	   		evento.css('top',0);
- 	   		evento.css('left',0);
- 	   		$(droppable).append($(ui.draggable));
  	   		
 			$.ajax({
 				url: "../evento/mover.do", 
@@ -99,12 +63,14 @@ $( function() {
 				success : function(results, status, xhr){
 
 					if (results){
-						//todo: cambiar hora // agregar horafin
-						$(evento).find('a').html('<b>'+evento_titulo+'</b>hi:'+evento_nuevaHoraInicio + " HF:" +String(results));
-						$
+						
+						$(evento).find('a').html('<b>'+evento_titulo+'</b> '+evento_nuevaHoraInicio + " - " +String(results));
 
-			 	   		//Cambiar Evento de celda
-
+			 	   		//todo: Cambiar Evento de celda aca
+			 	   		//cambiarEvento(evento_id,evento_nuevaHoraInicio);
+			 	   		evento.css('top',0);
+			 	   		evento.css('left',0);
+			 	   		$(droppable).append(evento);
 						
 					} else {
 						alert('sin resultado...');
@@ -123,6 +89,4 @@ $( function() {
           	});
   		}
 	});
-	
-	mostrarSemana();
 });

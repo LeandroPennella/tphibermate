@@ -17,7 +17,7 @@
 
 <%-- <c:set var="eventoMinutosDuracion" value="${param.eventoMinutosDuracion}"/>--%>
 
-<c:set var="altoEventoMinutosDuracion" value="${(((param.eventoMinutosDuracion)/30)*23)-1}"/> <%-- 21 div + 2 borde - 1 borde superior --%>
+<c:set var="altoEventoMinutosDuracion" value="${((param.eventoMinutosDuracion)/30)*2.5}"/> <%-- 21 div + 2 borde - 1 borde superior --%>
 
 <c:set var="eventoTitulo" value="${param.eventoTitulo}"/>
 <c:set var="eventoEstadoUsuarioActual" value="${param.eventoEstadoUsuarioActual}"/>
@@ -32,15 +32,14 @@
 		<div class="draggable" id="e${eventoId}">
 			<div 
 				class=" evento   ${eventoEstadoUsuarioActual}"
-				style="height: ${altoEventoMinutosDuracion}px;" >
+				style="height: ${altoEventoMinutosDuracion}vh;" >
 				<a 
 					href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" 
 					title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}">
 					<b>${eventoTitulo}</b> ${eventoHoraInicio} -  ${eventoHoraFin} 
 				</a>
 				<div style="display:none;" id="titulo">${eventoTitulo}</div>		
-				<div style="display:none;" id="horarioInicio">${eventoHoraInicio}</div>
-				<div style="display:none;" id="horarioFin">${eventoHoraFin}</div>	  
+  
 			</div>
 	 	</div>
 	 			

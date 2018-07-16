@@ -1,5 +1,7 @@
-
-
+calendario > barras separadoras flechas : azules > negras
+calendario > column-dia > id dia erroneo
+calendario > moverevento > si no dropea -> rolback 
+calendario > evento > font-size vh/vw
 
 
 
