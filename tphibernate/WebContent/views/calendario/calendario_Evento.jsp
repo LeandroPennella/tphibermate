@@ -37,7 +37,10 @@
 					href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" 
 					title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}">
 					<b>${eventoTitulo}</b> ${eventoHoraInicio} -  ${eventoHoraFin} 
-				</a>					  
+				</a>
+				<div style="display:none;" id="titulo">${eventoTitulo}</div>		
+				<div style="display:none;" id="horarioInicio">${eventoHoraInicio}</div>
+				<div style="display:none;" id="horarioFin">${eventoHoraFin}</div>	  
 			</div>
 	 	</div>
 	 			
