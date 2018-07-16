@@ -1,10 +1,14 @@
+calendario > mover evento > arrastrar div > a > div
+
+
+
 calendario > barras separadoras flechas : azules > negras
 calendario > column-dia > id dia erroneo
 calendario > moverevento > si no dropea -> rolback 
 calendario > evento > font-size vh/vw
-
-
-
+calendario > alto grilla > queda chica al achicar
+calendario > eventos solapados > indentar los superpuestos
+calendarop > eventos solapados > en hover superponer
 
 
 

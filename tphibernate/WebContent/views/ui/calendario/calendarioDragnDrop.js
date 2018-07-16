@@ -65,7 +65,7 @@ $( function() {
 					if (results){
 						
 						$(evento).find('a').html('<b>'+evento_titulo+'</b> '+evento_nuevaHoraInicio + " - " +String(results));
-
+						$(evento).find('a').attr('title', evento_titulo+': '+evento_nuevaHoraInicio + " - " +String(results))
 			 	   		//todo: Cambiar Evento de celda aca
 			 	   		//cambiarEvento(evento_id,evento_nuevaHoraInicio);
 			 	   		evento.css('top',0);
