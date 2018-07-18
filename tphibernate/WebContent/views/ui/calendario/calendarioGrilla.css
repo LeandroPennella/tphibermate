@@ -21,7 +21,7 @@
 
 .calendario-cuerpo {
   box-sizing: border-box;
-  transition: 0.5s;
+  /*transition: 0.5s;*/
   height: calc(100vh - 145px);
   overflow-y: scroll;
   clear: both;
@@ -31,7 +31,7 @@
 
   float: left;
   box-sizing: border-box;
-  transition: 0.5s;
+  /*transition: 0.5s;*/
   
 }
 

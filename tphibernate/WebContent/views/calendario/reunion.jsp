@@ -182,8 +182,10 @@
 														 <c:if test='${reunionForm.estado=="reunionNoConfirmado"}'><!-- si no soy el autor y no caonfirme ni cancele-->
 															<form:radiobutton path="idEstado" value="1" /><fmt:message key="reunion.estado.confirmado" /> 
 															<form:radiobutton path="idEstado" value="2" /><fmt:message key="reunion.estado.cancelado" />
+															<%-- 
 															ca: <c:out value='${reunionForm.estado=="reunionCancelada"}'></c:out><br/>
 															co: <c:out value='${reunionForm.estado=="reunionConfirmada"}'></c:out><br/>
+															--%>
 														
 														</c:if>
 														<c:if test='${reunionForm.estado=="reunionConfirmada"}'><fmt:message key="reunion.estado.confirmado" /> </c:if>
@@ -202,6 +204,11 @@
 												<tr>
 													<th><fmt:message key="usuario.nombre" /></th>
 													<th><fmt:message key="reunion.label.estado" /></th>
+												</tr>
+												<tr>
+													<td>${reunionForm.autor.nombre} ${reunionForm.autor.apellido} (${reunionForm.autor.nombreUsuario})</td>
+													<td>Autor</td>
+													<td>&nbsp;</td>
 												</tr>
 												<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
 													<tr>
@@ -224,13 +231,11 @@
 											</table>
 											</div>
 										</div>
-									<div><form:errors path="invitados" cssStyle="color: red" /></div>
-									
-										
+									<div><form:errors path="invitados" cssStyle="color: red" /></div>																			
 										
 										<!-- Botones ---------------------------------------------------------------------------------------->
  										<div class="form-actions">
- 											<c:if test="${soloLectura!=true}">
+ 											<c:if test='${reunionForm.estado=="reunionAutor" || reunionForm.estado=="reunionNoConfirmado"}'>
 												<button type="submit" class="btn btn-primary" > <fmt:message key="evento.label.guardar" /></button>
 											</c:if>
 											
