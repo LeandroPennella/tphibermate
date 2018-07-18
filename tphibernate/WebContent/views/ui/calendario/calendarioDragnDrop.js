@@ -27,6 +27,7 @@ $( function() {
 					//alert('e: ' +$evento_id + ' - c:' + $dia_id + ' - s:'+ $droppables_ids);
 					
 					$evento.draggable({
+						delay:300,
 						axis:"y",
 						containment:$dia,
 				   		snap:$droppables_ids,
@@ -64,7 +65,7 @@ $( function() {
 
 					if (results){
 						
-						$(evento).find('a').html('<b>'+evento_titulo+'</b> '+evento_nuevaHoraInicio + " - " +String(results));
+						$(evento).find('p').html('<b>'+evento_titulo+'</b> '+evento_nuevaHoraInicio + " - " +String(results));
 						$(evento).find('a').attr('title', evento_titulo+': '+evento_nuevaHoraInicio + " - " +String(results))
 			 	   		//todo: Cambiar Evento de celda aca
 			 	   		//cambiarEvento(evento_id,evento_nuevaHoraInicio);

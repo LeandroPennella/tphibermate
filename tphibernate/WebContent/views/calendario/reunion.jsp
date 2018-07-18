@@ -209,7 +209,8 @@
 														</td>
 														<td >
 												      		<input type="hidden" name="invitados"  class="hiddenIdInvitado" value="${invitacion.usuario.id}" />
-															<input type="button" class="borrar" value="<fmt:message key="evento.label.eliminar" />"  														<c:if test="${invitacion.aceptado==2}">cancelado</c:if>
+															<input type="button" class="borrar" value="<fmt:message key="evento.label.eliminar" />"  														
+															 <%-- <c:if test="${invitacion.aceptado==2}">cancelado</c:if> --%>
 															<c:if test="${soloLectura==true}">disabled</c:if>
 															/>
 														</td>
@@ -225,10 +226,16 @@
 										
 										<!-- Botones ---------------------------------------------------------------------------------------->
  										<div class="form-actions">
-											<button type="submit" class="btn btn-primary"><fmt:message key="evento.label.guardar" /></button>
+ 											<c:if test="${soloLectura!=true}">
+												<button type="submit" class="btn btn-primary" > <fmt:message key="evento.label.guardar" /></button>
+											</c:if>
 											
-											<a class="btn" href="<c:url value='/calendario/mostrarCalendario.do' />"><fmt:message key="evento.label.cancelar" /></a>
-											<c:if test='${reunionForm.idEvento!=null}'>
+											<a class="btn" href="<c:url value='/calendario/mostrarCalendario.do'/>"  >
+												<c:if test="${soloLectura==true}"><fmt:message key="evento.label.volver" /></c:if>
+												<c:if test="${soloLectura!=true}"><fmt:message key="evento.label.cancelar" /></c:if>												
+											</a>
+											
+											<c:if test='${reunionForm.idEvento!=null && soloLectura!=true}'>
 												<a class="btn btn-cancel" href="<c:url value='/calendario/eliminarReunion.do?idEvento=${reunionForm.idEvento}' />"><fmt:message key="evento.label.eliminar" /></a>
 											</c:if>
 										</div>

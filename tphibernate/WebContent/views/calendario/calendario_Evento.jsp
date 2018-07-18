@@ -30,19 +30,18 @@
 		<c:set var="sUrl" value="${(eventoEstadoUsuarioActual=='tarea')?'Tarea':'Reunion'}"></c:set>
 
 		<div class="draggable" id="e${eventoId}">
-
-				<a 
+			<div 
+				class=" evento   ${eventoEstadoUsuarioActual}"
+				style="height: ${altoEventoMinutosDuracion}vh;" >
+				<a
+					class="default-link"  
 					href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" 
-					title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}">
-					<div 
-						class=" evento   ${eventoEstadoUsuarioActual}"
-						style="height: ${altoEventoMinutosDuracion}vh;" >
-						<b>${eventoTitulo}</b> ${eventoHoraInicio} -  ${eventoHoraFin} 
-					</div>
-				</a>
-				<div style="display:none;" id="titulo">${eventoTitulo}</div>		
-  
-	
+					title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}"></a>
+					<p>
+					<b>${eventoTitulo}</b> ${eventoHoraInicio} -  ${eventoHoraFin}
+					</p> 
+			</div>
+			<div style="display:none;" id="titulo">${eventoTitulo}</div>		  
 	 	</div>
 	 			
 	</c:when>

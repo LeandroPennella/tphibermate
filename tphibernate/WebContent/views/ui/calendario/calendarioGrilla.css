@@ -22,7 +22,7 @@
 .calendario-cuerpo {
   box-sizing: border-box;
   transition: 0.5s;
-  height: calc(90vh - 56px);
+  height: calc(100vh - 145px);
   overflow-y: scroll;
   clear: both;
 }
