@@ -57,6 +57,15 @@ public class CalendarioController {
 		return mv;
 	}
 	
+	public Calendar crearCalendario(Date fecha)
+	{
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(fecha);
+		int diasAlDomingo= (calendar.get(Calendar.DAY_OF_WEEK))-1;
+		calendar.roll(diasAlDomingo, false);
+		return calendar;
+	}
+	
 	public Calendar /*void*/ crearCalendario(/*Calendar calendar, int diasAlDomingo, */Integer semanaOffset)
 	{
 		Calendar calendar = Calendar.getInstance();

@@ -56,7 +56,7 @@ public class EventoController {
 		return eventoDAO.mover(evento);
 		 
 	}
-
+/*
 	
 	public int diferenciaSemanas(Date fechaDestino) {
 		
@@ -69,23 +69,25 @@ public class EventoController {
 	}
 	
 	
-	public int difSem() {
+	public int difSem(Date fecha) {
 		Calendar actual = new GregorianCalendar();
         Calendar destino = new GregorianCalendar();
-        try {
-			actual.setTime(new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2017"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        destino.setTime(new SimpleDateFormat("dd/MM/yyyy").parse("01/08/2018"));
+        
+		actual.setTime(new Date());		
+        destino.setTime(fecha);
         int difA = destino.get(Calendar.YEAR) - actual.get(Calendar.YEAR);
         int difM = difA * 12 + destino.get(Calendar.MONTH) - actual.get(Calendar.MONTH);
         int difS;
         if(difA==0) {
         	difS=destino.get(Calendar.WEEK_OF_YEAR)-actual.get(Calendar.WEEK_OF_YEAR);
-		} else {}
+		} else if (difA==1) {//futuro
+			
+		}
 	}
+
+	
+	
+	
 	
 	public long difDiasEntre2fechas(int Y1,int M1,int D1,int Y2,int M2,int D2){
 		
@@ -120,5 +122,5 @@ public class EventoController {
 		return semanasOffset;
 		
 	}
-	
+	*/
 }
