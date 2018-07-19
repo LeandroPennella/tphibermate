@@ -47,7 +47,7 @@
 	<script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap-datepicker.es.min.js"/>'></script>
 	
 	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/calendarioNavegacion.css"/>'>
-	<script type="text/javascript" src='<c:url value="/views/ui/js/calendarioNavegacion.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="/views/ui/calendario/calendarioNavegacion.js"/>'></script>
 
 	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/calendario/calendarioGrilla.css"/>'>
 	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/calendario/calendarioEvento.css"/>'>
@@ -120,10 +120,27 @@
 
 	<div id="barrasuperior">
     	<div id="toggleBoton">&#9776; </div>  
-		<a href='<c:url value="/calendario/mostrarCalendario.do?semanaOffset=0"/>'><fmt:message key="calendario.accion.hoy" /> |</a>
-		<a href='<c:url value="/calendario/mostrarCalendario.do?semanaOffset=${semanaOffset-1}"/>'> < |</a>
-		<a href='<c:url value="/calendario/mostrarCalendario.do?semanaOffset=${semanaOffset+1}"/>'> > |</a>
-
+		<a href='<c:url value="/calendario/mostrarCalendario.do"/>'><fmt:message key="calendario.accion.hoy" /></a> |
+		
+		<fmt:formatDate value="${fecha}" var="mesApuntado" pattern="MM"/>
+		<fmt:formatDate value="${fecha}" var="anioApuntado" pattern="yyyy"/>
+		<fmt:formatDate value="${fecha}" var="diaApuntado" pattern="dd"/>
+		<%--
+		<c:out value=" ${diaApuntado}" />
+		<fmt:formatDate value="${fecha}" var="diaApuntadoString" pattern="dd/MM/yyyy"/>
+ --%>
+		
+		
+		
+		
+		
+		<a href='<c:url value="/calendario/mostrarCalendario.do?anio=${anioApuntado}&mes=${mesApuntado}&dia=${diaApuntado}&offset=-1"/>'> < </a> |
+		<a href='<c:url value="/calendario/mostrarCalendario.do?anio=${anioApuntado}&mes=${mesApuntado}&dia=${diaApuntado}&offset=1"/>'> > </a> |
+		
+		<%-- 
+		<a href='<c:url value="/calendario/mostrarCalendario.do?semanaOffset=${semanaOffset-1}"/>'> < </a> |
+		<a href='<c:url value="/calendario/mostrarCalendario.do?semanaOffset=${semanaOffset+1}"/>'> > </a> |
+		--%>
 		 
 
 		<!--  Mes mostrado -->

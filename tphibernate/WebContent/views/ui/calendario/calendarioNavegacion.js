@@ -8,19 +8,24 @@
         $(".fila").droppable();
 */
 
+    	//https://eonasdan.github.io/bootstrap-datetimepicker/
 		$('#calendarioenlinea').datepicker({
 		    format: "dd/mm/yyyy",
 		    language: 'es',
 		    
 		    todayHighlight: true,
 		    isInline: true
-		});
+		}).on('changeDate', seleccionarFecha);
 
         $("#toggleBoton").click(function() {alternar();});
         alternar();
       });
 
 
+  	function seleccionarFecha(){
+  		var value = $('#calendarioenlinea').datepicker('getFormattedDate');
+  		alert(value);
+  	}
 
       function alternar() {
         $('#mySidenav').toggleClass('active');

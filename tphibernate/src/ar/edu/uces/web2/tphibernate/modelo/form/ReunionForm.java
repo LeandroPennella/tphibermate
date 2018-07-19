@@ -152,25 +152,27 @@ public class ReunionForm extends EventoForm {
 
 	@Override
 	public String obtenerEstado(Usuario usuario){
+		/*
 		System.out.println("obteniendo estado de: " + this.getTitulo());
 		System.out.println("| usuario:"+usuario.getNombre());
 		System.out.println("| autor:"+this.getAutor().getNombre());
 		System.out.println("| usuario.getId: "+ usuario.getId());
 		System.out.println("| getAutor.getId: "+ this.getAutor().getId());
+		*/
 		String sEstado="reunion";
 		
 		
 		
-		System.out.println("| invitaciones: "+this.getInvitaciones().size());
+		//System.out.println("| invitaciones: "+this.getInvitaciones().size());
 		if (this.getAutor().getId()==usuario.getId())
 			sEstado="reunionAutor";
 		else  {
 			
-			System.out.println("| - invitaciones...");			
+			//System.out.println("| - invitaciones...");			
 			for(Invitacion invitacion: this.getInvitaciones())
 			{
-				System.out.println("| - getUsuario.getId: "+ invitacion.getUsuario().getId());
-				System.out.println("| - invitacion.getAceptado(): "+ invitacion.getAceptado());
+				//System.out.println("| - getUsuario.getId: "+ invitacion.getUsuario().getId());
+				//System.out.println("| - invitacion.getAceptado(): "+ invitacion.getAceptado());
 				if (invitacion.getUsuario().getId()==usuario.getId())
 				{
 					switch(invitacion.getAceptado()){
@@ -187,7 +189,7 @@ public class ReunionForm extends EventoForm {
 				}
 			}
 		}
-		System.out.println("| estado: "+ sEstado);
+		//System.out.println("| estado: "+ sEstado);
 		
 		return sEstado;
 	}

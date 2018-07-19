@@ -1,8 +1,7 @@
 
-
+/*
 package ar.edu.uces.web2.tphibernate.controladores;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,10 +30,9 @@ import ar.edu.uces.web2.tphibernate.modelo.form.ReunionForm;
 import ar.edu.uces.web2.tphibernate.modelo.form.TareaForm;
 import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 
-
 @SessionAttributes("usuarioLogueado")
 @Controller
-public class CalendarioController {
+public class CalendarioControllerSemana {
 	
 	private EventoDAO eventoDAO;
 	
@@ -43,85 +41,51 @@ public class CalendarioController {
 		this.eventoDAO = eventoDAO;
 	}
 	
-/*
+
+
 	@RequestMapping(value = "/calendario/mostrarCalendario")
-	public ModelAndView mostrarCalendario(
-			HttpServletRequest request, 
-			HttpServletResponse response,
-			@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado
-			) {
+	public ModelAndView mostrarCalendario(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado, @RequestParam(value="semanaOffset", required=false) Integer semanaOffset) {
+		Calendar calendar = crearCalendario (semanaOffset);
 		
-		Date fecha=new Date();
-	
-		Calendar calendar = crearCalendario (fecha);
-		
-		ModelAndView mv=new ModelAndView("/views/calendario/calendario.jsp"); 
+		ModelAndView mv=new ModelAndView("/views/calendario/calendario.jsp"); //navegacion
 		
 		mv.addObject("SemanaConEventos", getSemanaConEventos(usuarioLogueado,  calendar,  new SimpleDateFormat("dd/MM/yyyy")));//sdf
-		mv.addObject("fecha", calendar.getTime());
-		//mv.addObject("semanaOffset", semanaOffset);
-		mv.addObject("dFechaHoy",new Date());
-		mv.addObject("horas",getHorasDia());
-		return mv;
-	}
-	*/
-	
-	@RequestMapping(value = "/calendario/mostrarCalendario")
-	public ModelAndView mostrarCalendario(
-			HttpServletRequest request, 
-			HttpServletResponse response, 
-			@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado, 
-			@RequestParam(value="anio", required=false) String anio,
-			@RequestParam(value="mes", required=false) String mes,
-			@RequestParam(value="dia", required=false) String  dia,
-			@RequestParam(value="offset", required=false) Integer offset
-			) {
-		
-		Date fecha=new Date();
-		System.out.println("anio:" +anio + " - mes: " + mes + " - dia:" + dia);
-		try {
-			fecha = new SimpleDateFormat("dd/MM/yyyy").parse(dia+"/"+mes+"/"+anio);
-		} catch (ParseException e) {		
-			offset=null;
-			//TODO: alertar fecha incorrecta
-		}
-		
-		
-		Calendar calendar = crearCalendario (fecha, offset);
-		
-
-		
-		
-		ModelAndView mv=new ModelAndView("/views/calendario/calendario.jsp"); 
-		mv.addObject("fecha", calendar.getTime());
-		mv.addObject("SemanaConEventos", getSemanaConEventos(usuarioLogueado,  calendar,  new SimpleDateFormat("dd/MM/yyyy")));//sdf	
-		//mv.addObject("semanaOffset", semanaOffset);
+		mv.addObject("semanaOffset", semanaOffset);
 		mv.addObject("dFechaHoy",new Date());
 		mv.addObject("horas",getHorasDia());
 		return mv;
 	}
 	
-	
-	
-	
-	
-	
-
-
-	
-	public Calendar crearCalendario(Date fecha, Integer semanaOffset)
+	public Calendar crearCalendario(Date fecha)
 	{
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(fecha);
 		int diasAlDomingo= (calendar.get(Calendar.DAY_OF_WEEK))-1;
-		calendar.roll(Calendar.DAY_OF_YEAR, -diasAlDomingo);
+		calendar.roll(diasAlDomingo, false);
+		return calendar;
+	}
+	
+	public Calendar  crearCalendario(Integer semanaOffset)
+	{
+		Calendar calendar = Calendar.getInstance();
+		
+		int diasAlDomingo= (calendar.get(Calendar.DAY_OF_WEEK))-1;
+		//posicionar		
+		//???
+		calendar.roll(Calendar.DAY_OF_YEAR, -diasAlDomingo);//TODO: revisar
+		
 			
-		//TODO: revisar
-		if (semanaOffset!=null) {		
+		if (semanaOffset!=null) {
+			//???
+			
 			int semFut=calendar.get(Calendar.WEEK_OF_YEAR)+semanaOffset;
 			calendar.roll(Calendar.WEEK_OF_YEAR, semanaOffset);
 			if (semFut<1) {calendar.roll(Calendar.YEAR, -1);}
-		} 
+
+			//System.out.println("a�o:" +calendar.get(Calendar.YEAR)+ " - sem:" + calendar.get(Calendar.WEEK_OF_YEAR));
+		} else {
+			semanaOffset=0;
+			}
 
 		return calendar;
 	}
@@ -208,28 +172,6 @@ public class CalendarioController {
 		
 		return semana;
 	}
-	/*
-	public void posicionarEventosDia(List<EventoForm> eventos){
-		for(EventoForm evento : eventos)
-		{
-			for(EventoForm eventoComparado : eventos)
-			{
-				if (eventoComparado.getIdEvento()!=evento.getIdEvento())
-				{
-					//todo: crear setRenglon? 
 
-					//todo: pasar ##:## > ### y comparar numericamente
-					int horaInicio=Integer.parseInt(eventoComparado.getHoraInicio().replaceAll(":", ""));
-					int horaFin=Integer.parseInt(eventoComparado.getHoraFin().replaceAll(":", ""));
-					
-					//if((eventoComparado.getHoraInicio()>=evento.getHoraInicio())&&(eventoComparado.getHoraFin()<=evento.getHoraFin()))
-					//{
-//						evento.setEventosSimultaneos(evento.getEventosSimultaneos()+1);
-					//}
-					
-				}
-			}
-		}
-	}*/
 }
-
+*/

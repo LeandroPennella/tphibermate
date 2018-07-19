@@ -1,4 +1,4 @@
-
+/*
      $(function(){
     	 
     	 
@@ -26,7 +26,7 @@
     				 data:JSON.stringify(evento),
     				 contentType : "application/json;charset=UTF-8",
     				 dataType : "text",//lo que recive
-    				 /* success:function(response){alert('bien ' + response);}, */						  
+    				 // success:function(response){alert('bien ' + response);}, 					  
     				 success : function(results, status, xhr){
     					 //alert('resultado' + results + ' - status: ' + status + ' - xhr:'+xhr);
 					 	if (results){
@@ -49,3 +49,4 @@
     	 });
     	 
      })
+     */
