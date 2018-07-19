@@ -23,8 +23,13 @@
 
 
   	function seleccionarFecha(){
-  		var value = $('#calendarioenlinea').datepicker('getFormattedDate');
-  		alert(value);
+  		var value = $('#calendarioenlinea').datepicker('getDate');
+  		
+  		//var value = $('#calendarioenlinea').datepicker({dateFormat: 'yy-mm-dd' });
+  		//var anio= $('#calendarioenlinea').datepicker({dateFormat: 'yy-mm-dd' }).val();
+
+  		$(location).attr('href','mostrarCalendario.do?anio='+value.getFullYear()+'&mes='+(value.getMonth()+1)+'&dia='+value.getDate());
+  		//alert(value);
   	}
 
       function alternar() {
