@@ -150,7 +150,17 @@ public class ReunionController {
 				
 				//TODO:mensaje de error - reunion eliminada por el autor
 			}
-			return new ModelAndView("/views/index.jsp");
+
+			//return new ModelAndView("/views/index.jsp");
+			String url="redirect:/calendario/mostrarCalendario.do?";			
+			url+="anio="+reunionForm.getFecha().substring(6,10)+"&";
+			url+="mes="+reunionForm.getFecha().substring(3,5)+"&";
+			url+="dia="+reunionForm.getFecha().substring(0,2);						
+			
+			return new ModelAndView(url);
+			
+
+
 		}
 	}
 	private ReunionForm save_conError(ReunionForm reunionForm) {
@@ -282,7 +292,16 @@ public class ReunionController {
 	public ModelAndView delete(@RequestParam("idEvento")Integer idEvento){
 		Reunion reunion=reunionDAO.get(idEvento);
 		reunionDAO.delete(reunion);
-		return new ModelAndView("/views/index.jsp");
+		
+		
+		String url="redirect:/calendario/mostrarCalendario.do?";			
+		url+="anio="+new SimpleDateFormat("yyyy").format(reunion.getFecha())+"&";
+		url+="mes="+new SimpleDateFormat("MM").format(reunion.getFecha())+"&";
+		url+="dia="+new SimpleDateFormat("dd").format(reunion.getFecha());						
+		
+		
+		
+		return new ModelAndView(url);
 	}
 
 }

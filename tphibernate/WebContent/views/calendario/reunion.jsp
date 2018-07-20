@@ -235,11 +235,15 @@
 										
 										<!-- Botones ---------------------------------------------------------------------------------------->
  										<div class="form-actions">
- 											<c:if test='${reunionForm.estado=="reunionAutor" || reunionForm.estado=="reunionNoConfirmado"}'>
+ 											<c:if test='${reunionForm.estado=="reunionAutor" || reunionForm.estado=="reunionNoConfirmado"|| reunionForm.idEvento==null}'>
 												<button type="submit" class="btn btn-primary" > <fmt:message key="evento.label.guardar" /></button>
 											</c:if>
 											
-											<a class="btn" href="<c:url value='/calendario/mostrarCalendario.do'/>"  >
+											<c:set var="dia" value="${fn:substring(reunionForm.fecha, 0, 2)}"/>
+											<c:set var="mes" value="${fn:substring(reunionForm.fecha, 3, 5)}"/>
+											<c:set var="anio" value="${fn:substring(reunionForm.fecha, 6, 10)}"/>
+											
+											<a class="btn" href="<c:url value='/calendario/mostrarCalendario.do?anio=${anio}&mes=${mes}&dia=${dia}'/>"  >
 												<c:if test="${soloLectura==true}"><fmt:message key="evento.label.volver" /></c:if>
 												<c:if test="${soloLectura!=true}"><fmt:message key="evento.label.cancelar" /></c:if>												
 											</a>

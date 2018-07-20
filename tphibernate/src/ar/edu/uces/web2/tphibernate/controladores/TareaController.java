@@ -78,14 +78,30 @@ public class TareaController {
 		tarea.setAutor(usuarioLogueado);
 		
 		tareaDAO.save(tarea);
-		return new ModelAndView("/views/index.jsp");
+		//return new ModelAndView("/views/index.jsp");
+		String url="redirect:/calendario/mostrarCalendario.do?";			
+		url+="anio="+tareaForm.getFecha().substring(6,10)+"&";
+		url+="mes="+tareaForm.getFecha().substring(3,5)+"&";
+		url+="dia="+tareaForm.getFecha().substring(0,2);						
+		
+		return new ModelAndView(url);
 	}
 	
 	@RequestMapping(value = "/calendario/eliminarTarea")
 	public ModelAndView delete(@RequestParam("idEvento")Integer idEvento){
 		Tarea tarea=tareaDAO.get(idEvento);
 		tareaDAO.delete(tarea);
-		return new ModelAndView("/views/index.jsp");
+		
+		//return new ModelAndView("/views/index.jsp");
+		
+		String url="redirect:/calendario/mostrarCalendario.do?";			
+		url+="anio="+new SimpleDateFormat("yyyy").format(tarea.getFecha())+"&";
+		url+="mes="+new SimpleDateFormat("MM").format(tarea.getFecha())+"&";
+		url+="dia="+new SimpleDateFormat("dd").format(tarea.getFecha());						
+		
+		
+		
+		return new ModelAndView(url);
 	}
 	
 }

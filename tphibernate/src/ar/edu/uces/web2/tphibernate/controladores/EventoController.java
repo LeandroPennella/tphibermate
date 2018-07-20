@@ -56,6 +56,20 @@ public class EventoController {
 		return eventoDAO.mover(evento);
 		 
 	}
+	/*
+	@RequestMapping(value = "/evento/cancelar")
+	public ModelAndView cancelarEvento(@RequestParam String fecha)
+	{
+		
+		String url="redirect:/calendario/mostrarCalendario.do?";			
+		url+="anio="+fecha.substring(6,10)+"&";
+		url+="mes="+fecha.substring(3,5)+"&";
+		url+="dia="+fecha.substring(0,2);						
+		
+		return new ModelAndView(url);
+		 
+	}
+	*/
 /*
 	
 	public int diferenciaSemanas(Date fechaDestino) {

@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -66,19 +69,26 @@ public class CalendarioController {
 	}
 	*/
 	
+
+	
+	
+	
 	@RequestMapping(value = "/calendario/mostrarCalendario")
-	public ModelAndView mostrarCalendario(
-			HttpServletRequest request, 
-			HttpServletResponse response, 
-			@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado, 
-			@RequestParam(value="anio", required=false) String anio,
-			@RequestParam(value="mes", required=false) String mes,
-			@RequestParam(value="dia", required=false) String  dia,
-			@RequestParam(value="offset", required=false) Integer offset
-			) {
-		
+	public ModelAndView mostrarCalendarioFecha(
+		HttpServletRequest request, 
+		HttpServletResponse response, 
+		@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado,
+		@RequestParam(value="anio", required=false) String anio,
+		@RequestParam(value="mes", required=false) String mes,
+		@RequestParam(value="dia", required=false) String  dia,
+		@RequestParam(value="offset", required=false) Integer offset
+
+		) {
+
+
+
 		Date fecha=new Date();
-		System.out.println("anio:" +anio + " - mes: " + mes + " - dia:" + dia);
+		//System.out.println("anio:" +anio + " - mes: " + mes + " - dia:" + dia);
 		try {
 			fecha = new SimpleDateFormat("dd/MM/yyyy").parse(dia+"/"+mes+"/"+anio);
 		} catch (ParseException e) {		
@@ -86,12 +96,7 @@ public class CalendarioController {
 			//TODO: alertar fecha incorrecta
 		}
 		
-		
 		Calendar calendar = crearCalendario (fecha, offset);
-		
-
-		
-		
 		ModelAndView mv=new ModelAndView("/views/calendario/calendario.jsp"); 
 		mv.addObject("fecha", calendar.getTime());
 		mv.addObject("SemanaConEventos", getSemanaConEventos(usuarioLogueado,  calendar,  new SimpleDateFormat("dd/MM/yyyy")));//sdf	
@@ -99,10 +104,12 @@ public class CalendarioController {
 		mv.addObject("dFechaHoy",new Date());
 		mv.addObject("horas",getHorasDia());
 		return mv;
+		
+
 	}
 	
 	
-	
+
 	
 	
 	
