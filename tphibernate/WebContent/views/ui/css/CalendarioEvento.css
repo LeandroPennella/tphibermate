@@ -22,7 +22,10 @@
   position:relative;
 
 }
-.evento:hover{  text-decoration: none;}
+.evento:hover{  
+	text-decoration: none;
+	z-index:999;
+	}
   /*float: left;*/
   /*width: 50%;*/
   /*background-color: rgb(240, 147, 0);*/

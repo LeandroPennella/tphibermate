@@ -22,27 +22,35 @@
 	word-break: break-all; 
 	word-wrap: break-word;
 	flex-basis: 100%;
+	z-index:unset;
 
 }
-.evento:hover{  text-decoration: none;}
+.evento:hover{  
+	text-decoration: none;
+		z-index:2;
+		}
   /*float: left;*/
   /*width: 50%;*/
   /*background-color: rgb(240, 147, 0);*/
   /*height: 2.5vh;*/
   
-.evento a {color:black;}
+.evento a {color:black;
+z-index:unset;}
+/*.evento a:hover{z-index:999;}*/
 .evento p {
 	font-size: calc(0.2vw + 1.3vh);
 }
 	
 .draggable{
 	height:1px; 
-	z-index:1;
+	
 	border:0;
 	word-break: break-all; 
 	word-wrap: break-word;
 	flex-basis: 100%;
+	z-index:unset;
 }
+
 	
 .default-link{ 
   position:absolute; 
@@ -50,7 +58,7 @@
   height:100%;
   top:0;
   left: 0;
-  z-index: 1;
+  z-index: unset;
   /* IE7-9 */
   background-color:#ffffff;
   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";  
