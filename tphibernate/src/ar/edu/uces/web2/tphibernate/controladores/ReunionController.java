@@ -104,6 +104,7 @@ public class ReunionController {
 		
 		ReunionForm reunionForm=new ReunionForm();
 		reunionForm.setSalas(salaDAO.getAll());
+		reunionForm.setAutor(usuarioLogueado);
 		ModelAndView mv=new ModelAndView("/views/calendario/reunion.jsp","reunionForm", reunionForm);
 		return mv;
 	}
