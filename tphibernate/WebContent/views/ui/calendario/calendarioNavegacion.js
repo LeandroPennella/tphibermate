@@ -21,28 +21,32 @@
   	}
 
       function alternar() {
+    	  var anchoSideBar=11;//vw
+    	  var anchoScrollBar=17;//px
         $('#mySidenav').toggleClass('active');
         if (!$('#mySidenav').hasClass('active')) {
-          $('#mySidenav').css('width', '20vw');
-          $('#main').css('margin-left', '20vw');
+          $('#mySidenav').css('width', anchoSideBar+'vw');
+          $('#main').css('margin-left', anchoSideBar+'vw');
 
-          /*$('[class^="mitable"]').css('width', 'calc(96vw-250px)');*/
-          /*$('.mitable').css('width', 'calc(96vw-250px)');*/
-          $('.calendario-cabecera').css('width', 'calc((96vw - 20vw) + 1px)'); /*1847.4*/
-          $('.calendario-cuerpo').css('width', 'calc((96vw - 20vw) + 0.5vw + 0.5px)'); //96+0.5>scrollbar
-          $('.columnas-horas').css('width', 'calc((96vw - 20vw)/36)');
-          $('.columnas-dias').css('width', 'calc(((96vw - 20vw)/36)*5)');
-          //calc((100vw-250px)/36)
-          //calc(((100vw-250px)/36)*5)
+          //12vw sidebar
+          //1vw main padd left
+          //17px scrollbar
+          
+          $('.calendario-cabecera').css('width', 'calc((99vw - 12vw))'); //96vw-12vw(sidebar)-1vw(main-padd-left)
+          $('.calendario-cuerpo').css('width', 'calc((99vw - 12vw))'); //100vw-12vw(side)-1vw(main-padd-left)
+          $('.columnas-horas').css('width', 'calc((99vw - 12vw - 17px)/36)');// 17px(scrollbar)
+          $('.columnas-dias').css('width', 'calc(((99vw - 12vw - 17px)/36)*5)');
+
 
         } else {
           $('#mySidenav').css('width', '0px');
           $('#main').css('margin-left', '0px');
           
-          $('.calendario-cabecera').css('width', 'calc(96vw + 1px)'); /*1847.4*/
-          $('.calendario-cuerpo').css('width', 'calc(96.5vw + 0.5px)'); //96+0.5>scrollbar
-          $('.columnas-horas').css('width', 'calc(96vw/36)');
-          $('.columnas-dias').css('width', 'calc((96vw/36)*5)');
+          $('.calendario-cabecera').css('width', 'calc(99vw )'); 
+          $('.calendario-cuerpo').css('width', 'calc(99vw)'); //1vw(main) 
+          $('.columnas-horas').css('width', 'calc((99vw - 17px) / 36)'); // 17px(scrollbar)
+          $('.columnas-dias').css('width', 'calc(((99vw - 17px) / 36)*5)');
+          
           //calc((100vw-8px)/36)
           //calc(((100vw - 8px)/36)*5)";
         }
