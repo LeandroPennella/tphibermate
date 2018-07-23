@@ -17,12 +17,34 @@
 		    orientation: "bottom auto",
 		    todayHighlight: true,
 		    'autoclose': true
-		});
+		}).on('changeDate', procesarFecha);
+		
 		$("#fecha").addClass( "date start" );
 		$('#horaInicio').timepicker({ 'timeFormat': 'H:i' });
 		$("#horaInicio").addClass( "time ui-timepicker-input" );
 		$('#horaFin').timepicker({ 'timeFormat': 'H:i' });
 		$("#horaFin").addClass( "time ui-timepicker-input" );
-
+	  	function procesarFecha(){
+	  		var fecha = $('#fecha').datepicker('getDate');
+	  		var hoy=new Date()
+	  		var sFecha=formatearFecha(fecha);
+	  		var sHoy=formatearFecha(hoy);
+	  		
+	  		//var esmayor=value>(new Date());
+	  		
+	  		//var esigual=(value.getTime()==hoy.getTime());
+	  		alert(sFecha);
+	  		alert(sHoy);
+	  	};
+	  	
+	  	/*
+	  	function formatearFecha(fecha){
+	  		return 
+	  			fecha.getFullYear() + '/' +
+	  	    	((fecha.getMonth()+1)<10 ? '0' : '') + (fecha.getMonth()+1) + '/' +
+	  	    	(fecha.getDate()<10 ? '0' : '') + fecha.getDate();
+	  	};
+	  	*/
+	  	
 	});
 	</script>

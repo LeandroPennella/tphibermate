@@ -64,6 +64,8 @@ public class TareaController {
 		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
 		Date fecha=dateFormatter.parse(tareaForm.getFecha().toString(), new ParsePosition(0));	
 
+
+		
 		//tarea.setFecha(fecha);
 		Tarea tarea=new Tarea();
 		if (!tareaForm.getIdEvento().isEmpty())
