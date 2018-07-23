@@ -51,7 +51,7 @@
 										    <div class="controls form-inline">
 												
 												
-												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${lfecha}"/>
+												<form:input id="fecha" path="fecha" cssClass="input-small" placeholder="${lfecha}" autocomplete="off"/>
 												
 												
 									            <fmt:message key='evento.label.horaInicio' var="horaInicio" />

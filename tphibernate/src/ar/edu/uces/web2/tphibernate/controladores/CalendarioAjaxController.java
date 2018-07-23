@@ -1,4 +1,4 @@
-
+/*
 
 package ar.edu.uces.web2.tphibernate.controladores;
 
@@ -52,7 +52,7 @@ public class CalendarioAjaxController {
 		//int diasAlDomingo=diaSemanaActual-1;
 		
 		//posicionar calendario en Domingo
-		//posicionarCalendario (calendar, /*diasAlDomingo,*/ semanaOffset);
+		//posicionarCalendario (calendar, /-diasAlDomingo,-/ semanaOffset);
 		Calendar calendar = crearCalendario (semanaOffset);
 
 		
@@ -76,7 +76,7 @@ public class CalendarioAjaxController {
 		
 
 		
-		mv.addObject("SemanaConEventos", getSemanaConEventos(usuarioLogueado,  calendar,  new SimpleDateFormat("dd/MM/yyyy")/*sdf*/));
+		mv.addObject("SemanaConEventos", getSemanaConEventos(usuarioLogueado,  calendar,  new SimpleDateFormat("dd/MM/yyyy")/-sdf-/));
 		mv.addObject("semanaOffset", semanaOffset);
 		//mv.addObject("sFechaHoy",sFechaHoy);
 		mv.addObject("dFechaHoy",new Date());
@@ -84,7 +84,7 @@ public class CalendarioAjaxController {
 		return mv;
 	}
 	
-	public Calendar /*void*/ crearCalendario(/*Calendar calendar, int diasAlDomingo, */Integer semanaOffset)
+	public Calendar //--void--// crearCalendario(//--Calendar calendar, int diasAlDomingo, --//Integer semanaOffset)
 	{
 		Calendar calendar = Calendar.getInstance();
 
@@ -172,7 +172,7 @@ public class CalendarioAjaxController {
 		return horas;
 	}
 
-	/*
+	//--
 	public Map<String,List<Evento>> getSemanaString(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf)
 	{
 		Map<String,List<Evento>> semana  =new TreeMap<String,List<Evento>>();
@@ -192,7 +192,7 @@ public class CalendarioAjaxController {
 		}
 		return semana;
 	}
-	*/
+	--//
 
 	public Map<Date,List<Evento>> getSemanaConEventos(Usuario usuarioLogueado, Calendar calendar, SimpleDateFormat sdf){
 
@@ -220,4 +220,4 @@ public class CalendarioAjaxController {
 	
 	
 }
-
+*/

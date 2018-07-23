@@ -15,24 +15,22 @@
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate var="dia" value="${now}" pattern="d" />
 <% String lang = (new RequestContext(request)).getLocale().getLanguage(); %>
-
-<script type="text/javascript">
-	var localeLanguage='<%=lang%>';
-</script> 
 <!--/master -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+	<!--master -->
+	<script type="text/javascript">
+		var localeLanguage='<%=lang%>';/*<fmt:message key="lang"/>*/
+	</script> 
+	<!--/master -->
 	<%-- <jsp:include page="master_header.jsp"></jsp:include>--%>
 	
-	<!--  old  --<link href='<c:url value="/views/ui/css/Calendario.css"/>' rel="stylesheet">-->
-	
 
-	<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
-	
 
-	<!--navegador-->
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/jquery-ui.css"/>'>
@@ -46,16 +44,15 @@
 	<script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap-datepicker.min.js"/>'></script>
 	<script type="text/javascript" src='<c:url value="/views/ui/js/bootstrap-datepicker.es.min.js"/>'></script>
 	
-	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/css/calendarioNavegacion.css"/>'>
+	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/calendario/calendarioNavegacion.css"/>'>
 	<script type="text/javascript" src='<c:url value="/views/ui/calendario/calendarioNavegacion.js"/>'></script>
-
 	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/calendario/calendarioGrilla.css"/>'>
 	<link rel="stylesheet" type="text/css" href='<c:url value="/views/ui/calendario/calendarioEvento.css"/>'>
     <script type="text/javascript" src='<c:url value="/views/ui/calendario/calendarioDragnDrop.js"/>'></script>   	
 	 
 	
 
-	<!--navegador-->
+
 
 	<title><fmt:message key='calendario.titulo'/></title>
 </head>
@@ -168,23 +165,26 @@
 			</c:if>
 		</c:forEach>
 		
+		<fmt:message key="calendario.etiquetas.de" var="deInt" />
+		
 		<c:if test="${not empty mesSegundo}">
 			<c:if test="${empty anoSegundo}">
-				<c:set var="mesMostrado"  value="${mesPrimero} - ${mesSegundo} de ${anoPrimero} "></c:set>
+				<c:set var="mesMostrado"  value="${mesPrimero} - ${mesSegundo} ${deInt} ${anoPrimero} "></c:set>
 			</c:if>
 			<c:if test="${not empty anoSegundo}">
-				<c:set var="mesMostrado"  value="${mesPrimero} de ${anoPrimero} - ${mesSegundo} de ${anoSegundo}"></c:set>
+				<c:set var="mesMostrado"  value="${mesPrimero} ${deInt} ${anoPrimero} - ${mesSegundo} ${deInt} ${anoSegundo}"></c:set>
 			</c:if>
 		</c:if>
 		<c:if test="${empty mesSegundo}">
-			<c:set var="mesMostrado"  value="${mesPrimero} de ${anoPrimero} "></c:set>
+			<c:set var="mesMostrado"  value="${mesPrimero} ${deInt} ${anoPrimero} "></c:set>
 		</c:if>
 				
 		<c:out value=" ${mesMostrado}" />
 
 		<!-- / Mes mostrado -->
 
- 
+	
+ 	
 	</div>
 	
 

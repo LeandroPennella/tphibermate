@@ -1,22 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-
-
-<%--
-<script src="<c:url value="/views/ui/js/jquery-ui-1.11.4.js" />"></script>
- --%>
-
-
- <script type="text/javascript" src="../views/ui/js/jquery.i18n.properties.js"></script>
+<script type="text/javascript" src="../views/ui/js/jquery.i18n.properties.js"></script>
  
 <script type="text/javascript">
 
 var listaInvitaciones = [];
-
-
-		
-
 
 $(document).on('click', '.borrar', function (event) {
     event.preventDefault();
@@ -79,7 +67,7 @@ function getLabel(tag) {
 function filtrarListaAutocompletar(data)
 {
 	//exluye los usuarios ya invitados al evento y al usuario logueado
-			console.log("recibidos: "+data.length);
+	//console.log("recibidos: "+data.length);
 
 	var estaInvitado;
 	var fueRecienInvitado;

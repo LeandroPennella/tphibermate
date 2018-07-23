@@ -75,7 +75,7 @@
 										    <div class="controls form-inline">
 
 												<!--fecha-->
-												<form:input id="fecha" path="fecha" cssClass="input-small "  placeholder="${fecha}" disabled="${soloLectura}"/>
+												<form:input id="fecha" path="fecha" cssClass="input-small "  placeholder="${fecha}" disabled="${soloLectura}" autocomplete="off"/>
 												
 												<!--horainicio-->
 									            <fmt:message key='evento.label.horaInicio' var="horaInicio" />
@@ -128,43 +128,9 @@
 											<label class="control-label" for="invitados"><fmt:message key="reunion.label.participantes" /></label>
 											<div class="controls">
 											
-											<%-- tira error el path 
-												<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
-												<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
-												
-												--%>
-												 <!-- no tiene path porque no se persiste -->
+
 												<input id="usuariosAutocomplete" class="input-xxlage" placeholder="${usuariosainvitar}" <%--  disabled="${soloLectura}" --%> />
-												
-												
-												<%-- 
-												<div class="row">
-												--%>
-												<%-- 
-													<form:input id="usuariosAutocomplete" path="usuariosAutocomplete" cssClass="input-xxlarge "  placeholder="${usuariosainvitar}" disabled="${soloLectura}"/>
-													<div><form:errors path="usuariosAutocomplete" cssStyle="color: red" /></div>
-												 --%>
-												 												
-												 <%-- reemplazado por autocompletar y listaInvitaciones
-													<form:select path="tokensInvitadosMasConfirmacion"  > 
-														<option value="0">deseleccionar</option>
-														<c:forEach items="${reunionForm.getMapaUsuariosMasConfirmacion()}" var="usuarioMasConfirmacion" >
-													        <c:choose>
-																<c:when test="${usuarioMasConfirmacion.value!=-1}">
-																	<option value="${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}"   selected="true">${usuarioMasConfirmacion.key.nombre}</option>
-																</c:when>
-																<c:otherwise>
-																	<option value="${usuarioMasConfirmacion.key.id}|${usuarioMasConfirmacion.value}">${usuarioMasConfirmacion.key.nombre}</option>
-																</c:otherwise>
-															</c:choose>
-														</c:forEach>
-													</form:select>
-													 --%>
-													<%-- 											
-												</div><!-- /row -->
-												
-												<div><form:errors path="tokensInvitadosMasConfirmacion" /></div>
-												--%>
+
 											</div><!-- controls -->
 										</div><!-- control-group -->
 										</c:if>
@@ -182,10 +148,7 @@
 														 <c:if test='${reunionForm.estado=="reunionNoConfirmado"}'><!-- si no soy el autor y no caonfirme ni cancele-->
 															<form:radiobutton path="idEstado" value="1" /><fmt:message key="reunion.estado.confirmado" /> 
 															<form:radiobutton path="idEstado" value="2" /><fmt:message key="reunion.estado.cancelado" />
-															<%-- 
-															ca: <c:out value='${reunionForm.estado=="reunionCancelada"}'></c:out><br/>
-															co: <c:out value='${reunionForm.estado=="reunionConfirmada"}'></c:out><br/>
-															--%>
+
 														
 														</c:if>
 														<c:if test='${reunionForm.estado=="reunionConfirmada"}'><fmt:message key="reunion.estado.confirmado" /> </c:if>

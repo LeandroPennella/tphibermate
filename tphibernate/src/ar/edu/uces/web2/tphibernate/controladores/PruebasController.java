@@ -1,3 +1,4 @@
+/*
 package ar.edu.uces.web2.tphibernate.controladores;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,3 +10,4 @@ public class PruebasController {
 			return new ModelAndView("/views/pruebas/jsInternacionalizacion.jsp");		
 	}
 }
+*/

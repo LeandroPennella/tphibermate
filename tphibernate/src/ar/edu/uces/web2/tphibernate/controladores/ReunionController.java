@@ -144,7 +144,7 @@ public class ReunionController {
 		this.eventoFormValidator.validate(reunionForm, result);
 		this.reunionValidator.validate(reunionForm, result);
 		if (result.hasErrors()) {		//tiene errores
-			return new ModelAndView("/views/calendario/reunion.jsp","reunionForm", save_conError(reunionForm));
+			return new ModelAndView("/views/calendario/reunion.jsp","reunionForm", save_conError(reunionForm, usuarioLogueado));
 		} else {																							//no tiene errores
 			if(save_sinError(reunionForm, usuarioLogueado)==false){
 				//TODO: manejarlo con excepciones?
@@ -164,7 +164,7 @@ public class ReunionController {
 
 		}
 	}
-	private ReunionForm save_conError(ReunionForm reunionForm) {
+	private ReunionForm save_conError(ReunionForm reunionForm, Usuario usuarioLogueado) {
 		//TODO: Agregarle salas y usuarios
 
 		if (!reunionForm.getIdEvento().isEmpty())  { //en modificacion
@@ -189,7 +189,7 @@ public class ReunionController {
 			}
 		}
 		reunionForm.setInvitaciones(invitaciones);
-		
+		reunionForm.setAutor(usuarioLogueado);
 		return reunionForm;
 
 	}
