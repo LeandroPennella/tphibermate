@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<!--  https://stackoverflow.com/questions/36770272/jquery-timepicker-how-to-dynamically-set-mintime-of-an-input-field-->	
+
+<html>
+<head>
+	<script type="text/javascript" src="/tphibernate/views/ui/js/jquery-1.12.4.js"></script>
+	<link href="/tphibernate/views/ui/css/jquery.timepicker.css" rel="stylesheet">
+	<script type="text/javascript" src="/tphibernate/views/ui/js/jquery.timepicker.min.js"></script>
+	<script type="text/javascript">
+	$(function() {
+		$('#horaInicio').timepicker({ 
+			'timeFormat': 'H:i' ,
+			'forceRoundTime': true,
+			'step': '30',
+	        'scrollDefault': '08:00',
+	        'defaultTime':'09:00'
+			/*,
+			'change': function(){
+	            //$("#horaFin").val('sasa');
+	            alert('sa');
+			}*/
+			});
+		$("#horaInicio").on('change', function(){
+			
+			var minTime; //TODO: agregar media hora
+	    	
+			var time = $(this).val();
+	    	var getTime = time.split(":"); //split time by colon
+	    	var hours = parseInt(getTime[0])+2; //add two hours
+	    	//set new time
+	    	var newTime = hours+":"+getTime[1];
+	    	
+	    	
+			$("#horaFin").timepicker('option',{
+		      	minTime: minTime
+			});
+			
+			$('#horaFin').val(newTime);
+		});
+		
+		$('#horaFin').timepicker({ 
+			'timeFormat': 'H:i',
+			'forceRoundTime': true,
+			'step': '30',
+	        'scrollDefault': '08:00',
+	        'defaultTime':'09:00'
+			});
+		
+	});
+	</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<input 
+		id="horaInicio" 
+		name="horaInicio" 
+		class="input-small" 
+		placeholder="Hora de inicio" 
+		type="text" 
+		value="" 
+		autocomplete="off">
+
+	<input 
+		id="horaFin" 
+		name="horaFin" 
+		class="input-small" 
+		placeholder="Hora de fin" 
+		type="text" 
+		value="" 
+		autocomplete="off">
+</body>
+</html>

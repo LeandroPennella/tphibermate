@@ -30,21 +30,31 @@
 	  		var sFecha=formatearFecha(fecha);
 	  		var sHoy=formatearFecha(hoy);
 	  		
-	  		//var esmayor=value>(new Date());
+	  		if(fecha<(new Date())){
+	  			alert('fecha pasada');
+  			} else {
+  				if (sFecha==sHoy){
+  					
+  				} else {
+  					$('horaInicio').text='08:00';
+  				}
+  					
+  			}
+
 	  		
-	  		//var esigual=(value.getTime()==hoy.getTime());
-	  		alert(sFecha);
-	  		alert(sHoy);
 	  	};
 	  	
-	  	/*
+	  	
 	  	function formatearFecha(fecha){
-	  		return 
-	  			fecha.getFullYear() + '/' +
+	  		var fechaR=fecha.getFullYear() + '/' +
 	  	    	((fecha.getMonth()+1)<10 ? '0' : '') + (fecha.getMonth()+1) + '/' +
 	  	    	(fecha.getDate()<10 ? '0' : '') + fecha.getDate();
+	  		
+			
+	  		return  fechaR;
+	  			
 	  	};
-	  	*/
+	  	
 	  	
 	});
 	</script>
