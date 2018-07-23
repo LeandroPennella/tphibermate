@@ -45,29 +45,7 @@ public class CalendarioController {
 	public void setEventoDAO(EventoDAO eventoDAO) {
 		this.eventoDAO = eventoDAO;
 	}
-	
-/*
-	@RequestMapping(value = "/calendario/mostrarCalendario")
-	public ModelAndView mostrarCalendario(
-			HttpServletRequest request, 
-			HttpServletResponse response,
-			@ModelAttribute("usuarioLogueado") Usuario usuarioLogueado
-			) {
-		
-		Date fecha=new Date();
-	
-		Calendar calendar = crearCalendario (fecha);
-		
-		ModelAndView mv=new ModelAndView("/views/calendario/calendario.jsp"); 
-		
-		mv.addObject("SemanaConEventos", getSemanaConEventos(usuarioLogueado,  calendar,  new SimpleDateFormat("dd/MM/yyyy")));//sdf
-		mv.addObject("fecha", calendar.getTime());
-		//mv.addObject("semanaOffset", semanaOffset);
-		mv.addObject("dFechaHoy",new Date());
-		mv.addObject("horas",getHorasDia());
-		return mv;
-	}
-	*/
+
 	
 
 	
@@ -207,7 +185,6 @@ public class CalendarioController {
 				if (evento instanceof Tarea) {eventosFormDia.add(new TareaForm((Tarea)evento));}
 			}
 	
-			//String sFecha = sdf.format(calendar.getTime());
 			semana.put(calendar.getTime(), eventosFormDia);
 			calendar.add(Calendar.DATE, 1);
 		}

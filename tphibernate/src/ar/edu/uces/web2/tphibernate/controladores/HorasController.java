@@ -16,7 +16,7 @@ import ar.edu.uces.web2.tphibernate.modelo.base.Usuario;
 
 @Controller
 public class HorasController {
-	
+	//TODO: CalendarioController?
 	@RequestMapping(value = "/horas/mostrar")
 	public ModelAndView mostrar(HttpServletRequest request, HttpServletResponse response) {
 
