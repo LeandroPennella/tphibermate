@@ -55,14 +55,40 @@
 		
 		function cambiarHoraFin(horaInicio){
 			
+	    	
+	    	var horaMinima=sumarMediaHoraHora(horaInicio);
+	    	var horaPropuesta = sumarHora(horaInicio);
+			if(horaPropuesta =="24:00"){horaPropuesta ="23:30"}
+
+	    	// establecer valores
+	    	
+	    	$("#horaFin").timepicker('setTime',horaPropuesta);
+			$("#horaFin").timepicker('option',{
+							'minTime': horaMinima,
+							'maxTime':'23:30'});
+			$("select").width(90);
+		}
+		
+		
+		
+		
+		function sumarHora(horaInicio){
+			var arrayHoraInicio = horaInicio.split(":"); //split time by colon
+
 			
-			//TODO: reutilizar agregarHora, agregarMediaHora
-			
-			//horaInicio
+    		var h_HoraPropuesta=parseInt(arrayHoraInicio[0]);
+	    	var m_HoraPropuesta=arrayHoraInicio[1];    		
+	    		
+	    	var h_HoraPropuesta = h_HoraPropuesta+1; //agrega una hora
+	    	return  h_HoraPropuesta+":"+m_HoraPropuesta; 
+		}
+		
+		
+		
+		
+		function sumarMediaHoraHora(horaInicio){
 			
 			var arrayHoraInicio = horaInicio.split(":"); //split time by colon
-			
-	    	//horaMinima=horaInicio + 1/2
 	    	
 	    	var h_HoraMinima=parseInt(arrayHoraInicio[0]);
 	    	var m_HoraMinima=arrayHoraInicio[1];
@@ -76,27 +102,9 @@
     			m_HoraMinima="30";
     		}
 			
-	    	var horaMinima= h_HoraMinima+":"+m_HoraMinima;
-	    	
-	    		
-			//hora propuesta	    	
-	    	
-    		var h_HoraPropuesta=parseInt(arrayHoraInicio[0]);
-	    	var m_HoraPropuesta=arrayHoraInicio[1];    		
-	    		
-	    	var h_HoraPropuesta = h_HoraPropuesta+1; //agrega una hora
-	    	var horaPropuesta = h_HoraPropuesta+":"+m_HoraPropuesta; //newTime: 1 hr mas
-			if(horaPropuesta =="24:00"){horaPropuesta ="23:30"}
-
-
-	    	// establecer valores
-	    	
-	    	$("#horaFin").timepicker('setTime',horaPropuesta);
-			$("#horaFin").timepicker('option',{
-							'minTime': horaMinima,
-							'maxTime':'23:30'});
-			$("select").width(90);
+	    	return  h_HoraMinima+":"+m_HoraMinima;
 		}
+		
 		
 		
 		
@@ -107,16 +115,23 @@
 	  		var sHoy=formatearFecha(hoy);
 	  		
 	  		if (sFecha==sHoy){
-	  			var horaActualRedondeada='10:00';  //TODO:establecer hora actual
-	  			//$("#horaInicio").val(horaActualRedondeada);
-	  			$("#horaInicio").timepicker('setTime',horaActualRedondeada);//TODO: si no esta definida
+	  			var horaActualRedondeada='08:00';  //TODO:establecer hora actual
+	  			//TODO: mejorar si no esta definida
+	  			if($("#horaInicio").val()=="00:00"){//si no esta definida
+	  				$("#horaInicio").timepicker('setTime',horaActualRedondeada);
+	  				$("#horaFin").timepicker('setTime',sumarHora(horaActualRedondeada));
+	  			}
 	  		} else {
 	  			if(fecha<hoy){
 	  				//TODO: opcion revertir
 		  			alert('Atenion. Esta ingresando una fecha pasada');
 		  			
   				} else {
-  					$("#horaInicio").timepicker('setTime',horaActualRedondeada);//TODO: si no esta definida
+  				//TODO: mejorar si no esta definida
+  					if($("#horaInicio").val()=="00:00"){//si no esta definida
+  						$("#horaInicio").timepicker('setTime','08:00');
+  						$("#horaFin").timepicker('setTime','09:00');
+  					}
   				}
   					
   			}
