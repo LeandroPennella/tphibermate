@@ -203,14 +203,17 @@
  										<div class="form-actions">
  											<c:if test='${reunionForm.estado=="reunionAutor" || reunionForm.estado=="reunionNoConfirmado"|| reunionForm.idEvento==null}'>
 												<button type="submit" class="btn btn-primary" > <fmt:message key="evento.label.guardar" /></button>
+												<a class="btn" href="#" onclick="evaluarCancelar('${reunionForm.fecha}');">
+													<fmt:message key="evento.label.cancelar" />
+												</a>
 											</c:if>
-											
 
-											
-											<a class="btn" href="#" onclick="evaluarCancelar('${reunionForm.fecha}');">
-												<c:if test="${soloLectura==true}"><fmt:message key="evento.label.volver" /></c:if>
-												<c:if test="${soloLectura!=true}"><fmt:message key="evento.label.cancelar" /></c:if>												
-											</a>
+											<c:if test='${soloLectura==true && reunionForm.estado!="reunionNoConfirmado"}'>
+												<a class="btn" href="#" onclick="cancelar('${reunionForm.fecha}');">
+													<fmt:message key="evento.label.volver" />
+												</a>
+											</c:if>
+
 											
 											<c:if test='${reunionForm.idEvento!=null && soloLectura!=true}'>
 												<a class="btn btn-cancel" href="<c:url value='/calendario/eliminarReunion.do?idEvento=${reunionForm.idEvento}' />"><fmt:message key="evento.label.eliminar" /></a>
