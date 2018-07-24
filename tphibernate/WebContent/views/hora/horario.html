@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 
-<!--  https://stackoverflow.com/questions/36770272/jquery-timepicker-how-to-dynamically-set-mintime-of-an-input-field-->	
+<!--
+https://github.com/jonthornton/jquery-timepicker#timepicker-plugin-for-jquery  
+https://stackoverflow.com/questions/36770272/jquery-timepicker-how-to-dynamically-set-mintime-of-an-input-field
+-->	
 
 <html>
 <head>
@@ -10,41 +13,62 @@
 	<script type="text/javascript">
 	$(function() {
 		$('#horaInicio').timepicker({ 
-			'timeFormat': 'H:i' ,
-			'forceRoundTime': true,
+			
+			'timeFormat': 'H:i' ,		
 			'step': '30',
-	        'scrollDefault': '08:00',
-	        'defaultTime':'09:00'
-			/*,
-			'change': function(){
-	            //$("#horaFin").val('sasa');
-	            alert('sa');
-			}*/
+			'useSelect': true,
+			'maxTime':'23:00',
+        	'scrollDefault': '08:00'
 			});
+		
 		$("#horaInicio").on('change', function(){
 			
-			var minTime; //TODO: agregar media hora
-	    	
-			var time = $(this).val();
-	    	var getTime = time.split(":"); //split time by colon
-	    	var hours = parseInt(getTime[0])+2; //add two hours
-	    	//set new time
-	    	var newTime = hours+":"+getTime[1];
-	    	
-	    	
-			$("#horaFin").timepicker('option',{
-		      	minTime: minTime
-			});
 			
-			$('#horaFin').val(newTime);
-		});
+			
+			//horaInicio
+			var horaInicio= $(this).val();
+			var arrayHoraInicio = horaInicio.split(":"); //split time by colon
+			
+	    	//horaMinima=horaInicio + 1/2
+	    	
+	    	var h_HoraMinima=parseInt(arrayHoraInicio[0]);
+	    	var m_HoraMinima=arrayHoraInicio[1];
+	    	
+			
+	    	if(m_HoraMinima=="30"){
+	    		m_HoraMinima="00";
+	    		//TODO: validar limite
+	    		h_HoraMinima+=1;
+    		} else {
+    			m_HoraMinima="30";
+    		}
+			
+	    	var horaMinima= h_HoraMinima+":"+m_HoraMinima;
+	    	
+	    		
+			//hora propuesta	    	
+	    	
+    		var h_HoraPropuesta=parseInt(arrayHoraInicio[0]);
+	    	var m_HoraPropuesta=arrayHoraInicio[1];    		
+	    		
+	    	var h_HoraPropuesta = h_HoraPropuesta+1; //agrega una hora
+	    	var horaPropuesta = h_HoraPropuesta+":"+m_HoraPropuesta; //newTime: 1 hr mas
+			if(horaPropuesta =="24:00"){horaPropuesta ="23:30"}
+	    	//alert(horaPropuesta);
+	    	$("#horaFin").timepicker('setTime',horaPropuesta);
+			$("#horaFin").timepicker('option',{
+							'minTime': horaMinima,
+							'maxTime':'23:30'});
+			});
 		
 		$('#horaFin').timepicker({ 
 			'timeFormat': 'H:i',
 			'forceRoundTime': true,
 			'step': '30',
+			'useSelect': true
+			/*,
 	        'scrollDefault': '08:00',
-	        'defaultTime':'09:00'
+	        'defaultTime':'09:00'*/
 			});
 		
 	});
