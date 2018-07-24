@@ -10,6 +10,10 @@
 <head>
 	<jsp:include page="master_header.jsp"></jsp:include>
 	<jsp:include page="master_time.jsp"></jsp:include>
+	
+		<script type="text/javascript" src="<c:url value="/views/ui/calendario/eventoCancelar.js" />"></script>
+	
+	
 	<title><fmt:message key="tarea.tituloAgregar"/></title>
 </head>
 <body>
@@ -95,11 +99,11 @@
 																				
 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary"><fmt:message key="evento.label.guardar" /></button>
-											<c:set var="dia" value="${fn:substring(tarea.fecha, 0, 2)}"/>
-											<c:set var="mes" value="${fn:substring(tarea.fecha, 3, 5)}"/>
-											<c:set var="anio" value="${fn:substring(tarea.fecha, 6, 10)}"/>
+
 											
-											<a class="btn" href="<c:url value='/calendario/mostrarCalendario.do?anio=${anio}&mes=${mes}&dia=${dia}'/>"><fmt:message key="evento.label.cancelar" /></a>
+											<a class="btn" href="#" onclick="evaluarCancelar('${tarea.fecha}');">
+												<fmt:message key="evento.label.cancelar" />
+											</a>
 											
 											<c:if test='${tarea.idEvento!=null}'>
 												<a class="btn btn-cancel" href="<c:url value='/calendario/eliminarTarea.do?idEvento=${tarea.idEvento}' />"><fmt:message key="evento.label.eliminar" /></a>

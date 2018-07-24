@@ -205,11 +205,9 @@
 												<button type="submit" class="btn btn-primary" > <fmt:message key="evento.label.guardar" /></button>
 											</c:if>
 											
-											<c:set var="dia" value="${fn:substring(reunionForm.fecha, 0, 2)}"/>
-											<c:set var="mes" value="${fn:substring(reunionForm.fecha, 3, 5)}"/>
-											<c:set var="anio" value="${fn:substring(reunionForm.fecha, 6, 10)}"/>
-											<a class="btn" onClick="javascript:evaluarCancelar();">c</a>
-											<a class="btn" href="<c:url value='/calendario/mostrarCalendario.do?anio=${anio}&mes=${mes}&dia=${dia}'/>"  >
+
+											
+											<a class="btn" href="#" onclick="evaluarCancelar('${reunionForm.fecha}');">
 												<c:if test="${soloLectura==true}"><fmt:message key="evento.label.volver" /></c:if>
 												<c:if test="${soloLectura!=true}"><fmt:message key="evento.label.cancelar" /></c:if>												
 											</a>
@@ -218,7 +216,9 @@
 												<a class="btn btn-cancel" href="<c:url value='/calendario/eliminarReunion.do?idEvento=${reunionForm.idEvento}' />"><fmt:message key="evento.label.eliminar" /></a>
 											</c:if>
 										</div>
+										
 									</fieldset>
+									
 								</form:form>
 							</div>
 						</div>
