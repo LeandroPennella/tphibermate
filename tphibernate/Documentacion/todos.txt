@@ -1,7 +1,0 @@
-reunion > invitado > cancelar > 
-* si establecio presencncia -> volver, no alerta
-* si no establecio > cancelar, alerta
-
-evento > editar > menu > sacar responsible
-
- 
