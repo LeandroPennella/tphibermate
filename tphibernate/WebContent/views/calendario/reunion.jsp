@@ -23,6 +23,9 @@
   
 	<jsp:include page="reunion_autocomplete.jsp"></jsp:include>
 	<jsp:include page="master_time.jsp"></jsp:include>
+	
+	<script type="text/javascript" src="<c:url value="/views/ui/calendario/eventoCancelar.js" />"></script>
+	
 	<title><fmt:message key="reunion.tituloAgregar"/></title>
 	<!--  https://jqueryui.com/autocomplete/#remote-jsonp-->  
 </head>
@@ -205,7 +208,7 @@
 											<c:set var="dia" value="${fn:substring(reunionForm.fecha, 0, 2)}"/>
 											<c:set var="mes" value="${fn:substring(reunionForm.fecha, 3, 5)}"/>
 											<c:set var="anio" value="${fn:substring(reunionForm.fecha, 6, 10)}"/>
-											
+											<a class="btn" onClick="javascript:evaluarCancelar();">c</a>
 											<a class="btn" href="<c:url value='/calendario/mostrarCalendario.do?anio=${anio}&mes=${mes}&dia=${dia}'/>"  >
 												<c:if test="${soloLectura==true}"><fmt:message key="evento.label.volver" /></c:if>
 												<c:if test="${soloLectura!=true}"><fmt:message key="evento.label.cancelar" /></c:if>												
