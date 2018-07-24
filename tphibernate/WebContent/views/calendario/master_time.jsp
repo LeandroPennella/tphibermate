@@ -52,6 +52,7 @@
 		*/
 		
 		$("select").width(90);
+		$("select").prop('disabled',$("#fecha").prop('disabled'));
 		
 		function cambiarHoraFin(horaInicio){
 			
@@ -152,4 +153,10 @@
 	  	
 	  	
 	});
+	/*
+	$(document).ready(function(){
+		//alert($("#fecha").prop('disabled'));
+		alert($("#fecha").val());
+		})
+		*/
 	</script>
