@@ -55,6 +55,9 @@
 		
 		function cambiarHoraFin(horaInicio){
 			
+			
+			//TODO: reutilizar agregarHora, agregarMediaHora
+			
 			//horaInicio
 			
 			var arrayHoraInicio = horaInicio.split(":"); //split time by colon
@@ -103,13 +106,17 @@
 	  		var sFecha=formatearFecha(fecha);
 	  		var sHoy=formatearFecha(hoy);
 	  		
-	  		if(fecha<(new Date())){
-	  			alert('fecha pasada');
-  			} else {
-  				if (sFecha==sHoy){
-  					
+	  		if (sFecha==sHoy){
+	  			var horaActualRedondeada='10:00';  //TODO:establecer hora actual
+	  			//$("#horaInicio").val(horaActualRedondeada);
+	  			$("#horaInicio").timepicker('setTime',horaActualRedondeada);//TODO: si no esta definida
+	  		} else {
+	  			if(fecha<hoy){
+	  				//TODO: opcion revertir
+		  			alert('Atenion. Esta ingresando una fecha pasada');
+		  			
   				} else {
-  					$('horaInicio').text='08:00';
+  					$("#horaInicio").timepicker('setTime',horaActualRedondeada);//TODO: si no esta definida
   				}
   					
   			}
