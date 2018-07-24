@@ -1,4 +1,5 @@
-package ar.edu.uces.web2.tphibernate.controladores;
+
+/*package ar.edu.uces.web2.tphibernate.controladores;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,3 +78,4 @@ public class HorasController {
 	}
 	
 }
+*/

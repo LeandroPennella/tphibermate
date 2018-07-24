@@ -62,7 +62,7 @@
 												
 												<fmt:message key='evento.label.horaFin' var="horaFin" />
 												<label for="horaFin"><fmt:message key="evento.label.horaFin" /></label>
-												<form:input id="horaFin" path="horaFin" cssClass="input-small "  placeholder="${horaInicio}"/>
+												<form:input id="horaFin" path="horaFin" cssClass="input-small "  placeholder="${horaInicio}" />
 											  	<div >
 											  	<div><form:errors path="fecha" cssStyle="color: red" /></div>
 											  	<div><form:errors path="horaInicio" cssStyle="color: red" /></div>
