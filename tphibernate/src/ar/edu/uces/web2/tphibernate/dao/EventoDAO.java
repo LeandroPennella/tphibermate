@@ -57,23 +57,40 @@ public class EventoDAO {
 		
 		Session session = sessionFactory.getCurrentSession();
 
-		// para mantener la duracion
+		
 		mantenerDuracion((Evento)session.get(Evento.class, evento.getId()), evento);
 		
-		String sQuery=
-		"update from " +Evento.class.getName() + " as e " +
-			"set horaInicio='"+evento.getHoraInicio()+"', "+
-				"horaFin='"+evento.getHoraFin()+"' "+
-			"where e.id="+evento.getId();
-		Query q=session.createQuery(sQuery);
-		q.executeUpdate();
-		/*
-		Evento eventoBuffer=(Evento)session.get(Evento.class, evento.getId());
-		eventoBuffer.setHoraInicio(evento.getHoraInicio());
-		session.saveOrUpdate(eventoBuffer);*/
-		return evento.getHoraFin();
+		
+		if (!desbordeHorario(evento))
+		{
+			String sQuery=
+			"update from " +Evento.class.getName() + " as e " +
+				"set horaInicio='"+evento.getHoraInicio()+"', "+
+					"horaFin='"+evento.getHoraFin()+"' "+
+				"where e.id="+evento.getId();
+			Query q=session.createQuery(sQuery);
+			q.executeUpdate();
+			/*
+			Evento eventoBuffer=(Evento)session.get(Evento.class, evento.getId());
+			eventoBuffer.setHoraInicio(evento.getHoraInicio());
+			session.saveOrUpdate(eventoBuffer);*/
+			return evento.getHoraFin();
+		}
+		else
+		{return null;}
 	}
 	
+	private boolean desbordeHorario(Evento evento) {
+		String[] hI = evento.getHoraInicio().split(":");
+		String[] hF = evento.getHoraFin().split(":");
+	
+		int horaInicioenMinutos = (Integer.parseInt(hI[0])*60 + Integer.parseInt(hI[1]));
+		int horaFinenMinutos = (Integer.parseInt(hF[0])*60 + Integer.parseInt(hF[1]));
+	
+		int minutos=horaFinenMinutos-horaInicioenMinutos;
+		
+		return minutos<0;
+	}
 	
 	private void mantenerDuracion(Evento eventoOriginal, Evento eventoModificado)
 	{

@@ -11,11 +11,8 @@
 
 <c:set var="estadoEvento" value="${param.estadoEvento}"/>
 
-
 <c:set var="eventoHoraInicio" value="${param.eventoHoraInicio}"/>
 <c:set var="eventoHoraFin" value="${param.eventoHoraFin}"/>
-
-<%-- <c:set var="eventoMinutosDuracion" value="${param.eventoMinutosDuracion}"/>--%>
 
 <c:set var="altoEventoMinutosDuracion" value="${((param.eventoMinutosDuracion)/30)*2.5}"/> <%-- 21 div + 2 borde - 1 borde superior --%>
 
@@ -41,7 +38,7 @@
 					href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${eventoId}"/>" 
 					title="${eventoTitulo}: ${eventoHoraInicio} -  ${eventoHoraFin}"></a>
 					<p>
-					<b>${eventoTitulo}</b> ${eventoHoraInicio} -  ${eventoHoraFin}
+						<b>${eventoTitulo}</b> ${eventoHoraInicio} -  ${eventoHoraFin}
 					</p> 
 			</div>
 			<div style="display:none;" id="titulo">${eventoTitulo}</div>		  
@@ -50,9 +47,3 @@
 	</c:when>
 	
 </c:choose>
- 
- 
- 
- 					<c:if test="${mediaHora eq false}">
-					  ${hora}
-					</c:if>

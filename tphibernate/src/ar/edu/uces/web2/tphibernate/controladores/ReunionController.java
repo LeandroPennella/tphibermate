@@ -140,7 +140,7 @@ public class ReunionController {
 		
 	@RequestMapping(value = "/calendario/agregarReunion")//TODO: modificar url
 	public ModelAndView save(@ModelAttribute("reunionForm") ReunionForm reunionForm, BindingResult result, @ModelAttribute("usuarioLogueado") Usuario usuarioLogueado ) {
-		//https://github.com/LeandroPennella/uces.web2.agendaLean/blob/a05fcbf6fe13135ba2522b92cad78ed0d24bd55b/tphibernate/src/ar/edu/uces/web2/tphibernate/controladores/ReunionController.java
+
 		this.eventoFormValidator.validate(reunionForm, result);
 		this.reunionValidator.validate(reunionForm, result);
 		if (result.hasErrors()) {		//tiene errores

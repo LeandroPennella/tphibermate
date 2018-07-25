@@ -88,16 +88,18 @@ public class EventoForm {
 	*/
 	
 	public int obtenerMinutosDuracion() {
-		//https://www.lawebdelprogramador.com/foros/Java/639065-Ayuda-con-Restar-horas-en-java.html
+		//TODO: mover a evento
 	
-		String[] h1 = this.horaInicio.split(":");
-		String[] h2 = this.horaFin.split(":");
+		String[] hI = this.horaInicio.split(":");
+		String[] hF = this.horaFin.split(":");
 	
-		int hora1enMinutos = (Integer.parseInt(h1[0])*60 + Integer.parseInt(h1[1]));
-		int hora2enMinutos = (Integer.parseInt(h2[0])*60 + Integer.parseInt(h2[1]));
+		int horaInicioenMinutos = (Integer.parseInt(hI[0])*60 + Integer.parseInt(hI[1]));
+		int horaFinenMinutos = (Integer.parseInt(hF[0])*60 + Integer.parseInt(hF[1]));
 	
+		int minutos=horaFinenMinutos-horaInicioenMinutos;
+		if (minutos<0) {minutos+=24*60;}
 		
-		return hora2enMinutos-hora1enMinutos;
+		return minutos;
 		
 	}
 	

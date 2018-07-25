@@ -44,18 +44,21 @@ $( function() {
 			 	   		$(droppable).append(evento);
 						
 					} else {
-						alert('error de comunicacion...');
+						//pej desborde;
+						evento.css('top',0);
+						//alert('error de comunicacion...');
 					}
 				},
 								
 				error: function(XHR, jqXHR, textStatus,	errorThrown) {
 
 					evento.css('top',0);
-					var errorHtml = "Error!<br/>";
-					errorHtml += "Status: "+ textStatus+"<br/>" 
-					errorHtml += " | Desc: "	+ errorThrown+"<br/>"
-					errorHtml += " | XHR: "	+ XHR.responseText+"<br/>"
-					errorHtml += " | jqXHR: "	+ jqXHR.responseText+"<br/>"
+					var errorHtml = "";
+					errorHtml +="Error!" + " \n\n"
+					errorHtml += " - Status: "+ textStatus+" \n\n" 
+					errorHtml += " - Desc: "	+ errorThrown+" \n\n"
+					errorHtml += " - XHR: "	+ XHR.responseText+" \n\n"
+					errorHtml += " - jqXHR: "	+ jqXHR.responseText+" \n\n"
 					alert(errorHtml);
 				}
           	});
