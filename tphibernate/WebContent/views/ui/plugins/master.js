@@ -1,5 +1,7 @@
+/*
 $(function() {
     // Side Bar Toggle
+	
     $('.hide-sidebar').click(function() {
 	  $('#sidebar').hide('fast', function() {
 	  	$('#content').removeClass('span9');
@@ -17,3 +19,4 @@ $(function() {
 	  	$('#sidebar').show('fast');
 	});
 });
+*/

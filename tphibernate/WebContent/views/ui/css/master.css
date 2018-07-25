@@ -72,9 +72,11 @@ body {
 #content {
   margin-left:0px;
 }
+/*
 .hide-sidebar, .show-sidebar {
   cursor: pointer;
 }
+*/
 .padd-bottom {
   margin-bottom: 5px;
 }

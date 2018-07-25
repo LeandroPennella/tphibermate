@@ -8,16 +8,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<jsp:include page="master_header.jsp"></jsp:include>
-	<jsp:include page="master_time.jsp"></jsp:include>
+
+	<jsp:include page="evento_header.jsp"></jsp:include>
 	
-		<script type="text/javascript" src="<c:url value="/views/ui/calendario/eventoCancelar.js" />"></script>
+	<jsp:include page="evento_time.jsp"></jsp:include>
+	
+	
 	
 	
 	<title><fmt:message key="tarea.tituloAgregar"/></title>
 </head>
+
+
+
 <body>
-	<jsp:include page="master_menu.jsp"></jsp:include>
+	<jsp:include page="evento_menu.jsp"></jsp:include>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span3" id="sidebar">

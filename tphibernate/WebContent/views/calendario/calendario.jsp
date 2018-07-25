@@ -26,7 +26,7 @@
 		var localeLanguage='<%=lang%>';/*<fmt:message key="lang"/>*/
 	</script> 
 	<!--/master -->
-	<%-- <jsp:include page="master_header.jsp"></jsp:include>--%>
+	
 	
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
