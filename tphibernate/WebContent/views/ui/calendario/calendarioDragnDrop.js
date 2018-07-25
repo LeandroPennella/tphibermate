@@ -8,7 +8,15 @@ $( function() {
 		containment:".dia",
    		snap:".droppable",
    		snapMode:'inner',
-   		revert: "invalid" 
+   		revert: "invalid",
+   		start: function() {
+   			$(this).parent().css('z-index', 2);
+   			$(this).find('.evento').css('box-shadow','2px 2px 5px #999999');
+   		},
+        stop: function() {
+        	$(this).parent().css('z-index', '');
+        	$(this).find('.evento').css('box-shadow','');
+        }
 	});
 
 	$( ".droppable" ).droppable({
