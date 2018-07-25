@@ -51,7 +51,7 @@ $( function() {
 								
 				error: function(XHR, jqXHR, textStatus,	errorThrown) {
 					//TODO: rollbackear drop?
-					// - draggable top 0?
+					evento.css('top',0);
 					var errorHtml = "Error!<br/>";
 					errorHtml += "Status: "+ textStatus+"<br/>" 
 					errorHtml += " | Desc: "	+ errorThrown+"<br/>"
