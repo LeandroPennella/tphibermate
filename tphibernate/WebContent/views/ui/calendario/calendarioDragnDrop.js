@@ -7,7 +7,8 @@ $( function() {
 		axis:"y",
 		containment:".dia",//$dia,
    		snap:".droppable",//$droppables_ids,
-   		snapMode:'inner'			   		
+   		snapMode:'inner',
+   		revert: "invalid" 
 	});
 
 	$( ".droppable" ).droppable({
@@ -23,6 +24,7 @@ $( function() {
  	   		
  	   		var eventoJson={"id":evento_id.substr(1), "horaInicio":evento_nuevaHoraInicio};
 
+ 	   		//https://jqueryui.com/droppable/#revert
  	   		
 			$.ajax({
 				url: "../evento/mover.do", 
@@ -43,12 +45,13 @@ $( function() {
 			 	   		$(droppable).append(evento);
 						
 					} else {
-						alert('sin resultado...');
+						alert('error de comunicacion...');
 					}
 				},
 								
 				error: function(XHR, jqXHR, textStatus,	errorThrown) {
 					//TODO: rollbackear drop?
+					// - draggable top 0?
 					var errorHtml = "Error!<br/>";
 					errorHtml += "Status: "+ textStatus+"<br/>" 
 					errorHtml += " | Desc: "	+ errorThrown+"<br/>"
