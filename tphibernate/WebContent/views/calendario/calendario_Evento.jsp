@@ -29,7 +29,10 @@
 	<c:when test="${esLaHora}">
 		<c:set var="sUrl" value="${(eventoEstadoUsuarioActual=='tarea')?'Tarea':'Reunion'}"></c:set>
 
-		<div class="draggable" id="e${eventoId}">
+		<div id="e${eventoId}"
+			<c:if  test="${eventoEstadoUsuarioActual=='reunionAutor' || eventoEstadoUsuarioActual=='tarea'}">class="draggable"</c:if> 
+			<c:if  test="${eventoEstadoUsuarioActual!='reunionAutor' && eventoEstadoUsuarioActual!='tarea'}">class="nodraggable"</c:if>
+			>
 			<div 
 				class=" evento   ${eventoEstadoUsuarioActual}"
 				style="height: ${altoEventoMinutosDuracion}vh;" >
@@ -48,3 +51,8 @@
 	
 </c:choose>
  
+ 
+ 
+ 					<c:if test="${mediaHora eq false}">
+					  ${hora}
+					</c:if>

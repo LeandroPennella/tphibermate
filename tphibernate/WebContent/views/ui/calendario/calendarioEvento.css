@@ -41,7 +41,7 @@ z-index:unset;}
 	font-size: calc(0.2vw + 1.3vh);
 }
 	
-.draggable{
+.draggable, .nodraggable{
 	height:1px; 
 	
 	border:0;
