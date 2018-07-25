@@ -126,7 +126,7 @@
 		<%--
 		<c:out value=" ${diaApuntado}" />
 		<fmt:formatDate value="${fecha}" var="diaApuntadoString" pattern="dd/MM/yyyy"/>
- --%>
+ 		--%>
 		
 		
 		
@@ -297,96 +297,6 @@
 	</div>	
 
 
-
-
-
-
-
-
-<%-- 
-
-
-	<!-- Horas ------------------------------------------------------------ -->
-	<div class="panelHoras">
-		<div class="headerDia">
-			<fmt:message key="calendario.etiquetas.hora" />
-		</div>
-		
-		<c:forEach items="${horas}" var="hora">
-    		<div class="hora">${hora}</div>
-		</c:forEach>	
-	</div>
-	
-	
-	
-	<!-- Dias ------------------------------------------------------------ -->
-	
-	 
-	 <c:forEach var="diaSemana" items="${SemanaConEventos}">
-	 
-	
-		<c:set var="diaFecha"  value="${diaSemana.key}"></c:set>
-		<fmt:formatDate value="${diaFecha}" var="diaFechaString" pattern="dd/MM/yyyy"/>
-		<fmt:formatDate value="${diaFecha}" var="nombreDia" pattern="EEE"/>
-		
-	
-		
-		<c:set var="eventosDia"  value="${diaSemana.value}"></c:set>
-		<c:set var="claseDia" value="nada"></c:set>
-
-		<!-- set DiaHoy -->
-		
-		<c:if test="${dFechaHoy==diaFecha}" >
-			<c:set var="claseDia" value="hoy"></c:set>
-		</c:if>
-		
-		<!-- Dia ------------------------------------------------------------ -->
-		<div class="dia ${claseDia}">
-			
-			<div class="headerDia">
-				
-				<c:out value="${nombreDia}" />
-				<!-- <c:out value="${diaFechaString}" /> -->
-				<c:out value="${fn:substring(diaFechaString, 0, 2)}" />
-				
-			</div>
-			
-			<!-- Horas ------------------------------------------------------------ -->
-			<c:forEach var="hora" items="${horas}" >
-
-			
-				<div class="hora" id="${hora}">
-					 
-					<!-- Eventos -->
-					<c:forEach var="evento" items="${eventosDia}">
-						
-						<!-- Evento -->
-						<jsp:include page="calendarioAjax_Evento.jsp">
-							<jsp:param name="eventoID" value ="${evento.getId()}"/>
-							
-							<jsp:param name="eventoHoraInicio" value ="${evento.getHoraInicio()}"/>
-							<jsp:param name="eventoHoraFin" value ="${evento.getHoraFin()}"/>
-							<jsp:param name="eventoMinutosDuracion" value ="${evento.obtenerMinutosDuracion()}"/>
-							
-							<jsp:param name="eventoTitulo" value ="${evento.getTitulo()}"/>
-							<jsp:param name="eventoEstadoUsuarioActual" value ="${evento.obtenerEstado(usuarioLogueado)}"/>
-							
-							<jsp:param name="estadoEvento" value ="${estadoEvento}"/>
-							
-							<jsp:param name="hora" value ="${hora}"/>
-							
-						</jsp:include>
-					
-					</c:forEach>
-					<!-- /Eventos -->
-					
-					
-				</div>
-			</c:forEach>
-
-		</div>
-	</c:forEach>
---%>
 	</div>	
 </body>
 </html>
