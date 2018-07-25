@@ -1,45 +1,14 @@
 
 $( function() {
+
 	
-	
-	$('.calendario-cuerpo').children('.columnas-dias').each(
-	
-		function(){
-			var $dia=$(this);
-			var $dia_id=$(this).attr('id');
-	    	//alert('dia:' + $dia_id);	
-			
-			$droppables=$dia.children('.celda').children('.droppable');
-			var $droppables_ids='';
-			$droppables.each(function(){
-				$droppables_ids+='#'+($(this).attr('id')+',');
-		   	});
-		    $droppables_ids=$droppables_ids.slice(0,-1);
-		    //alert($droppables_ids);
-			var dia=[];	    
-		    dia.id=$dia_id;
-		
-			$dia.find('.draggable').each(
-					
-				function(){
-					var $evento=$(this);
-					var $evento_id=$(this).attr('id');
-					//alert('e: ' +$evento_id + ' - c:' + $dia_id + ' - s:'+ $droppables_ids);
-					
-					$evento.draggable({
-						delay:300,
-						axis:"y",
-						containment:$dia,
-				   		snap:$droppables_ids,
-				   		snapMode:'inner'
-				   		//todo: minimo movimiento
-					});
-				}
-			)
-		}
-	);
-	
-	
+	$('.draggable').draggable({
+		delay:300,
+		axis:"y",
+		containment:".dia",//$dia,
+   		snap:".droppable",//$droppables_ids,
+   		snapMode:'inner'			   		
+	});
 
 	$( ".droppable" ).droppable({
   		drop: function( event, ui ) {
