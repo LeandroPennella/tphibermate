@@ -5,9 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-
-
- 
 <!--master -->
 <%@ page isELIgnored="false"%>
 <%@ page import="org.springframework.web.servlet.support.RequestContext"%>
@@ -25,9 +22,7 @@
 	<script type="text/javascript">
 		var localeLanguage='<%=lang%>';/*<fmt:message key="lang"/>*/
 	</script> 
-	<!--/master -->
-	
-	
+	<!--/master -->	
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -76,10 +71,7 @@
     <!-- toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav">
-      <!-- 
-        <li class="active"><a href="#">Tarea<span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Reunion</a></li>
-	  -->
+
 		<li>
 		    <a href="<c:url value="/calendario/crearTarea.do" ></c:url>"><fmt:message key='tarea.tituloAgregar'/></a>
 		</li>
@@ -184,13 +176,12 @@
      <div id="calendarioenlinea"></div>
    </div>
 
-<!-- Main -------------------------------------------------------------------------------------------------------------------------->
 
+<!-- Main -------------------------------------------------------------------------------------------------------------------------->
 <div id="main">
 
 
 	<!-- Cabecera ------------------------------------------------------------ -->
-
 	<div class="calendario-cabecera">
 	
 		<!-- Horas -->
@@ -262,21 +253,36 @@
 					<c:forEach var="evento" items="${eventosDia}">				
 						
 						<!-- Evento -->
-						<jsp:include page="calendario_Evento.jsp">
-							<jsp:param name="eventoID" value ="${evento.getIdEvento()}"/>
+						
+						<c:set var="altoEventoMinutosDuracion" value="${(evento.obtenerMinutosDuracion()/30)*2.5}"/> <%-- 21 div + 2 borde - 1 borde superior --%>
+						<c:set var="esLaHora" value="${evento.getHoraInicio()==hora}" />
+						
+						<c:choose>
+											 
+							<c:when test="${esLaHora}">
+								<c:set var="sUrl" value="${(evento.obtenerEstado(usuarioLogueado)=='tarea')?'Tarea':'Reunion'}"></c:set>
+						
+								<div id="e${evento.getIdEvento()}"
+									<c:if  test="${evento.obtenerEstado(usuarioLogueado)=='reunionAutor' || evento.obtenerEstado(usuarioLogueado)=='tarea'}">class="draggable"</c:if> 
+									<c:if  test="${evento.obtenerEstado(usuarioLogueado)!='reunionAutor' && evento.obtenerEstado(usuarioLogueado)!='tarea'}">class="nodraggable"</c:if>
+									>
+									<div 
+										class=" evento   ${evento.obtenerEstado(usuarioLogueado)}"
+										style="height: ${altoEventoMinutosDuracion}vh;" >
+										<a
+											class="default-link"  
+											href="<c:url value="/calendario/editar${sUrl}.do?idEvento=${evento.getIdEvento()}"/>" 
+											title="${evento.getTitulo()}: ${evento.getHoraInicio()} -  ${evento.getHoraFin()}"></a>
+											<p>
+												<b>${evento.getTitulo()}</b> ${evento.getHoraInicio()} -  ${evento.getHoraFin()}
+											</p> 
+									</div>
+									<div style="display:none;" id="titulo">${evento.getTitulo()}</div>		  
+							 	</div>
+							 			
+							</c:when>
 							
-							<jsp:param name="eventoHoraInicio" value ="${evento.getHoraInicio()}"/>
-							<jsp:param name="eventoHoraFin" value ="${evento.getHoraFin()}"/>
-							<jsp:param name="eventoMinutosDuracion" value ="${evento.obtenerMinutosDuracion()}"/>
-							
-							<jsp:param name="eventoTitulo" value ="${evento.getTitulo()}"/>
-							<jsp:param name="eventoEstadoUsuarioActual" value ="${evento.obtenerEstado(usuarioLogueado)}"/>
-							
-							<jsp:param name="estadoEvento" value ="${estadoEvento}"/>
-							
-							<jsp:param name="hora" value ="${hora}"/>
-							
-						</jsp:include>
+						</c:choose>
 					
 					</c:forEach>
 					<!-- /Eventos -->
@@ -284,10 +290,11 @@
 				  </div></div>       			
 			</c:forEach>
 			</div>	
-		</c:forEach>	
+		</c:forEach>
+		<!-- Dias -->	
 	</div>	
-
-
-	</div>	
+	<!-- cuerpo -->
+</div>
+<!-- Main -->	
 </body>
 </html>

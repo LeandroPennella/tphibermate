@@ -34,7 +34,7 @@ public class TareaController {
 	
 	@RequestMapping(value = "/calendario/crearTarea")
 	public ModelAndView crear() {
-		return new ModelAndView("/views/calendario/tarea.jsp", "tarea", new TareaForm());
+		return new ModelAndView("/views/evento/tarea.jsp", "tarea", new TareaForm());
 	}
 	
 	@RequestMapping(value = "/calendario/editarTarea")
@@ -51,7 +51,7 @@ public class TareaController {
 		tareaForm.setHoraFin(tarea.getHoraFin());
 		tareaForm.setDescripcion(tarea.getDescripcion());
 		tareaForm.setDireccion(tarea.getDireccion());
-		return new ModelAndView("/views/calendario/tarea.jsp","tarea",tareaForm); 
+		return new ModelAndView("/views/evento/tarea.jsp","tarea",tareaForm); 
 	}
 	
 	@RequestMapping(value = "/calendario/agregarTarea")
@@ -59,7 +59,7 @@ public class TareaController {
 		
 		this.eventoFormValidator.validate(tareaForm, result);
 		if (result.hasErrors()) {
-			return new ModelAndView("/views/calendario/tarea.jsp","tarea", tareaForm);
+			return new ModelAndView("/views/evento/tarea.jsp","tarea", tareaForm);
 		}
 		SimpleDateFormat dateFormatter=new SimpleDateFormat("dd/MM/yyyy");
 		Date fecha=dateFormatter.parse(tareaForm.getFecha().toString(), new ParsePosition(0));	

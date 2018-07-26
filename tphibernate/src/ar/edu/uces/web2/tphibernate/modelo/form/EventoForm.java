@@ -78,6 +78,7 @@ public class EventoForm {
 	public void setUsuarioActual(Usuario usuarioActual) {
 		this.usuarioActual = usuarioActual;
 	}
+	
 	/*
 	public int getEventosSimultaneos() {
 		return eventosSimultaneos;

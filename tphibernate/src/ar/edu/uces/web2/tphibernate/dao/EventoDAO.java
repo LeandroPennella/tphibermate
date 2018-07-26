@@ -63,17 +63,13 @@ public class EventoDAO {
 		
 		if (!desbordeHorario(evento))
 		{
-			String sQuery=
-			"update from " +Evento.class.getName() + " as e " +
-				"set horaInicio='"+evento.getHoraInicio()+"', "+
-					"horaFin='"+evento.getHoraFin()+"' "+
-				"where e.id="+evento.getId();
-			Query q=session.createQuery(sQuery);
-			q.executeUpdate();
-			/*
+
+			
 			Evento eventoBuffer=(Evento)session.get(Evento.class, evento.getId());
 			eventoBuffer.setHoraInicio(evento.getHoraInicio());
-			session.saveOrUpdate(eventoBuffer);*/
+			eventoBuffer.setHoraFin(evento.getHoraFin());
+			session.saveOrUpdate(eventoBuffer);
+			
 			return evento.getHoraFin();
 		}
 		else
@@ -123,11 +119,9 @@ public class EventoDAO {
 		calendar.setTime(dHoraFinOriginal); 
 		calendar.add(Calendar.MINUTE, dDiferenciaHoraFin);  
 		dHoraFinNueva=calendar.getTime();
-		eventoModificado.setHoraFin(formatter.format(dHoraFinNueva));
-		
+		eventoModificado.setHoraFin(formatter.format(dHoraFinNueva));	
 		
 	}
-	
 	
 	
 	//TODO: mover?
@@ -139,7 +133,6 @@ public class EventoDAO {
 	    	Date inicio2=horaFormat.parse(e2.getHoraInicio(), new ParsePosition(0));
 	        return inicio1.compareTo(inicio2);
 	    }
-
-
 	}
+	
 }

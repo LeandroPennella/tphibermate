@@ -1,53 +1,37 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script type="text/javascript" src="../views/ui/js/jquery.i18n.properties.js"></script>
- 
-<script type="text/javascript">
 
-var listaInvitaciones = [];
+
+
 
 $(document).on('click', '.borrar', function (event) {
     event.preventDefault();
     $(this).closest('tr').remove();
 });
 
-$(
-	//carga invitaciones ya hechas (usuarios+estados)
-	function(){		
-		
-	<c:forEach var="invitacion" items="${reunionForm.invitaciones}">
-		listaInvitaciones.push({
-			id: "${invitacion.usuario.id}" , 
-			nombre:  "${invitacion.usuario.nombre} ${invitacion.usuario.apellido} (${invitacion.usuario.nombreUsuario})" , 
-			estado:  "${invitacion.aceptado}"
-		});
-    </c:forEach>
-
-
-    //autocomplete
-	 $( "#usuariosAutocomplete" ).autocomplete
-	    (
-			{
-		      	source: function( request, response ) {
-			        $.ajax({
-				        	url: 'listadoDeUsuarios.do',
-				        	type: "GET",
-				            data: {parteNombre: request.term, cantMax:5},
-			              	dataType : "json",
-			              	//contentType : "application/json;charset=UTF-8",
-				          success: function(data) {response (filtrarListaAutocompletar(data));}
-	      			});
-	  			},
-	  			select: function (event, ui){
-	  				console.log("agregar:"+ui.item.value +"|"+ui.item.label)
-	  				agregarATablaInvitaciones(ui.item.value, ui.item.label);
-	  			    $(this).val("");
-	  			    return false;
-				}
+//autocomplete
+$(function(){
+$( "#usuariosAutocomplete" ).autocomplete
+   (
+		{
+	      	source: function( request, response ) {
+		        $.ajax({
+			        	url: 'listadoDeUsuarios.do',
+			        	type: "GET",
+			            data: {parteNombre: request.term, cantMax:5},
+		              	dataType : "json",
+		              	//contentType : "application/json;charset=UTF-8",
+			          success: function(data) {response (filtrarListaAutocompletar(data));}
+     			});
+ 			},
+ 			select: function (event, ui){
+ 				console.log("agregar:"+ui.item.value +"|"+ui.item.label)
+ 				agregarATablaInvitaciones(ui.item.value, ui.item.label);
+ 			    $(this).val("");
+ 			    return false;
 			}
-		)
-	} 	 
-)
+		}
+	);
+})
 
 function getLabel(tag) {
 	var leliminar;
@@ -117,4 +101,3 @@ function agregarATablaInvitaciones(id, nombreCompuesto)
 		  '</tr>');
 }
 
-</script>

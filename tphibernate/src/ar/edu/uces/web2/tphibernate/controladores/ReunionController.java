@@ -105,7 +105,7 @@ public class ReunionController {
 		ReunionForm reunionForm=new ReunionForm();
 		reunionForm.setSalas(salaDAO.getAll());
 		reunionForm.setAutor(usuarioLogueado);
-		ModelAndView mv=new ModelAndView("/views/calendario/reunion.jsp","reunionForm", reunionForm);
+		ModelAndView mv=new ModelAndView("/views/evento/reunion.jsp","reunionForm", reunionForm);
 		return mv;
 	}
 	
@@ -118,7 +118,7 @@ public class ReunionController {
 		reunionForm.setEstado(reunionForm.obtenerEstado(usuarioLogueado));
 		reunionForm.setSalas(salaDAO.getAll());
 		
-		return  new ModelAndView("/views/calendario/reunion.jsp","reunionForm",reunionForm);
+		return  new ModelAndView("/views/evento/reunion.jsp","reunionForm",reunionForm);
 	}
 	
 	@RequestMapping(value = "/calendario/modificarAsistenciaReunion")
@@ -135,7 +135,7 @@ public class ReunionController {
 				return new ModelAndView("/views/index.jsp");
 			}
 		}
-		return new ModelAndView("/views/calendario/reunion.jsp","reunionForm", reunionForm);
+		return new ModelAndView("/views/evento/reunion.jsp","reunionForm", reunionForm);
 	}
 		
 	@RequestMapping(value = "/calendario/agregarReunion")//TODO: modificar url
@@ -144,7 +144,7 @@ public class ReunionController {
 		this.eventoFormValidator.validate(reunionForm, result);
 		this.reunionValidator.validate(reunionForm, result);
 		if (result.hasErrors()) {		//tiene errores
-			return new ModelAndView("/views/calendario/reunion.jsp","reunionForm", save_conError(reunionForm, usuarioLogueado));
+			return new ModelAndView("/views/evento/reunion.jsp","reunionForm", save_conError(reunionForm, usuarioLogueado));
 		} else {																							//no tiene errores
 			if(save_sinError(reunionForm, usuarioLogueado)==false){
 				//TODO: manejarlo con excepciones?
